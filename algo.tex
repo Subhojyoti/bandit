@@ -1,0 +1,47 @@
+The steps are presented in Algorithm~1.\\%\ref{alg:cucb}.
+%\begin{algorithm}
+%\caption{Clustered UCB($D$)}
+%\label{alg:cucb}
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.8pt}}\\[-0.1cm]
+\textbf{Algorithm 1:} ClusUCB\\[-0.3cm]
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.3cm]
+\begin{algorithmic}[1]
+%\Procedure{\underline{Phase 1: Arm Exploration}}{}
+\State Pull each arm once and calculate $\hat{r}_{i}, \forall i\in A$
+\State Let $A$ be such a set which contains all the arms
+\State $B_{1}:=A$
+\State $\psi(m)=\dfrac{c}{m}, c>0$
+\State $\ell_{1}=2,D_{1}=2$
+%\State For rounds $m=1,2,.. \lceil\frac{1}{2}\log T\rceil$
+\State For rounds $m=1,2,.. \lceil\log T\rceil$
+\State \hspace*{2em} $\hat{\Delta}_{s,m}=\max_{i\in B_{m}}{\lbrace\hat{r}_{i}\rbrace}-\min_{j\in B_{m}}{\lbrace\hat{r}_{j}\rbrace}, i\neq j$
+\State \hspace*{2em} $\epsilon_{m}=\max{\bigg\lbrace\dfrac{\hat{\Delta}_{s,m}}{\ell_{m}}, \dfrac{2}{\sqrt{\psi{(m)T}}}\bigg\rbrace}$, if $\hat{\Delta}_{s,m}\neq 0$
+\newline\hspace*{3.7em}$=\max{\bigg\lbrace\dfrac{1}{D_{m}}, \dfrac{2}{\sqrt{\psi{(m)T}}}\bigg\rbrace}$, if $\hat{\Delta}_{s,m}=0$ 
+\State \hspace*{2em} Create clusters $s_{i}=\lbrace a_{i}\rbrace, \forall i\in B_{m}$
+\State \hspace*{2em} Cluster $s_{i},s_{j}$ into $s_{ij}$ if $\exists a_{i}\in s_{i} $, $ a_{j}\in s_{j},$ such that $|\hat{r}_{i}-\hat{r}_{j}|<\epsilon_{m}$ and \hspace*{2em} $|s_{i}|+|s_{j}|\leq \ell_{m}$
+\todos{Merge sounds better than cluster}
+\State \hspace*{2em} Pull each arm in $s_{i}$, \newline\hspace*{2em}$n_{s_{i}}=\bigg\lceil\dfrac{2\log{(\psi(m)T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$ number of times, $\forall s_{i}\in S$ 
+%\State \hspace*{2em} Calculate $w_{s_{i}}=\bigg\lceil\dfrac{1}{\ell_{m}\hat{\Delta}_{s_{i}}}\bigg\rceil$,if $\hat{\Delta}_{s_{i}}\neq 0, \forall s_{i}\in S$
+%\newline\hspace*{8em}$=1$, otherwise, and $\hat{\Delta}_{s_{i}}=\max_{i\in s_{i}}{\lbrace\hat{r}_{i}\rbrace}-\min_{j\in s_{i}}{\lbrace\hat{r}_{j}\rbrace}, i\neq j$
+\State \hspace*{2em} Calculate $w_{s_{i}}=\ell_{m}^{2}k_{s_{i}}$ $\forall s_{i}\in S$, where $k_{s_{i}}=|s_{i}|$
+\State \hspace*{2em} \textbf{Arm Elimination:}
+\State \hspace*{2em} Delete any arm $a_{i}\in s_{i}$ if,
+\newline\hspace*{2em}$\hat{r}_{i} + \sqrt{\dfrac{\log{(\psi(m)T\epsilon_{m}^{2})}}{2w_{s_{i}}n_{s_{i}}}}  < \max_{j\in s_{i}}\hat{r}_{j} -\sqrt{\dfrac{\log{(\psi(m)T\epsilon_{m}^{2})}}{2w_{s_{i}}n_{s_{i}}}} $, $\forall s_{i}\in S$ 
+%- \sqrt{\dfrac{\log{(4\psi(m)T\epsilon_{m}^{2})}}{2wn_{s_{i}}}}
+\State \hspace*{2em} \textbf{Cluster Elimination:}
+\State \hspace*{2em} Delete any cluster $s_{i}\in S$ if, $\max_{i\in s_{i}}\hat{r}_{s_{i}} + \sqrt{\dfrac{(|B_{m}|)\epsilon_{m}\log{(\psi(m)T\epsilon_{m}^{2})}}{2\ell_{m} n_{s_{i}}}}  $\newline\hspace*{4em}$< \min_{j\in s_{j}:\max{\hat{r}_{s_{j}}}\geq \max\hat{r}_{s_{i}},\forall s_{i}\in S}\hat{r}_{s_{j}} - \sqrt{\dfrac{(|B_{m}|)\epsilon_{m}\log{(\psi(m)T\epsilon_{m}^{2})}}{2\ell_{m} n_{s_{i}}}}$
+%- \sqrt{\dfrac{(|B_{m}|)\epsilon_{m}\log{(4\psi(m)T\epsilon_{m}^{2})}}{2w\ell_{m} n_{s_{j}}}}
+\State \hspace*{2em} $D_{m+1}=\max{\bigg\lbrace\bigg\lceil\dfrac{1}{\sqrt{\epsilon_{m}}}\bigg\rceil,K\bigg\rbrace}$
+\State \hspace*{2em} $\ell_{m+1}:=2\ell_{m}$, if $2\ell_{m}\leq D_{m+1}$
+\newline\hspace*{4.9em}$:=\ell_{m}$ , otherwise
+\State \hspace*{2em} \textbf{Stopping Condition:} 
+\State \hspace*{2em} Stop the rounds if $|B_{m}|=1$ and pull $\max_{i\in B_{m}}\hat{r}_{i}$ till $T$ is reached.
+\end{algorithmic}
+%\end{algorithm}
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.6cm]
+
+In the above algorithm we are dividing the arm set $A$ into smaller clusters which belong to the cluster set $S$ where $|S|\leq K$. We are bounding the cluster size by $\ell_{m}$ in each round, starting from an initial value of $\ell_{1}=2$ and doubling it after every round. For creating these clusters we rely on the parameter $\epsilon_{m}$, which is the range $\hat{\Delta}_{s,m}$(in which all $\hat{r}_{i}$ lies) divided by $\ell_{m}$. If the range before any round is found to be $0$ then we conduct a small exploration with the alternate definition of $\epsilon_{m}=\dfrac{1}{D_{m}}$. Thus we see that as the rounds progresses, $\epsilon_{m}$ gets smaller and smaller resulting in tighter and tighter clusters with high purity level. Single link clustering tends to create large clusters with many elements in a single cluster. To avoid this behavior, mainly because we are conducting exploration inside a cluster based on its size, we bound the maximum cluster size possible in any round by $D_{m}=\dfrac{1}{\sqrt{\epsilon_{m}}}$. Hence as $\epsilon_{m}$ tends to $\Delta$ the upper limit on the cluster size gets fixed. On close examination we can see that $D_{m}$ actually controls our rate of exploration and similar to the $\epsilon$ parameter in $\epsilon$-greedy as in \cite{sutton1998reinforcement}. We can also see that at any round $m$, the pulls $n_{s_{i}}$ increases at a lesser rate compared to the round-based variants UCB-Revisited $\bigg\lceil \dfrac{2log(T\tilde{\Delta}_{m}^{2})}{\tilde{\Delta}_{m}^{2}} \bigg\rceil$, where $\tilde{\Delta}_{m}$ is initialized at $1$ and halved after every round or Median-Elimination $\dfrac{4}{\epsilon^{2}}\log\big(\dfrac{3}{\delta}\big)$, where $\epsilon,\delta$ are the parameters for PAC guarantee.
+
+	Next, in each of the round we eliminate arms like UCB-Revisited(\cite{auer2010ucb}) or Median Elimination(\cite{even2006action}),however, it is important to note that there is no longer a single point of reference based on which we are eliminating arms but now we have as many reference points to eliminate arms as number of clusters. We can be this aggressive because we have divided the larger problem into smaller sub-problems, doing local exploration and eliminating sub-optimal arms within each clusters with some guarantee. Hence, compared to UCB-Revisited or Median Elimination, the proposed algorithm should have a higher probability of arm deletion. Especially when $K$ is large it is efficient to remove sub-optimal arms quickly rather getting tied down in hopeless exploration. Also our total regret depends on how many arms has survived till $m$-th round and so we don't need to keep track on the number of clusters formed.
+
+	Through cluster elimination condition we ensure that the stopping condition is reached faster. This is a much stricter elimination condition and in the proofs we give a further analysis on why this works. We also define $\psi(m)$ as such a function which monotonically decreases over the rounds that is $|\psi(m+1)| \leq |\psi(m)|$. This is a parameter which we use to tune our exploration and we define its structure later in the proofs. There is also the weight($w_{s_{i}}$) parameter which   is calculated online and helps in eliminating arms with a higher probability which we employ to reduce the cumulative regret and this parameter is decide online specific to the cluster $s_{i}\in S$.
