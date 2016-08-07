@@ -2,29 +2,32 @@
 %\newpage
 \appendix
 
-	In the following appendices we will prove the bounds based on the events $\xi_{1}$,$\xi_{2}$ and $\xi_{3}$. In $\xi_{1}$, we will assume two important assumptions $i)\hat{r}^{*}<\hat{r}_{i},\forall i\in s_{i}$ and $ii)\exists a_{i}\in s_{i}$ such that $\sqrt{\dfrac{\epsilon_{m}}{w_{s_{i}}}}<\dfrac{\Delta_{i}}{5}$. For $\xi_{2}$, we will assume that $a^{*}\in s^{*}$ and $|s^{*}|=1$, $a_{i}\in s_{i} \forall a_{i}\setminus a^{*}\in B_{m}$ and $\exists a_{max_{s_{i}}}$ such that $\sqrt{\epsilon_{m}}<\dfrac{2\Delta_{s}}{5}$, where $\Delta_{s}=r^{*}-r_{max_{s_{i}}}$ and $\hat{r}_{max_{s_{i}}}>\hat{r}_{i}, \forall i\in s_{i}$. $\xi_{3}$ be the event when the optimal arm $a^{*}$ gets eliminated by a sub-optimal arm. At the start of any round $m$, we fix $\epsilon_{m}$.
+%	In the following appendices we will prove the bounds based on the events $\xi_{1}$,$\xi_{2}$ and $\xi_{3}$. In $\xi_{1}$, we will assume two important assumptions $i)\hat{r}^{*}<\hat{r}_{i},\forall i\in s_{i}$ and $ii)\exists a_{i}\in s_{i}$ such that $\sqrt{\dfrac{\epsilon_{m}}{w_{s_{i}}}}<\dfrac{\Delta_{i}}{5}$. For $\xi_{2}$, we will assume that $a^{*}\in s^{*}$ and $|s^{*}|=1$, $a_{i}\in s_{i} \forall a_{i}\setminus a^{*}\in B_{m}$ and $\exists a_{max_{s_{i}}}$ such that $\sqrt{\epsilon_{m}}<\dfrac{2\Delta_{s}}{5}$, where $\Delta_{s}=r^{*}-r_{max_{s_{i}}}$ and $\hat{r}_{max_{s_{i}}}>\hat{r}_{i}, \forall i\in s_{i}$. $\xi_{3}$ be the event when the optimal arm $a^{*}$ gets eliminated by a sub-optimal arm. At the start of any round $m$, we fix $\epsilon_{m}$.
 
+\todos{(Subho) Took $\psi(m)=1$, removed $w_{s_{i}}$ from proofs. Here, $\epsilon_{m}$ is now the $\tilde{\Delta}_{m}$ of Ucb-Revisited}
 
 
 \section*{Appendix A}
 \begin{proposition}
-The probability that the optimal arm $a^{*}\in s_{i}$ will lie above $\hat{r}_{min_{s_{i}}}+ \hat{\Delta}_{s_{i}}$ after $\bigg\lceil\dfrac{2\log (\psi(m)T\epsilon_{m}^{2})}{\epsilon_{m}}\bigg\rceil$ pulls in the $m$-th round is given by $\bigg\lbrace 1- \dfrac{2}{(\psi(m)T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}} \bigg\rbrace$ where $\hat{r}_{min_{s_{i}}}$ is the arm with the minimum payoff in $s_{i}$, $\hat{\Delta}_{s_{i}}=max_{i\in s_{i}}\hat{r}_{i}-min_{j\in s_{i}}\hat{r}_{j}, i\neq j$, $\epsilon_{m}=\max{\bigg\lbrace\dfrac{\hat{\Delta}_{s,m}}{\ell_{m}}, \dfrac{1}{\sqrt{\psi{(m)T}}}\bigg\rbrace}$, if $\hat{\Delta}_{s,m}\neq 0$ and $T$ is the horizon.  
+The probability that the optimal arm $a^{*}\in s_{i}$ will lie above $\hat{r}_{min_{s_{i}}}+ \dfrac{\hat{\Delta}_{s_{i}}}{2}$ after $\bigg\lceil\dfrac{2\log (\psi(m)T\epsilon_{m}^{2})}{\epsilon_{m}}\bigg\rceil$ pulls in the $m$-th round is given by $\bigg\lbrace 1- \dfrac{1}{(\psi(m)T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}} \bigg\rbrace$ where $\hat{r}_{min_{s_{i}}}$ is the minimum payoff in $s_{i}$, $\hat{\Delta}_{s_{i}}=max_{i\in s_{i}}\hat{r}_{i}-min_{j\in s_{i}}\hat{r}_{j}, i\neq j$, $\epsilon_{m}$ is halved after every round and $T$ is the horizon. 
 \end{proposition}
+
+%$\epsilon_{m}=\max{\bigg\lbrace\dfrac{\hat{\Delta}_{m}}{\ell_{m}} \dfrac{2}{\sqrt{\psi{(m)T}}}\bigg\rbrace}$
 
 \begin{proof} of Proposition 1:
 \newline
-We start by considering the worst case scenario that in the $m$-th round, in a cluster $s_{i}$, the optimal arm $a^{*}$ has performed worst. This event is characterized by $\xi_{1}$ such that $\hat{r}^{*}<\hat{r}_{i},\forall a_{i} \in s_{i}$. Let, $\hat{\Delta}_{s_{i}}=max_{i\in s_{i}}\hat{r}_{i}-min_{j\in s_{i}}\hat{r}_{j}$ where $i\neq j$. Also, let in $\xi_{1}$, $|s_{i}|=k_{s_{i}}$ and $\hat{r}_{min_{s_{i}}}\leq\hat{r}_{i},\forall i\in s_{i}$ also $\hat{r}_{max_{s_{i}}}\geq\hat{r}_{i},\forall i\in s_{i}$.
+We start by considering the worst case scenario that in the $m$-th round, in a cluster $s_{i}$, the optimal arm $a^{*}$ has performed worst, such that $\hat{r}^{*}<\hat{r}_{i},\forall a_{i} \in s_{i}$. Let, $\hat{\Delta}_{s_{i}}=max_{i\in s_{i}}\hat{r}_{i}-min_{j\in s_{i}}\hat{r}_{j}$ where $i\neq j$. Also, let $|s_{i}|=k_{s_{i}}$ and $\hat{r}^{*}=\hat{r}_{min_{s_{i}}}\leq\hat{r}_{i},\forall i\in s_{i}$ also $\hat{r}_{max_{s_{i}}}\geq\hat{r}_{i},\forall i\in s_{i}$.
 \newline
-Now, we have to bound the $\mathbb{P}\lbrace\hat{r}^{*}\geq\hat{r}_{max_{s_{i}}} - \hat{\Delta}_{s_{i}}\rbrace$
-%\leq U_{m}$, where $U_{m}$ is an upper bound.
-\newline
-Again, given that there are $k_{s_{i}}$ arms in $s_{i}$, and for each $a_{i},a_{j}\in s_{i}$ since $|\hat{r}_{i}-\hat{r}_{j}|\leq\epsilon_{m}$ the longest possible gap is $(k_{s_{i}}-1)\epsilon_{m}$ which is actually $\hat{\Delta}_{s_{i}}$.
+%Now, we have to bound the $\mathbb{P}\lbrace\hat{r}^{*}\geq\hat{r}_{max_{s_{i}}} - \hat{\Delta}_{s_{i}}\rbrace$
+%%\leq U_{m}$, where $U_{m}$ is an upper bound.
+%\newline
+Again, given that there are $k_{s_{i}}$ number of arms in $s_{i}$, and for each $a_{i},a_{j}\in s_{i}$ since $|\hat{r}_{i}-\hat{r}_{j}|\leq\epsilon_{m}$, the longest possible gap is $(k_{s_{i}}-1)\epsilon_{m}$ which is greater than the actual estimated gap $\hat{\Delta}_{s_{i}}$.
 \newline
 So, $\hat{\Delta}_{s_{i}}\leq (k_{s_{i}}-1)\epsilon_{m}$, as $|\hat{r}_{i}-\hat{r}_{j}|\leq\epsilon_{m}, \forall i,j \in s_{i}$
-\newline\hspace*{3.5em}$\leq (\ell_{m})\epsilon_{m}$, as $k_{s_{i}}\leq \ell_{m}$
+\newline\hspace*{3.5em}$\leq \ell_{m}\epsilon_{m}$, as $k_{s_{i}}\leq \ell_{m}$
 %\newline Again in $\xi_{1}$, $\hat{\Delta}_{s_{i}}\geq \epsilon_{m}$, for sufficiently large $\ell_{m}$, as $\epsilon_{m}=\dfrac{\hat{\Delta}_{s,m}}{\ell_{m}}$, where $\hat{\Delta}_{s,m}=\max_{i\in B_{m}}{\hat{r}_{i}}-\min_{j\in B_{m}}{\hat{r}_{j}},i\neq j$ and $\ell_{m}$ is doubled after every round.
 %$\mathbb{P}\lbrace\hat{r}^{*}\geq\hat{r}_{m}+ \dfrac{\hat{\Delta}_{s_{i}}}{2}\rbrace=
-\newline\hspace*{0em} $\mathbb{P}\lbrace\hat{r}^{*}\geq\hat{r}_{s} - \hat{\Delta}_{s_{i}}\rbrace\Rightarrow\mathbb{P}\lbrace\hat{r}^{*}+\dfrac{\hat{\Delta}_{s_{i}}}{2}\geq\hat{r}_{s} - \dfrac{\hat{\Delta}_{s_{i}}}{2}\rbrace$
+%\newline\hspace*{0em} $\mathbb{P}\lbrace\hat{r}^{*}\geq\hat{r}_{max_{s_{i}}} - \hat{\Delta}_{s_{i}}\rbrace\Rightarrow\mathbb{P}\lbrace\hat{r}^{*}+\dfrac{\hat{\Delta}_{s_{i}}}{2}\geq\hat{r}_{max_{s_{i}}} - \dfrac{\hat{\Delta}_{s_{i}}}{2}\rbrace$
 %\leq U_{m}$ .
 %\newline But we know that $r^{*}>r_{s}$ and we know that in $\xi_{1}$, $a_{s}$ has performed such that $\hat{r}_{s} \leq r^{*}$.
 \newline Now, applying Chernoff-Hoeffding bound and considering independence of events,
@@ -33,19 +36,20 @@ So, $\hat{\Delta}_{s_{i}}\leq (k_{s_{i}}-1)\epsilon_{m}$, as $|\hat{r}_{i}-\hat{
 %\newline\hspace*{8em}
 $\leq exp(-2\dfrac{(\ell_{m}\epsilon_{m})^{2}}{4} n^{*})$
 %as $\hat{\Delta}_{s_{i}}\geq \epsilon$
-\newline Now, putting $n_{s_{i}}=n^{*}=\dfrac{2\log (\psi(m)T\epsilon_{m}^{2})}{\epsilon_{m}}$
-\newline$\mathbb{P}\lbrace\hat{r}^{*}\leq{r}^{*} + \dfrac{\hat{\Delta}_{s_{i}}}{2}\rbrace\leq exp(-\ell_{m}^{2}\epsilon_{m} \log(\psi(m)T\epsilon_{m}^{2}))$
+\newline For simplicity we will take $\psi(m)=1$
+\newline Now, putting $n_{s_{i}}=n^{*}=\dfrac{2\log (T\epsilon_{m}^{2})}{\epsilon_{m}}$
+\newline$\mathbb{P}\lbrace\hat{r}^{*}\leq{r}^{*} +  \dfrac{\ell_{m}\epsilon_{m}}{2}\rbrace\leq exp(-\ell_{m}^{2}\epsilon_{m} \log(T\epsilon_{m}^{2}))$
 %\leq exp(-\hat{\Delta}_{s_{i}} \log(\psi(m)T\epsilon_{m}^{2}))
 %\newline Now, $w_{s_{i}}=k_{s_{i}}D\leq$
 %\newline\hspace*{8em}$\leq exp(-\ell_{m}^{2}\epsilon \log(4\psi(m)T\epsilon_{m}^{2}))$
 %as $\dfrac{1}{w\ell_{m}}< \hat{\Delta}_{s_{i}}, \forall m\in {1,2,..,\lceil\log T\rceil}$
-\newline $\mathbb{P}\lbrace\hat{r}^{*}\leq{r}^{*} + \dfrac{\hat{\Delta}_{s_{i}}}{2}\rbrace\leq \dfrac{1}{(\psi(m)T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}}$
+\newline $\mathbb{P}\lbrace\hat{r}^{*}\leq{r}^{*} +  \dfrac{\ell_{m}\epsilon_{m}}{2}\rbrace\leq \dfrac{1}{(T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}}$
 %\leq \dfrac{1}{(4\psi(m)T\epsilon_{m}^{2})^{\ell_{m}^{2}\Delta}}$, as $\forall m, \epsilon_{m}\geq \Delta$
 \newline
-Similarly, $\mathbb{P}\lbrace\hat{r}_{s}\geq{r}_{s} - \dfrac{\hat{\Delta}_{s_{i}}}{2}\rbrace\leq \dfrac{1}{(\psi(m)T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}}$
+%Similarly, $\mathbb{P}\lbrace\hat{r}_{max_{s_{i}}}\geq{r}_{max_{s_{i}}} -  \dfrac{\ell_{m}\epsilon_{m}}{2}\rbrace\leq \dfrac{1}{(\psi(m)T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}}$
 %as $\forall m, \epsilon_{m}\geq \Delta$
-\newline
-Hence, the probability that the optimal arm $a^{*}$ after $n_{s_{i}}$ pulls going above $\hat{\Delta}_{s_{i}}$ is $\bigg\lbrace 1- \dfrac{2}{(\psi(m)T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}} \bigg\rbrace$
+%\newline
+Hence, the probability that the optimal arm $a^{*}$ after $n_{s_{i}}$ pulls going above $\hat{r}_{min_{s_{i}}}+\dfrac{\hat{\Delta}_{s_{i}}}{2}$ is $\bigg\lbrace 1- \dfrac{1}{(T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}} \bigg\rbrace$
 
 \end{proof}
 
@@ -64,50 +68,46 @@ Hence, the probability that the optimal arm $a^{*}$ after $n_{s_{i}}$ pulls goin
 \section*{Appendix B}
 
 \begin{proposition}
-The number of times an arm $a_{i}\in s_{i}$ is pulled in each round is $n_{s_{i}}=\bigg\lceil\dfrac{2\log{(\psi{m}T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$ and this eliminates the arm $a_{i}$ such that $\sqrt{\dfrac{\epsilon_{m}}{w_{s_{i}}}}<\dfrac{\Delta_{i}}{5}$ by the condition $\bigg\lbrace\hat{r}_{i} + \sqrt{\dfrac{\log (\psi(m)T\epsilon_{m}^{2})}{2w_{s_{i}} n_{s_{i}}}} < \max_{j\in s_{i}}\hat{r}_{j} - \sqrt{\dfrac{\log (\psi(m)T\epsilon_{m}^{2})}{2w_{s_{i}} n_{s_{i}}}} \bigg\rbrace, \forall s_{i}\in S$ with probability $\bigg\lbrace 1-\bigg(\dfrac{1}{2\psi(m)T\epsilon_{m}^{2}}\bigg)\bigg\rbrace$. 
+The number of times an arm $a_{i}\in s_{i}$ is pulled in each round is $n_{s_{i}}=\bigg\lceil\dfrac{2\log{(\psi(m)T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$ and this eliminates the arm $a_{i}$ such that $\sqrt{\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ by the condition $\bigg\lbrace\hat{r}_{i} + \sqrt{\dfrac{\log (\psi(m)T\epsilon_{m}^{2})}{2w_{s_{i}} n_{s_{i}}}} < \max_{j\in s_{i}}\hat{r}_{j} - \sqrt{\dfrac{\log (\psi(m)T\epsilon_{m}^{2})}{2w_{s_{i}} n_{s_{i}}}} \bigg\rbrace, \forall s_{i}\in S$ with probability $\bigg\lbrace 1-\bigg(\dfrac{2}{\psi(m)T\epsilon_{m}^{2}}\bigg)\bigg\rbrace$. 
 %where $B_{m}$ is the set of arms still not eliminated in the $m$-th round.
 %- \sqrt{\dfrac{(\log{(4(\psi(m)T\epsilon_{m}^{2})}}{2w\ell_{m}n_{s_{i}}}}
 \end{proposition}
 
 \begin{proof} of Proposition 2:
-\newline In $\xi_{1}$ arm elimination condition, given the choice of confidence interval $c_{m}$, we want to bound the event $\hat{r}_{i}+c_{m}\leq \hat{r}^{*}-c_{m}$ with a more tighter event of $ \hat{r}_{i} + \sqrt{w_{s_{i}}}c_{m} \leq \hat{r}^{*} - \sqrt{w_{s_{i}}}c_{m}$ which will result in faster elimination of arms within a cluster, given the choice of $c_{m}$ and $w_{s_{i}}$.
-\newline Now, in $\xi_{1}$, $c_{m}=\sqrt{\dfrac{\log (\psi(m)T\epsilon_{m}^{2})}{2w_{s_{i}} n_{s_{i}}}}$.
-\newline Putting the value of $n_{s_{i}}=\dfrac{2\log{(\psi(m)T\epsilon_{m}^{2})}}{\epsilon_{m}}$ in $c_{m}$,
-\newline $c_{m}=\sqrt{\dfrac{\epsilon_{m}\log (\psi(m)T\epsilon_{m}^{2})}{2w_{s_{i}}*2 \log(\psi(m)T\epsilon_{m}^{2})}}=\dfrac{\sqrt{\epsilon_{m}}}{2\sqrt{w_{s_{i}}}}$
+\newline In arm elimination condition, given the choice of confidence interval $c_{m}$, we want to bound the event $\hat{r}_{i}+c_{m}\leq \hat{r}^{*}-c_{m}$. In this proof we will consider $w_{s_{i}}=1$ and $\psi(m)=1$. Later, we will discuss how different values of $w_{s_{i}}$ actually effects the regret bound.
+%with a more tighter event of $ \hat{r}_{i} + \sqrt{w_{s_{i}}}c_{m} \leq \hat{r}^{*} - \sqrt{w_{s_{i}}}c_{m}$ which will result in faster elimination of arms within a cluster, given the choice of $c_{m}$ and $w_{s_{i}}$.
+\newline Now, $c_{m}=\sqrt{\dfrac{\log (T\epsilon_{m}^{2})}{2 n_{s_{i}}}}$.
+\newline Putting the value of $n_{s_{i}}=\dfrac{2\log{(T\epsilon_{m}^{2})}}{\epsilon_{m}}$ in $c_{m}$,
+\newline $c_{m}=\sqrt{\dfrac{\epsilon_{m}\log (T\epsilon_{m}^{2})}{2*2 \log(T\epsilon_{m}^{2})}}=\dfrac{\sqrt{\epsilon_{m}}}{2} = \sqrt{\epsilon_{m+1}} < \dfrac{\Delta_{i}}{4} $
 %\leq\dfrac{\epsilon_{m}\sqrt{\ell_{m}}}{2\sqrt{w\ell_{m}}}\leq \dfrac{\epsilon_{m}}{2\sqrt{w}}$.
 %\newline But in $\xi_{1}$, $\ell_{m}=2^{m}$.
 %\newline Hence, $c\leq \dfrac{\epsilon_{m} 2^{m/2}}{4}$.
 \newline Again, $\exists a_{i} \in s_{i}$ such that, 
-$\hat{r}_{i} + c_{m}\leq\hat{r}_{i} + 2c_{m} $
-\newline\hspace*{14em}$= \hat{r}_{i}-\sqrt{\epsilon_{m}} + 2c_{m} +\sqrt{\epsilon_{m}}$
-\newline\hspace*{14em}$= \hat{r}_{i}-2\sqrt{w_{s_{i}}}c_{m} + 2c_{m} +2\sqrt{w_{s_{i}}}c_{m}$
-\newline\hspace*{14em}$\leq \hat{r}_{i} - 2\sqrt{w_{s_{i}}}c_{m}+ 8c_{m}$, $w_{s_{i}}\geq 4$
-\newline\hspace*{14em}$\leq r_{i} -2\sqrt{w_{s_{i}}}c_{m} + 10c_{m}$
-\newline\hspace*{14em}$\leq r_{i} - 2\sqrt{w_{s_{i}}}c_{m} + 10\dfrac{\sqrt{\epsilon_{m}}}{2\sqrt{w_{s_{i}}}} $
-\newline\hspace*{14em}$= r_{i} + 5\dfrac{\sqrt{\epsilon_{m}}}{\sqrt{w_{s_{i}}}} - 2\sqrt{w_{s_{i}}}c_{m}$
+$\hat{r}_{i} + c_{m}\leq r_{i} + 2c_{m} $
+%\newline\hspace*{14em}$= \hat{r}_{i}-\sqrt{\epsilon_{m}} + 2c_{m} +\sqrt{\epsilon_{m}}$
+\newline\hspace*{14em}$= \hat{r}_{i} + 4c_{m} - 2c_{m} $
+\newline\hspace*{14em}$\leq r_{i} + \Delta_{i} - 2c_{m}$
+\newline\hspace*{14em}$< r^{*} -2c_{m} $
+\newline\hspace*{14em}$\leq \hat{r}^{*} - c_{m}$
+%\newline\hspace*{14em}$= r_{i} + 5\dfrac{\sqrt{\epsilon_{m}}}{\sqrt{w_{s_{i}}}} - 2\sqrt{w_{s_{i}}}c_{m}$
 %\newline \hspace*{4em}
 %\newline But, $\epsilon_{m}=\dfrac{\hat{\Delta}_{s,m}}{\ell_{m}}$, where $\hat{\Delta}_{s,m}=\max_{i\in B_{m}}{\hat{r}_{i}}-\min_{j\in B_{m}}{\hat{r}_{j}},i\neq j$ and $\ell_{m}$ is increased after every round.
 %\newline \hspace*{4em}$\leq \hat{r}_{i} + \epsilon_{m} 2^{(m-4)/2} - 2c$
-\newline Also in $\xi_{1}$, $\sqrt{\dfrac{\epsilon_{m}}{w_{s_{i}}}}<\dfrac{\Delta_{i}}{5}$, $\exists a_{i}\in s_{i}$
-\newline Hence, $\hat{r}_{i}+c_{m}\leq \hat{r}_{i}+2c_{m}\leq r_{i} + \Delta_{i} - 2\sqrt{w_{s_{i}}}c_{m}\leq r^{*} - 2\sqrt{w_{s_{i}}}c_{m}$
+\newline Hence, we get that as soon as $\sqrt{\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$, $\exists a_{i}\in s_{i}$ which gets eliminated.
+%\newline So, $\hat{r}_{i}+c_{m}\leq \hat{r}_{i}+2c_{m}\leq r_{i} + \Delta_{i} - 2\sqrt{w_{s_{i}}}c_{m}\leq r^{*} - 2\sqrt{w_{s_{i}}}c_{m}$
 %\leq \hat{r}^{*} - \sqrt{w}c_{m}
 %\newline $\Rightarrow\hat{r}_{i}+c_{m}\leq \hat{r}_{i} - \sqrt{w}c_{m}  \leq r^{*} - \sqrt{w}c_{m}$
-\newline $\Rightarrow \hat{r}_{i} \leq {r}^{*} - 2\sqrt{w_{s_{i}}}c_{m} - 2c_{m} \leq \hat{r}^{*} - 2\sqrt{w_{s_{i}}}c_{m}$
-\newline So, we can bound the event of $\hat{r}_{i}+c_{m}\leq \hat{r}^{*}-c_{m}$ by $\hat{r}_{i} + \sqrt{w_{s_{i}}}c_{m} \leq \hat{r}^{*} - \sqrt{w_{s_{i}}}c_{m}$ given that $\sqrt{\dfrac{\epsilon_{m}}{w_{s_{i}}}}<\dfrac{\Delta_{i}}{5}$ becomes true for some arm $a_{i}\in s_{i}$ after the $m$-th round and $c_{m}=\sqrt{\dfrac{\log (\psi(m)T\epsilon_{m}^{2})}{2w_{s_{i}} n_{s_{i}}}}$.
+%\newline $\Rightarrow \hat{r}_{i} \leq {r}^{*} - 2\sqrt{w_{s_{i}}}c_{m} - 2c_{m} \leq \hat{r}^{*} - 2\sqrt{w_{s_{i}}}c_{m}$
+\newline So, we need to bound the event of $\hat{r}_{i}+c_{m}\leq \hat{r}^{*}-c_{m}$ given that $\sqrt{\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ becomes true for some arm $a_{i}\in s_{i}$ after the $m$-th round and $c_{m}=\sqrt{\dfrac{\log (T\epsilon_{m}^{2})}{2 n_{s_{i}}}}$.
 %\newline $\Rightarrow \hat{r}_{i}+2c_{m}\leq \hat{r}_{i} + 2\sqrt{w}c_{m} \leq \hat{r}^{*}$
 %\newline $\Rightarrow \hat{r}_{i} + \sqrt{w}c_{m} \leq \hat{r}^{*} - \sqrt{w}c_{m}$
 %\newline $\Rightarrow\hat{r}_{i}+c_{m}\sqrt{\dfrac{w\ell_{m}}{\epsilon_{m}}} \leq \hat{r}^{*}-c_{m}\sqrt{\dfrac{w\ell_{m}}{\epsilon_{m}}} $, as $c_{m}\sqrt{\dfrac{w\ell_{m}}{\epsilon_{m}}} > 0$
-\end{proof}
 
-\section*{Appendix C}
-\begin{proposition}
-With a probability of $\bigg\lbrace 1-\bigg(\dfrac{2}{\psi(m)T\epsilon_{m}^{2})}\bigg)\bigg\rbrace$ a sub-optimal arm can be deleted within a cluster $s_{i}$ in round $m$ by the arm elimination condition, where $\epsilon_{m}=\max{\bigg\lbrace\dfrac{\hat{\Delta}_{s,m}}{\ell_{m}}, \dfrac{1}{\sqrt{\psi{(m)T}}}\bigg\rbrace}$, if $\hat{\Delta}_{s,m}\neq 0$ and $T$ is the horizon.
-\end{proposition}
-
-\begin{proof} of Proposition 2:
-\newline
-From Lemma 1 we know that given the assumptions under $\xi_{1}$, we can bound $\hat{r}_{i}+c_{m}\leq \hat{r}^{*}-c_{m}$ by $\hat{r}_{i} + \sqrt{w_{s_{i}}}c_{m} \leq \hat{r}^{*} - \sqrt{w_{s_{i}}}c_{m}$ given that $\sqrt{\dfrac{\epsilon_{m}}{w_{s_{i}}}}<\dfrac{\Delta_{i}}{5}$ for some arm $a_{i}\in s_{i}$. So, in $\xi_{1}$, the arm deletion condition within a cluster $s_{i}$ is satisfied when $\sqrt{\dfrac{\epsilon_{m}}{w_{s_{i}}}}<\dfrac{\Delta_{i}}{5}$ and so we need to bound the probability,
-\newline\hspace*{4em} $\mathbb{P}\lbrace\hat{r}^{*}\leq r^{*} - \sqrt{w_{s_{i}}}c_{m}\rbrace\leq U_{m}$, where $U_{m}$ is an  arbitrary upper bound.
+%\begin{proof} of Proposition 2:
+%\newline
+%Now, we can bound $\hat{r}_{i}+c_{m}\leq \hat{r}^{*}-c_{m}$ given that $\sqrt{\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ for some arm $a_{i}\in s_{i}$. 
+	So, we need to bound the probability,
+\newline\hspace*{4em} $\mathbb{P}\lbrace\hat{r}^{*}\leq r^{*} - c_{m}\rbrace\leq U_{m}$, where $U_{m}$ is an  arbitrary upper bound.
 %, for a fixed $n_{s_{i}}$.
 %\mathbb{P}\lbrace\hat{r}^{*}\leq r^{*} - c_{m}\rbrace\leq
 \newline
@@ -115,25 +115,29 @@ From Lemma 1 we know that given the assumptions under $\xi_{1}$, we can bound $\
 %\newline
 Applying Chernoff-Hoeffding bound and considering independence of events,
 \newline
-\newline\hspace*{0em} $\mathbb{P}\lbrace\hat{r}^{*}\leq r^{*} - \sqrt{w_{s_{i}}}c_{m}\rbrace\leq exp(-2w_{s_{i}}c_{m}^{2}n_{s_{i}})$
-\newline\hspace*{2em} $\leq exp(-2 w_{s_{i}}* \dfrac{\log (\psi(m)T\epsilon_{m}^{2})}{2w_{s_{i}} n_{s_{i}}} *n_{s_{i}})$
-\newline\hspace*{2em} $\leq \dfrac{1}{\psi(m)T\epsilon_{m}^{2}}$
+\newline\hspace*{0em} $\mathbb{P}\lbrace\hat{r}^{*}\leq r^{*} - c_{m}\rbrace\leq exp(-2c_{m}^{2}n_{s_{i}})$
+\newline\hspace*{2em} $\leq exp(-2 * \dfrac{\log (T\epsilon_{m}^{2})}{2 n_{s_{i}}} *n_{s_{i}})$
+\newline\hspace*{2em} $\leq \dfrac{1}{T\epsilon_{m}^{2}}$
 %$\leq \bigg(\dfrac{1}{4\psi(m)T\epsilon_{m}^{2}}\bigg)^{D}$, as $\ell_{m}-1\leq D$
 %\newline\hspace*{2em}
 \newline
-Similarly, $\mathbb{P}\lbrace\hat{r}_{i}\geq r_{i} + \sqrt{w_{s_{i}}}c_{m}\rbrace\leq \dfrac{1}{\psi(m)T\epsilon_{m}^{2}}$
+Similarly, $\mathbb{P}\lbrace\hat{r}_{i}\geq r_{i} + c_{m}\rbrace\leq \dfrac{1}{T\epsilon_{m}^{2}}$
 \newline
-Summing, the two up, the probability that a sub-optimal arm $a_{i}$ is not eliminated in $\xi_{1}$ is  $\bigg(\dfrac{2}{\psi(m)T\epsilon_{m}^{2})}\bigg)$. 
+Summing, the two up, the probability that a sub-optimal arm $a_{i}$ is not eliminated in $\xi_{1}$ is  $\bigg(\dfrac{2}{T\epsilon_{m}^{2}}\bigg)$. 
 \end{proof}
 
-\section*{Appendix D}
+\todos{(Subho) Next part of the calculation mimicking UCB-Revisited is done in case 1 of Appendix D. }
+
+\todos{(Subho) Appendix C, for Cluster Elimination is unchanged. We need to discuss. }
+
+\section*{Appendix C}
 \begin{proposition}
-With a probability of $\bigg(1-\dfrac{4}{(\psi(m)T\epsilon_{m}^{2})^{1+|B_{m}|^{2}\epsilon_{m}}}\bigg)$ a sub-optimal arm can be deleted in round $m$, where $\hat{\Delta}_{s,m}=\max_{i\in B_{m}}{\lbrace\hat{r}_{i}\rbrace}-\min_{j\in B_{m}}{\lbrace\hat{r}_{j}\rbrace}$ for $i\neq j$,  $\epsilon_{m}=\max{\bigg\lbrace\dfrac{\hat{\Delta}_{s,m}}{\ell_{m}}, \dfrac{1}{\sqrt{\psi{(m)T}}}\bigg\rbrace}$ for $\hat{\Delta}_{s,m}\neq 0$, $B_{m}$ is the set of arms still not eliminated in the $m$-th round and $T$ is the horizon.
+With a probability of $\bigg(1-\dfrac{4}{(\psi(m)T\epsilon_{m}^{2})^{1+|B_{m}|^{2}\epsilon_{m}}}\bigg)$ a sub-optimal arm can be deleted in round $m$, where $\hat{\Delta}_{m}=\max_{i\in B_{m}}{\lbrace\hat{r}_{i}\rbrace}-\min_{j\in B_{m}}{\lbrace\hat{r}_{j}\rbrace}$,  $\epsilon_{m}=\max{\bigg\lbrace\dfrac{\hat{\Delta}_{m}}{\ell_{m}}, \dfrac{1}{\sqrt{\psi{(m)T}}}\bigg\rbrace}$ for $\hat{\Delta}_{m}\neq 0$, $B_{m}$ is the set of arms still not eliminated in the $m$-th round and $T$ is the horizon.
 \end{proposition}
 
 \begin{proof} of Proposition 3:
 \newline
-Here, we will consider the scenario which will make it possible to remove all the arms in $B_{m}$ at one go. Let in the event $\xi_{2}$, there be two clusters $s_{i}$ and $s^{*}$ such that $a^{*}\in s^{*}$ and $a_{i}\in s_{i}, \forall a_{i}\setminus a^{*}\in B_{m}$. So, $|s^{*}|=1$ and $|s_{i}|=|B_{m}|-1\leq |B_{m}|$. Let $\hat{r}_{min_{s_{i}}}<\hat{r}_{i},\forall i\in s_{i}$ and $\hat{r}_{max_{s_{i}}}>\hat{r}_{i},\forall i\in s_{i}$ Thus, in $\xi_{2}$ we see that if
+Here, we will consider the scenario which will make it possible to remove all the arms in $B_{m}$ at one go. Let in the event $\xi_{2}$, there be two clusters $s_{i}$ and $s^{*}$ such that $a^{*}\in s^{*}$ and $a_{i}\in s_{i}, \forall a_{i}\setminus a^{*}\in B_{m}$. So, $|s^{*}|=1$ and $|s_{i}|=|B_{m}|-1\leq |B_{m}|$. Let $\hat{r}_{min_{s_{i}}}<\hat{r}_{i},\forall i\in s_{i}$ and $\hat{r}_{max_{s_{i}}}>\hat{r}_{i},\forall i\in s_{i}$ Thus, we see that if
 \newline
 \hspace*{2em} $\hat{r}_{max_{s_{i}}}+c_{m}' < \hat{r}^{*}-c_{m}' $, where $c_{m}'=\sqrt{\dfrac{|B_{m}|\epsilon_{m}\log{(\psi(m)T\epsilon_{m}^{2})}}{2\ell_{m} n_{s_{i}}}}$
 \newline
@@ -143,20 +147,20 @@ then all the arms are eliminated and stopping condition reached.
 %\hspace*{4em}$\mathbb{P}\lbrace\hat{r}^{*}\leq \hat{r}_{s} + 2c_{m}\rbrace$
 %\leq U_{m}$, where $U_{m}$ is an upper bound and $\hat{r}_{s}, \hat{r}_{b}\in s_{i}$
 %\newline
-We divide the proof into two parts. The above said event is the product of two simultaneous events, in the first event $\hat{r}_{max_{s_{i}}}+c_{m}' < \hat{r}^{*}-c_{m}'$ given that $\hat{r}_{max_{s_{i}}}>\hat{r}_{i}\forall i \in s_{i}$. In the first part we establish the probability of $\hat{r}_{max_{s_{i}}}+c_{m} < \hat{r}^{*}-c_{m}'$ just as before in Lemma 1. In the second the part we prove the bounds on the probability that $\exists a_{max_{s_{i}}}\in s_{i}$ such that $\hat{r}_{max_{s_{i}}}>\hat{r}_{i},\forall i \in s_{i}$ and $\sqrt{\epsilon_{m}}<\dfrac{2\Delta_{s}}{5}$ for the arm $a_{max_{s_{i}}}$ such that $\Delta_{s}=r^{*}-r_{max_{s_{i}}}$.
+We divide the proof into two parts. The above said event is the product of two simultaneous events, in the first event $\hat{r}_{max_{s_{i}}}+c_{m}' < \hat{r}^{*}-c_{m}'$ given that $\hat{r}_{max_{s_{i}}}>\hat{r}_{i}\forall i \in s_{i}$. In the first part we establish the probability of $\hat{r}_{max_{s_{i}}}+c_{m} < \hat{r}^{*}-c_{m}'$ just as before in Proposition 2. In the second the part we prove the bounds on the probability that $\exists a_{max_{s_{i}}}\in s_{i}$ such that $\hat{r}_{max_{s_{i}}}>\hat{r}_{i},\forall i \in s_{i}$ and $\sqrt{\epsilon_{m}}<\dfrac{2\Delta_{s}}{5}$ for the arm $a_{max_{s_{i}}}$ such that $\Delta_{s}=r^{*}-r_{max_{s_{i}}}=\Delta$ as $a_{s}$ is the arm that has the second highest $r_{s}$ after $r^{*}$ hence it lies closest to $a^{*}$.
 \newline
-Proceeding as like Lemma 1,
+Proceeding as like Proposition 2,
 \newline
 %$\hat{r}_{s}+c_{m}\leq \hat{r}_{s}+2\sqrt{w}c_{m}$, where $\sqrt{w}=\ell_{m}$
 %\newline
-\newline Now, in $\xi_{2}$, $c_{m}'=\sqrt{\dfrac{|B_{m}|\epsilon_{m}\log (\psi(m)T\epsilon_{m}^{2})}{2\ell_{m} n_{s_{i}}}}$
+\newline Now, for cluster elimination $c_{m}'=\sqrt{\dfrac{|B_{m}|\epsilon_{m}\log (\psi(m)T\epsilon_{m}^{2})}{2\ell_{m} n_{s_{i}}}}$
 %, where $w=\dfrac{\ell_{m}}{|B_{m}|}$
 \newline Putting the value of $n_{s_{i}}=\dfrac{2\log{(\psi(m)T\epsilon_{m}^{2})}}{\epsilon_{m}}$ in $c_{m}'$,
 \newline $c_{m}'=\sqrt{\dfrac{\epsilon_{m}^{2}|B_{m}|\log (\psi(m)T\epsilon_{m}^{2})}{2\ell_{m}*2 \log(\psi(m)T\epsilon_{m}^{2})}}=\dfrac{\epsilon_{m}\sqrt{|B_{m}|}}{2\sqrt{\ell_{m}}}$
 %\leq\dfrac{\epsilon_{m}\sqrt{\ell_{m}}}{2\sqrt{w\ell_{m}}}\leq \dfrac{\epsilon_{m}}{2\sqrt{w}}$.
 %\newline But in $\xi_{1}$, $\ell_{m}=2^{m}$.
 %\newline Hence, $c\leq \dfrac{\epsilon_{m} 2^{m/2}}{4}$.
-\newline From the condition imposed in $\xi_{2}$, we know that $\ell_{m}\geq |B_{m}|-1$ and $\dfrac{\ell_{m}}{|B_{m}|\epsilon_{m}}=\dfrac{\ell_{m}^{2}}{|B_{m}|\Delta_{s,m}}$ and so $\dfrac{\ell_{m}}{|B_{m}|\epsilon_{m}}\geq 1$.
+\newline Again, we know that $\ell_{m}\geq |B_{m}|-1$ and $\dfrac{\ell_{m}}{|B_{m}|\epsilon_{m}}=\dfrac{\ell_{m}^{2}}{|B_{m}|\Delta_{m}}$ and so $\dfrac{\ell_{m}}{|B_{m}|\epsilon_{m}}\geq 1$.
 \newline Again, $\exists a_{max_{s_{i}}} \in s_{i}$ such that, 
 $\hat{r}_{max_{s_{i}}} + c_{m}'\leq \hat{r}_{max_{s_{i}}} + 2c_{m}'$, as $c_{m}' > 0$
 \newline\hspace*{14em}$\leq\hat{r}_{max_{s_{i}}} + 2\sqrt{\dfrac{\ell_{m}}{|B_{m}|\epsilon_{m}}}c_{m}' $
@@ -210,58 +214,60 @@ $\mathbb{P}\lbrace\hat{r}_{max_{s_{i}}}\leq r_{max_{s_{i}}} - \dfrac{|B_{m}|\eps
 %\newline Thus, from the conditions imposed on $\xi_{1}$ and $\xi_{2}$ we see that the cluster deletion condition is a tighter elimination condition than arm elimination condition. This is because for cluster elimination the condition depends on the number of arms surviving till $m$-th round that is $|B_{m}|$ which itself depends on the exploration $n_{s_{i}}$ and cluster size limit $D$.
 \end{proof}
 
-\section*{Appendix E}
+\section*{Appendix D}
 \begin{theorem}
 The upper bound on the total regret over horizon $T$ after round $m$ is given by $R_{T}\leq \sum_{i\in A}\bigg (\max{\bigg\lbrace \bigg(\dfrac{27}{c(\Delta_{i})^{\frac{3}{5}}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{c\Delta^{2})(0.16cT\Delta^{2})^{2\Delta/5}}\bigg)\bigg\rbrace} + \bigg(\Delta_{i}+\dfrac{27\log{(cT\dfrac{\Delta_{i}^{\frac{8}{5}}}{12})}}{\Delta_{i}^{\frac{3}{5}}}\bigg)\bigg)$, where $c>0$ is a constant, $A$ is the set of arms and $\Delta$ is the minimal gap.
 \end{theorem}
 
+\todos{(Subho) Case 1 is case(a) and Case 2 is case(b1) in UCB-Revisited Proof}
+
 \begin{proof} of Theorem 1: 
 \subsubsection{Case 1:}
-Given that in round $m$, either $\xi_{1}$ or $\xi_{2}$ occurs and a sub-optimal arm $a_{i}\in s_{i}$ or the cluster $s_{i}$ itself will get eliminated. So, for an arm $a_{i}$ to survive, both these events should fail to delete the arm. In round $m$, the regret suffered for not eliminating an arm $a_{i}$ is given by,
+Given that in round $m$, either a sub-optimal arm $a_{i}\in s_{i}$ gets eliminated or the cluster $s_{i}$ itself will get eliminated. So, for an arm $a_{i}$ to survive, both these events should fail to delete the arm. In round $m$, the regret suffered for not eliminating an arm $a_{i}$ is given by,
 \newline
-\hspace*{1em} $\max{\bigg\lbrace \bigg(\dfrac{2}{\psi(m)T\epsilon_{m}^{2})}\bigg) ,\bigg(\dfrac{4}{(\psi(m)T\epsilon_{m}^{2})^{1+|B_{m}|^{2}\epsilon_{m}}}\bigg)\bigg\rbrace}$ ~~~~~~~~~~~~~~~~ (1)
+\hspace*{1em} $\max{\bigg\lbrace \bigg(\dfrac{2}{T\epsilon_{m}^{2}}\bigg) ,\bigg(\dfrac{4}{(\psi(m)T\epsilon_{m}^{2})^{1+|B_{m}|^{2}\epsilon_{m}}}\bigg)\bigg\rbrace}$ ~~~~~~~~~~~~~~~~ (1)
 \newline
-\newline from \textbf{section 7.2, Proposition 3 and section 7.3, Proposition 4}.
+\newline from \textbf{section 4, Proposition 2 and section 4, Proposition 3}.
 \newline
-Now, from $\xi_{1}$ we know that an arm gets eliminated within a cluster if $\sqrt{\dfrac{\epsilon_{m}}{w_{s_{i}}}}<\dfrac{\Delta_{i}}{5}$ and from $\xi_{2}$ we know that all arms get eliminated within a cluster if $\exists a_{max_{s_{i}}}\in s_{i}$ such that $\sqrt{\epsilon_{m}}<\dfrac{2\Delta_{s}}{5}$ and $\hat{r}_{max_{s_{i}}}>\hat{r}_{i},\forall i\in s_{i}$. So, if $\sqrt{\epsilon_{m}}\geq\dfrac{\sqrt{w_{s_{i}}}\Delta_{i}}{5}$ in $\xi_{1}$ and $\sqrt{\epsilon_{m}}\geq\dfrac{2\Delta_{s}}{5}$ in $\xi_{2}$ then we can say that arm $a_{i}$ will not be eliminated. 
+Now, that an arm gets eliminated within a cluster if $\sqrt{\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ and also we know that all arms get eliminated within a cluster if $\exists a_{max_{s_{i}}}\in s_{i}$ such that $\sqrt{\epsilon_{m}}<\dfrac{2\Delta_{s}}{5}$ and $\hat{r}_{max_{s_{i}}}>\hat{r}_{i},\forall i\in s_{i}$. So, if $\sqrt{\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ and $\sqrt{\epsilon_{m}}\geq\dfrac{2\Delta_{s}}{5}$ in $\xi_{2}$ then we can say that arm $a_{i}$ will not be eliminated. 
 \newline
 %Extending, from previous inequality if $\epsilon_{m}\geq \sqrt{\epsilon_{m}}\geq\dfrac{\sqrt{w}\Delta_{i}}{5}$ in $\xi_{1}$ or if $\epsilon_{m}\geq\sqrt{\epsilon_{m}}\geq\dfrac{2\Delta_{s}}{5}$ then arm $a_{i}$ will not be eliminated. 
-\newline
-Again, in $\xi_{1}$ when arm $a_{i}$ is eliminated, we can tightly bound $\epsilon_{m}$ such that,
-\newline
-$\sqrt{\dfrac{\epsilon_{m}}{w_{s_{i}}}}\leq\dfrac{\Delta_{i}}{5}\Rightarrow \sqrt{\dfrac{\epsilon_{m}}{\ell_{m}^{3}}}\leq\dfrac{\Delta_{i}}{5}$, as $w_{s_{i}}\leq \ell_{m}^{3}$
-\newline 
-\hspace*{5em}$\Rightarrow \sqrt{\dfrac{\epsilon_{m}}{D_{m}^{3}}}\leq\dfrac{\Delta_{i}}{5}$, since $\ell_{m}\leq D_{m}$
-\newline
-\hspace*{5em}$\Rightarrow \sqrt{\dfrac{\epsilon_{m}}{(1/\sqrt{\epsilon_{m}})^{3}}}\leq\dfrac{\Delta_{i}}{5}$, since $D_{m}=\dfrac{1}{\sqrt{\epsilon_{m}}}$
-\newline
-\hspace*{5em}$\Rightarrow \epsilon_{m}\leq(\dfrac{\Delta_{i}}{5})^{\frac{4}{5}}$
-\newline
-Hence, in the $m$-th round if $\epsilon_{m}\geq(\dfrac{\Delta_{i}}{5})^{\frac{4}{5}}$, we can definitely say that arm $a_{i}$ is not eliminated in $\xi_{1}$.
-\newline
-Proceeding similarly in $\xi_{2}$, we know that,
-\newline
-$\sqrt{\epsilon_{m}}\leq\dfrac{2\Delta_{s}}{5}\Rightarrow \dfrac{\sqrt{\epsilon_{m}}}{\ell_{m}}\leq\dfrac{2\Delta_{s}}{5}$ 
-\newline 
-\hspace*{5em}$\Rightarrow \dfrac{\sqrt{\epsilon_{m}}}{D_{m}}\leq\dfrac{2\Delta_{s}}{5}$, since $\ell_{m}\leq D_{m}$
-\newline
-\hspace*{5em}$\Rightarrow \epsilon_{m}\leq\dfrac{2\Delta_{s}}{5}$, since $D_{m}=\dfrac{1}{\sqrt{\epsilon_{m}}}$
+%\newline
+%Again, in $\xi_{1}$ when arm $a_{i}$ is eliminated, we can tightly bound $\epsilon_{m}$ such that,
+%\newline
+%$\sqrt{\dfrac{\epsilon_{m}}{w_{s_{i}}}}\leq\dfrac{\Delta_{i}}{5}\Rightarrow \sqrt{\dfrac{\epsilon_{m}}{\ell_{m}^{3}}}\leq\dfrac{\Delta_{i}}{5}$, as $w_{s_{i}}\leq \ell_{m}^{3}$
+%\newline 
+%\hspace*{5em}$\Rightarrow \sqrt{\dfrac{\epsilon_{m}}{D_{m}^{3}}}\leq\dfrac{\Delta_{i}}{5}$, since $\ell_{m}\leq D_{m}$
+%\newline
+%\hspace*{5em}$\Rightarrow \sqrt{\dfrac{\epsilon_{m}}{(1/\sqrt{\epsilon_{m}})^{3}}}\leq\dfrac{\Delta_{i}}{5}$, since $D_{m}=\dfrac{1}{\sqrt{\epsilon_{m}}}$
 %\newline
 %\hspace*{5em}$\Rightarrow \epsilon_{m}\leq(\dfrac{\Delta_{i}}{5})^{\frac{4}{5}}$
-\newline
-Hence, in the $m$-th round if $\epsilon_{m}\geq\dfrac{2\Delta_{s}}{5}$, a cluster $s_{i}$, such that $\exists a_{max_{s_{i}}}\in s_{i}$ and $\hat{r}_{max_{s_{i}}}\geq\hat{r}_{i},\forall i\in s_{i}$, then $s_{i}$ is not eliminated in $\xi_{2}$.
-\newline
+%\newline
+%Hence, in the $m$-th round if $\epsilon_{m}\geq(\dfrac{\Delta_{i}}{5})^{\frac{4}{5}}$, we can definitely say that arm $a_{i}$ is not eliminated in $\xi_{1}$.
+%\newline
+%Proceeding similarly in $\xi_{2}$, we know that,
+%\newline
+%$\sqrt{\epsilon_{m}}\leq\dfrac{2\Delta_{s}}{5}\Rightarrow \dfrac{\sqrt{\epsilon_{m}}}{\ell_{m}}\leq\dfrac{2\Delta_{s}}{5}$ 
+%\newline 
+%\hspace*{5em}$\Rightarrow \dfrac{\sqrt{\epsilon_{m}}}{D_{m}}\leq\dfrac{2\Delta_{s}}{5}$, since $\ell_{m}\leq D_{m}$
+%\newline
+%\hspace*{5em}$\Rightarrow \epsilon_{m}\leq\dfrac{2\Delta_{s}}{5}$, since $D_{m}=\dfrac{1}{\sqrt{\epsilon_{m}}}$
+%%\newline
+%%\hspace*{5em}$\Rightarrow \epsilon_{m}\leq(\dfrac{\Delta_{i}}{5})^{\frac{4}{5}}$
+%\newline
+%Hence, in the $m$-th round if $\epsilon_{m}\geq\dfrac{2\Delta_{s}}{5}$, a cluster $s_{i}$, such that $\exists a_{max_{s_{i}}}\in s_{i}$ and $\hat{r}_{max_{s_{i}}}\geq\hat{r}_{i},\forall i\in s_{i}$, then $s_{i}$ is not eliminated in $\xi_{2}$.
+%\newline
 Bounding equation (1) trivially by  $T\Delta_{i}$,
 \newline\newline
-$\Rightarrow \max{\bigg\lbrace \bigg(\dfrac{2T\Delta_{i}}{\psi(m)T\epsilon_{m}^{2})}\bigg) ,\bigg(\dfrac{4T\Delta_{i}}{(\psi(m)T\epsilon_{m}^{2})^{1+|B_{m}|^{2}\epsilon_{m}}}\bigg)\bigg\rbrace}$
+$\Rightarrow \max{\bigg\lbrace \bigg(\dfrac{2T\Delta_{i}}{T\epsilon_{m}^{2}}\bigg) ,\bigg(\dfrac{4T\Delta_{i}}{(\psi(m)T\epsilon_{m}^{2})^{1+|B_{m}|^{2}\epsilon_{m}}}\bigg)\bigg\rbrace}$
 \newline
-$\leq \max{\bigg\lbrace \bigg(\dfrac{2\Delta_{i}}{\psi(m)(\dfrac{\Delta_{i}}{5})^{\frac{8}{5}}}\bigg) ,\bigg(\dfrac{4T\Delta_{i}}{(\psi(m)T\dfrac{4\Delta_{s}^{2}}{25})\times(\psi(m)T\dfrac{4\Delta_{s}^{2}}{25})^{|B_{m}|^{2}\epsilon_{m}}}\bigg)\bigg\rbrace}$
+$\leq \max{\bigg\lbrace \bigg(\dfrac{2\Delta_{i}}{(\dfrac{\Delta_{i}}{2})^{4}\bigg)} ,\bigg(\dfrac{4T\Delta_{i}}{(\psi(m)T\dfrac{4\Delta_{s}^{2}}{25})\times(\psi(m)T\dfrac{4\Delta_{s}^{2}}{25})^{|B_{m}|^{2}\epsilon_{m}}}\bigg)\bigg\rbrace}$
 \newline
-$\leq \max{\bigg\lbrace \bigg(\dfrac{2\Delta_{i}}{\psi(m)(\dfrac{\Delta_{i}}{5})^{\frac{8}{5}}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\psi(m)\Delta_{s}^{2})\times(0.16\psi(m)T\Delta_{s}^{2})^{|B_{m}|^{2}2\Delta_{s}/5}}\bigg)\bigg\rbrace}$
+$\leq \max{\bigg\lbrace \bigg(\dfrac{32\Delta_{i}}{(\Delta_{i})^{4}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\psi(m)\Delta_{s}^{2})\times(0.16\psi(m)T\Delta_{s}^{2})^{|B_{m}|^{2}2\Delta_{s}/5}}\bigg)\bigg\rbrace}$
 \newline
-$\leq \max{\bigg\lbrace \bigg(\dfrac{27}{\psi(m)(\Delta_{i})^{\frac{3}{5}}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\psi(m)\Delta_{s}^{2})\times(0.16\psi(m)T\Delta_{s}^{2})^{2|B_{m}|^{2}\Delta_{s}/5}}\bigg)\bigg\rbrace}$
+$\leq \max{\bigg\lbrace \bigg(\dfrac{32}{(\Delta_{i})^{3}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\psi(m)\Delta_{s}^{2})\times(0.16\psi(m)T\Delta_{s}^{2})^{2|B_{m}|^{2}\Delta_{s}/5}}\bigg)\bigg\rbrace}$
 \newline
-$\leq \max{\bigg\lbrace \bigg(\dfrac{27}{\psi(m)(\Delta_{i})^{\frac{3}{5}}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\psi(m)\Delta^{2})(0.16\psi(m)T\Delta^{2})^{2|B_{m}|^{2}\Delta/5}}\bigg)\bigg\rbrace}$, as $\Delta_{s}\geq \Delta$
+$\leq \max{\bigg\lbrace \bigg(\dfrac{32}{(\Delta_{i})^{3}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\psi(m)\Delta^{2})(0.16\psi(m)T\Delta^{2})^{2|B_{m}|^{2}\Delta/5}}\bigg)\bigg\rbrace}$, as $\Delta_{s}\geq \Delta$
 %\newline
 %$\leq \max{\bigg\lbrace \bigg(\dfrac{1250}{2^{4}\psi(m)\Delta_{i}^{3})}\bigg) ,\bigg(\dfrac{625\Delta_{i}}{(\psi(m)\Delta^{4})\times(39\psi(m)T \Delta^{4})^{2|B_{m}|^{2}\Delta_{s}/5}}\bigg)\bigg\rbrace}$, as $\ell_{m}\geq 2$
 %\newline
@@ -270,18 +276,18 @@ $\leq \max{\bigg\lbrace \bigg(\dfrac{27}{\psi(m)(\Delta_{i})^{\frac{3}{5}}}\bigg
 %\newline$\leq \max{\bigg\lbrace \bigg(\dfrac{16\Delta_{i}T}{(4\psi(m)T\epsilon_{m}^{2})^{D}}\bigg),\bigg(\dfrac{16\Delta_{i}T}{(4\psi(m)T\epsilon_{m}^{2})^{|B_{m}|D}}\bigg)\bigg\rbrace}$
 Hence, total regret till round $m$ is,
 \newline
-$\leq \max{\bigg\lbrace \bigg(\dfrac{27}{\psi(m)(\Delta_{i})^{\frac{3}{5}}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\psi(m)\Delta^{2})(0.16\psi(m)T\Delta^{2})^{2|B_{m}|^{2}\Delta/5}}\bigg)\bigg\rbrace}$
+$\leq \max{\bigg\lbrace \bigg(\dfrac{32}{(\Delta_{i})^{3}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\psi(m)\Delta^{2})(0.16\psi(m)T\Delta^{2})^{2|B_{m}|^{2}\Delta/5}}\bigg)\bigg\rbrace}$
 \newline
 Summing over all arms left till round $m$,
 \newline
-$\leq \sum_{i\in B_{m}}\max{\bigg\lbrace \bigg(\dfrac{27}{\psi(m)(\Delta_{i})^{\frac{3}{5}}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\psi(m)\Delta^{2})(0.16\psi(m)T\Delta^{2})^{2|B_{m}|^{2}\Delta/5}}\bigg)\bigg\rbrace}$, 
+$\leq \sum_{i\in B_{m}}\max{\bigg\lbrace \bigg(\dfrac{32}{(\Delta_{i})^{3}}\bigg),\bigg(\dfrac{25\Delta_{i}}{(\psi(m)\Delta^{2})(0.16\psi(m)T\Delta^{2})^{2|B_{m}|^{2}\Delta/5}}\bigg)\bigg\rbrace}$, 
 %\newline
 \subsubsection{Case 2:}
-Again, given the arm $a_{i}\in s_{i}$ has survived till this round, $a_{i}$ got pulled $n_{s_{i}}$ number of times from $1,2,..,m$ and so the regret suffered due to $a_{i}$ is no less than,
+Again, from \textbf{section 4, Proposition 1}, we know that given the arm $a_{i}\in s_{i}$ has survived till this round, $a_{i}$ got pulled $n_{s_{i}}$ number of times from $1,2,..,m$ and so the regret suffered due to $a_{i}$ is no less than,
 \newline
-\hspace*{4em}$n_{s_{i}}=\bigg\lceil\dfrac{2\log{(\psi(m)T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$
+\hspace*{4em}$n_{s_{i}}=\bigg\lceil\dfrac{2\log{(T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$
 \newline
-Also, since we are exploring locally within a cluster and an arm is pulled no longer till it is eliminated by the arm elimination rule, so the conditions imposed in $\xi_{1}$ is valid here.
+Also, since we are exploring locally within a cluster and an arm is pulled no longer till it is eliminated by the arm elimination rule, 
 %\newline
 %$\sqrt{\dfrac{\epsilon_{m}}{w}}<\dfrac{\Delta_{i}}{5}\Rightarrow \sqrt{\dfrac{\epsilon_{m}}{\ell_{m}^{2}}}<\dfrac{\Delta_{i}}{5}$, as $w\geq \ell_{m}^{2}$
 %\newline
@@ -289,22 +295,22 @@ Also, since we are exploring locally within a cluster and an arm is pulled no lo
 %\newline
 So, the total contribution of $a_{i}$  till round $m$ is given by,
 \newline
-\hspace*{4em}$\Delta_{i}\bigg\lceil\dfrac{2\log{(\psi(m)T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$
+\hspace*{4em}$\Delta_{i}\bigg\lceil\dfrac{2\log{(T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$
 %\newline
 %\hspace*{4em}
-$\leq\Delta_{i}\bigg\lceil\dfrac{2\log{(\psi(m)T(\dfrac{\Delta_{i}}{5})^{\frac{8}{5}})}}{(\dfrac{\Delta_{i}}{5})^{\frac{8}{5}}}\bigg\rceil$, since $\epsilon_{m}\geq(\dfrac{\Delta_{i}}{5})^{\frac{4}{5}}$
+$\leq\Delta_{i}\bigg\lceil\dfrac{2\log{(T(\dfrac{\Delta_{i}}{2})^{4})}}{(\dfrac{\Delta_{i}}{2})^{4}}\bigg\rceil$, since $\sqrt{\epsilon_{m}}\leq\dfrac{\Delta_{i}}{2}$
 \newline
 \hspace*{14em}
-$\leq\Delta_{i}\bigg(1+\dfrac{27\log{(\psi(m)T(\dfrac{\Delta_{i}}{5})^{\frac{8}{5}})}}{\Delta_{i}^{\frac{8}{5}}}\bigg)$
+$\leq\Delta_{i}\bigg(1+\dfrac{32\log{(T(\dfrac{\Delta_{i}}{2})^{4})}}{\Delta_{i}^{2}}\bigg)$
 \newline
 \hspace*{14em}
-$\leq\Delta_{i}\bigg(1+\dfrac{27\log{(\psi(m)T\dfrac{\Delta_{i}^{\frac{8}{5}}}{12})}}{\Delta_{i}^{\frac{8}{5}}}\bigg)$
+$\leq\Delta_{i}\bigg(1+\dfrac{32\log{(T\dfrac{\Delta_{i}^{4}}{16})}}{\Delta_{i}^{2}}\bigg)$
 \newline
 Summing over all arms left till round $m$,
 \newline
-\hspace*{4em}$\leq\sum_{i\in B_{m}}\Delta_{i}\bigg(1+\dfrac{27\log{(\psi(m)T\dfrac{\Delta_{i}^{\frac{8}{5}}}{12})}}{\Delta_{i}^{\frac{8}{5}}}\bigg)$
+\hspace*{4em}$\leq\sum_{i\in B_{m}}\Delta_{i}\bigg(1+\dfrac{32\log{(T\dfrac{\Delta_{i}^{4}}{12}})}{\Delta_{i}^{2}}\bigg)$
 \newline
-\hspace*{4em}$\leq\sum_{i\in B_{m}}\bigg(\Delta_{i}+\dfrac{27\log{(\psi(m)T\dfrac{\Delta_{i}^{\frac{8}{5}}}{12})}}{\Delta_{i}^{\frac{3}{5}}}\bigg)$
+%\hspace*{4em}$\leq\sum_{i\in B_{m}}\bigg(\Delta_{i}+\dfrac{27\log{(\psi(m)T\dfrac{\Delta_{i}^{\frac{8}{5}}}{12})}}{\Delta_{i}^{\frac{3}{5}}}\bigg)$
 %\newline
 %\hspace*{4em}$\leq\sum_{i\in B_{m}}\bigg(\Delta_{i}+\dfrac{12.5\log{(\psi(m)T\Delta_{i}^{4})}}{\Delta_{i}}\bigg)$
 	%Thus, we see that the growth of the $n_{s_{i}}$ is always linear and not quadratic as in UCB-Revisited(\cite{auer2010ucb}). Also once $2l_{m}=D$, then $n_{s_{i}}$ will remain constant for the next rounds till stopping condition is met. Thus we have a more controlled exploration than UCB-Revisited(\cite{auer2010ucb}) and Median Elimination(\cite{even2006action}). Hence, 
@@ -312,15 +318,19 @@ Summing over all arms left till round $m$,
 %\hspace*{4em}$\leq\sum_{i\in B_{m}}\bigg(\Delta_{i}+\dfrac{54\log{(\psi(m)T\dfrac{\Delta_{i}^{\frac{8}{5}}}{12})}}{\Delta_{i}^{\frac{3}{5}}}\bigg)$
 \newline
 Summing up \textbf{Case 1} and \textbf{Case 2}, the total regret till round $m$ is given by,
-\newline $R_{T}\leq \sum_{i\in B_{m}}\bigg (\max{\bigg\lbrace \bigg(\dfrac{27}{\psi(m)(\Delta_{i})^{\frac{3}{5}}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\psi(m)\Delta^{2})(0.16\psi(m)T\Delta^{2})^{2|B_{m}|^{2}\Delta/5}}\bigg)\bigg\rbrace} + \bigg(\Delta_{i}+\dfrac{27\log{(\psi(m)T\dfrac{\Delta_{i}^{\frac{8}{5}}}{12})}}{\Delta_{i}^{\frac{3}{5}}}\bigg)\bigg)$
+\newline $R_{T}\leq \sum_{i\in B_{m}}\bigg (\max{\bigg\lbrace \bigg(\dfrac{32}{(\Delta_{i})^{3}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\psi(m)\Delta^{2})(0.16\psi(m)T\Delta^{2})^{2|B_{m}|^{2}\Delta/5}}\bigg)\bigg\rbrace} + \bigg(\Delta_{i}+\dfrac{32\log{(T\dfrac{\Delta_{i}^{4}}{16})}}{\Delta_{i}}\bigg)\bigg)$
 \newline
-But, $\psi(m)\leq c/m$ for any $c>0$ and so the regret upper bound comes off as 
+%But, $\psi(m)\leq c/m$ for any $c>0$ and so the regret upper bound comes off as 
+But, $\psi(m) = 1$ the regret upper bound comes off as 
 \newline
-$\sum_{i\in A}\bigg (\max{\bigg\lbrace \bigg(\dfrac{27}{c(\Delta_{i})^{\frac{3}{5}}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{c\Delta^{2})(0.16cT\Delta^{2})^{2\Delta/5}}\bigg)\bigg\rbrace} + \bigg(\Delta_{i}+\dfrac{27\log{(cT\dfrac{\Delta_{i}^{\frac{8}{5}}}{12})}}{\Delta_{i}^{\frac{3}{5}}}\bigg)\bigg)$.
+$R_{T}\leq \sum_{i\in B_{m}}\bigg (\max{\bigg\lbrace \bigg(\dfrac{32}{(\Delta_{i})^{3}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\Delta^{2})(0.16T\Delta^{2})^{2|B_{m}|^{2}\Delta/5}}\bigg)\bigg\rbrace} + \bigg(\Delta_{i}+\dfrac{32\log{(T\dfrac{\Delta_{i}^{4}}{16})}}{\Delta_{i}}\bigg)\bigg)$.
 
 \end{proof}
 
-\section*{Appendix F}
+\todos{(Subho) Sir I want to point out an important thing here. What we derived is actually a single instance of UCB-Revisited. But actually we are not running a single instance but multiple instances(as many number as the clusters) of UCB-Revisited. That's why it performing good and also that was the initial intuition. So we need to find some way to incorporate this in our proof.}
+
+
+\section*{Appendix E}
 \begin{theorem}
 The error bound till round $m$ is given by $e_{t}\leq \sum_{i\in A^{'}}\bigg(\dfrac{51}{\psi(m)\Delta_{i}^{6/5}} \bigg)+\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{51}{\psi(m)\Delta_{b}^{6/5}} \bigg)$, where the arms surviving till $m$-th round belong to the set $A^{'}$, arms to still survive and eliminate arm $a^{*}$ after round $m$ belong to $A^{''}$.
 \end{theorem}
@@ -347,25 +357,26 @@ $\sum_{m_{*}=0}^{max_{j\in A^{'}}m_{j}}\sum_{i\in A^{''}:m_{i}>m_{*}}\bigg(\dfra
 
 
 
-%\section*{Appendix G}
-%%\begin{table}
-%%\caption{Regret Upper Bound of Algorithms}
-%\label{sample-table}
-%\begin{center}
-%\begin{tabular}{ll}
-%\multicolumn{1}{c}{\bf Algorithm}  &\multicolumn{1}{c}{\bf Upper Bound} \\
-%\hline \\
-%UCB1         &$O\bigg(\dfrac{K\log T}{\Delta}\bigg)$ \\
-%UCB2         &$O\bigg(K\bigg(\dfrac{(1 + \epsilon(\alpha)) log(T)}{2\Delta} + C(\alpha)\bigg)\bigg)$,\\& $0<\alpha<1$ \\
-%$\epsilon_{n}$-greedy         &$O\bigg(\dfrac{K\Delta\log T}{d^{2}}\bigg)$, $0<d<\Delta$ \\
-%EXP3             &$O\bigg(S \sqrt{KT \log(KT)}\bigg)$, \\& where $S$ is the hardness of the problem \\
-%UCB($\delta$)	&$O\bigg(K\bigg(3\Delta+\dfrac{16}{\Delta}\log\big(\dfrac{2K}{\Delta\delta}\big)\bigg)\bigg)$ ,\\& where $\delta$ is the error probability\\
-%UCB-Revisited             &$O\bigg(\dfrac{K\log T\Delta^{2}}{\Delta}\bigg)$ \\
-%MOSS	&$\min\bigg\lbrace O\bigg(\sqrt{KT}\bigg), O\bigg(\dfrac{K\log(2+T\Delta^{2}/K)}{\Delta}\bigg) \bigg \rbrace$\\
-%KL-UCB         &$O\bigg(K\bigg(\dfrac{\Delta \log(T)(1 + \epsilon)}{d(r_{i}, r^{*} )} + \log(\log(T)) + $\\ &$\dfrac{(\epsilon)}{T^{\beta(\epsilon)}}\bigg)\bigg)$, where $\epsilon > 0$ and $d(r_{i}, r^{*})>2\Delta_{i}^{2}$\\
+\section*{Appendix F}
+%\begin{table}
+%\caption{Regret Upper Bound of Algorithms}
+\label{sample-table}
+\begin{center}
+\begin{tabular}{ll}
+\multicolumn{1}{c}{\bf Algorithm}  &\multicolumn{1}{c}{\bf Cumulative Regret Upper Bound} \\
+\hline \\
+UCB1         &$O\bigg(\dfrac{K\log T}{\Delta}\bigg)$ \\
+UCB2         &$O\bigg(K\bigg(\dfrac{(1 + \epsilon(\alpha)) log(T)}{2\Delta} + C(\alpha)\bigg)\bigg)$, $0<\alpha<1$ \\
+$\epsilon_{n}$-greedy         &$O\bigg(\dfrac{K\Delta\log T}{d^{2}}\bigg)$, $0<d<\Delta$ \\
+EXP3             &$O\bigg(S \sqrt{KT \log(KT)}\bigg)$, \\& where $S$ is the hardness of the problem \\
+UCB($\delta$)	&$O\bigg(K\bigg(3\Delta+\dfrac{16}{\Delta}\log\big(\dfrac{2K}{\Delta\delta}\big)\bigg)\bigg)$ ,\\& where $\delta$ is the error probability\\
+UCB-Revisited             &$O\bigg(\dfrac{K\log T\Delta^{2}}{\Delta}\bigg)$ \\
+MOSS	&$\min\bigg\lbrace O\bigg(\sqrt{KT}\bigg), O\bigg(\dfrac{K\log(T\Delta^{2}/K)}{\Delta}\bigg) \bigg \rbrace$\\
+KL-UCB         &$O\bigg(K\bigg(\dfrac{\Delta \log(T)(1 + \epsilon)}{d(r_{i}, r^{*} )} + \log(\log(T)) + \dfrac{(\epsilon)}{T^{\beta(\epsilon)}}\bigg)\bigg)$,\\& where $\epsilon > 0$ and $d(r_{i}, r^{*})>2\Delta_{i}^{2}$\\
+UCB-Clustered             &$O\bigg(\dfrac{K\log T\Delta^{4}}{\Delta}\bigg)$ \\
 %Clustered-UCB         &$O\bigg(K\bigg (\max{\bigg\lbrace \bigg(\dfrac{1}{\psi(m)(\Delta)^{\frac{3}{5}}}\bigg) ,\bigg(\dfrac{\Delta}{(\psi(m)\Delta^{2})(\psi(m)T\Delta^{2})^{2K^{2}\Delta/5}}\bigg)\bigg\rbrace}$\\&$ + \bigg(\Delta +\dfrac{\log{(\psi(m)T\Delta^{\frac{8}{5}})}}{\Delta^{\frac{3}{5}}}\bigg)\bigg)\bigg)$, let $\psi(m)=\dfrac{c}{m},c>0$ \\
-%\end{tabular}
-%\end{center}
-%%\end{table}
+\end{tabular}
+\end{center}
+%\end{table}
 
 

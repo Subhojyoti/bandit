@@ -1,11 +1,11 @@
 In this paper, we address the stochastic multi-armed bandit problem, a classical problem in sequential decision making. Here, a learning agent is provided with a set of choices or actions, also called arms and it has to choose one arm in each timestep. After choosing an arm the agent receives a reward from the environment, which is an independent draw from a stationary distribution specific to the arm selected. The goal of the agent is to maximize the cumulative reward. The agent is oblivious to the mean of the distributions associated with each arm, denoted by $r_{i}$, including the optimal arm which will give it the best average reward, denoted by $r^{*}$. The agent records the cumulative reward it has collected for any arm divided by the number of pulls of that arm which is called the estimated mean reward of an arm denoted by $\hat{r}_{i}$. In each trial the agent faces the exploration-exploitation dilemma, that is, should the agent select the arm which has the highest observed mean reward till now (
-exploitation), or should the agent explore other arms to gain more knowledge of the true mean reward of the arms and thereby avert a sub-optimal greedy decision (exploration). The objective in the bandit problem is to maximize cumulative reward which will lead to minimizing the expected cumulative regret. We define the regret$(R_{T})$ of an algorithm after $T$ trials as
+exploitation), or should the agent explore other arms to gain more knowledge of the true mean reward of the arms and thereby avert a sub-optimal greedy decision (exploration). The objective in the bandit problem is to maximize cumulative reward which will lead to minimizing the expected cumulative regret. We define the expected regret $(R_{T})$ of an algorithm after $T$ trials as
 %\newline
 %\newline
 \begin{align*}
-R_{T}=r^{*}T - \sum_{i\in A} r_{i}\mathbb{E}[N_{i}]
+\mathbb{E}[R_{T}]=r^{*}T - \sum_{i\in A} r_{i}\mathbb{E}[N_{i}]
 \end{align*}
-\todos{$R_T$ on LHS with an expectation on the RHS?}
+\todos{$R_T$ on LHS with an expectation on the RHS? Change Done(Subho)}
 %\hspace*{6em}$R_{T}=r^{*}T$ - $\sum_{i\in A} r_{i}E[N_{i}]$
 %\newline
 %\newline
@@ -40,20 +40,21 @@ of a cluster being judged by how many arms having similar or $\epsilon_{m}-$clos
 
 	The within cluster arm elimination condition and the entire cluster elimination are two complimentary strategies for speedy elimination of sub-optimal arms. Unlike UCB-Revisited from \cite{auer2010ucb} the within cluster arm elimination leads to dividing the larger problem of finding the optimal arm from the whole arm set into small sub-problems where in each such small clusters (say $M$ clusters, $M\leq K$) we have $M$ arm elimination conditions, thereby increasing the probability of deletion of a sub-optimal arm and hence reducing regret. Also by dividing it into small sub-problems the growth of our pulls in each round is always small given the optimal arm has survived which we ensure by tuning parameters appropriately.  We start with a very small cluster size limit(say 2) and double the limit after every round. We put an upper bound on this limit to be decided by the algorithm online so that the cluster size remains bounded and also since we are exploring each arm in a cluster based on its size, such 
 bounds helps in controlling the exploration within a cluster because we know that single link clustering often forms large chains where the first and large elements may not at all be similar to each other. The entire cluster elimination conditions exploit the idea that if the optimal arm has survived till the later rounds it will be in a cluster of its own with no other sub-optimal arm and then we eliminate all sub-optimal clusters in a single round. This is essentially the same core concept of various round based strategies.
-	
-	Since, we have assumed that the horizon $T$ is known prior to the agent, hence we introduce the parameter $\psi(m)$ which can be sufficiently tuned to tide over very large or small horizons to enable a balanced exploration by the agent.
+\todos{(Subho) Removed the introduction of $\psi(m)$ from Contributions}
+	%Since, we have assumed that the horizon $T$ is known prior to the agent, hence we introduce the parameter $\psi(m)$ which can be sufficiently tuned to tide over very large or small horizons to enable a balanced exploration by the agent.
 	%To achieve all the above guarantees we define three parameters in our algorithm, $D$ which is the maximum cluster size allowed, $\psi(m)$ which is a tuning parameter for exploration and $w\geq 2$ a weight factor which enables a faster elimination of sub-optimal arms.
-\newline
-Summarizing, the contributions of this research are listed below:
+%\newline
+	
+	Summarizing, the contributions of this research are listed below:
 
 \begin{enumerate}
 \item We propose a cluster based round-wise algorithm with two arm elimination conditions in each round.
 %\item To our knowledge no other algorithm has proposed such UCB-type cluster based algorithm before.
-\item We achieved a lower regret bound than UCB-Revisited(\cite{auer2010ucb}), UCB($\delta$) (\cite{abbasi2011improved}), UCB1(\cite{auer2002finite}), UCB2(\cite{auer2002finite}), UCB-Tuned(\cite{auer2002finite}), Median Elimination(\cite{even2006action}),  Exp3(\cite{auer2002nonstochastic}) and MOSS (\cite{audibert2009minimax} in scenarios when $\Delta$ is small and $K$ is large which is encountered frequently in web-advertising domain, which we verify empirically.
+\item We achieved a lower regret bound than UCB-Revisited(\cite{auer2010ucb}), UCB($\delta$) (\cite{abbasi2011improved}), UCB1(\cite{auer2002finite}), UCB2(\cite{auer2002finite}), UCB-Tuned(\cite{auer2002finite}), Median Elimination(\cite{even2006action}),  Exp3(\cite{auer2002nonstochastic}) and MOSS (\cite{audibert2009minimax} in scenarios when $\Delta$ is small and $K$ is large which is encountered frequently in web-advertising domain (as stated in \cite{garivier2011kl}), which we verify empirically.
 \todos{I don't see a rigourous theoretical justification for this claim anywhere in the paper. We have a regret bound in Theorem 1, but where is it shown that the bound in Thm 1 is better than UCB-Revisited(\cite{auer2010ucb}), UCB($\delta$) (\cite{abbasi2011improved}), UCB1(\cite{auer2002finite}), UCB2(\cite{auer2002finite}), UCB-Tuned(\cite{auer2002finite}), Median Elimination(\cite{even2006action}),  Exp3(\cite{auer2002nonstochastic}) and MOSS (\cite{audibert2009minimax}?}
-\todos{\textit{``when $\Delta$ is small and $K$ is large which is encountered frequently in web-advertising domain...''} Can you give a reference that justifies low $\Delta$ in web-advertising?}
-\item Our algorithm also compares well with DMED, DMED($+$) and KL-UCB.
-\todos{Is the comparison empirical or theoretical? Please specify}
+\todos{\textit{``when $\Delta$ is small and $K$ is large which is encountered frequently in web-advertising domain...''} Can you give a reference that justifies low $\Delta$ in web-advertising? (Subho) Reference given, rest of the contribution unchanged, to be decide after the regret bound is found}
+\item Our algorithm also empirically compares well with DMED, DMED($+$) and KL-UCB.
+\todos{Is the comparison empirical or theoretical? Please specify . Done. written empirically, Subho}
 \item In the critical case when $r_{1}=r_{2}=..=r_{K-1}<r^{*}$ and $\Delta_{i}$s are small, this approach has a significant advantage over other methods.
 \item We also come up with an error bound to prove that the error probability decreases exponentially after each round.
 \item Unlike KL-UCB our algorithm parameter $\psi(m)$ is not distribution-specific and also our algorithm does not involve calculation of a complex, time consuming function like the divergence function of KL-UCB.
