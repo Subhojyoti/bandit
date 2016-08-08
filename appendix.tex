@@ -9,7 +9,7 @@
 
 \section*{Appendix A}
 \begin{proposition}
-The probability that the optimal arm $a^{*}\in s_{i}$ will lie above $\hat{r}_{min_{s_{i}}}+ \dfrac{\hat{\Delta}_{s_{i}}}{2}$ after $\bigg\lceil\dfrac{2\log (\psi(m)T\epsilon_{m}^{2})}{\epsilon_{m}}\bigg\rceil$ pulls in the $m$-th round is given by $\bigg\lbrace 1- \dfrac{1}{(\psi(m)T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}} \bigg\rbrace$ where $\hat{r}_{min_{s_{i}}}$ is the minimum payoff in $s_{i}$, $\hat{\Delta}_{s_{i}}=max_{i\in s_{i}}\hat{r}_{i}-min_{j\in s_{i}}\hat{r}_{j}, i\neq j$, $\epsilon_{m}$ is halved after every round and $T$ is the horizon. 
+The probability that the optimal arm $a^{*}\in s_{i}$ will lie above $\hat{r}_{min_{s_{i}}}+ \dfrac{\hat{\Delta}_{s_{i}}}{2}$ after $\bigg\lceil\dfrac{2\log (T\epsilon_{m}^{2})}{\epsilon_{m}}\bigg\rceil$ pulls in the $m$-th round is given by $\bigg\lbrace 1- \dfrac{1}{(T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}} \bigg\rbrace$ where $\hat{r}_{min_{s_{i}}}$ is the minimum payoff in $s_{i}$, $\hat{\Delta}_{s_{i}}=max_{i\in s_{i}}\hat{r}_{i}-min_{j\in s_{i}}\hat{r}_{j}, i\neq j$, $\epsilon_{m}$ is halved after every round and $T$ is the horizon. 
 \end{proposition}
 
 %$\epsilon_{m}=\max{\bigg\lbrace\dfrac{\hat{\Delta}_{m}}{\ell_{m}} \dfrac{2}{\sqrt{\psi{(m)T}}}\bigg\rbrace}$
@@ -37,7 +37,7 @@ So, $\hat{\Delta}_{s_{i}}\leq (k_{s_{i}}-1)\epsilon_{m}$, as $|\hat{r}_{i}-\hat{
 $\leq exp(-2\dfrac{(\ell_{m}\epsilon_{m})^{2}}{4} n^{*})$
 %as $\hat{\Delta}_{s_{i}}\geq \epsilon$
 \newline For simplicity we will take $\psi(m)=1$
-\newline Now, putting $n_{s_{i}}=n^{*}=\dfrac{2\log (T\epsilon_{m}^{2})}{\epsilon_{m}}$
+\newline Now, putting $n_{m}=n^{*}=\dfrac{2\log (T\epsilon_{m}^{2})}{\epsilon_{m}}$
 \newline$\mathbb{P}\lbrace\hat{r}^{*}\leq{r}^{*} +  \dfrac{\ell_{m}\epsilon_{m}}{2}\rbrace\leq exp(-\ell_{m}^{2}\epsilon_{m} \log(T\epsilon_{m}^{2}))$
 %\leq exp(-\hat{\Delta}_{s_{i}} \log(\psi(m)T\epsilon_{m}^{2}))
 %\newline Now, $w_{s_{i}}=k_{s_{i}}D\leq$
@@ -49,26 +49,31 @@ $\leq exp(-2\dfrac{(\ell_{m}\epsilon_{m})^{2}}{4} n^{*})$
 %Similarly, $\mathbb{P}\lbrace\hat{r}_{max_{s_{i}}}\geq{r}_{max_{s_{i}}} -  \dfrac{\ell_{m}\epsilon_{m}}{2}\rbrace\leq \dfrac{1}{(\psi(m)T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}}$
 %as $\forall m, \epsilon_{m}\geq \Delta$
 %\newline
-Hence, the probability that the optimal arm $a^{*}$ after $n_{s_{i}}$ pulls going above $\hat{r}_{min_{s_{i}}}+\dfrac{\hat{\Delta}_{s_{i}}}{2}$ is $\bigg\lbrace 1- \dfrac{1}{(T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}} \bigg\rbrace$
+Hence, the probability that the optimal arm $a^{*}$ after $n_{m}$ pulls going above $\hat{r}_{min_{s_{i}}}+\dfrac{\hat{\Delta}_{s_{i}}}{2}$ is $\bigg\lbrace 1- \dfrac{1}{(T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}} \bigg\rbrace$
 
 \end{proof}
 
 \begin{figure}[!tbp]
 \centering
 \includegraphics[scale=0.4]{img/diag1.jpg}
-\caption{Figure 1: Steps 9-11}
+\caption{Steps 9-11}
 \end{figure}
 \begin{figure}[!tbp]
 \includegraphics[scale=0.4]{img/diag2.jpg}
-\caption{Figure 2: Steps 12-14}
+\caption{Steps 12-14}
 \end{figure}
+\begin{figure}[!tbp]
+\includegraphics[scale=0.25]{img/diag3.jpg}
+\caption{Different scenarios of Cluster Elimination}
+\end{figure}
+
 
 
 
 \section*{Appendix B}
 
 \begin{proposition}
-The number of times an arm $a_{i}\in s_{i}$ is pulled in each round is $n_{s_{i}}=\bigg\lceil\dfrac{2\log{(\psi(m)T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$ and this eliminates the arm $a_{i}$ such that $\sqrt{\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ by the condition $\bigg\lbrace\hat{r}_{i} + \sqrt{\dfrac{\log (\psi(m)T\epsilon_{m}^{2})}{2w_{s_{i}} n_{s_{i}}}} < \max_{j\in s_{i}}\hat{r}_{j} - \sqrt{\dfrac{\log (\psi(m)T\epsilon_{m}^{2})}{2w_{s_{i}} n_{s_{i}}}} \bigg\rbrace, \forall s_{i}\in S$ with probability $\bigg\lbrace 1-\bigg(\dfrac{2}{\psi(m)T\epsilon_{m}^{2}}\bigg)\bigg\rbrace$. 
+The number of times an arm $a_{i}\in s_{i}$ is pulled in each round is $n_{m}=\bigg\lceil\dfrac{2\log{(T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$ and this eliminates the arm $a_{i}$ such that $\sqrt{\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ by the condition $\bigg\lbrace\hat{r}_{i} + \sqrt{\dfrac{\log (T\epsilon_{m}^{2})}{2w_{s_{i}} n_{m}}} < \max_{j\in s_{i}}\hat{r}_{j} - \sqrt{\dfrac{\log (T\epsilon_{m}^{2})}{2w_{s_{i}} n_{m}}} \bigg\rbrace, \forall s_{i}\in S$ with probability $\bigg\lbrace 1-\bigg(\dfrac{2}{T\epsilon_{m}^{2}}\bigg)\bigg\rbrace$. 
 %where $B_{m}$ is the set of arms still not eliminated in the $m$-th round.
 %- \sqrt{\dfrac{(\log{(4(\psi(m)T\epsilon_{m}^{2})}}{2w\ell_{m}n_{s_{i}}}}
 \end{proposition}
@@ -76,8 +81,8 @@ The number of times an arm $a_{i}\in s_{i}$ is pulled in each round is $n_{s_{i}
 \begin{proof} of Proposition 2:
 \newline In arm elimination condition, given the choice of confidence interval $c_{m}$, we want to bound the event $\hat{r}_{i}+c_{m}\leq \hat{r}^{*}-c_{m}$. In this proof we will consider $w_{s_{i}}=1$ and $\psi(m)=1$. Later, we will discuss how different values of $w_{s_{i}}$ actually effects the regret bound.
 %with a more tighter event of $ \hat{r}_{i} + \sqrt{w_{s_{i}}}c_{m} \leq \hat{r}^{*} - \sqrt{w_{s_{i}}}c_{m}$ which will result in faster elimination of arms within a cluster, given the choice of $c_{m}$ and $w_{s_{i}}$.
-\newline Now, $c_{m}=\sqrt{\dfrac{\log (T\epsilon_{m}^{2})}{2 n_{s_{i}}}}$.
-\newline Putting the value of $n_{s_{i}}=\dfrac{2\log{(T\epsilon_{m}^{2})}}{\epsilon_{m}}$ in $c_{m}$,
+\newline Now, $c_{m}=\sqrt{\dfrac{\log (T\epsilon_{m}^{2})}{2 n_{m}}}$.
+\newline Putting the value of $n_{m}=\dfrac{2\log{(T\epsilon_{m}^{2})}}{\epsilon_{m}}$ in $c_{m}$,
 \newline $c_{m}=\sqrt{\dfrac{\epsilon_{m}\log (T\epsilon_{m}^{2})}{2*2 \log(T\epsilon_{m}^{2})}}=\dfrac{\sqrt{\epsilon_{m}}}{2} = \sqrt{\epsilon_{m+1}} < \dfrac{\Delta_{i}}{4} $
 %\leq\dfrac{\epsilon_{m}\sqrt{\ell_{m}}}{2\sqrt{w\ell_{m}}}\leq \dfrac{\epsilon_{m}}{2\sqrt{w}}$.
 %\newline But in $\xi_{1}$, $\ell_{m}=2^{m}$.
@@ -98,7 +103,7 @@ $\hat{r}_{i} + c_{m}\leq r_{i} + 2c_{m} $
 %\leq \hat{r}^{*} - \sqrt{w}c_{m}
 %\newline $\Rightarrow\hat{r}_{i}+c_{m}\leq \hat{r}_{i} - \sqrt{w}c_{m}  \leq r^{*} - \sqrt{w}c_{m}$
 %\newline $\Rightarrow \hat{r}_{i} \leq {r}^{*} - 2\sqrt{w_{s_{i}}}c_{m} - 2c_{m} \leq \hat{r}^{*} - 2\sqrt{w_{s_{i}}}c_{m}$
-\newline So, we need to bound the event of $\hat{r}_{i}+c_{m}\leq \hat{r}^{*}-c_{m}$ given that $\sqrt{\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ becomes true for some arm $a_{i}\in s_{i}$ after the $m$-th round and $c_{m}=\sqrt{\dfrac{\log (T\epsilon_{m}^{2})}{2 n_{s_{i}}}}$.
+\newline So, we need to bound the event of $\hat{r}_{i}+c_{m}\leq \hat{r}^{*}-c_{m}$ given that $\sqrt{\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ becomes true for some arm $a_{i}\in s_{i}$ after the $m$-th round and $c_{m}=\sqrt{\dfrac{\log (T\epsilon_{m}^{2})}{2 n_{m}}}$.
 %\newline $\Rightarrow \hat{r}_{i}+2c_{m}\leq \hat{r}_{i} + 2\sqrt{w}c_{m} \leq \hat{r}^{*}$
 %\newline $\Rightarrow \hat{r}_{i} + \sqrt{w}c_{m} \leq \hat{r}^{*} - \sqrt{w}c_{m}$
 %\newline $\Rightarrow\hat{r}_{i}+c_{m}\sqrt{\dfrac{w\ell_{m}}{\epsilon_{m}}} \leq \hat{r}^{*}-c_{m}\sqrt{\dfrac{w\ell_{m}}{\epsilon_{m}}} $, as $c_{m}\sqrt{\dfrac{w\ell_{m}}{\epsilon_{m}}} > 0$
@@ -115,15 +120,15 @@ $\hat{r}_{i} + c_{m}\leq r_{i} + 2c_{m} $
 %\newline
 Applying Chernoff-Hoeffding bound and considering independence of events,
 \newline
-\newline\hspace*{0em} $\mathbb{P}\lbrace\hat{r}^{*}\leq r^{*} - c_{m}\rbrace\leq exp(-2c_{m}^{2}n_{s_{i}})$
-\newline\hspace*{2em} $\leq exp(-2 * \dfrac{\log (T\epsilon_{m}^{2})}{2 n_{s_{i}}} *n_{s_{i}})$
+\newline\hspace*{0em} $\mathbb{P}\lbrace\hat{r}^{*}\leq r^{*} - c_{m}\rbrace\leq exp(-2c_{m}^{2}n_{m})$
+\newline\hspace*{2em} $\leq exp(-2 * \dfrac{\log (T\epsilon_{m}^{2})}{2 n_{m}} *n_{m})$
 \newline\hspace*{2em} $\leq \dfrac{1}{T\epsilon_{m}^{2}}$
 %$\leq \bigg(\dfrac{1}{4\psi(m)T\epsilon_{m}^{2}}\bigg)^{D}$, as $\ell_{m}-1\leq D$
 %\newline\hspace*{2em}
 \newline
 Similarly, $\mathbb{P}\lbrace\hat{r}_{i}\geq r_{i} + c_{m}\rbrace\leq \dfrac{1}{T\epsilon_{m}^{2}}$
 \newline
-Summing, the two up, the probability that a sub-optimal arm $a_{i}$ is not eliminated in $\xi_{1}$ is  $\bigg(\dfrac{2}{T\epsilon_{m}^{2}}\bigg)$. 
+Summing, the two up, the probability that a sub-optimal arm $a_{i}$ is not eliminated in $m$-th round is  $\bigg(\dfrac{2}{T\epsilon_{m}^{2}}\bigg)$. 
 \end{proof}
 
 \todos{(Subho) Next part of the calculation mimicking UCB-Revisited is done in case 1 of Appendix D. }
@@ -139,7 +144,7 @@ With a probability of $\bigg(1-\dfrac{4}{(\psi(m)T\epsilon_{m}^{2})^{1+|B_{m}|^{
 \newline
 Here, we will consider the scenario which will make it possible to remove all the arms in $B_{m}$ at one go. Let in the event $\xi_{2}$, there be two clusters $s_{i}$ and $s^{*}$ such that $a^{*}\in s^{*}$ and $a_{i}\in s_{i}, \forall a_{i}\setminus a^{*}\in B_{m}$. So, $|s^{*}|=1$ and $|s_{i}|=|B_{m}|-1\leq |B_{m}|$. Let $\hat{r}_{min_{s_{i}}}<\hat{r}_{i},\forall i\in s_{i}$ and $\hat{r}_{max_{s_{i}}}>\hat{r}_{i},\forall i\in s_{i}$ Thus, we see that if
 \newline
-\hspace*{2em} $\hat{r}_{max_{s_{i}}}+c_{m}' < \hat{r}^{*}-c_{m}' $, where $c_{m}'=\sqrt{\dfrac{|B_{m}|\epsilon_{m}\log{(\psi(m)T\epsilon_{m}^{2})}}{2\ell_{m} n_{s_{i}}}}$
+\hspace*{2em} $\hat{r}_{max_{s_{i}}}+c_{m}' < \hat{r}^{*}-c_{m}' $, where $c_{m}'=\sqrt{\dfrac{|B_{m}|\epsilon_{m}\log{(\psi(m)T\epsilon_{m}^{2})}}{2\ell_{m} n_{m}}}$
 \newline
 then all the arms are eliminated and stopping condition reached. 
 %In this $\xi_{2}$ we have to bound, 
@@ -153,9 +158,9 @@ Proceeding as like Proposition 2,
 \newline
 %$\hat{r}_{s}+c_{m}\leq \hat{r}_{s}+2\sqrt{w}c_{m}$, where $\sqrt{w}=\ell_{m}$
 %\newline
-\newline Now, for cluster elimination $c_{m}'=\sqrt{\dfrac{|B_{m}|\epsilon_{m}\log (\psi(m)T\epsilon_{m}^{2})}{2\ell_{m} n_{s_{i}}}}$
+\newline Now, for cluster elimination $c_{m}'=\sqrt{\dfrac{|B_{m}|\epsilon_{m}\log (\psi(m)T\epsilon_{m}^{2})}{2\ell_{m} n_{m}}}$
 %, where $w=\dfrac{\ell_{m}}{|B_{m}|}$
-\newline Putting the value of $n_{s_{i}}=\dfrac{2\log{(\psi(m)T\epsilon_{m}^{2})}}{\epsilon_{m}}$ in $c_{m}'$,
+\newline Putting the value of $n_{m}=\dfrac{2\log{(\psi(m)T\epsilon_{m}^{2})}}{\epsilon_{m}}$ in $c_{m}'$,
 \newline $c_{m}'=\sqrt{\dfrac{\epsilon_{m}^{2}|B_{m}|\log (\psi(m)T\epsilon_{m}^{2})}{2\ell_{m}*2 \log(\psi(m)T\epsilon_{m}^{2})}}=\dfrac{\epsilon_{m}\sqrt{|B_{m}|}}{2\sqrt{\ell_{m}}}$
 %\leq\dfrac{\epsilon_{m}\sqrt{\ell_{m}}}{2\sqrt{w\ell_{m}}}\leq \dfrac{\epsilon_{m}}{2\sqrt{w}}$.
 %\newline But in $\xi_{1}$, $\ell_{m}=2^{m}$.
@@ -181,7 +186,7 @@ So, from the condition imposed in $\xi_{2}$, given that $\exists a_{i}\in s_{i}$
 \newline
 Applying Chernoff-Hoeffding bound and considering independence of events,
 \newline
-$\mathbb{P}\lbrace\hat{r}^{*}\leq r^{*} - \sqrt{\dfrac{\ell_{m}}{|B_{m}|\epsilon_{m}}}c_{m}'\rbrace\leq exp(-2*(\sqrt{\dfrac{\ell_{m}}{|B_{m}|\epsilon_{m}}}c_{m}')^{2}n_{s_{i}})=\dfrac{1}{ (\psi(m)T\epsilon_{m}^{2})}$
+$\mathbb{P}\lbrace\hat{r}^{*}\leq r^{*} - \sqrt{\dfrac{\ell_{m}}{|B_{m}|\epsilon_{m}}}c_{m}'\rbrace\leq exp(-2*(\sqrt{\dfrac{\ell_{m}}{|B_{m}|\epsilon_{m}}}c_{m}')^{2}n_{m})=\dfrac{1}{ (\psi(m)T\epsilon_{m}^{2})}$
 \newline
 Similarly, $\mathbb{P}\lbrace\hat{r}_{max_{s_{i}}}\geq r_{max_{s_{i}}} - \sqrt{\dfrac{\ell_{m}}{|B_{m}|\epsilon_{m}}}c_{m}'\rbrace\leq\dfrac{1}{ (\psi(m)T\epsilon_{m}^{2})}$
 %\mathbb{P}\lbrace\hat{r}^{*}\leq \hat{r}_{b} + |B_{m}-2|\epsilon_{m} + 2c_{m}\rbrace\leq\mathbb{P}\lbrace\hat{r}^{*}\leq \hat{r}_{b} + |B_{m}|\epsilon_{m} + 2c_{m}\rbrace$
@@ -199,7 +204,7 @@ $\Rightarrow \mathbb{P}\lbrace \hat{r}_{max_{s_{i}}} - \dfrac{|B_{m}|\epsilon_{m
 \newline
 Again applying Chernoff-Hoeffding bound and considering independence of events,
 \newline
-$\mathbb{P}\lbrace\hat{r}_{max_{s_{i}}}\leq r_{max_{s_{i}}} - \dfrac{|B_{m}|\epsilon_{m}}{2}\rbrace\leq exp(-2*(\dfrac{|B_{m}|\epsilon_{m}}{2})^{2}n_{s_{i}})\leq exp\bigg(-2*(\dfrac{|B_{m}|\epsilon_{m}}{2})^{2}\dfrac{2\log{(\psi(m)T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg)$
+$\mathbb{P}\lbrace\hat{r}_{max_{s_{i}}}\leq r_{max_{s_{i}}} - \dfrac{|B_{m}|\epsilon_{m}}{2}\rbrace\leq exp(-2*(\dfrac{|B_{m}|\epsilon_{m}}{2})^{2}n_{m})\leq exp\bigg(-2*(\dfrac{|B_{m}|\epsilon_{m}}{2})^{2}\dfrac{2\log{(\psi(m)T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg)$
 \newline\hspace*{21em}$\leq \bigg(\dfrac{1}{(\psi(m)T\epsilon_{m}^{2})^{|B_{m}|^{2}\epsilon_{m}}}\bigg)$
 %\newline
 %$\mathbb{P}\lbrace\hat{r}^{*}\leq \hat{r}_{s} - (|B_{m}|\epsilon_{m} + c)\rbrace\leq exp(-2*((|B_{m}|\epsilon_{m} + c)^{2}n_{s_{i}})$
@@ -283,9 +288,9 @@ Summing over all arms left till round $m$,
 $\leq \sum_{i\in B_{m}}\max{\bigg\lbrace \bigg(\dfrac{32}{(\Delta_{i})^{3}}\bigg),\bigg(\dfrac{25\Delta_{i}}{(\psi(m)\Delta^{2})(0.16\psi(m)T\Delta^{2})^{2|B_{m}|^{2}\Delta/5}}\bigg)\bigg\rbrace}$, 
 %\newline
 \subsubsection{Case 2:}
-Again, from \textbf{section 4, Proposition 1}, we know that given the arm $a_{i}\in s_{i}$ has survived till this round, $a_{i}$ got pulled $n_{s_{i}}$ number of times from $1,2,..,m$ and so the regret suffered due to $a_{i}$ is no less than,
+Again, from \textbf{section 4, Proposition 1}, we know that given the arm $a_{i}\in s_{i}$ has survived till this round, $a_{i}$ got pulled $n_{m}$ number of times from $1,2,..,m$ and so the regret suffered due to $a_{i}$ is no less than,
 \newline
-\hspace*{4em}$n_{s_{i}}=\bigg\lceil\dfrac{2\log{(T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$
+\hspace*{4em}$n_{m}=\bigg\lceil\dfrac{2\log{(T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$
 \newline
 Also, since we are exploring locally within a cluster and an arm is pulled no longer till it is eliminated by the arm elimination rule, 
 %\newline
