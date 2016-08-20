@@ -1,16 +1,15 @@
-In this work, an arm (any arbitrary one) is denoted as $a_{i}$ and $a^{*}$ is the optimal arm. The total time horizon is $T$. Any arbitrary round is denoted by $m$. The arm set containing all the arms is $A$, while $|A|=K$. An event is signified by $\xi$. Any arbitrary cluster is denoted by $s_{i}$. The variable $S$ denotes the set of all clusters $s_{i}\in S$ and $|S|=M\leq K$. The variable $\ell_{m}$ is the cluster size limit in each round $m$ and $D_{m}$ is the maximum cluster size calculated by the algorithm such that in any round $m$, $\ell_{m}\leq D_{m}$. 
-\todos{\textit{``$D$ is the maximum cluster size..''} I believe you mean $D_m$. Done. written $D_{m}$ (Subho)}
+In this work, an arm (any arbitrary one) is denoted as $a_{i}$ and $a^{*}$ is the optimal arm. The total time horizon is $T$. Any arbitrary round is denoted by $m$. The arm set containing all the arms is $A$, while $|A|=K$. Any arbitrary cluster is denoted by $s_{k}$. $S_{m}$ denotes the set of all clusters $s_{k}\in S_{m}$ in the $m$-th round and $|S_{m}|=M\leq K$. The variable $\ell_{m}$ is the cluster size limit in each round $m$.
+%\todos{\textit{``$D$ is the maximum cluster size..''} I believe you mean $D_m$. Done. written $D_{m}$ (Subho)}
 %The $max_{i\in s_{i}}\hat{r}_{s_{i}}$ denotes the arm $a_{i}$ which has the $\max \hat{r}_{i}, \forall i\in s_{i}$. Similarly,  $min_{j\in s_{j}}\hat{r}_{s_{j}}$ denotes the arm $a_{j}$ which has the $\min \hat{r}_{j}, \forall j\in s_{j}$. 
-$\hat{r_i}$ denotes the average estimated payoff of the $i-th$ arm. The variable $n_{s_{i}}$ denotes the number of times each arm $a_{i}\in s_{i}$ is pulled in each round $m$. The variable $B_{m}$ denotes the arm set containing the arms that are not eliminated till round $m$. 
-The variable $\hat{\Delta}_{m}$ denotes the empirical gap between the arm having the highest empirical mean and the arm having the lowest empirical mean from $B_{m}$ in that round $m$, that is, in any round $m$, 
-$\hat{\Delta}_{m}=\max_{i\in B_{m}}{\lbrace\hat{r}_{i}\rbrace}-\min_{j\in B_{m}}{\lbrace\hat{r}_{j}\rbrace}$
-\todos{I have a few issues with this notation:\\
-1) What is $s$ in $\hat{\Delta}_{s,m}$? I don't see any $s$ on the RHS of the defn above? (removed s from all $\hat{\Delta}_{m}$, Subho)\\
-2) In CS terms, $i$ and $j$ are temporary variables for the max and min and so, I dont really get the $i \ne j$ constraint. (removed $i \ne j$, Subho)\\
-3) $\hat r_i$ is not defined (Defined $\hat r_i$, Subho)
-}
- In any cluster $s_{i}\in S$, we denote $\hat{r}_{max_{s_{i}}}\in s_{i}$ as the maximum estimated payoff and $\hat{r}_{min_{s_{i}}}\in s_{i}$ as the minimum estimated payoff. 
-\todos{\textit{``$\hat{r}_{min_{s_{i}}}\in s_{i}$ as the arm with minimum estimated payoff''}. $\hat{r}_{min_{s_{i}}}\in s_{i}$ is the minimum estimated payoff and not the arm corresponding to min est payoff. Similar writing pops up at several other places, for e.g., in the statements of the propositions. (Subho) Changed the line as saying the minimum/maximum estimated payoff}
-The parameter $\psi(m)$ is a monotonically decreasing function over the rounds, that is $\psi(m+1)\leq \psi(m)$. 
+$\hat{r_i}$ denotes the average estimated payoff of the $i$-th arm. The variable $n_{s_{k}}$ denotes the number of times each arm $a_{i}\in s_{k}$ is pulled in each round $m$. The variable $B_{m}$ denotes the arm set containing the arms that are not eliminated till round $m$. 
+%The variable $\hat{\Delta}_{m}$ denotes the empirical gap between the arm having the highest empirical mean and the arm having the lowest empirical mean from $B_{m}$ in that round $m$, that is, in any round $m$, 
+%$\hat{\Delta}_{m}=\max_{i\in B_{m}}{\lbrace\hat{r}_{i}\rbrace}-\min_{j\in B_{m}}{\lbrace\hat{r}_{j}\rbrace}$
+%\todos{I have a few issues with this notation:\\
+%1) What is $s$ in $\hat{\Delta}_{s,m}$? I don't see any $s$ on the RHS of the defn above? (removed s from all $\hat{\Delta}_{m}$, Subho)\\
+%2) In CS terms, $i$ and $j$ are temporary variables for the max and min and so, I dont really get the $i \ne j$ constraint. (removed $i \ne j$, Subho)\\
+%3) $\hat r_i$ is not defined (Defined $\hat r_i$, Subho)
+%}
+ In any cluster $s_{k}\in S_{m}$, we denote $\hat{r}_{max_{s_{k}}}\in s_{k}$ as the maximum estimated payoff and $\hat{r}_{min_{s_{k}}}\in s_{k}$ as the minimum estimated payoff. $\Delta_{i}=r^{*}-r_{i}$ and also let $\Delta=min_{a_{i}\in A}\Delta_{i}$, that is it is the minimum possible gap over all arms in $A$.%\todos{\textit{``$\hat{r}_{min_{s_{i}}}\in s_{i}$ as the arm with minimum estimated payoff''}. $\hat{r}_{min_{s_{i}}}\in s_{i}$ is the minimum estimated payoff and not the arm corresponding to min est payoff. Similar writing pops up at several other places, for e.g., in the statements of the propositions. (Subho) Changed the line as saying the minimum/maximum estimated payoff}
+%The parameter $\psi(m)$ is a monotonically decreasing function over the rounds, that is $\psi(m+1)\leq \psi(m)$. 
 %Also, we define $w\geq 2$, a weight factor.
-We also assume that all rewards are bounded in $[0,1]$.
+We also assume that all rewards are bounded in $[0,1]$. For simplicity we will assume that there is only one optimal arm $a^{*}$.
