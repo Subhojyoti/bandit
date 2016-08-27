@@ -389,7 +389,7 @@ Summing up \textbf{Case a} and \textbf{Case b1} and \textbf{Case b2}, the total 
 \par Again, we see that $\rho_{s}=1$ and $p=K$(that is each arm is in a cluster of its own and so $\bigg\lceil \dfrac{K}{p} \bigg\rceil=1$) brings out a near equivalent result as the result of proposition $5$. That is, for $\rho_{s}=1,p=K$,
 \newline $R_{T}\leq \sum_{i\in A:\Delta_{i}\geq b}\bigg \lbrace \bigg(\dfrac{44}{(\Delta_{i})^{3}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\log{(T\dfrac{\Delta_{i}^{4}}{16})}}{\Delta_{i}}\bigg)\bigg\rbrace + \sum_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{12}{b^{3}} + max_{i:\Delta\leq b}\Delta_{i}T$
 \newline So, the most significant term for cluster elimination that is $\dfrac{32(K+p)\log{(T\dfrac{\Delta_{i}^{4}}{16})}}{p\Delta_{i}}$ is slightly more than arm elimination most significant term $\dfrac{32\log{(T\dfrac{\Delta_{i}^{4}}{16})}}{\Delta_{i}}$ because of the factor $\dfrac{K+p}{p}$, but its order is nearly same as arm elimination regret bound.
-\par The principal takeaway from this result is that a lower value of $\rho_{s}\in (0,1]$ makes the algorithm risky(by increasing the error bound), but reduces expected regret whereas a higher value of $\rho_{s} > 1$ actually makes the algorithm less risky but at a cost of higher expected regret. The risk stems from the fact that the probability of sub-optimal arm elimination increases without proper exploration. So, there is always this trade-off between exploration and risk. So, in our algorithm we decrease the $\rho_{s}$ in a graded fashion halving after every round but $\rho_{s}$ is always bounded that is, $\rho \in (0,1)$. \
+\par The principal takeaway from this result is that a lower value of $\rho_{s}\in (0,1]$ makes the algorithm risky(by increasing the error bound), but reduces expected regret whereas a higher value of $\rho_{s} > 1$ actually makes the algorithm less risky but at a cost of higher expected regret. The risk stems from the fact that the probability of sub-optimal arm elimination increases without proper exploration. So, there is always this trade-off between exploration and risk. So, in our algorithm we decrease the $\rho_{s}$ in a graded fashion halving after every round but $\rho_{s}$ is always bounded that is, $\rho_{s} \in (0,1]$. \
 
 \begin{remark}
 Considering, $\rho_{a}\in (0,1]$ interval, the regret upper bound for arm elimination can be modified in the same way giving us a bound of
@@ -406,7 +406,7 @@ Considering both the arm elimination and cluster elimination condition, the tota
 \end{theorem}
 
 \begin{proof}
-Combining both the cases of Proposition $5$ and Proposition $6$ we can see that a sub-optimal arm $a_{i}$ can only be eliminated given that either $m_{i}$ or $g_{i}$ happens. In Proposition $5$ we consider only arm elimination and in Proposition $6$ we consider only cluster elimination. One vital point we point out is that, $\epsilon_{m}$(in proposition $5$) = $\epsilon_{g}$(in proposition $6$. Also we cluster the arms based on $\epsilon_{m}$.
+Combining both the cases of Proposition $5$ and Proposition $6$ we can see that a sub-optimal arm $a_{i}$ can only be eliminated given that either $m_{i}$ or $g_{i}$ happens. In Proposition $5$ we consider only arm elimination and in Proposition $6$ we consider only cluster elimination. One vital point we point out is that, $\epsilon_{m}$(in proposition $5$) = $\epsilon_{g}$(in proposition $6$). Also we cluster the arms based on $\epsilon_{m}$.
 \subsection{Case a:} 
 So, we take the summation of the two events mentioned in Proposition $5$(case a) and Proposition $6$(case a)
 which gives us an upper bound on the regret given that the optimal arm $a^{*}$ is still surviving, 
@@ -472,7 +472,7 @@ UCB2         &\hspace*{5em}$O\bigg(K\bigg(\dfrac{(1 + \epsilon(\alpha)) log(T)}{
 $\epsilon_{n}$-greedy         &\hspace*{5em}$O\bigg(\dfrac{K\Delta\log T}{d^{2}}\bigg)$, $0<d<\Delta$ \\
 EXP3             &\hspace*{5em}$O\bigg(S \sqrt{KT \log(KT)}\bigg)$, where $S$ is the hardness of the problem \\
 UCB($\delta$)	&\hspace*{5em}$O\bigg(\dfrac{16K}{\Delta}\log\big(\dfrac{2K}{\Delta\delta}\big)\bigg)$ , where $\delta$ is the error probability\\
-UCB-Revisited             &\hspace*{5em}$\min\bigg\lbrace O(\sqrt{KT}\dfrac{log(K\log K)}{\sqrt{K}}), O\bigg(\dfrac{K\log (T\Delta^{2})}{\Delta}\bigg)\bigg\rbrace$ \\
+UCB-Improved             &\hspace*{5em}$\min\bigg\lbrace O\bigg(\sqrt{KT}\dfrac{log(K\log K)}{\sqrt{K}}\bigg), O\bigg(\dfrac{K\log (T\Delta^{2})}{\Delta}\bigg)\bigg\rbrace$ \\
 MOSS				&\hspace*{5em}$\min\bigg\lbrace O\bigg(\sqrt{KT}\bigg), O\bigg(\dfrac{K\log(T\Delta^{2}/K)}{\Delta}\bigg) \bigg \rbrace$\\
 KL-UCB         &\hspace*{5em}$O\bigg(K\bigg(\dfrac{\Delta \log(T)(1 + \epsilon)}{d(r_{i}, r^{*} )} + \log(\log(T)) + \dfrac{(\epsilon)}{T^{\beta(\epsilon)}}\bigg)\bigg)$, where $\epsilon > 0$ and $d(r_{i}, r^{*})>2\Delta_{i}^{2}$\\
 UCB-Clustered             &\hspace*{5em}$\min\bigg\lbrace\dfrac{\sqrt{T}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{K\log K}},O\bigg(\dfrac{(K+p)K\log (T\Delta^{4})}{p\Delta}\bigg)\bigg\rbrace$, \\& \hspace*{5em} where $p$ is the number of clusters \\
