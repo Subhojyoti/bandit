@@ -75,7 +75,7 @@ The steps are presented in Algorithm~1.\\%\ref{alg:cucb}.
 
 
 
-In the above algorithm we are dividing the arm set $A$ into smaller clusters which belong to the cluster set $S$, where after clustering $|S|=p\leq \dfrac{K}{2}$. We are bounding the cluster size by $\ell$ such that $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$ where $p$ is the number of clusters pre-specified. We uniformly allocate arms in each of the clusters and this is shown in SubroutineCluster($p$).
+In the above algorithm we are dividing the arm set $A$ into smaller clusters which belong to the cluster set $S$, where after clustering $|S|=p$. We are bounding the cluster size by $\ell$ such that $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$ where $p$ is the number of clusters pre-specified. We uniformly allocate arms in each of the clusters and this is shown in SubroutineCluster($p$).
 %For creating these clusters we rely on the parameter $\epsilon_{m}$, which is initialized at $1$ and halved after every round. 
 %$\hat{\Delta}_{m}$(in which all $\hat{r}_{i}$ lies) divided by $\ell$. 
 %If the range before any round is found to be $0$ then we conduct a small exploration with the alternate definition of $\epsilon_{m}=\dfrac{1}{D_{m}}$. 

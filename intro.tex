@@ -96,13 +96,13 @@ where $D(p_{i}||p^{*})$ is the Kullback-Leibler divergence over the reward densi
 \item \textbf{Arm Elimination:} Run an independent version of UCB-Improved inside each such clusters formed and eliminate sub-optimal arms within such clusters. We call this arm elimination condition.
 \item \textbf{Cluster Elimination:} Select the best payoff arm from each cluster, consider them as representative of their clusters and run cluster elimination condition on them to remove the entire cluster.
 \item \textbf{Exploration Regulatory Factor:} Introduce an exploration regulatory factor to control exploration so that in the later rounds we taper our exploration.
-\item \textbf{Aggressive Elimination:} We introduce parameters $\rho_{a}$ and $\rho_{s}$ which helps in aggressive arm elimination and cluster elimination respectively. We do a theoretical analysis of it and show that the introduction of this parameter reduces expected regret but increases risk. We also show how various choices of these two parameters affect the expected regret.
+\item \textbf{Aggressive Elimination:} Since we have reduced the amount of exploration by dividing the larger problem into smaller sub-problems and decreasing the number of pulls, we need aggressive elimination to remove sub-optimal arms so that within the same number of rounds as UCB-Improved we can eliminate all the sub-optimal arms with high probability. We introduce parameters $\rho_{a}$ and $\rho_{s}$ which helps in aggressive arm elimination and cluster elimination respectively. We do a theoretical analysis of it and show that the introduction of this parameter reduces expected regret but increases risk. We also show how various choices of these two parameters affect the expected regret.
 \end{itemize}
 
 	Summarizing our contributions below:-
 \begin{enumerate}
 \item We propose a cluster based round-wise algorithm with two arm elimination conditions in each round.
-\item We achieved a lower regret upper bound(Theorem1,table in Appendix E) than UCB-Revisited(\cite{auer2010ucb}), UCB1(\cite{auer2002finite}) and MOSS (\cite{audibert2009minimax} which we verify theoretically and empirically.
+\item We achieved a lower regret upper bound(Theorem1,table in Appendix F) than UCB-Improved(\cite{auer2010ucb}), UCB1(\cite{auer2002finite}) and MOSS (\cite{audibert2009minimax} which we verify theoretically and empirically.
 \item Our algorithm also empirically compares well with DMED, DMED($+$), UCB-Varinace and KL-UCB.
 %\todos{Is the comparison empirical or theoretical? Please specify . Done. written empirically, Subho}
 \item In the critical case when $r_{1}=r_{2}=..=r_{K-1}<r^{*}$ and $\Delta_{i}$'s are small and $K$ is large which is encountered frequently in web-advertising domain (as stated in \cite{garivier2011kl}) this approach has a significant advantage over other methods.
