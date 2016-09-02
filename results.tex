@@ -10,7 +10,8 @@ Considering both the arm elimination and cluster elimination condition, the tota
 \end{proof}
 
 \begin{remark}
-By setting $b=\sqrt{\dfrac{e}{T}}$, the term $max_{i:\Delta_{i}\leq b}\Delta_{i}T$ gets trivially bounded by $\sqrt{KT}$ as mentioned in UCB-Improved which makes the logarithmic terms the main term for suitable $b$.
+By setting $b=\sqrt{\dfrac{e}{T}}$, the term $max_{i:\Delta_{i}\leq b}\Delta_{i}T$ gets trivially bounded by $\sqrt{KT}$ as mentioned in UCB-Improved.
+%which makes the logarithmic term  the main term for suitable $b$
 \end{remark}
 
 \begin{remark}
@@ -18,7 +19,7 @@ From the above discussion we can see that taking various values of $\rho_{s}$ an
 \end{remark}
 
 \begin{remark}
-So, the most significant part of the regret bound is $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32(K+p)\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{p\Delta_{i}}$. For $b\approx \sqrt{\dfrac{K\log K}{T}}$ in the term we get, $K\dfrac{32(K+p)\rho_{s}\log{(\psi_{m}T\dfrac{K^{2}(\log K)^{2}}{16\rho_{s}^{2}T^{2}})}}{p \sqrt{\dfrac{K\log K}{T}}}$\newline$=\dfrac{32K\sqrt{T}(K+p)\rho_{s}\log{(\psi_{m}\dfrac{K^{2}(\log K)^{2}}{16\rho_{s}^{2}T})}}{p \sqrt{K\log K}}$. Now for $p= \dfrac{K}{2}$(considering each cluster gets atleast $2$ arms) we get $\dfrac{(K+p)}{p}=  3$. Again, since there are $\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$ rounds then $\rho_{s}\geq \dfrac{1}{4}$(from Definition $2$, \textbf{Appendix E}) and taking $\psi_{m}=K^{2}T$(from Definition $3$, \textbf{Appendix D}). So we get, $\dfrac{96\sqrt{KT}\log{(16\dfrac{K^{4}(\log K)^{2}}{16*T})}}{4\sqrt{\log K}} \leq \dfrac{24\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}$.
+So, for the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32(K+p)\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{p\Delta_{i}}$. For $b\approx \sqrt{\dfrac{K\log K}{T}}$ in the term we get, $K\dfrac{32(K+p)\rho_{s}\log{(\psi_{m}T\dfrac{K^{2}(\log K)^{2}}{16\rho_{s}^{2}T^{2}})}}{p \sqrt{\dfrac{K\log K}{T}}}$\newline$=\dfrac{32K\sqrt{T}(K+p)\rho_{s}\log{(\psi_{m}\dfrac{K^{2}(\log K)^{2}}{16\rho_{s}^{2}T})}}{p \sqrt{K\log K}}$. Now for $p= \dfrac{K}{2}$(considering each cluster gets atleast $2$ arms) we get $\dfrac{(K+p)}{p}=  3$. Again, since there are $\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$ rounds then $\rho_{s}\geq \dfrac{1}{4}$(from Definition $2$, \textbf{Appendix E}) and taking $\psi_{m}=K^{2}T$(from Definition $3$, \textbf{Appendix D}). So we get, $\dfrac{96\sqrt{KT}\log{(16\dfrac{K^{4}(\log K)^{2}}{16*T})}}{4\sqrt{\log K}} \leq \dfrac{24\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}$.
 \end{remark}
 
 %Since $T>> K$, so this essentially becomes better than UCB-Improved non-gap based regret upper bound of $\sqrt{KT}\dfrac{\log(K\log K)}{\sqrt{\log K}}$. Also, comparing to the MOSS bound of $\sqrt{KT}$, our bound essentially is better than MOSS.
