@@ -60,10 +60,11 @@ The steps are presented in Algorithm~1.\\%\ref{alg:cucb}.
 %\State \hspace*{2em} Rename all clusters that have been formed as $s_{1}$ to $s_{M}$, where $|S|=M$ after merging
 %\end{algorithmic}
 %\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.6cm]
-\textbf{Subroutine:} SubroutineCluster(p)[Uniform Allocation]\\[-0.3cm]
+\textbf{Subroutine:} SubroutineCluster(p)[Random Uniform Allocation]\\[-0.3cm]
 \begin{algorithmic}[1]
 \State \hspace*{2em} $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$
-\State \hspace*{2em} Create clusters $s_{i}=\lbrace a_{i}\rbrace, \forall i\in B_{m}$
+\State \hspace*{2em} Permute arms in $A$ randomly to create $A_{random}$.
+\State \hspace*{2em} Create clusters $s_{i}=\lbrace a_{i}\rbrace, \forall i\in A_{random}$
 \State \hspace*{2em} For $i=1$ to $K$:
 \State \hspace*{4em} For $j=i+1$ to $K$:
 \State \hspace*{6em} Merge $s_{i},s_{j}$ into $s_{i}$ if $\exists a_{i}\in s_{i} $ and $\exists a_{j}\in s_{j},$ such that $|s_{i}|+|s_{j}|\leq \ell$
@@ -75,7 +76,7 @@ The steps are presented in Algorithm~1.\\%\ref{alg:cucb}.
 
 
 
-In the above algorithm we are dividing the arm set $A$ into smaller clusters which belong to the cluster set $S$, where after clustering $|S|=p$. We are bounding the cluster size by $\ell$ such that $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$ where $p$ is the number of clusters pre-specified. We uniformly allocate arms in each of the clusters and this is shown in SubroutineCluster($p$).
+In the above algorithm we are dividing the arm set $A$ into smaller clusters which belong to the cluster set $S$, where after clustering $|S|=p$. We are bounding the cluster size by $\ell$ such that $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$ where $p$ is the number of clusters pre-specified. We randomly uniformly allocate arms in each of the clusters and this is shown in SubroutineCluster($p$).
 %For creating these clusters we rely on the parameter $\epsilon_{m}$, which is initialized at $1$ and halved after every round. 
 %$\hat{\Delta}_{m}$(in which all $\hat{r}_{i}$ lies) divided by $\ell$. 
 %If the range before any round is found to be $0$ then we conduct a small exploration with the alternate definition of $\epsilon_{m}=\dfrac{1}{D_{m}}$. 
