@@ -39,12 +39,12 @@ Again, of the several terms in the regret bound, the terms like  $\sum_{i\in A:\
 
 \begin{remark}
 \label{Result:Rem:5}
-So, we see that putting $b=\sqrt{\dfrac{K\log K}{T}}$, the corresponding terms of $\rho_{s}$ and $\psi_{m}$ and then combining remark $3$ and $4$ we get the worst case gap-independent regret bound of $\bigg\lbrace \dfrac{\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}\bigg\rbrace$ which coincides with the term $bT$ of the regret bound in \textbf{Theorem 1}, except the term  $\dfrac{\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}$. When we consider that $T\approx K^{4}(\log K)^{2}$, this term becomes negligible and so the regret bound becomes better than UCB-Improved non-gap based regret upper bound of $\sqrt{KT}\dfrac{\log(K\log K)}{\sqrt{\log K}}$ and slightly better than the MOSS bound of $49\sqrt{KT}$. This shows that for large number of arms $K$ and moderately high time horizon $T$ we have a very strong regret guarantee.
+So, we see that putting $b=\sqrt{\dfrac{K\log K}{T}}$, the corresponding terms of $\rho_{s}$ and $\psi_{m}$ and then combining \textbf{remark \ref{Result:Rem:3} and \ref{Result:Rem:4}} we get the worst case gap-independent regret bound of $\bigg\lbrace \dfrac{\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}\bigg\rbrace$ which coincides with the term $bT$ of the regret bound in \textbf{Theorem 1}, except the term  $\dfrac{\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}$. When we consider that $T\approx K^{4}(\log K)^{2}$, this term becomes negligible and so the regret bound becomes better than UCB-Improved non-gap based regret upper bound of $\sqrt{KT}\dfrac{\log(K\log K)}{\sqrt{\log K}}$ and slightly better than the MOSS bound of $49\sqrt{KT}$. This shows that for large number of arms $K$ and moderately high time horizon $T$ we have a very strong regret guarantee.
 \end{remark}
 
 \begin{remark}
 \label{Result:Rem:6}
-A similar result can be shown for the term $\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}$ and for the terms like $\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)$ which come from Arm Elimination method. A clear distinction between using only arm elimination method and both arm and cluster elimination is shown in \textbf{Remark \ref{App:C:Rem:2}}.
+A similar result can be shown for the term $\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}$ and for the terms like $\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)$ which come from Arm Elimination method. A clear distinction between using only arm elimination method(as proved in \textbf{Proposition 1} or using only cluster elimination method(as proved in \textbf{Proposition 2} or both arm and cluster elimination(as proved in \textbf{Theorem 1} is shown in \textbf{Remark \ref{App:C:Rem:2}}.
 \end{remark}
 
 %At the same time putting $\psi_{m}=\sqrt{T}$ in the term $\sum_{i\in A}\dfrac{32(K+p)\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{p\Delta_{i}}$ and taking $b\approx \sqrt{\dfrac{K\log K}{T}}$ we get by the same way as above a worst case regret bound of $\dfrac{\sqrt{eK}\log{(\sqrt{T}\dfrac{K^{2}(\log K)^{2}}{e})}}{\sqrt{\log K}}$. This is still less than the worst case of MOSS and UCB-Improved.
@@ -63,6 +63,11 @@ A similar result can be shown for the term $\dfrac{32\rho_{a}\log{(\psi_{m}T\dfr
 
 \begin{remark}
 \label{Result:Rem:8}
+In the experimental setup we use $\psi_{m}$ as stated in \textbf{Appendix D, Definition 5} and $\rho_{s}$ and $rho_{a}$ as stated in \textbf{Appendix E, Definition 5}. The corresponding bound can be found in \textbf{Remark \ref{App:E:Rem:1}}.
+\end{remark}
+
+\begin{remark}
+\label{Result:Rem:9}
 A sketch of the proof for \textbf{Theorem $1$} is given here. In the first step, we try to bound the probability of arm elimination of any sub-optimal arm without cluster elimination. This is shown in Proposition $1$. In second step, we try to bound the probability of cluster elimination(without any arm elimination) with all arms within it. This is shown in Proposition $2$. Finally, in the proof of Theorem 1 we combine all these to get the regret bound.  
 \end{remark}
 	
@@ -92,7 +97,7 @@ Considering only the arm elimination condition and $\rho_{a}=1$ and $p=1$ the to
 	The proof of Proposition 1 is given in \textbf{Appendix A}.(Supplementary material).
 
 \begin{remark}
-\label{Result:Rem:9}	
+\label{Result:Rem:10}	
 	Thus, we see that the confidence interval term $c_{m}=\sqrt{\dfrac{\log (T\epsilon_{m}^{2})}{2 n_{m}}}$ makes the algorithm eliminate an arm $a_{i}$ as soon as $\sqrt{\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$. The above result is in contrast with UCB-Improved which only deletes an arm if $\tilde{\Delta}_{m}<\dfrac{\Delta_{i}}{2}$, where $\tilde{\Delta}_{m}$ is initialized at $1$ and is halved after every round. We can also point out out here intuitively that when $c_{m}=\sqrt{\dfrac{\rho_{a}\log (T\epsilon_{m}^{2})}{2 n_{m}}}$ and $\rho_{a}$ is decreased after every round, then an arbitrary arm $a_{i}$ is removed as soon as  $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ which essentially makes it a faster elimination procedure than UCB-Improved if $\rho_{a}\leq \epsilon_{m}$. The proof of a similar approach regarding cluster elimination is shown in proposition 2.
 \end{remark}
 
@@ -124,6 +129,7 @@ Considering only the cluster elimination condition and $p>1$, the total regret t
 \end{proposition}
 
 	The proof of Proposition 2 is given in \textbf{Appendix B}.(Supplementary material)
+
 
 %\todos{(Subho) Have to re-write the remark once this proposition is proved}
 
