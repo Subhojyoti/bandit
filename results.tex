@@ -18,7 +18,7 @@ By setting $b=\sqrt{\dfrac{e}{T}}$, the term $max_{i:\Delta_{i}\leq b}\Delta_{i}
 
 \begin{remark}
 \label{Result:Rem:2}
-From the statement of Theorem $1$ we can see that taking various values of $\rho_{s}$ and $\rho_{a}$ and how these values are reduced after every round significantly affects our regret bound.A discussion on them is deferred to \textbf{Remark \ref{App:A:Rem:1}, Appendix A}, \textbf{Remark \ref{App:B:Rem:2},\ref{App:B:Rem:3}, Appendix B} and \textbf{Remark \ref{App:C:Rem:2}, Appendix C} and its various definitions are given in \textbf{Appendix E}. A discussion on exploration regulatory factor($\psi_{m}$) and its effect is deferred to \textbf{Appendix D}. In the analysis of proof(\textbf{Remark \ref{Result:Rem:3}-\ref{Result:Rem:7}}) we will use both $\psi_{m}$ and $\rho_{s}$. The full regret bound which includes the factors $\rho_{s},\rho_{a}$ and $\psi_{m}$ can be found in \textbf{Remark \ref{App:D:Rem:1}, Appendix D}.
+From the statement of Theorem $1$ we can see that taking various values of $\rho_{s}$ and $\rho_{a}$ and how these values are reduced after every round significantly affects our regret bound.A discussion on them is deferred to \textbf{Remark \ref{App:A:Rem:1}, Appendix A}, \textbf{Remark \ref{App:B:Rem:2},\ref{App:B:Rem:3}, Appendix B} and \textbf{Remark \ref{App:E:Rem:2}, Appendix E} and its various definitions are given in \textbf{Appendix E}. A discussion on exploration regulatory factor($\psi_{m}$) and its effect is deferred to \textbf{Appendix D}. In the analysis of proof(\textbf{Remark \ref{Result:Rem:3}-\ref{Result:Rem:7}}) we will use both $\psi_{m}$ and $\rho_{s}$. The full regret bound which includes the factors $\rho_{s},\rho_{a}$ and $\psi_{m}$ can be found in \textbf{Remark \ref{App:D:Rem:1}, Appendix D}.
 \end{remark}
 
 \begin{remark}
@@ -44,7 +44,7 @@ So, we see that putting $b=\sqrt{\dfrac{K\log K}{T}}$, the corresponding terms o
 
 \begin{remark}
 \label{Result:Rem:6}
-A similar result can be shown for the term $\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}$ and for the terms like $\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)$ which come from Arm Elimination method. A clear distinction between using only arm elimination method(as proved in \textbf{Proposition 1} or using only cluster elimination method(as proved in \textbf{Proposition 2} or both arm and cluster elimination(as proved in \textbf{Theorem 1} is shown in \textbf{Remark \ref{App:C:Rem:2}}.
+A similar result can be shown for the term $\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}$ and for the terms like $\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)$ which come from Arm Elimination method. A clear distinction between using only arm elimination method(as proved in \textbf{Proposition 1}) or using only cluster elimination method(as proved in \textbf{Proposition 2}) or both arm and cluster elimination(as proved in \textbf{Theorem 1}) is shown in \textbf{Remark \ref{App:E:Rem:2}}.
 \end{remark}
 
 %At the same time putting $\psi_{m}=\sqrt{T}$ in the term $\sum_{i\in A}\dfrac{32(K+p)\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{p\Delta_{i}}$ and taking $b\approx \sqrt{\dfrac{K\log K}{T}}$ we get by the same way as above a worst case regret bound of $\dfrac{\sqrt{eK}\log{(\sqrt{T}\dfrac{K^{2}(\log K)^{2}}{e})}}{\sqrt{\log K}}$. This is still less than the worst case of MOSS and UCB-Improved.
@@ -63,12 +63,12 @@ A similar result can be shown for the term $\dfrac{32\rho_{a}\log{(\psi_{m}T\dfr
 
 \begin{remark}
 \label{Result:Rem:8}
-In the experimental setup we use $\psi_{m}$ as stated in \textbf{Appendix D, Definition 5} and $\rho_{s}$ and $rho_{a}$ as stated in \textbf{Appendix E, Definition 5}. The corresponding bound can be found in \textbf{Remark \ref{App:E:Rem:1}}.
+In the experimental setup we use $\psi_{m}$ as stated in \textbf{Appendix D, Definition 5} and $\rho_{s}$ and $\rho_{a}$ as stated in \textbf{Appendix E, Definition 5}. The corresponding bound can be found in \textbf{Remark \ref{App:E:Rem:1}}.
 \end{remark}
 
 \begin{remark}
 \label{Result:Rem:9}
-A sketch of the proof for \textbf{Theorem $1$} is given here. In the first step, we try to bound the probability of arm elimination of any sub-optimal arm without cluster elimination. This is shown in Proposition $1$. In second step, we try to bound the probability of cluster elimination(without any arm elimination) with all arms within it. This is shown in Proposition $2$. Finally, in the proof of Theorem 1 we combine all these to get the regret bound.  
+A sketch of the proof for \textbf{Theorem $1$} is given here. In the \textbf{first step}, we try to bound the probability of arm elimination of any sub-optimal arm without cluster elimination. This is shown in Proposition $1$. By simply taking $p=1$ we can achieve arm elimination without any cluster elimination. In second step, we try to bound the probability of cluster elimination(without any arm elimination) with all arms within it.  A slight modification to the algorithm allows us to do this. By taking $p>1$, removing the arm elimination condition, stopping when we are just left with one cluster and pulling the $max\lbrace \hat{r}_{i}\rbrace$, where $a_{i}\in B_{m}$ we can achieve this.  This is shown in Proposition $2$. Finally, in the proof of Theorem 1 we combine both arm elimination and cluster elimination to get the regret upper bound.  
 \end{remark}
 	
 %\begin{proposition}
