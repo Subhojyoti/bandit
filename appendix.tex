@@ -235,7 +235,7 @@ An illustrative diagram explaining Cluster Elimination is given in \textbf{Figur
 \begin{itemize}
 \item \textbf{Case a1:} In the $g$-th round, $a^{*}\in C_{g}$ and bound the maximum probability that a sub-optimal cluster arm $a_{max_{s_{k}}}\in C_{g}$ gets eliminated.
 \item \textbf{Case a2:} In the $g$-th round, $a^{*}\notin C_{g}$ and bound the maximum probability that a sub-optimal cluster arm $a_{max_{s_{k}}}$ gets eliminated by $a_{max_{s^{*}}}\in C_{g}$, such that $a_{max_{s^{*}}},a^{*}\in s^{*}$ and $a_{max_{s^{*}}}\neq a^{*}$. So, $a^{*}$ survives by this condition.
-\item \textbf{Case b1:} In the $g$-th round, $a^{*}\notin C_{g}$ and no cluster arm gets eliminated and calculate the regret for all the surviving arms/clusters(clusters are fixed).
+\item \textbf{Case b1:} In the $g$-th round, $a^{*}\notin C_{g}$ and no cluster arm gets eliminated and calculate the regret for all the surviving arms in clusters(clusters are fixed).
 \item \textbf{Case b2:} In the $g$-th round $a^{*}\in C_{g}$ and it gets eliminated by another sub-optimal cluster arm and bound this probability.
 \item \textbf{Case b3:} In the $g$-th round $a^{*}\notin C_{g}$ and it gets eliminated by another sub-optimal cluster arm  and bound this probability.
 \end{itemize}
@@ -428,11 +428,11 @@ Summing up \textbf{Case a1}, \textbf{Case a2}, \textbf{Case b1},\textbf{Case b2}
 
 \begin{remark}
 \label{App:B:Rem:3}
-Considering, $\rho_{a}\in (0,1]$ and $p=1$, the regret upper bound for arm elimination can be modified in the same way giving us a bound of
+Considering only arm elimination and $\rho_{a}\in (0,1]$ and $p=1$, the regret upper bound can be modified in the same way giving us a bound of
 \newline
 $R_{T}\leq \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)  +  \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\Delta_{i}^{4\rho_{a} -1}} \bigg) \bigg \rbrace+$\newline$\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{b^{4\rho_{a} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$. 
 \newline
-Putting $\rho_{a}=1$ gives us directly the result of proposition $3$. Here we will only consider case $a$, case $b1$ and case $b2$ of proposition $3$.
+Putting $\rho_{a}=1$ gives us directly the result of proposition $3$. Here we will only consider case $a$, case $b1$ and case $b2$ of proposition $3$. All the observations made in \textbf{Remarks \ref{Result:Rem:3}-\ref{Result:Rem:7}} are applicable to it.
 \end{remark}
 
 \section{Appendix C}
@@ -446,7 +446,7 @@ The optimal cluster which contains $a^{*}$ is denoted by $s^{*}$. The arms belon
 %Also we cluster the arms based on $\epsilon_{m}$.
 \subsection{Case a:} 
 In this case, a sub-optimal arm $a_{i}$ can get eliminated in $4$ ways,
-\begin{enumerate}[1]
+\begin{enumerate}
 \item $a_{i}$ in $s^{*}$ and $m_{i}$ happens which is Proposition $3$(case $a1$)
 \item $a_{i}$ in $s_{k}$, where $r_{max_{s_{k}}}\leq r^{*}$ and $m_{i}$ happens. This case was not dealt in Proposition $3$ as there we took $p=1$. Since, now $p>1$ and $r_{max_{s_{k}}}\leq r^{*}$, following the same way as case $a$, Proposition $3$ we can show that the probability of $a_{i}$ not getting eliminated  cannot be worse than Proposition $3$(case $a1$) given that $\sqrt{\epsilon_{m}}< \dfrac{\Delta^{'}_{i}}{2}$ where $\Delta^{'}_{i}=r_{max_{s_{k}}} - r_{i}\geq\Delta_{a_{max_{s_{k}}}}$ such that $r_{i}\in s_{k}$. Plugging in this $\Delta^{'}_{i}$ in Proposition $3$, case $a$ we can derive a similar bound where $\Delta^{'}_{i}\geq \Delta_{a_{max_{s_{k}}}}$ because otherwise case $3$(next case) will happen before as $\sqrt{\epsilon_{m}\rho_{s}}< \dfrac{\Delta_{a_{max_{s_{k}}}}}{2}$ and the cluster $s_{k}$ gets eliminated or $a_{max_{s_{k}}}$ will eliminate $a^{*}$ which is dealt later.
 \item $a_{i}\in s_{k}, a^{*}\in C_{g}$ and $g_{s_{k}}$ happens which is Proposition $4$(case $a1$)
@@ -513,27 +513,28 @@ Considering the case when $\rho_{a}\in (0,1]$ and $\rho_{s}\in (0,1]$, the total
 
 \section{Appendix D}
 
-In this section we discuss about the various exploration regulatory function that we can use to control exploration. A similar topic has already been handled in \cite{liu2016modification} where they have introduced mainly three types of regulatory factors($d_{i}$) to the term $\bigg\lbrace\hat{r}_{i}+\sqrt{\dfrac{d_{i}\log T\tilde{\Delta}_{m}^{2}}{2n_{m}}}\bigg\rbrace$ which is used for selecting an arbitrary arm $a_{i}$ in the $t$-th timestep which maximizes the above term. This regulatory term $d_{i}$ can be of the form as $\dfrac{T}{t_{i}}$, $\dfrac{\sqrt{T}}{t_{i}}$ and $\dfrac{\log T}{t_{i}}$, where $t_{i}$ is the number of times an arm $a_{i}$ has been sampled. One has to choose a regulatory factor based on how fast the algorithm should taper its exploration in the later rounds since with time, $t_{i}$ increases and only the numerator decides how fast the exploration must decrease.
+In this section in \textbf{Table \ref{App:D:table:1}} we discuss about the various exploration regulatory function that we can use to control exploration. A similar topic has already been handled in \cite{liu2016modification} where they have introduced mainly three types of regulatory factors($d_{i}$) to the term $\bigg\lbrace\hat{r}_{i}+\sqrt{\dfrac{d_{i}\log T\tilde{\Delta}_{m}^{2}}{2n_{m}}}\bigg\rbrace$ which is used for selecting an arbitrary arm $a_{i}$ in the $t$-th timestep which maximizes the above term. This regulatory term $d_{i}$ can be of the form as $\dfrac{T}{t_{i}}$, $\dfrac{\sqrt{T}}{t_{i}}$ and $\dfrac{\log T}{t_{i}}$, where $t_{i}$ is the number of times an arm $a_{i}$ has been sampled. One has to choose a regulatory factor based on how fast the algorithm should taper its exploration in the later rounds since with time, $t_{i}$ increases and only the numerator decides how fast the exploration must decrease.
 
 	We also deploy a similar exploration regulatory factor called $\psi_{m}$ for two different purposes. The first reason comes from the fact that because of limited exploration in the initial rounds the probability for sub-optimal arm elimination is low. Secondly, the increased risk(error bound) stemming from the fact that the optimal arm might get eliminated by any sub-optimal arm because exploration is low. $m$ signifies the round number and $m=0,1,...,\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$.
 	
 \begin{table}
-\begin{center}
 \caption{Definition of $\psi_{m}$}
+\label{App:D:table:1}
+\begin{center}
 %\begin{tabular}{l|l|l|l|l}
-\begin{tabular}{p{1cm}p{3cm}p{2cm}p{2cm}p{8cm}}
+\begin{tabular}{p{1cm}p{4cm}p{2cm}p{2cm}p{7cm}}
 \multicolumn{1}{c}{\bf Number} &\multicolumn{1}{c}{\bf Definition}  &\multicolumn{1}{c}{\bf Upper Bound} &\multicolumn{1}{c}{\bf Lower Bound} &\multicolumn{1}{c}{\bf Remarks} \\
 %\multicolumn{5}{*}{|c|}{\bf Number &\bf Definition &\bf Upper Bound &\bf Lower Bound &\bf Remarks}
 \hline \\
-1	&$\psi_{m}=\dfrac{\sqrt{\log T}}{2^{m}}$         & $\sqrt{\log T}$  &$\dfrac{\sqrt{e\log T}}{\sqrt{T}}$ & Used in the algorithm. \\ 
+1	&$\psi_{m}=\frac{\sqrt{\log T}}{2^{m}}$         & $\sqrt{\log T}$  &$\frac{\sqrt{e\log T}}{\sqrt{T}}$ & Used in the algorithm. \\ 
 \hline \\
-2	&$\psi_{m}=\dfrac{\log T}{2^{m}}$         & $\log T$  &$\dfrac{\sqrt{e}\log T}{\sqrt{T}}$ & Decreases at a lesser rate than Definition $1$.  \\  
+2	&$\psi_{m}=\frac{\log T}{2^{m}}$         & $\log T$  &$\frac{\sqrt{e}\log T}{\sqrt{T}}$ & Decreases at a lesser rate than Definition $1$.  \\  
 \hline \\
-3	&$\psi_{m}=K^{2}T$         & $K^{2} T$  &$K^{2} T$ & Constant factor. Used in \textbf{Remark \ref{Result:Rem:3}}. \\ 
+3	&$\psi_{m}=K^{2}T$         & $K^{2} T$  &$K^{2} T$ & Constant factor. Used in \textbf{Remark \ref{Result:Rem:3},\ref{App:E:Rem:1}}. \\ 
 \hline \\ 
 4	&$\psi_{m}=\log{T}$         & $\log{T}$  &$\log{T}$ & Constant factor. Used in experiment. \\  
 \hline \\
-5	&$\psi_{m}=K^{\frac{1}{\rho_{s}}}$         & $K^{\sqrt{\frac{T}{e}}}$  &$K$ & Used in \textbf{Remark \ref{App:E:Rem:1}}. $\rho_{s}$ from \textbf{Definition 1, Appendix E}. \\  
+%5	&$\psi_{m}=K^{\frac{1}{\rho_{a}}}$	& $K^{\sqrt{\frac{T}{e}}}$  &$K$ & Used in \textbf{Remark \ref{App:E:Rem:1}}. $\rho_{a}$ from \textbf{Definition 1, Appendix E}.\\  
 \end{tabular}
 \end{center}	
 \end{table}
@@ -553,82 +554,88 @@ Considering the case when $\rho_{a}\in (0,1]$, $\rho_{s}\in (0,1]$ and taking $\
 
 \section{Appendix E}
 
-In this section we mention the various definitions of $\rho_{a}$ and $\rho_{s}$. All of this definitions bounds the value of $\rho_{a}$ and $\rho_{s}$ between $(0,1]$ with some of the bounds explicitly mentioning the lower and upper limits of $\rho_{a}$ and $\rho_{s}$. $m$ signifies the round number and $m=0,1,...,\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$.
+In this section in \textbf{Table \ref{App:E:table:1}} we mention the various definitions of $\rho_{a}$ and $\rho_{s}$. All of this definitions bounds the value of $\rho_{a}$ and $\rho_{s}$ between $(0,1]$ with some of the bounds explicitly mentioning the lower and upper limits of $\rho_{a}$ and $\rho_{s}$. $m$ signifies the round number and $m=0,1,...,\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$.
 
 \begin{table}
 \caption{Definitions of $\rho_{a},\rho_{s}$}
+\label{App:E:table:1}
 \begin{center}
-\begin{tabular}{p{1cm}p{5cm}p{1cm}p{1cm}p{5cm}}
+\begin{tabular}{p{1cm}p{5cm}p{1cm}p{1cm}p{7cm}}
 \multicolumn{1}{c}{\bf Number} &\multicolumn{1}{c}{\bf Definition($\rho_{s},\rho_{a}$)}  &\multicolumn{1}{c}{\bf UB($\rho_{s},\rho_{a}$)} &\multicolumn{1}{c}{\bf LB($\rho_{s},\rho_{a}$)} &\multicolumn{1}{c}{\bf Remarks} \\
 \hline \\
-1	&$\rho_{s}=\dfrac{1}{2^{m}},\rho_{a}=\dfrac{1}{2^{m}}$         & $1,1$  &$\sqrt{\dfrac{e}{T}}$,$\sqrt{\dfrac{e}{T}}$ & Used in algorithm. \\
+1	&$\rho_{s}=\frac{1}{2^{m}},\rho_{a}=\frac{1}{2^{m}}$         & $1,1$  &$\sqrt{\frac{e}{T}}$,$\sqrt{\frac{e}{T}}$ & Used in algorithm. \\
 \hline\\ 
-2	&$\rho_{s},\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{4}\bigg\rbrace$         & $1,1$  &$\dfrac{1}{4},\dfrac{1}{4}$ & A less risky definition having a higher lower bound than Definition $1$ since $\sqrt{\dfrac{e}{T}}< \dfrac{1}{4}$ if $T> 16e$\\
+2	&$\rho_{s},\rho_{a}=max\bigg\lbrace\frac{1}{2^{m}},\frac{1}{4}\bigg\rbrace$         & $1,1$  &$\frac{1}{4},\frac{1}{4}$ & A less risky definition having a higher lower bound than Definition $1$ since $\sqrt{\frac{e}{T}}< \frac{1}{4}$ if $T> 16e$\\
 \hline\\ 
-3	&$\rho_{s}=\dfrac{1}{2^{m}},\rho_{a}=\dfrac{1}{2^{2m}}$         & $1,1$  &$\sqrt{\dfrac{e}{T}},\dfrac{e}{T}$ & A more aggressive arm elimination and conservative cluster elimination. Increases risk but reduces expected regret if the optimal arm survives.\\ 
+3	&$\rho_{s}=\frac{1}{2^{m}},\rho_{a}=\frac{1}{2^{2m}}$         & $1,1$  &$\sqrt{\frac{e}{T}},\frac{e}{T}$ & A more aggressive arm elimination and conservative cluster elimination. Increases risk but reduces expected regret if the optimal arm survives.\\ 
 \hline\\
-4	&$\rho_{s}=\dfrac{1}{2^{2m+1}},\rho_{a}=\dfrac{1}{2^{4m+1}}$         & $\dfrac{1}{2},\dfrac{1}{2}$  &$\dfrac{e}{2T},\dfrac{e^{2}}{2T^{2}}$ & A more aggressive arm elimination and conservative cluster elimination definition than Definition $3$. Used in Experiment.\\
+4	&$\rho_{s}=\frac{1}{2^{2m+1}},\rho_{a}=\frac{1}{2^{4m+1}}$         & $\frac{1}{2},\frac{1}{2}$  &$\frac{e}{2T},\frac{e^{2}}{2T^{2}}$ & A more aggressive arm elimination and conservative cluster elimination definition than Definition $3$. Used in Experiment.\\
 \hline\\
-5	&$\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{4}\bigg\rbrace$\newline $\rho_{a}=\dfrac{1}{2^{4m+1}}$   & $\dfrac{1}{2},\dfrac{1}{2}$  &$\dfrac{e}{2T},\dfrac{e^{2}}{2T^{2}}$ & Used in Proof.
+5	&$\rho_{s}=max\bigg\lbrace\frac{1}{2^{m}},\frac{1}{4}\bigg\rbrace$\newline $\rho_{a}=\frac{1}{2^{m}}$   & $1,1$  &$\frac{1}{4},\sqrt{\frac{e}{T}}$ & Used in \textbf{Remark \ref{App:E:Rem:1},\ref{App:E:Rem:2}}.\\
+\hline\\
 \end{tabular}
 \end{center}
 \end{table}
 
 \begin{remark}
 \label{App:E:Rem:1}
-Putting the value of $\psi_{m}=(K)^{\frac{1}{\rho_{s}}}$(\textbf{Appendix D, Definition 5}) and using \textbf{Appendix E, Definition 1} for $\rho_{s}$ and $b=\sqrt{\dfrac{K\log K}{T}}$ in $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)=K\bigg(\dfrac{T^{1-\sqrt{\frac{e}{T}}}(\sqrt{\frac{e}{T}}^{2\sqrt{\frac{e}{T}}})2^{2\sqrt{\frac{e}{T}}+3}}{{(K)^{\sqrt{\frac{T}{e}}*\sqrt{\frac{e}{T}}}}{(\Delta_{i})^{4*\sqrt{\frac{e}{T}}-1}}} \bigg) \approx \dfrac{8KT\Delta_{i}}{K}=\dfrac{8T\sqrt{K\log K}}{\sqrt{T}}=8\sqrt{KT\log K}$. A similar result can also be shown for $\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{b^{4\rho_{s} -1}} \bigg)\approx \dfrac{8KT\Delta_{i}}{K} = \sqrt{eTK}$ for $b=\sqrt{\dfrac{e}{T}}$. 
+Taking into account \textbf{Remark \ref{App:D:Rem:1}}, putting the value of $\psi_{m}=(K^{2}T)$(\textbf{Appendix D, Definition 3}) and using \textbf{Appendix E, Definition 5} for $\rho_{a}=\dfrac{1}{2^{m}}$ and $b=\sqrt{\dfrac{K\log K}{T}}$ in $\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)=K\bigg(\dfrac{T^{1-\sqrt{\frac{e}{T}}}({\frac{e}{T}}^{2\sqrt{\frac{e}{T}}})2^{2\sqrt{\frac{e}{T}}+\frac{3}{2}}}{{(K^{2}T)^{\sqrt{\frac{e}{T}}}}{(\Delta_{i})^{4*\sqrt{\frac{e}{T}}-1}}} \bigg) $. Now, for $T\geq K^{\frac{1-2\rho_{a}}{\rho_{a}}}$ the above term becomes $\approx \dfrac{5.6KT\Delta_{i}}{K}=\dfrac{5.6T\sqrt{K\log K}}{\sqrt{T}}= 5.6\sqrt{KT\log K}$. A similar result can also be shown for $\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m}^{\rho_{s}})b^{4\rho_{s} -1}} \bigg)\approx 5.6\sqrt{KT\log K}$ for $b=\sqrt{\dfrac{K\log K}{T}}$ and $\rho_{s}$ from \textbf{Appendix E, Definition 5}(see \textbf{Remark  \ref{Result:Rem:4}}). Similarly, $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)=2\sqrt{KT\log K}$ and  $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)=4\sqrt{KT\log K}$.
 
 \par For the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}$ by setting $b\approx \sqrt{\dfrac{K\log K}{T}}$ and the above parameter values for $\psi_{m},\rho_{a}$ in the term we get, 
-$\dfrac{32K\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\leq \dfrac{32K\rho_{a}\log{(\psi_{m})}}{\Delta_{i}}+ \dfrac{32K\rho_{a}\log(T\dfrac{\Delta_{i}^{4}}{\rho_{a}^{2}})}{\Delta_{i}}$
-$=\dfrac{32K\sqrt{\dfrac{e}{T}}\log{(K)^{\sqrt{\dfrac{T}{e}}}}}{\sqrt{\dfrac{K\log K}{T}}} + \dfrac{32K\sqrt{\dfrac{e}{T}}\log(T^{2}\dfrac{K^{2}(\log K)^{2}}{eT^{2}})}{\sqrt{\dfrac{K\log K}{T}}}$
-$=32\sqrt{KT} + \dfrac{32\sqrt{eK}\log(K^{2}(\log K)^{2})}{\sqrt{\log K}}$
-\par For the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}$ by setting $b\approx \sqrt{\dfrac{K\log K}{T}}$ and the above parameter values for $\psi_{m},\rho_{s}=\max{\bigg\lbrace\dfrac{1}{4},\dfrac{1}{2^{m}}\bigg\rbrace}$ in the term we get,
-$\leq \dfrac{32K\rho_{s}\log{(\psi_{m})}}{\Delta_{i}}+ \dfrac{32K\rho_{s}\log(T\dfrac{\Delta_{i}^{4}}{\rho_{s}^{2}})}{\Delta_{i}}$
-$=\dfrac{32K\dfrac{1}{4}\log{(K)^{4}}}{\sqrt{\dfrac{K\log K}{T}}} + \dfrac{32K\sqrt{\dfrac{1}{4}}\log(T\dfrac{K^{2}(\log K)^{2}}{T^{2}})}{\sqrt{\dfrac{K\log K}{T}}}$
-$=32\sqrt{KT\log K} + \dfrac{8\sqrt{KT}\log(\dfrac{4*K^{2}(\log K)^{2}}{T})}{\sqrt{\log K}}$
+$\dfrac{32K\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}= \dfrac{32K\sqrt{\dfrac{e}{T}}\log{(K^{2}T^{3}\dfrac{K^{2}(\log K)^{2}}{16T^{2}e^{2}})}}{\sqrt{\dfrac{K\log K}{T}}}\leq \dfrac{32\sqrt{K}\log{(TK^{4}(\log K)^{2})}}{\sqrt{\log K}}$
+\par For the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}$ by setting $b\approx \sqrt{\dfrac{K\log K}{T}}$ and the above parameter values for $\psi_{m}=(K^{2}T)$ and $\rho_{s}$ from \textbf{Appendix E, Definition 5} in the term again we get,
+$\dfrac{8\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}$(see \textbf{Remark  \ref{Result:Rem:3}}).
+%$32\sqrt{KT} + \dfrac{32\sqrt{eK}\log(K^{2}(\log K)^{2})}{\sqrt{\log K}}$
+%$\leq \dfrac{32K\rho_{s}\log{(\psi_{m})}}{\Delta_{i}}+ \dfrac{32K\rho_{s}\log(T\dfrac{\Delta_{i}^{4}}{\rho_{s}^{2}})}{\Delta_{i}}$
+%$=\dfrac{32K\sqrt{\frac{e}{T}}\log{(K)^{\frac{T}{e}}}}{\sqrt{\dfrac{K\log K}{T}}} + \dfrac{32K\sqrt{\frac{e}{T}}\log(T\dfrac{K^{2}(\log K)^{2}}{T^{2}})}{\sqrt{\dfrac{K\log K}{T}}}$
+%$=8\sqrt{KT\log K} + \dfrac{8\sqrt{KT}\log(\dfrac{4*K^{2}(\log K)^{2}}{T})}{\sqrt{\log K}}$
+%\dfrac{32K\rho_{a}\log{(\psi_{m})}}{\Delta_{i}}+ \dfrac{32K\rho_{a}\log(T\dfrac{\Delta_{i}^{4}}{\rho_{a}^{2}})}{\Delta_{i}}$
+%$=\dfrac{32K\sqrt{\dfrac{e}{T}}\log{(K)^{\sqrt{\dfrac{T}{e}}}}}{\sqrt{\dfrac{K\log K}{T}}} + \dfrac{32K\sqrt{\dfrac{e}{T}}\log(T^{2}\dfrac{K^{2}(\log K)^{2}}{eT^{2}})}{\sqrt{\dfrac{K\log K}{T}}}$
+%$=32\sqrt{KT} + \dfrac{32\sqrt{eK}\log(K^{2}(\log K)^{2})}{\sqrt{\log K}}$
 \newline
-So, the total bound comes of as $\bigg\lbrace 32\sqrt{KT} + 40\sqrt{KT\log K} + \dfrac{8\sqrt{KT}\log(\dfrac{4*K^{2}(\log K)^{2}}{T})}{\sqrt{\log K}} \bigg\rbrace$, ignoring the other small terms.
+So, the total bound for using both arm and cluster elimination comes of as $\bigg\lbrace \underbrace{6\sqrt{KT\log K}}_{\text{case a}} + \underbrace{\dfrac{32\sqrt{K}\log{(TK^{4}(\log K)^{2})}}{\sqrt{\log K}} + \dfrac{8\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}}_{\text{case b1}} + \underbrace{\dfrac{11.2\sqrt{KT\log K}}{p} + 11.2\sqrt{KT}}_{\text{Error Bound, case b2}} \bigg\rbrace$.
+%+ \dfrac{8\sqrt{KT}\log(\dfrac{4*K^{2}(\log K)^{2}}{T})}{\sqrt{\log K}} 
 \end{remark}
 
 \begin{remark}
 \label{App:E:Rem:2}
-Another important distinction we want to make is the apparent use of clustering. The regret bound and error bound when a sub-optimal arm or a sub-optimal cluster eliminates $a^{*}$ or $s^{*}$ is given below.
+Another important distinction we want to make is the apparent use of clustering. The regret bound and error bound when a sub-optimal arm or a sub-optimal cluster eliminates $a^{*}$ or $s^{*}$ is given in \textbf{Table \ref{App:E:table:2}, \ref{App:E:table:3}}.
 \newline
 \begin{table}
 \caption{Regret Bound on Arm Elimination and Pulls}
-\label{App:E:table:1}
+\label{App:E:table:2}
 \begin{center}
-\begin{tabular}{p{0.5cm}p{11cm}p{6cm}}
+\begin{tabular}{p{0.5cm}p{11cm}p{5.5cm}}
 \multicolumn{1}{c}{\bf Bound} &\multicolumn{1}{c}{\bf Regret Bound on Arm Elimination and Pulls} &\multicolumn{1}{c}{\bf Remarks} \\
 \hline \\
-1)	&$\sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)\bigg\rbrace$ & Only Arm Elimination with $\rho_{a}$ from \textbf{Definition 1,Appendix E} gives $ 8\sqrt{KT\log K} + 32\sqrt{KT} $\\
+1)	&$\sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)\bigg\rbrace$ &Only Arm Elimination with $\rho_{a}$ from \textbf{Definition 1, Appendix E}, $\psi_{m}=K^{2}T$ gives $ 2\sqrt{KT\log K} + \dfrac{32\sqrt{K}\log{(TK^{4}(\log K)^{2})}}{\sqrt{\log K}} $\\
 %+ \dfrac{32\sqrt{eK}\log(K^{2}(\log K)^{2})}{\sqrt{\log K}}$
 \hline\\
-2)	&$ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\underbrace{\bigg(\dfrac{2^{1+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)}_{\text{case a1}} + \underbrace{\bigg(\dfrac{2^{1+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)}_{\text{case a2}} $ \newline $ + \underbrace{\bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1}}\bigg\rbrace$ & Only Cluster Elimination with $\rho_{a}=\rho_{s}$ from \textbf{Definition 1,Appendix E} gives $ 16\sqrt{KT\log K} + 32\sqrt{KT} $. Hence, this is larger than bound $1$.\\
+2)	&$ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\underbrace{\bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)}_{\text{case a1+a2}} +  \underbrace{\bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1}}\bigg\rbrace$ &Only Cluster Elimination with $\rho_{s}$ from \textbf{Definition 1, Appendix E}, $\psi_{m}=K^{2}T$ gives $ 4\sqrt{KT\log K} + \dfrac{32\sqrt{K}\log{(TK^{4}(\log K)^{2})}}{\sqrt{\log K}} $. Hence, this is larger than bound $1$.\\
 %+ \dfrac{32\sqrt{eK}\log(K^{2}(\log K)^{2})}{\sqrt{\log K}}$
 \hline\\
-3)	&$\sum_{i\in A:\Delta_{i}\geq b} \bigg\lbrace \underbrace{\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg)}_{\text{case a, Arm Elim}} + \underbrace{\bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)}_{\text{case a, Clus Elim}} $ \newline $+ \underbrace{\bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1, Arm Elim}} +\underbrace{\bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1, Clus Elim}}\bigg\rbrace$ & Arm \& Cluster Elimination with $\rho_{a}<<\rho_{s}$ from \textbf{Definition 5,Appendix E} gives $40\sqrt{KT\log K} + 43.2\sqrt{KT} +\dfrac{8\sqrt{KT}\log{(\dfrac{K^{2}(\log K)^{2}}{T})}}{\sqrt{\log K}}$. This can become better than bound $1$ and $2$ with $T >> K^{2}(\log K)^{2}$.
+3)	&$\sum_{i\in A:\Delta_{i}\geq b} \bigg\lbrace \underbrace{\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg)}_{\text{case a, Arm Elim}} + \underbrace{\bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)}_{\text{case a, Clus Elim}} $ \newline $+ \underbrace{\bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1, Arm Elim}} +\underbrace{\bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1, Clus Elim}}\bigg\rbrace$ &Arm \& Cluster Elimination with $\rho_{a}<<\rho_{s}$ from \textbf{Definition 5, Appendix E}, $\psi_{m}=K^{2}T$ gives $2\sqrt{KT\log K} + 4\sqrt{KT} + \dfrac{32\sqrt{K}\log{(TK^{4}(\log K)^{2})}}{\sqrt{\log K}} +\dfrac{8\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}$. This can become better than bound $1$ and $2$ with $T \geq K^{\frac{17}{4}}(\log K)^{2}$.
 \end{tabular}
 \end{center}
 \end{table}
 
 \begin{table}
 \caption{Error Bound}
-\label{App:E:table:2}
+\label{App:E:table:3}
 \begin{center}
-\begin{tabular}{p{0.5cm}p{11cm}p{6cm}}
+\begin{tabular}{p{0.5cm}p{11cm}p{5.5cm}}
 \multicolumn{1}{c}{\bf Bound} &\multicolumn{1}{c}{\bf Error Bound} &\multicolumn{1}{c}{\bf Remarks} \\
 \hline \\
-1)	&$\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a} -1}} \bigg) + \bigg( \dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)\bigg\rbrace$ & Only Arm Elimination  with $\rho_{a}$ from \textbf{Definition 1,Appendix E} gives $5.6\sqrt{KT\log K}$\\
+1)	&$\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a} -1}} \bigg) + \bigg( \dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)\bigg\rbrace$ &Only Arm Elimination with $\rho_{a}$ from \textbf{Definition 1, Appendix E}, $\psi_{m}=K^{2}T$ gives $5.6\sqrt{KT\log K}$\\
 \hline\\
-2)	&$\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s} -1}} \bigg)}_{\text{case b2+b3, Proposition 4}} +\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}b^{4\rho_{s} -1}} \bigg)}_{\text{case b2+b3, Proposition 4}}\bigg\rbrace$ & Only Cluster Elimination  with $\rho_{a}=\rho_{s}$ from \textbf{Definition 1,Appendix E} gives $16\sqrt{KT\log K}$. This is more than bound $1$.\\
+2)	&$\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s} -1}} \bigg)}_{\text{case b2+b3, Proposition 4}} +\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}b^{4\rho_{s} -1}} \bigg)}_{\text{case b2+b3, Proposition 4}}\bigg\rbrace$ &Only Cluster Elimination with $\rho_{s}$ from \textbf{Definition 1, Appendix E}, $\psi_{m}=K^{2}T$ gives $16\sqrt{KT\log K}$. This is more than bound $1$.\\
 \hline\\
-3)	&$\sum_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg\lbrace \underbrace{\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)}_{\text{case b2, Arm Elim, Theorem 2}}\bigg\rbrace $\newline$+ \sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}b^{4\rho_{s} -1}} \bigg)}_{\text{case b2, Clus Elim, Theorem 2}} \bigg\rbrace$ & Arm \& Cluster Elimination with $\rho_{a}<<\rho_{s}$ from \textbf{Definition 5,Appendix E} gives $5.6\dfrac{\sqrt{KT\log K}}{p}+11.2\sqrt{KT}$. This is less than bound $1$ and $2$ with large $K$ and $\frac{K}{4}\leq p\leq \frac{K}{2}$
+3)	&$\sum_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg\lbrace \underbrace{\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)}_{\text{case b2, Arm Elim, Theorem 2}}\bigg\rbrace $\newline$+ \sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}b^{4\rho_{s} -1}} \bigg)}_{\text{case b2, Clus Elim, Theorem 2}} \bigg\rbrace$ & Arm \& Cluster Elimination with $\rho_{a}<<\rho_{s}$ from \textbf{Definition 5, Appendix E}, $\psi_{m}=K^{2}T$ gives $11.2\frac{\sqrt{KT\log K}}{p}+11.2\sqrt{KT}$. This is less than bound $1$ and $2$ with large $K$ and $\sqrt{\log K}\leq p\leq \frac{K}{2}$
 \end{tabular}
 \end{center}	
 \end{table}
-From \textbf{table \ref{App:E:table:1}} we can see that from the definition of $\rho_{s},\rho_{a}$ and $\psi_{m}$ we can have a regret bound for jointly doing the arm and cluster elimination which is better than doing arm elimination alone. While looking at the error term for the $3$ cases we see that using just Cluster elimination  the error term is more than using just arm elimination and the least error term comes from using both arm and cluster elimination simultaneously and $\rho_{a}<<\rho_{s}$. The error term for using both arm and cluster elimination can become low depending on how we choose $p$ since $|A_{s^{*}}|\leq \lceil\frac{A}{p}\rceil$. An intuitive justification is that since we are reducing $\rho_{a}$ and $\rho_{s}$ very fast, and if we partition the action space into clusters and for arm elimination only consider each cluster individually, the probability of eliminating $a^{*}$ reduces. 
-\paragraph*{} This is shown in the experiment in \textbf{Figure \ref{Fig:variousClus}}. In this experiment we show the regret for $20$ arms, over $p=\lbrace 1,4,10\rbrace$ and $T=60000$ timesteps, averaged over $100$ independent runs for Bernoulli distributions, where $r_{i_{:{a_{i}\neq a^{*}}}}=0.06,\forall i\in A$ and $r^{*}=0.1$. Here, $\psi_{m}=1$ and $\rho_{s},\rho_{a}$ are taken from \textbf{Definition 4, Appendix E}. In this case we see that, since $\rho_{a}$ is decreased very fast, the optimal arm $a^{*}$ gets eliminated most of the time for no clustering $p=1$. While a balance of $p,\rho_{a}$ and $\rho_{s}$ gives a much better result. ClusUCB with $p=4$ and $10$ perform better than MOSS, while $p=1$ with just arm elimination does not converge and $p=5$ with just Cluster elimination and no arm elimination also does not converge. As proved in \textbf{Proposition $4$}, regret for using just cluster elimination is higher than using just arm elimination. A balance of cluster and arm elimination works best. For using just cluster elimination in ClusUCB($1<p\leq \dfrac{K}{2}$) we stop when we are left with one cluster and output the max payoff arm of that cluster.
+From \textbf{Table \ref{App:E:table:2}} we can see that from the definition of $\rho_{s},\rho_{a}$ and $\psi_{m}$ we can have a regret bound for jointly doing the arm and cluster elimination which is better than doing arm elimination or cluster elimination alone. While looking at the error term for the $3$ cases we see that using just Cluster elimination  the error term is more than using just arm elimination and the least error term comes from using both arm and cluster elimination simultaneously and $\rho_{a}<<\rho_{s}$. From \textbf{Table \ref{App:E:table:3}}, we can see that the error term for using both arm and cluster elimination can become low depending on how we choose $p$ since $|A_{s^{*}}|\leq \lceil\frac{A}{p}\rceil$. An intuitive justification is that since we are reducing $\rho_{a}$ and $\rho_{s}$ very fast, and if we partition the action space into clusters and for arm elimination only consider each cluster individually, the probability of eliminating $a^{*}$ reduces. 
+\paragraph*{} This is shown in the experiment in \textbf{Figure \ref{Fig:variousClus}}. In this experiment we show the regret for $20$ arms, over $p=\lbrace 1,4,10\rbrace$ and $T=60000$ timesteps, averaged over $100$ independent runs for Bernoulli distributions, where $r_{i_{:{a_{i}\neq a^{*}}}}=0.06,\forall i\in A$ and $r^{*}=0.1$. Here, $\psi_{m}=1$ and $\rho_{s},\rho_{a}$ are taken from \textbf{Definition 4, Appendix E}. In this case we see that, since $\rho_{a}$ is decreased very fast, the optimal arm $a^{*}$ gets eliminated most of the time for no clustering $p=1$. While a balance of $p,\rho_{a}$ and $\rho_{s}$ gives a much better result. ClusUCB with $p=4$ and $10$ perform better than MOSS, while $p=1$ with just arm elimination does not converge and $p=5$ with just Cluster elimination and no arm elimination also does not converge. As proved in \textbf{Proposition 4}, regret for using just cluster elimination is higher than using just arm elimination. A balance of cluster and arm elimination works best. For using just cluster elimination in ClusUCB($1<p\leq \dfrac{K}{2}$) we stop when we are left with one cluster and output the max payoff arm of that cluster.
 
 \begin{figure}
 \includegraphics[scale=0.3]{img/ClusUCB(various_p)MOSS.png}
@@ -638,15 +645,13 @@ From \textbf{table \ref{App:E:table:1}} we can see that from the definition of $
 \end{remark}
 
 
-
-
 \section{Appendix F}
 \begin{table}
 \caption{Regret Upper Bound of Algorithms}
 \label{sample-table}
 \begin{center}
 \begin{tabular}{l|l}
-\multicolumn{1}{c}{\bf Algorithm}  &\multicolumn{1}{c}{\bf Cumulative Regret Upper Bound} \\
+\multicolumn{1}{c}{\bf Algorithm}  &\multicolumn{1}{c}{\bf Regret Upper Bound} \\
 \hline \\
 UCB1         &\hspace*{5em}$\min\bigg\lbrace O(\sqrt{KT\log T}) ,O\bigg(\dfrac{K\log T}{\Delta}\bigg)\bigg\rbrace$ \\
 UCB2         &\hspace*{5em}$O\bigg(K\bigg(\dfrac{(1 + \epsilon(\alpha)) log(T)}{2\Delta} + C(\alpha)\bigg)\bigg)$, $0<\alpha<1$ \\
@@ -656,7 +661,7 @@ UCB($\delta$)	&\hspace*{5em}$O\bigg(\dfrac{16K}{\Delta}\log\big(\dfrac{2K}{\Delt
 UCB-Improved             &\hspace*{5em}$\min\bigg\lbrace O\bigg(\sqrt{KT}\dfrac{log(K\log K)}{\sqrt{\log K}}\bigg), O\bigg(\dfrac{K\log (T\Delta^{2})}{\Delta}\bigg)\bigg\rbrace$ \\
 MOSS				&\hspace*{5em}$\min\bigg\lbrace O\bigg(\sqrt{KT}\bigg), O\bigg(\dfrac{K\log(T\Delta^{2}/K)}{\Delta}\bigg) \bigg \rbrace$\\
 KL-UCB         &\hspace*{5em}$O\bigg(K\bigg(\dfrac{\Delta \log(T)(1 + \epsilon)}{d(r_{i}, r^{*} )} + \log(\log(T)) + \dfrac{(\epsilon)}{T^{\beta(\epsilon)}}\bigg)\bigg)$, where $\epsilon > 0$ and $d(r_{i}, r^{*})>2\Delta_{i}^{2}$\\
-UCB-Clustered             &\hspace*{5em}$\min\bigg\lbrace O\bigg(\dfrac{\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}\bigg),O\bigg(\dfrac{K\rho_{s}\log (\dfrac{T\Delta^{4}}{\rho_{s}^{2}})}{\Delta}\bigg)\bigg\rbrace$, \\& \hspace*{5em} where $\rho_{s}\in (0,1]$\\
+UCB-Clustered             &\hspace*{5em}$\min\bigg\lbrace O\bigg(\dfrac{\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}+ \sqrt{KT}\bigg),O\bigg(\dfrac{K\rho_{s}\log (\dfrac{T\Delta^{4}}{\rho_{s}^{2}})}{\Delta}\bigg)\bigg\rbrace$, \\& \hspace*{5em} where $\rho_{s}\in (0,1]$\\
 %Clustered-UCB         &$O\bigg(K\bigg (\max{\bigg\lbrace \bigg(\dfrac{1}{\psi_{m}(\Delta)^{\frac{3}{5}}}\bigg) ,\bigg(\dfrac{\Delta}{(\psi_{m}\Delta^{2})(\psi_{m}T\Delta^{2})^{2K^{2}\Delta/5}}\bigg)\bigg\rbrace}$\\&$ + \bigg(\Delta +\dfrac{\log{(\psi_{m}T\Delta^{\frac{8}{5}})}}{\Delta^{\frac{3}{5}}}\bigg)\bigg)\bigg)$, let $\psi_{m}=\dfrac{c}{m},c>0$ \\
 \end{tabular}
 \end{center}

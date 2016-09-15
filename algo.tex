@@ -1,12 +1,12 @@
 \subsection*{Algorithm}
 
 The steps are presented in Algorithm~1.\\%\ref{alg:cucb}.
-%\begin{algorithm}
+\begin{algorithm}
 %\caption{Clustered UCB($D$)}
 %\label{alg:cucb}
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.8pt}}\\[-0.1cm]
+%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.8pt}}\\[-0.1cm]
 \textbf{Algorithm 1:} ClusUCB(p)\\[-0.3cm]
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.3cm]
+%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.3cm]
 \begin{algorithmic}[1]
 %\Procedure{\underline{Phase 1: Arm Exploration}}{}
 %\State Pull each arm once and calculate $\hat{r}_{i}, \forall i\in A$
@@ -47,8 +47,8 @@ The steps are presented in Algorithm~1.\\%\ref{alg:cucb}.
 \State \hspace*{2em} \textbf{Stopping Condition:} 
 \newline \hspace*{2em} Stop if $|B_{m}|=1$ and pull $\max_{a_{i}\in B_{m}}\hat{r}_{i}$ till $T$ is reached.
 \end{algorithmic}
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.6cm]
-\newline
+%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.6cm]
+%\newline
 %\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.3cm]
 %\textbf{Subroutine:} SubroutineMerge\\[-0.3cm]
 %\begin{algorithmic}[1]
@@ -70,9 +70,9 @@ The steps are presented in Algorithm~1.\\%\ref{alg:cucb}.
 \State \hspace*{6em} Merge $s_{i},s_{j}$ into $s_{i}$ if $\exists a_{i}\in s_{i} $ and $\exists a_{j}\in s_{j},$ such that $|s_{i}|+|s_{j}|\leq \ell$
 \State \hspace*{2em} Rename all partitions that have been formed as $s_{1}$ to $s_{p}$, where $|S|=p$ after merging
 \end{algorithmic}
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.6cm]
+%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.6cm]
 
-%\end{algorithm}
+\end{algorithm}
 
 
 

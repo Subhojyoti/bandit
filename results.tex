@@ -34,12 +34,12 @@ So, for the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi_{m}T
 
 \begin{remark}
 \label{Result:Rem:4}
-Again, of the several terms in the regret bound, the terms like  $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)$ can become very large given a small $\Delta_{i}$ and large $T$. Drawing from the conclusion of our exploration regulatory factor in \textbf{Appendix D}, we can introduce $\psi_{m}=K^{2}T$ in our confidence interval thereby when $\rho_{s}=\dfrac{1}{4}$(from Definition $2$, \textbf{Appendix E}) then the term essentially becomes $K\bigg(\dfrac{T^{\frac{3}{4}}(\frac{1}{4})^{\frac{1}{2}}2^{\frac{1}{2}+3}}{{(K^{2}T})^{\frac{1}{4}}{(\Delta_{i})^{4*\frac{1}{4}-1}}} \bigg) = 5.6\sqrt{KT}$. A similar result can also be shown for $\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{b^{4\rho_{s} -1}} \bigg)=5.6\sqrt{KT}$. 
+Again, of the several terms in the regret bound, the terms like  $\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)$ can become very large given a small $\Delta_{i}$ and large $T$. Drawing from the conclusion of our exploration regulatory factor in \textbf{Appendix D}, we can introduce $\psi_{m}=K^{2}T$ in our confidence interval thereby when $\rho_{s}=\dfrac{1}{4}$(from Definition $2$, \textbf{Appendix E}) then the term essentially becomes $K\bigg(\dfrac{T^{\frac{3}{4}}(\frac{1}{4})^{\frac{1}{2}}2^{\frac{1}{2}+3}}{{(K^{2}T})^{\frac{1}{4}}{(\Delta_{i})^{4*\frac{1}{4}-1}}} \bigg) = 5.6\sqrt{KT}$. A similar result can also be shown for $\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{b^{4\rho_{s} -1}} \bigg)=5.6\sqrt{KT}$ and $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)=4\sqrt{KT}$. 
 \end{remark}
 
 \begin{remark}
 \label{Result:Rem:5}
-So, we see that putting $b=\sqrt{\dfrac{K\log K}{T}}$, the corresponding terms of $\rho_{s}$ and $\psi_{m}$ and then combining \textbf{remark \ref{Result:Rem:3} and \ref{Result:Rem:4}} we get the worst case gap-independent regret bound of $\bigg\lbrace \dfrac{\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}\bigg\rbrace$ which coincides with the term $bT$ of the regret bound in \textbf{Theorem 1}, except the term  $\dfrac{\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}$. When we consider that $T\approx K^{4}(\log K)^{2}$, this term becomes negligible and so the regret bound becomes better than UCB-Improved non-gap based regret upper bound of $\sqrt{KT}\dfrac{\log(K\log K)}{\sqrt{\log K}}$ and slightly better than the MOSS bound of $49\sqrt{KT}$. This shows that for large number of arms $K$ and moderately high time horizon $T$ we have a very strong regret guarantee.
+So, we see that putting $b=\sqrt{\dfrac{K\log K}{T}}$, the corresponding terms of $\rho_{s}$ and $\psi_{m}$ and then combining \textbf{remark \ref{Result:Rem:3} and \ref{Result:Rem:4}} we get $\dfrac{8\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}} + 15.2\sqrt{KT}$. Now, the worst case gap-independent regret bound of $\bigg\lbrace \dfrac{\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}\bigg\rbrace$ which coincides with the term $bT$ of the regret bound in \textbf{Theorem 1}, except the term  $\dfrac{\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}$. When we consider that $T\approx K^{4}(\log K)^{2}$, this term becomes negligible and so the regret bound becomes better than UCB-Improved non-gap based regret upper bound of $\sqrt{KT}\dfrac{\log(K\log K)}{\sqrt{\log K}}$ and slightly better than the MOSS bound of $49\sqrt{KT}$. This shows that for large number of arms $K$ and moderately high time horizon $T$ we have a very strong regret guarantee.
 \end{remark}
 
 \begin{remark}
@@ -63,7 +63,8 @@ A similar result can be shown for the term $\dfrac{32\rho_{a}\log{(\psi_{m}T\dfr
 
 \begin{remark}
 \label{Result:Rem:8}
-In the experimental setup we use $\psi_{m}$ as stated in \textbf{Appendix D, Definition 5} and $\rho_{s}$ and $\rho_{a}$ as stated in \textbf{Appendix E, Definition 5}. The corresponding bound can be found in \textbf{Remark \ref{App:E:Rem:1}}.
+In the experimental setup we use $\psi_{m}$ as stated in \textbf{Appendix D, Definition 4} and $\rho_{s}$ and $\rho_{a}$ as stated in \textbf{Appendix E, Definition 5}.
+%The corresponding bound can be found in \textbf{Remark \ref{App:E:Rem:1}}.
 \end{remark}
 
 \begin{remark}

@@ -1,31 +1,32 @@
-\documentclass[11pt,letterpaper,english]{article}
+\documentclass[twoside]{article} \usepackage{aistats2017}
 
-\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage[margin=1in]{geometry}
-\usepackage[numbers]{natbib}
-\setcitestyle{nocompress}
-\bibpunct{(}{)}{;}{a}{}{,}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proof}{Proof}
+\newtheorem{remark}{Remark}
+\newtheorem{proposition}{Proposition}
+\usepackage{graphicx}
 
 %\usepackage{enumitem}
-\usepackage{graphicx}
-\usepackage[cmex10]{amsmath}
-\usepackage{authblk}
-\usepackage{macros}
 
+\usepackage{aistats2017}
+\usepackage{fancyhdr}
 
 \begin{document}
-\title{Improved Regret Bounds with Clustered UCB}
 
-\author{}
+\twocolumn[
 
+\aistatstitle{Improved Regret Bounds with Clustered UCB}
 
-\renewcommand\Authands{ and }
+\aistatsauthor{ Anonymous Author 1 \And Anonymous Author 2 \And Anonymous Author 3 \And Anonymous Author 4 }
 
-\date{}
-
-\maketitle
+\aistatsaddress{ Unknown Institution 1 \And Unknown Institution 2 \And Unknown Institution 3 \And Unknown Institution 4 } ]
 
 \begin{abstract}
 In this paper, we present a novel algorithm which achieves a better upper bound on regret for the stochastic multi-armed bandit problem than UCB-Improved and MOSS algorithm and thereby try to answer an open problem which has been raised before. Our proposed method partitions the arms into clusters and then following the UCB-Improved strategy eliminates sub-optimal arms and weak clusters. We corroborate our findings both theoretically and empirically and show that by sufficient tuning of parameters, we can achieve a lower regret than all the algorithms mentioned. In particular, in the test-cases where the arm set is dominated by small $\Delta$ and large $K$ we achieve a significantly lower cumulative regret than these algorithms.
@@ -81,7 +82,8 @@ We must also remember as the number of arms increases UCB1, UCB2, KL-UCB and UCB
 %A table showing the relevant regret bounds of some algorithms is shown in Appendix~\ref{App:C}.
 
 
-\bibliographystyle{plainnat}
+%\bibliographystyle{plainnat}
+\bibliographystyle{ieeetr} 
 %\vspace*{-1cm}
 \bibliography{biblio}
 
