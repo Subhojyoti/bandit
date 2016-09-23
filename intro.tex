@@ -102,9 +102,8 @@ where $D(p_{i}||p^{*})$ is the Kullback-Leibler divergence over the reward densi
 	Summarizing our contributions below:-
 \begin{enumerate}
 \item We propose a cluster based round-wise algorithm with two arm elimination conditions in each round.
-\item We achieved a lower regret upper bound(Theorem1,table in Appendix F) than UCB-Improved(\cite{auer2010ucb}), UCB1(\cite{auer2002finite}) and MOSS (\cite{audibert2009minimax} which we verify theoretically and empirically.
-\item Our algorithm also empirically compares well with DMED, DMED($+$), UCB-Varinace and KL-UCB.
-%\todos{Is the comparison empirical or theoretical? Please specify . Done. written empirically, Subho}
+\item We achieved a lower regret upper bound(Theorem1,table in Appendix F) than UCB-Improved(\cite{auer2010ucb}), UCB1(\cite{auer2002finite}) and  MOSS (\cite{audibert2009minimax} which we verify theoretically and empirically.
+\item Our algorithm also empirically compares well with DMED, UCB-Varinace and KL-UCB.
 \item In the critical case when $r_{1}=r_{2}=..=r_{K-1}<r^{*}$ and $\Delta_{i}$'s are small and $K$ is large which is encountered frequently in web-advertising domain (as stated in \cite{garivier2011kl}) this approach has a significant advantage over other methods.
 \item The only parameter that needs to be pre-specified to the algorithm is the number of clusters to be formed but unlike KL-UCB our algorithm parameter $p$ is not distribution-specific and also our algorithm does not involve calculation of a complex, time consuming function like the divergence function of KL-UCB.
 %though the authors specified in \cite{garivier2011kl} that for optimal result only one should use the divergence function specific to the type of distribution.

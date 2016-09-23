@@ -92,28 +92,34 @@
 %ABOVE OLD EXPT
 
 \begin{figure}[!tbp]
-\centering
-\begin{minipage}[b]{0.4\textwidth}
-
+%\centering
+\begin{minipage}[b]{0.5\textwidth}
 \includegraphics[width=\textwidth]{img/ClusUCB_variousAlgo.png}
 \label{fig:1}
 \caption{Experiment 1: Regret for various Algorithms. $T=60000$}
 \end{minipage}
 \hspace{0.1em}
-%\begin{minipage}[b]{0.4\textwidth}
-%\includegraphics[width=\textwidth]{img/cl_final2.png}
-%\caption{Experiment 2: Growth of Regret for test case 1. $T=20000; \psi(m)=1.5/m$}
-%\end{minipage}
-%\hspace{0.1em}
-%\begin{minipage}[b]{0.4\textwidth}
-%\includegraphics[width=\textwidth]{img/cl_final3.png}
-%\caption{Experiment 3: Regret for ClusUCB, UCB-Improved and Median-Elimination. $T=5\times10^5; \psi(m)=0.1/m$}
-%\end{minipage}
-%\hspace{0.1em}
+
+\begin{minipage}[b]{0.5\textwidth}
+\label{fig:2}
+\includegraphics[width=\textwidth]{img/clusUCB_variousAlgo(expt2)_3.png}
+\caption{Experiment 2: Regret for various Algorithms. $T=2\times 10^{6}$}
+\end{minipage}
+\hspace{0.1em}
+
+\begin{minipage}[b]{0.5\textwidth}
+\label{fig:3}
+\includegraphics[width=\textwidth]{img/MOSS_ClusUCB_expt3.png}
+\caption{Experiment 3: Regret Growth for ClusUCB and MOSS . $T=1\times 10^6$}
+\end{minipage}
+\hspace{0.1em}
+
 \end{figure}
 
 \paragraph{}In the stochastic bandit literature there are several powerful algorithms with and without proven regret bounds. Algorithms like $\epsilon$-greedy(\cite{sutton1998reinforcement}) or softmax(\cite{sutton1998reinforcement}) or UCB-Tuned(\cite{auer2002finite}) has no proven regret bounds. Again algorithms like UCB-$\delta$(\cite{abbasi2011improved}) with proven regret bound better than UCB1  falls within the realm of fixed confidence setting whereas one has to provide the probability of error $\delta$. We also make a distinction between frequentist based approach like the UCB algorithms and the Bayesian approach like the Thompson Sampling(\cite{agrawal2011analysis}). We will not be experimenting against these algorithms but focus on the more recent, algorithms like KL-UCB, DMED, MOSS, UCB1, UCB-V, etc. 
 
-\paragraph{}The first experiment is conducted over a testbed of $20$ arms for the test-cases involving Bernoulli reward distribution with expected rewards of the arms $r_{i_{a_{i}\neq a^{*}}}=0.07$ and $r^{*}=0.1$. These type of cases are frequently encountered in web-advertising domain. The horizon is set for $T=60000$ and the parameters of ClusUCB are $p=4,\psi_{m}=\log T$\textbf{(Appendix D, Definition 4)} and $\rho_{s}=\dfrac{1}{2^{2m+1}},\rho_{a}=\dfrac{1}{2^{4m+1}}$\textbf{(Appendix E, Definition 5)}, where $m$ is the round number. The regret is averaged over $100$ independent runs over each testbed and is shown in \textbf{Figure 1}. $6$ algorithms, ClusUCB, MOSS, UCB1, UCB-V, KL-UCB, DMED are run over this testbed and shown in this figure. Here, we see that ClusUCB performs better than all the algorithms mentioned above.
+\paragraph{}The first experiment is conducted over a testbed of $20$ arms for the test-cases involving Bernoulli reward distribution with expected rewards of the arms $r_{i_{a_{i}\neq a^{*}}}=0.07$ and $r^{*}=0.1$. These type of cases are frequently encountered in web-advertising domain. The horizon is set for $T=60000$ and the parameters of ClusUCB are $p=4,\psi_{m}=\log T$\textbf{(Appendix D, Definition 1)} and $\rho_{s}=\dfrac{1}{2^{2m+1}},\rho_{a}=\dfrac{1}{2^{4m+1}}$\textbf{(Appendix E, Definition 4)}, where $m$ is the round number. The regret is averaged over $100$ independent runs over each timestep and is shown in \textbf{Figure 1}. $6$ algorithms, ClusUCB, MOSS, UCB1, UCB-V, KL-UCB, DMED are run over this testbed and shown in this figure. Here, we see that ClusUCB performs better than all the algorithms mentioned above.
 
+\paragraph{}The second experiment is conducted over a testbed of $100$ arms for the test-cases involving Gaussian reward distribution with expected rewards of the arms $r_{i_{a_{i}\neq a^{*}:1-33}}=0.01$, $r_{i_{a_{i}\neq a^{*}:33-99}}=0.06$ and $r^{*}_{i=100}=0.1$. The horizon is set for $T=2\times 10^{6}$ and the parameters of ClusUCB are $p=20,\psi_{m}=\log T$\textbf{(Appendix D, Definition 1)} and $\rho_{s}=\dfrac{1}{2^{2m+1}},\rho_{a}=\dfrac{1}{2^{4m+1}}$\textbf{(Appendix E, Definition 4)}, where $m$ is the round number. The regret is averaged over $100$ independent runs over each timestep and is shown in \textbf{Figure 2}. In this test we also show the no-clustering version of our algorithm with $p=1$ and keeping all the other parameters same. $4$ other algorithms, MOSS, UCB1, UCB-Improved and Median-Elimination are run over this testbed and shown in this figure. Here, we see that ClusUCB($p=20$) performs better than all the algorithms mentioned above. We also see that no-clustering and using only arm elimination version of algorithm performs worse than the clustering version which stems from the fact that it outputs sub-optimal arm more often than the clustering version.
 
+\paragraph{}The third experiment is conducted over a testbed of $20-200$(interval of $10$) arms for the test-cases involving Bernoulli reward distribution with expected rewards of the arms $r_{i_{a_{i}\neq a^{*}}}=0.06$ and $r^{*}=0.1$. The horizon is set for $T=1\times 10^{6}$ and the parameters of ClusUCB are $p=K/5$ for $K=20$ to $200$,$\psi_{m}=\log T$\textbf{(Appendix D, Definition 1)} and $\rho_{s}=\dfrac{1}{2^{2m+1}},\rho_{a}=\dfrac{1}{2^{4m+1}}$\textbf{(Appendix E, Definition 4)}, where $m$ is the round number. The regret is averaged over $100$ independent runs over each timestep and is shown in \textbf{Figure 3}. We only check the growth of regret for the two algorithms MOSS and ClusUCB over this testbed and see that ClusUCB outperforms MOSS and its growth of regret is much lesser than MOSS. The jumps in the graph for ClusUCB happens because of the error(eliminating optimal arm) and the margin of error is also shown in the graph. 
