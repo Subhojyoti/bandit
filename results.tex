@@ -35,14 +35,22 @@ Taking into account the regret bound in \textbf{Theorem \ref{Result:Theorem:1}},
 
 \begin{corollary}
 \label{Result:Corollary:2}
+<<<<<<< HEAD
 Taking into account the regret bound in \textbf{Theorem \ref{Result:Theorem:1}}, putting the value of $\psi_{m}=\dfrac{T}{\log (KT)}$(\textbf{Appendix D, Definition 4}) and using \textbf{Appendix E, Definition 2} for $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace $ we can have a gap dependent regret bound as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
+=======
+Taking into account the regret bound in \textbf{Theorem \ref{Result:Theorem:1}}, putting the value of $\psi_{m}=\dfrac{T}{\log K}$(\textbf{Appendix D, Definition 4}) and using \textbf{Appendix E, Definition 2} for $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace $ we can have a gap dependent regret bound as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log K}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log K}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log K}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log K}}{\Delta_{i}}$.
+>>>>>>> 8fba7734eee13935f12fa6ca24febfb5a278941a
 \end{corollary}
 
 	The proof of this corollary is given in \textbf{Appendix C}.(Supplementary Material)
 
 \begin{remark}
 \label{Result:Rem:4}
+<<<<<<< HEAD
 	When we consider gap-dependent bound, by choosing appropriate values of $\rho_{a},\rho_{s},\psi_{m}$ and $p$ we see that the most significant term in the regret is $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}$. Hence we see the regret upper bound of $O(\dfrac{K\log (\dfrac{T\Delta^{2}}{\sqrt{\log (KT)}})}{\Delta})$ is lower than the gap dependent bound of UCB1 of $O(\dfrac{K\log T}{\Delta})$ and that of UCB-Improved, $O(\dfrac{K\log T\Delta^{2}}{\Delta})$. Also comparing against that of MOSS, $O\bigg(\dfrac{K\log(T\Delta^{2}/K)}{\Delta}\bigg)$ the regret bound of our algorithm is better if $\sqrt{\log(KT)}>K$. A table for the various regret upper bounds is given in \textbf{Appendix F}. Thus we see that $\rho_{a},\rho_{s}$ actually helps in reducing the constant associated with the factor $\sqrt{KT}$ and the $\dfrac{\log\bigg(\psi_{m}\dfrac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)}{\Delta_{i}}$ term and also both $\psi_{m}$ and $\rho_{a},\rho_{s}$ helps in stabilizing the term $\log\bigg(\psi_{m}\dfrac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)$.
+=======
+	When we consider gap-dependent bound, by choosing appropriate values of $\rho_{a},\rho_{s},\psi_{m}$ and $p$ we see that the most significant term in the regret is $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log K}})}}{\Delta_{i}}$. Hence we see the regret upper bound of $O(\dfrac{K\log (\dfrac{T\Delta^{2}}{\sqrt{\log K}})}{\Delta})$ is lower than the gap dependent bound of UCB1 of $O(\dfrac{K\log T}{\Delta})$ and that of UCB-Improved, $O(\dfrac{K\log T\Delta^{2}}{\Delta})$. A table for the various regret upper bounds is given in \textbf{Appendix F}. Thus we see that $\rho_{a},\rho_{s}$ actually helps in reducing the constant associated with the factor $\sqrt{KT}$ and the $\dfrac{\log\bigg(\psi_{m}\dfrac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)}{\Delta_{i}}$ term and also both $\psi_{m}$ and $\rho_{a},\rho_{s}$ helps in stabilizing the term $\log\bigg(\psi_{m}\dfrac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)$.
+>>>>>>> 8fba7734eee13935f12fa6ca24febfb5a278941a
 \end{remark}	
 
 %\todos{(Subho)To follow the same way as UCB-Revisited proof, did away with the event $\xi_{1},\xi_{2},\xi_{3}$}

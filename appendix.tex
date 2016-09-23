@@ -516,12 +516,17 @@ So, the total bound for using both arm and cluster elimination comes of as $\big
 \end{proof}
 
 \begin{corollary}
+<<<<<<< HEAD
 Taking into account the regret bound in \textbf{Theorem \ref{Result:Theorem:1}}, putting the value of $\psi_{m}=\dfrac{T}{\log (KT)}$(\textbf{Appendix D, Definition 4}) and using \textbf{Appendix E, Definition 2} for $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace $ we can have a gap dependent regret bound as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
+=======
+Taking into account the regret bound in \textbf{Theorem \ref{Result:Theorem:1}}, putting the value of $\psi_{m}=\dfrac{T}{\log K}$(\textbf{Appendix D, Definition 4}) and using \textbf{Appendix E, Definition 2} for $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace $ we can have a gap dependent regret bound as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log K}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log K}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log K}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log K}}{\Delta_{i}}$.
+>>>>>>> 8fba7734eee13935f12fa6ca24febfb5a278941a
 \end{corollary}
 
 \begin{proof}
 We consider the $3$ cases separately,
 \subsubsection{Case a:}
+<<<<<<< HEAD
 So, for the terms like $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\frac{1}{2}}\frac{1}{2}^{2*\frac{1}{2}}2^{1+4*\frac{1}{2}}}{(\frac{T}{\log (KT)})^{\frac{1}{2}}\Delta_{i}^{4*\frac{1}{2}-1}} \bigg)=\sum_{i\in A:\Delta_{i}\geq b}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}}$. Similarly, for $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{S}}\rho_{a}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) = \sum_{i\in A:\Delta_{i}\geq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$
 \subsubsection{Case b1:}
 \par For the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}$ by setting $b\approx \sqrt{\dfrac{K\log K}{T}}$ and the above parameter values for $\psi_{m}$ and $\rho_{s}$ from \textbf{Appendix E, Definition 3} in the term again we get,
@@ -530,6 +535,16 @@ $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{16\log{(T^{2}\dfrac{\Delta_{i}^{4}}{4\log 
 \par Lastly for the term $\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}}$. For the term $\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m}^{\rho_{s}})\Delta_{i}^{4\rho_{s} -1}} \bigg)=\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
 
 So, the total gap dependent regret bound for using both arm and cluster elimination comes of as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\underbrace{\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}} }_{\text{case a}} + \underbrace{\dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}}_{\text{case b1}}\bigg\rbrace + \underbrace{\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}}_{\text{case b2}} $.
+=======
+So, for the terms like $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \bigg(\dfrac{T^{1-\frac{1}{2}}\frac{1}{2}^{2*\frac{1}{2}}2^{1+4*\frac{1}{2}}}{(\frac{T}{\log K})^{\frac{1}{2}}\Delta_{i}^{4*\frac{1}{2}-1}} \bigg)=\sum_{i\in A:\Delta_{i}\geq b}\dfrac{4\sqrt{\log K}}{\Delta_{i}}$. Similarly, for $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{S}}\rho_{a}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) = \sum_{i\in A:\Delta_{i}\geq b}\dfrac{8\sqrt{\log K}}{\Delta_{i}}$
+\subsubsection{Case b1:}
+\par For the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}$ by setting $b\approx \sqrt{\dfrac{K\log K}{T}}$ and the above parameter values for $\psi_{m}$ and $\rho_{s}$ from \textbf{Appendix E, Definition 3} in the term again we get,
+$\sum_{i\in A:\Delta_{i}\geq b}\dfrac{16\log{(T^{2}\dfrac{\Delta_{i}^{4}}{4\log K})}}{\Delta_{i}}\approx \sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log K}})}}{\Delta_{i}}$. Similarly the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\approx \sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log K}})}}{\Delta_{i}}$
+\subsubsection{Case b2:}
+\par Lastly for the term $\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log K}}{\Delta_{i}}$. For the term $\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m}^{\rho_{s}})\Delta_{i}^{4\rho_{s} -1}} \bigg)=\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log K}}{\Delta_{i}}$.
+
+So, the total gap dependent regret bound for using both arm and cluster elimination comes of as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\underbrace{\dfrac{12\sqrt{\log K}}{\Delta_{i}} }_{\text{case a}} + \underbrace{\dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log K}})}}{\Delta_{i}}}_{\text{case b1}}\bigg\rbrace + \underbrace{\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log K}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log K}}{\Delta_{i}}}_{\text{case b2}} $.
+>>>>>>> 8fba7734eee13935f12fa6ca24febfb5a278941a
 \end{proof}
 
 \section{Appendix D}
@@ -553,7 +568,11 @@ In this section in \textbf{Table \ref{App:D:table:1}} we discuss about the vario
 \hline \\
 3	&$\psi_{m}=T$         & $T$  &$ T$ & Constant factor. Used in Proof of \textbf{Corollary \ref{Result:Corollary:1}} \\ 
 \hline \\ 
+<<<<<<< HEAD
 4	&$\psi_{m}=\frac{T}{\log (KT)}$         & $\frac{T}{\log (KT)}$  &$\frac{T}{\log (KT)}$ & Constant factor. Used in Proof of \textbf{Corollary \ref{Result:Corollary:2}} \\ 
+=======
+4	&$\psi_{m}=\frac{T}{\log K}$         & $\frac{T}{\log K}$  &$\frac{T}{\log K}$ & Constant factor. Used in Proof of \textbf{Corollary \ref{Result:Corollary:2}} \\ 
+>>>>>>> 8fba7734eee13935f12fa6ca24febfb5a278941a
 \hline \\
 %5	&$\psi_{m}=K^{\frac{1}{\rho_{a}}}$	& $K^{\sqrt{\frac{T}{e}}}$  &$K$ & Used in \textbf{Remark \ref{App:E:Rem:1}}. $\rho_{a}$ from \textbf{Definition 1, Appendix E}.\\  
 \end{tabular}
@@ -659,7 +678,11 @@ $\epsilon_{n}$-greedy         &\hspace*{5em}$O\bigg(\dfrac{K\Delta\log T}{d^{2}}
 UCB-Improved             &\hspace*{5em}$\min\bigg\lbrace O\bigg(\sqrt{KT}\dfrac{log(K\log K)}{\sqrt{\log K}}\bigg), O\bigg(\dfrac{K\log (T\Delta^{2})}{\Delta}\bigg)\bigg\rbrace$ \\
 MOSS				&\hspace*{5em}$\min\bigg\lbrace O\bigg(\sqrt{KT}\bigg), O\bigg(\dfrac{K\log(T\Delta^{2}/K)}{\Delta}\bigg) \bigg \rbrace$\\
 %KL-UCB         &\hspace*{5em}$O\bigg(K\bigg(\dfrac{\Delta \log(T)(1 + \epsilon)}{d(r_{i}, r^{*} )} + \log(\log(T)) + \dfrac{(\epsilon)}{T^{\beta(\epsilon)}}\bigg)\bigg)$, where $\epsilon > 0$ and $d(r_{i}, r^{*})>2\Delta_{i}^{2}$\\
+<<<<<<< HEAD
 UCB-Clustered             &\hspace*{5em}$\min\bigg\lbrace O\bigg(\sqrt{KT\log K}\bigg),O\bigg(\dfrac{K\log\big (\dfrac{T\Delta^{2}}{\sqrt{\log (KT)}}\big)}{\Delta}\bigg)\bigg\rbrace$\\
+=======
+UCB-Clustered             &\hspace*{5em}$\min\bigg\lbrace O\bigg(\sqrt{KT\log K}\bigg),O\bigg(\dfrac{K\log\big (\dfrac{T\Delta^{2}}{\sqrt{\log K}}\big)}{\Delta}\bigg)\bigg\rbrace$\\
+>>>>>>> 8fba7734eee13935f12fa6ca24febfb5a278941a
 %UCB-Clustered             &\hspace*{5em}$\min\bigg\lbrace O\bigg(\dfrac{\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}+ \sqrt{KT}\bigg),O\bigg(\dfrac{K\rho_{s}\log (\dfrac{T\Delta^{4}}{\rho_{s}^{2}})}{\Delta}\bigg)\bigg\rbrace$, \\& \hspace*{5em} where $\rho_{s}\in (0,1]$\\
 %Clustered-UCB         &$O\bigg(K\bigg (\max{\bigg\lbrace \bigg(\dfrac{1}{\psi_{m}(\Delta)^{\frac{3}{5}}}\bigg) ,\bigg(\dfrac{\Delta}{(\psi_{m}\Delta^{2})(\psi_{m}T\Delta^{2})^{2K^{2}\Delta/5}}\bigg)\bigg\rbrace}$\\&$ + \bigg(\Delta +\dfrac{\log{(\psi_{m}T\Delta^{\frac{8}{5}})}}{\Delta^{\frac{3}{5}}}\bigg)\bigg)\bigg)$, let $\psi_{m}=\dfrac{c}{m},c>0$ \\
 \end{tabular}
