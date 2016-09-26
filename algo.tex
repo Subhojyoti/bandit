@@ -1,81 +1,79 @@
-\subsubsection*{Preliminaries}
+\subsubsection*{Notation}
 \label{sec:prelims}
 \input{prelims}
 
 \subsubsection*{Algorithm}
 
-The steps are presented in Algorithm~1.\\%\ref{alg:cucb}.
+Algorithm~\ref{alg:clusucb} presents the pseudocode of ClusUCB.
+
+%%%%%%%%%%%%%%%% alg-custom-block %%%%%%%%%%%%
+\algblock{ArmElim}{EndArmElim}
+\algnewcommand\algorithmicArmElim{\textbf{\em Arm Elimination}}
+ \algnewcommand\algorithmicendArmElim{}
+\algrenewtext{ArmElim}[1]{\algorithmicArmElim\ #1}
+\algrenewtext{EndArmElim}{\algorithmicendArmElim}
+
+\algblock{ClusElim}{EndClusElim}
+\algnewcommand\algorithmicClusElim{\textbf{\em Cluster Elimination}}
+ \algnewcommand\algorithmicendClusElim{}
+\algrenewtext{ClusElim}[1]{\algorithmicClusElim\ #1}
+\algrenewtext{EndClusElim}{\algorithmicendClusElim}
+
+\algtext*{EndArmElim}
+\algtext*{EndClusElim}
+
 \begin{algorithm}
-%\caption{Clustered UCB($D$)}
-%\label{Algo:1}
+\caption{ClusUCB}
+\label{alg:clusucb}
 %\noindent\makebox[\linewidth]{\rule{\textwidth}{0.8pt}}\\[-0.1cm]
-\textbf{Algorithm 1:} ClusUCB(p)\\[-0.3cm]
+% \textbf{Algorithm 1:} ClusUCB(p)\\[-0.3cm]
 %\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.3cm]
-\begin{algorithmic}[1]
+\begin{algorithmic}
 %\Procedure{\underline{Phase 1: Arm Exploration}}{}
 %\State Pull each arm once and calculate $\hat{r}_{i}, \forall i\in A$
-\State Let $A$ be the set which contains all the arms
-\State Call SubroutineCluster(p)
-\State $B_{0}:=A$
-\State $\psi_{m}=\log T$
-\State $ \epsilon_{0}:=1, w_{0}:=1$
+\State {\bf Input:} A partition of $A$ into clusters from Algorithm \ref{alg:rua}, exploration parameters $\rho_a$, $\rho_s$, horizon length $T$.
+% \State Call SubroutineCluster(p)
+\State {\bf Initialization:} Set $B_{0}:=A$, $\psi_{m}=\log T$, $\epsilon_{0}:=1$ and $w_{0}:=1$.
 %\State For rounds $m=1,2,.. \lceil\frac{1}{2}\log T\rceil$
-\State For rounds $m=0,1,..\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$
-%\State \hspace*{2em} $\hat{\Delta}_{m}=\max_{i\in B_{m}}{\lbrace\hat{r}_{i}\rbrace}-\min_{j\in B_{m}}{\lbrace\hat{r}_{j}\rbrace}$
-%\State \hspace*{2em} $\epsilon_{m}=\max{\bigg\lbrace\dfrac{\hat{\Delta}_{m}}{\ell}, \dfrac{2}{\sqrt{\psi{(m)T}}}\bigg\rbrace}$
-%, if $\hat{\Delta}_{m}\neq 0$
-%\newline\hspace*{3.7em}$=\max{\bigg\lbrace\dfrac{1}{D_{m}}, \dfrac{2}{\sqrt{\psi{(m)T}}}\bigg\rbrace}$, if $\hat{\Delta}_{m}=0$ 
-%\todos{(Subho)I think that for $\hat{\Delta}_{m}$ only one condition as specified above is enough for all cases. Even if $\hat{\Delta}_{m}=0$ then $\epsilon_{m}=\dfrac{2}{\sqrt{\psi{(m)T}}}$ as $\dfrac{2}{\sqrt{\psi{(m)T}}}>0$}
-%\State \hspace*{2em} Create clusters $s_{i}=\lbrace a_{i}\rbrace, \forall i\in B_{m}$
-%\State \hspace*{2em} Merge $s_{i},s_{j}$ into $s_{ij}$ if $\exists a_{i}\in s_{i} $, $ a_{j}\in s_{j},$ such that $|\hat{r}_{i}-\hat{r}_{j}|\leq\epsilon_{m}$ and $|s_{i}|+|s_{j}|\leq \ell$
-%\State \hspace*{2em} Call SubroutineMerge
-\State \hspace*{2em} Pull each arm in $s_{k}$, \newline\hspace*{2em}$n_{m}=\bigg\lceil\dfrac{2\log{(\psi_{m}T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$ number of times, $\forall s_{k}\in S$ 
+\For{$m=0,1,..\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$}	
+\State Pull each arm in $s_{k}$ $n_{m}=\bigg\lceil\dfrac{2\log{(\psi_{m}T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$ number of times, $\forall s_{k}\in S$ 
 %\State \hspace*{2em} Calculate $w_{s_{i}}=\bigg\lceil\dfrac{1}{\ell\hat{\Delta}_{s_{i}}}\bigg\rceil$,if $\hat{\Delta}_{s_{i}}\neq 0, \forall s_{i}\in S$
 %\newline\hspace*{8em}$=1$, otherwise, and $\hat{\Delta}_{s_{i}}=\max_{i\in s_{i}}{\lbrace\hat{r}_{i}\rbrace}-\min_{j\in s_{i}}{\lbrace\hat{r}_{j}\rbrace}, i\neq j$
-\State \hspace*{2em} \textbf{Arm Elimination:}
-\newline
-\hspace*{2em} Delete all arms $a_{i}\in s_{k}$ for which
-\newline\hspace*{2em}$\bigg\lbrace\hat{r}_{i} + \sqrt{\dfrac{\rho_{a}\log{(\psi_{m}T\epsilon_{m}^{2})}}{2 n_{m}}} \bigg\rbrace < \max_{a_{j}\in s_{k}}\bigg\lbrace\hat{r}_{j} -\sqrt{\dfrac{\rho_{a}\log{(T\epsilon_{m}^{2})}}{2 n_{m}}} \bigg\rbrace$, $\forall s_{k}\in S$ where $\rho_{a}=\dfrac{1}{w_{m}}$ and remove all such arms from $B_{m}$.
-%- \sqrt{\dfrac{\log{(4\psi(m)T\epsilon_{m}^{2})}}{2wn_{s_{i}}}}
-\State \hspace*{2em} \textbf{Cluster Elimination:}
-\newline
-\hspace*{2em} Delete all clusters $s_{k}\in S$ for which $\max_{a_{i}\in s_{k}}\bigg\lbrace\hat{r}_{i} + \sqrt{\dfrac{\rho_{s}\log{(\psi_{m}T\epsilon_{m}^{2})}}{2 n_{m}}}\bigg\rbrace  $\newline\hspace*{4em}$< \max_{a_{j}\in B_{m}} \bigg\lbrace\hat{r}_{j} - \sqrt{\dfrac{\rho_{s} \log{(T\epsilon_{m}^{2})}}{2 n_{m}}}\bigg\rbrace$, where $\rho_{s}=\dfrac{1}{w_{m}}$ and remove all such arms in the cluster $s_{k}$ from $B_{m}$ to obtain $B_{m+1}$.
-%- \sqrt{\dfrac{(|B_{m}|)\epsilon_{m}\log{(4\psi(m)T\epsilon_{m}^{2})}}{2w\ell_{m} n_{s_{j}}}}
-%\newline
-%\todo{the max over all arm gives the best global arm, and we compare this with the best payoff arm from each cluster}
-\State \hspace*{2em} \textbf{Reset Parameters:}
-%\newline \hspace*{2em} Remove all arms from $B_{m}$ which have been eliminated either in arm elimination or cluster elimination condition to obtain $B_{m+1}$
-\newline \hspace*{2em} $\epsilon_{m+1}:=\dfrac{\epsilon_{m}}{2},w_{m+1}:=2w_{m}$
+\ArmElim
+\State For each cluster $s_k \in S$, delete arm $a_{i}\in s_{k}$ if
+$$\hat{r}_{i} + \sqrt{\dfrac{\rho_{a}\log{(\psi_{m}T\epsilon_{m}^{2})}}{2 n_{m}}}  < \max_{a_{j}\in s_{k}}\bigg\lbrace\hat{r}_{j} -\sqrt{\dfrac{\rho_{a}\log{(T\epsilon_{m}^{2})}}{2 n_{m}}} \bigg\rbrace.$$
+% where $\rho_{a}=\dfrac{1}{w_{m}}$ and remove all such arms from $B_{m}$.
+\EndArmElim
+\ClusElim
+\State Delete cluster $s_{k}\in S$ if 
+\begin{align*}
+ \max_{a_{i}\in s_{k}}\bigg\lbrace\hat{r}_{i} + \sqrt{\dfrac{\rho_{s}\log{(\psi_{m}T\epsilon_{m}^{2})}}{2 n_{m}}}\bigg\rbrace  \\
+ < \max_{a_{j}\in B_{m}} \bigg\lbrace\hat{r}_{j} - \sqrt{\dfrac{\rho_{s} \log{(T\epsilon_{m}^{2})}}{2 n_{m}}}\bigg\rbrace.
+\end{align*}
+%  and remove all such arms in the cluster $s_{k}$ from $B_{m}$ to obtain $B_{m+1}$.
+\EndClusElim
+\State Set $\epsilon_{m+1}:=\dfrac{\epsilon_{m}}{2},w_{m+1}:=2w_{m}$
 %\State \hspace*{2em} $\ell_{m+1}:=\min\lbrace 2\ell_{m}, K\rbrace$
 %\State \hspace*{2em} $w_{m+1}:=2w_{m}$
-\State \hspace*{2em} \textbf{Stopping Condition:} 
-\newline \hspace*{2em} Stop if $|B_{m}|=1$ and pull $\max_{a_{i}\in B_{m}}\hat{r}_{i}$ till $T$ is reached.
+\State Stop if $|B_{m}|=1$ and pull $\max_{a_{i}\in B_{m}}\hat{r}_{i}$ till $T$ is reached.
+\EndFor
 \end{algorithmic}
-%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.6cm]
-%\newline
-%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.3cm]
-%\textbf{Subroutine:} SubroutineMerge\\[-0.3cm]
-%\begin{algorithmic}[1]
-%\State \hspace*{2em} Arrange all arms in $B_{m}$ in ascending order based on their $\hat{r}_{i}$
-%\State \hspace*{2em} Create clusters $s_{i}=\lbrace a_{i}\rbrace, \forall i\in B_{m}$
-%\State \hspace*{2em} For $i=1$ to $K$:
-%\State \hspace*{4em} For $j=i+1$ to $K$:
-%\State \hspace*{6em} Merge $s_{i},s_{j}$ into $s_{i}$ if $\exists a_{i}\in s_{i} $ and $\exists a_{j}\in s_{j},$ such that $|\hat{r}_{i}-\hat{r}_{j}|\leq\epsilon_{m}$ and $|s_{i}|+|s_{j}|\leq \ell$
-%\State \hspace*{2em} Rename all clusters that have been formed as $s_{1}$ to $s_{M}$, where $|S|=M$ after merging
-%\end{algorithmic}
-%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.6cm]
-\textbf{Subroutine:} SubroutineCluster(p)[Random Uniform Allocation]\\[-0.3cm]
-\begin{algorithmic}[1]
-\State \hspace*{2em} $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$
-\State \hspace*{2em} Permute arms in $A$ randomly to create $A_{random}$.
-\State \hspace*{2em} Create clusters $s_{i}=\lbrace a_{i}\rbrace, \forall i\in A_{random}$
-\State \hspace*{2em} For $i=1$ to $K$:
-\State \hspace*{4em} For $j=i+1$ to $K$:
-\State \hspace*{6em} Merge $s_{i},s_{j}$ into $s_{i}$ if $\exists a_{i}\in s_{i} $ and $\exists a_{j}\in s_{j},$ such that $|s_{i}|+|s_{j}|\leq \ell$
-\State \hspace*{2em} Rename all partitions that have been formed as $s_{1}$ to $s_{p}$, where $|S|=p$ after merging
-\end{algorithmic}
-%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.6cm]
+\end{algorithm}
 
+\begin{algorithm}
+\caption{Clustering by random uniform allocation}
+\label{alg:rua}
+\begin{algorithmic}
+\State Set $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$
+\State Permute arms in $A$ randomly to create $A_{random}$.
+\State Create clusters $s_{i}=\lbrace a_{i}\rbrace, \forall i\in A_{random}$
+\For{ $i=1$ to $K$}
+\For{$j=i+1$ to $K$}
+\State Merge $s_{i},s_{j}$ into $s_{i}$ if $\exists a_{i}\in s_{i} $ and $\exists a_{j}\in s_{j},$ such that $|s_{i}|+|s_{j}|\leq \ell$
+\EndFor
+\EndFor
+\State Rename all partitions that have been formed as $s_{1}$ to $s_{p}$, where $|S|=p$ after merging
+\end{algorithmic}
 \end{algorithm}
 
 

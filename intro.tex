@@ -41,7 +41,7 @@ has a gap-dependent regret bound of $O\bigg(\dfrac{K\log T\Delta^{2}}{\Delta}\bi
 \paragraph{Our Work}
 As mentioned in a recent work \cite{liu2016modification}, UCB-Improved has two shortcomings: 	
 \begin{inparaenum}[\bfseries (i)]
-\item a significant number of pulls are spend in early exploration, since UCB-Improved pulls all the arms $n_{m}=\bigg\lceil \dfrac{ 2\log(T\tilde{\Delta}^{2}_{m})}{\tilde{\Delta}^{2}_{m}} \bigg\rceil$ during the $m$-th round. The quantity $\tilde{\Delta}_{m}$ is initialized to $1$ and halved after every round.
+\item a significant number of pulls are spent in early exploration, since each round $m$ of UCB-Improved involves pulling every arm an identical $n_{m}=\bigg\lceil \dfrac{ 2\log(T\tilde{\Delta}^{2}_{m})}{\tilde{\Delta}^{2}_{m}} \bigg\rceil$ number of times. The quantity $\tilde{\Delta}_{m}$ is initialized to $1$ and halved after every round.
 \item In UCB-Improved, arms are eliminated conservatively, i.e, only after $\tilde{\Delta}_{m}<\dfrac{\Delta_{i}}{2}$, the sub-optimal arm $i$ is discarded. This is disadvantageous when $K$ is large and the gaps are identical ($r_{1}=r_{2}=..=r_{K-1}<r^{*}$) and small.
 \end{inparaenum}
 % 	To counter early exploration in \cite{liu2016modification} as well as in our algorithm we propose an exploration regulatory factor to control exploration. \textit{Our algorithm is also not an anytime algorithm}(neither is MOSS, UCB-Improved) and in this context we point out that knowledge of the horizon actually facilitates learning as it can exploit more information(as stated in \cite{lattimore2015optimally}). We also employ a couple of more strategies to bring down our regret as summarized below:-
@@ -51,9 +51,25 @@ starts with a partition of the arms into small clusters, each having uniform set
 The clustering is done at the start with a pre-specified the number of clusters. 
 Each round of ClusUCB involves both (individual) arm elimination as well as cluster elimiation. While the conditions governing the arm and cluster eliminations are inspired by UCB-Improved, though the exploration factors governing these conditions are relatively more aggressive than that in UCB-Improved. 
 
-From a theoretical analysis that involves carefully setting the exploration factors for arm and cluster elimination conditions, we observe that the gap-dependent regret of ClusUCB is better than that of UCB-Improved, while the worst-case regret is of the same order. While ClusUCB improves the regret bounds of UCB-Improved, it does not achieve the gap-independent bound of $O(\sqrt{KT})$ of MOSS. However, the gap-dependent bound of ClusUCB is better than MOSS.
+\begin{table}
+\caption{Gap-dependent regret bounds for different bandit algorithms}
+\label{tab:regret-bds}
+\begin{center}
+\begin{tabular}{|c|c|}
+\toprule
+Algorithm  & Upper bound \\
+\midrule
+UCB1         &$O\left(\dfrac{K\log T}{\Delta}\right)$ \\\midrule
+UCB-Improved &$O\left(\dfrac{K\log (T\Delta^{2})}{\Delta}\right)$ \\\midrule
+MOSS	     &$O\left(\dfrac{K\log\left(T\Delta^{2}/K\right)}{\Delta}\right)$\\\midrule
+ClusUCB      &$O\left(\dfrac{K\log\left(\dfrac{T\Delta^{2}}{\sqrt{\log (KT)}}\right)}{\Delta}\right)$\\\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
 
-On a setup with $r_{1}=r_{2}=..=r_{K-1}<r^{*}$ and $\Delta_{i}$'s are small and $K$ is large, we empirically demonstrate that ClusUCB outperforms UCB-Improved\cite{auer2010ucb}, MOSS\cite{audibert2009minimax} as well as other popular stochastic bandit algorithms such as DMED\cite{honda2010asymptotically}, UCB-V\cite{audibert2009exploration} and KL-UCB\cite{garivier2011kl}.
+From a theoretical analysis that involves carefully setting the exploration factors for arm and cluster elimination conditions, we observe that the gap-dependent regret of ClusUCB is better than that of UCB-Improved (see Table \ref{tab:regret-bds}). On the other hand, the gap-independent bound of ClusUCB is of the same order as UCB-Improved, i.e., $O\left(\sqrt{KT\log K}\right)$. While ClusUCB is not able to match the gap-independent bound of $O(\sqrt{KT})$ for MOSS, the gap-dependent bound of ClusUCB is better than MOSS when $\sqrt{\log (KT)} > K$.
+
+On a setup with $r_{1}=r_{2}=..=r_{K-1}<r^{*}$, small $\Delta_{i}$'s and large $K$, we observe empirically that ClusUCB outperforms UCB-Improved\cite{auer2010ucb} and MOSS\cite{audibert2009minimax} as well as other popular stochastic bandit algorithms such as DMED\cite{honda2010asymptotically}, UCB-V\cite{audibert2009exploration} and KL-UCB\cite{garivier2011kl}.
 
 % 	Summarizing our contributions below:-
 % \begin{enumerate}
@@ -66,4 +82,4 @@ On a setup with $r_{1}=r_{2}=..=r_{K-1}<r^{*}$ and $\Delta_{i}$'s are small and 
 % %\item We also provide a short discussion on what other applications our algorithm can be employed successfully.
 % \end{enumerate}
 	
-The rest of the paper is organized as follows: In Section \ref{sec:clusucb}, we present the ClusUCB algorithm. In Section \ref{sec:results}, we present the associated regret bounds and sketch the proofs in Section \ref{sec:proofsketch}. In Section \ref{sec:expts}, we present the numerical experiments and provide concluding remarks in Section \ref{sec:conclusions}. 
+The rest of the paper is organized as follows: In Section \ref{sec:clusucb}, we present the ClusUCB algorithm. In Section \ref{sec:results}, we present the associated regret bounds and sketch the proofs in Section \ref{sec:proofSketch}. In Section \ref{sec:expts}, we present the numerical experiments and provide concluding remarks in Section \ref{sec:conclusions}. 
