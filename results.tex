@@ -3,145 +3,61 @@
 	
 \begin{theorem}
 \label{Result:Theorem:1}
-Considering both the arm elimination and cluster elimination condition and $p>1$, the total regret till $T$ is upper bounded by $R_{T}\leq \sum\limits_{i\in A:\Delta_{i}\geq b} \bigg\lbrace \bigg(2\Delta_{i}+\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg) + \bigg(\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg\lbrace \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)\bigg\rbrace + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace  \bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s} -1}} \bigg) \bigg\rbrace + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq \sqrt{\dfrac{e}{T}}$, where $\rho_{a},\rho_{s}\in (0,1]$ are the arm and cluster elimination parameter respectively, $A_{s^{*}}$ is the number of arms in optimal cluster $s^{*}$ such that $|A_{s^{*}}|\leq \big\lceil\frac{K}{p}\big\rceil$ , $p$ is the number of clusters and $T$ is the horizon.
+Considering both the arm elimination and cluster elimination condition and $p>1$, the total regret till $T$ is upper bounded by $\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b} \bigg\lbrace \bigg(2\Delta_{i}+\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg) + \bigg(\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg\lbrace \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)\bigg\rbrace + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace  \bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s} -1}} \bigg) \bigg\rbrace + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq \sqrt{\dfrac{e}{T}}$, where $\rho_{a},\rho_{s}\in (0,1]$ are the arm and cluster elimination parameter respectively, $A_{s^{*}}$ is the number of arms in optimal cluster $s^{*}$ such that $|A_{s^{*}}|\leq \big\lceil\frac{K}{p}\big\rceil$ , $p$ is the number of clusters and $T$ is the horizon.
 \end{theorem}
 
 
-	The proof of this is given in \textbf{Appendix C}.(Supplementary Material)
+	The proof of this is given in Appendix \ref{App:A}.(Supplementary Material)
 	
-\begin{remark}
-\label{Result:Rem:1}
-By setting $b=\sqrt{\dfrac{e}{T}}$, the term $max_{i:\Delta_{i}\leq b}\Delta_{i}T$ gets trivially bounded by $\sqrt{KT}$ as mentioned in UCB-Improved.
-%which makes the logarithmic term  the main term for suitable $b$
-\end{remark}
+%\begin{remark}
+%\label{Result:Rem:1}
+%By setting $b=\sqrt{\dfrac{e}{T}}$, the term $max_{i:\Delta_{i}\leq b}\Delta_{i}T$ gets trivially bounded by $\sqrt{KT}$ as mentioned in UCB-Improved.
+%%which makes the logarithmic term  the main term for suitable $b$
+%\end{remark}
 
 \begin{remark}
-\label{Result:Rem:2}
-From the statement of \textbf{Theorem 1} we can see that taking various values of $\rho_{s}$ and $\rho_{a}$ and how these values are reduced after every round significantly affects our regret bound. A discussion on them is deferred to \textbf{Remark \ref{App:A:Rem:1}(Appendix A)}, \textbf{Remark \ref{App:B:Rem:2}(Appendix B)}, \textbf{Remark \ref{App:C:Rem:1}(Appendix C)} and their various definitions are given in \textbf{Appendix E}. A discussion on exploration regulatory factor($\psi_{m}$) and its effect is deferred to \textbf{Appendix D}. A discussion on the three approaches of using only arm elimination in \textbf{Algorithm 1} or using only cluster elimination or using both is deferred to \textbf{Remark \ref{App:E:Rem:1}(Appendix E)}
+\label{Result:Rem:1}
+From the statement of Theorem 1 we can see that taking various values of $\rho_{s}$ and $\rho_{a}$ and how these values are reduced after every round significantly affects our regret bound. A discussion on them is deferred to Remark \ref{App:A:Rem:1}(Appendix \ref{App:A}), Remark \ref{App:B:Rem:2}(Appendix \ref{App:B}), Remark \ref{App:C:Rem:1}(Appendix \ref{App:C}) and their various definitions are given in Appendix \ref{App:E}. A discussion on exploration regulatory factor($\psi_{m}$) and its effect is deferred to Appendix \ref{App:D}. A discussion on the three approaches of using only arm elimination in Algorithm 1 or using only cluster elimination or using both is deferred to Remark \ref{App:E:Rem:1}(Appendix \ref{App:E}).
 \end{remark}
 
 \begin{corollary}
 \label{Result:Corollary:1}
-Taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$(\textbf{Appendix D, Definition 3}) and using \textbf{Appendix E, Definition 3} for $\rho_{a}=\dfrac{1}{2^{2m}},\rho_{s}=\dfrac{1}{2^{m}} $ and $b=\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 2\sqrt{KT\log K} + \dfrac{12\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} + 2.8\dfrac{\sqrt{KT\log K}}{p} \bigg\rbrace$.
+For $T\geq K^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}},\rho_{s}=\dfrac{1}{2^{m}} $ and $b=\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 2\sqrt{KT\log K} + \dfrac{12\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} + 2.8\dfrac{\sqrt{KT\log K}}{p} \bigg\rbrace$.
 \end{corollary}
 
 
-	The proof of this corollary is given in \textbf{Appendix C}.(Supplementary Material)
+	The proof of this corollary is given in Appendix \ref{App:C}.(Supplementary Material)
 
-\begin{remark}
-\label{Result:Rem:3}
-	Thus we see that the most significant term in the gap-independent regret bound is the regret accumulated for not eliminating the sub-optimal arms, and this is bounded by $2\sqrt{KT\log K} + \dfrac{4\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}$. By carefully choosing $\rho_{a},\rho_{s}$ and $\psi_{m}$ we have been able to reduce the regret for the total number of pulls to $\dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}}$ which comes from the pulls required to eliminate all the clusters. So, the total order come of as $O(\sqrt{KT\log K})$ which matches the order of $O(\sqrt{KT})$ of MOSS except the term $\sqrt{\log K}$ and is definitely better than UCB-Improved gap independent bound of $O\big(\sqrt{KT}\dfrac{\log(K\log K)}{\sqrt{\log K}}\big)$.
-\end{remark}
+%\begin{remark}
+%\label{Result:Rem:3}
+\paragraph*{}Thus we see that the most significant term in the gap-independent regret bound is the regret accumulated for not eliminating the sub-optimal arms, and this is bounded by $2\sqrt{KT\log K} + \dfrac{4\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}$. By carefully choosing $\rho_{a},\rho_{s}$ and $\psi_{m}$ we have been able to reduce the regret for the total number of pulls to $\dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}}$ which comes from the pulls required to eliminate all the clusters. So, the total order come of as $O(\sqrt{KT\log K})$ which matches the order of $O(\sqrt{KT})$ of MOSS except the term $\sqrt{\log K}$ and is better than UCB-Improved gap independent bound of $O\big(\sqrt{KT}\dfrac{\log(K\log K)}{\sqrt{\log K}}\big)$.
+%\end{remark}
 
 \begin{corollary}
 \label{Result:Corollary:2}
-Taking into account the regret bound in \textbf{Theorem \ref{Result:Theorem:1}}, putting the value of $\psi_{m}=\dfrac{T}{\log (KT)}$(\textbf{Appendix D, Definition 4}) and using \textbf{Appendix E, Definition 2} for $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace $ we can have a gap dependent regret bound as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
+Taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=\dfrac{T}{\log (KT)}$ and using $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace $ we can have a gap dependent regret bound as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
 \end{corollary}
 
-	The proof of this corollary is given in \textbf{Appendix C}.(Supplementary Material)
-
-\begin{remark}
-\label{Result:Rem:4}
-	When we consider gap-dependent bound, by choosing appropriate values of $\rho_{a},\rho_{s},\psi_{m}$ and $p$ we see that the most significant term in the regret is $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{64\log{\big(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}}\big)}}{\Delta_{i}}$. Hence we see the regret upper bound of $O\bigg(\dfrac{K\log \big(\dfrac{T\Delta^{2}}{\sqrt{\log (KT)}}\big)}{\Delta}\bigg)$ is lower than the gap dependent bound of UCB1 of $O\bigg(\dfrac{K\log T}{\Delta}\bigg)$ and that of UCB-Improved, $O\bigg(\dfrac{K\log T\Delta^{2}}{\Delta}\bigg)$. Also comparing against that of MOSS, $O\bigg(\dfrac{K\log(T\Delta^{2}/K)}{\Delta}\bigg)$ the regret bound of our algorithm is better if $\sqrt{\log(KT)}>K$. A table for the various regret upper bounds is given in \textbf{Appendix F}. Thus we see that $\rho_{a},\rho_{s}$ actually helps in reducing the constant associated with the factor $\sqrt{KT}$ and the $\dfrac{\log\bigg(\psi_{m}\dfrac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)}{\Delta_{i}}$ term and also both $\psi_{m}$ and $\rho_{a},\rho_{s}$ helps in stabilizing the term $\log\bigg(\psi_{m}\dfrac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)$.
-\end{remark}	
-
-%\todos{(Subho)To follow the same way as UCB-Revisited proof, did away with the event $\xi_{1},\xi_{2},\xi_{3}$}
-
-%In this section we will prove the bounds based on the events $\xi_{1}$,$\xi_{2}$ and $\xi_{3}$. In $\xi_{1}$, we will assume two important assumptions $i)\hat{r}^{*}<\hat{r}_{i},\forall i\in s_{i}$ and $ii)\exists a_{i}\in s_{i}$ such that $\sqrt{\dfrac{\epsilon_{m}}{w_{s_{i}}}}<\dfrac{\Delta_{i}}{5}$. For $\xi_{2}$, we will assume that $a^{*}\in s^{*}$ and $|s^{*}|=1$, $a_{i}\in s_{i} \forall a_{i}\setminus a^{*}\in B_{m}$ and $\exists a_{max_{s_{i}}}$ such that $\sqrt{\epsilon_{m}}<\dfrac{2\Delta_{s}}{5}$, where $\Delta_{s}=r^{*}-r_{max_{s_{i}}}$ and $\hat{r}_{max_{s_{i}}}>\hat{r}_{i}, \forall i\in s_{i}$. $\xi_{3}$ be the event when the optimal arm $a^{*}$ gets eliminated by a sub-optimal arm. At the start of any round $m$, we fix $\epsilon_{m}$.
-
-\begin{remark}
-\label{Result:Rem:5}
-In the experimental setup we use $\psi_{m}$ as stated in \textbf{Appendix D, Definition 1} and $\rho_{s}$ and $\rho_{a}$ as stated in \textbf{Appendix E, Definition 4}.
-%The corresponding bound can be found in \textbf{Remark \ref{App:E:Rem:1}}.
-\end{remark}
-
-\begin{remark}
-\label{Result:Rem:6}
-A sketch of the proof for \textbf{Theorem $1$} is given here. In the \textbf{first step}, we try to bound the probability of arm elimination of any sub-optimal arm without cluster elimination. This is shown in Proposition $1$. By simply taking $p=1$ we can achieve arm elimination without any cluster elimination. In \textbf{second step}, we try to bound the probability of cluster elimination(without any arm elimination) with all arms within it.  A slight modification to the algorithm allows us to do this. By taking $p>1$, removing the arm elimination condition, stopping when we are just left with one cluster and pulling the $max\lbrace \hat{r}_{i}\rbrace$, where $a_{i}\in B_{m}$ we can achieve this.  This is shown in Proposition $2$. Finally in \textbf{step three}, in the proof of Theorem 1 we combine both arm elimination and cluster elimination to get the regret upper bound.  
-\end{remark}
-	
-%\begin{proposition}
-%The probability that the optimal arm $a^{*}\in s_{i}$ will lie above $\hat{r}_{min_{s_{i}}}+ \dfrac{\hat{\Delta}_{s_{i}}}{2}$ after $\bigg\lceil\dfrac{2\log (\psi_{m}T\epsilon_{m}^{2})}{\epsilon_{m}}\bigg\rceil$ pulls in the $m$-th round is given by $\bigg\lbrace 1- \dfrac{1}{(\psi_{m}T\epsilon_{m}^{2})^{\ell_{m}^{2}\epsilon_{m}}} \bigg\rbrace$ where $\hat{r}_{min_{s_{i}}}$ is the minimum payoff in $s_{i}$, $\hat{\Delta}_{s_{i}}=max_{i\in s_{i}}\hat{r}_{i}-min_{j\in s_{i}}\hat{r}_{j}, i\neq j$, $\epsilon_{m}$ is halved after every round and $T$ is the horizon. 
-%\end{proposition}
-
-%$\epsilon_{m}=\max{\bigg\lbrace\dfrac{\hat{\Delta}_{m}}{\ell_{m}} \dfrac{2}{\sqrt{\psi{(m)T}}}\bigg\rbrace}$
-
-%The proof of Proposition 1 is given in \textbf{Appendix A}.(Supplementary material)
+	The proof of this corollary is given in Appendix \ref{App:C}.(Supplementary Material)
 
 %\begin{remark}
-%	Thus, we see that as the agent falls through rounds, with increasing values of $\ell_{m}$ the probability of optimal arm $a^{*}$ lying above $\dfrac{\hat{\Delta}_{s_{i}}}{2}$ increases as $\ell_{m}^{2}\epsilon_{m}\geq 4$ (as, $\epsilon_{m}$ is halved after every round and $\ell_{m}$ is doubled) increases with increasing $\ell_{m}$. But, $\ell_{m}$ is bounded by $D_{m}$ and say after the $m_{D}$ round the probability of optimal arm staying above the specified range gets bounded by $\bigg\lbrace 1- \dfrac{1}{(\psi_{m}T\epsilon_{m}^{2})^{D_{m}^{2}\epsilon_{m}}} \bigg\rbrace$. But we know from the definition of $D_{m}$ that $ D_{m}=\bigg\lceil(\dfrac{1}{\epsilon_{m}})^{1/2}\bigg\rceil$ or $D^{2}\epsilon_{m}\approx 1$. Hence, the probability that   $a^{*}$ after $n_{m}$ pulls in round $m_{D}$ going above $\dfrac{\hat{\Delta}_{s_{i}}}{2}$ is $\bigg\lbrace 1- \dfrac{1}{(\psi_{m}T\epsilon_{m}^{2}) }\bigg\rbrace$.
-
-%	We must also point out that $\epsilon_{m}$ can become arbitrarily small, so the value $\log{(\psi{(m)}T\epsilon_{m}^{2})}$ can become negative. To guard against that scenario we have setup a tolerance level such as $\epsilon_{m}>\dfrac{2}{\sqrt{\psi{(m)}T}}$ and below this value $\epsilon_{m}$ should not be allowed to fall. 
-%	We also see that $\ell_{m}$ is doubled after every round, independent of the rise in $D_{m}$ and as $\epsilon_{m}\rightarrow \Delta $, $\ell_{m}$ gets upper bounded by $D_{m}$ and will rise no more and hence $D_{m}$ also gets fixed as $D_{m}^{2}\epsilon_{m}\approx 1$ for any round $m$. We make the $D_{m}$ increase with the rounds as it controls our rate of exploration and in the later rounds we need more exploration as arms close to the optimal arm will survive till the later rounds and the algorithm needs to discriminate amongst them.  Also, if $\epsilon_{m}$ is very large, then $D_{m}$ becomes very small and consequently there is very small exploration. Hence, $D_{m}$ is the maximum of $\lbrace \dfrac{1}{\sqrt{\epsilon_{m}}}, K \rbrace$, which ensures the algorithm does sufficient exploration. 
-%\end{remark}
+%\label{Result:Rem:4}
+\paragraph*{}When we consider gap-dependent bound, by choosing appropriate values of $\rho_{a},\rho_{s},\psi_{m}$ and $p$ we see that the most significant term in the regret is $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{64\log{\big(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}}\big)}}{\Delta_{i}}$. Hence we see the regret upper bound of $O\bigg(\dfrac{K\log \big(\dfrac{T\Delta^{2}}{\sqrt{\log (KT)}}\big)}{\Delta}\bigg)$ is lower than the gap dependent bound of UCB1 of $O\bigg(\dfrac{K\log T}{\Delta}\bigg)$ and that of UCB-Improved, $O\bigg(\dfrac{K\log T\Delta^{2}}{\Delta}\bigg)$. Also comparing against that of MOSS, $O\bigg(\dfrac{K\log(T\Delta^{2}/K)}{\Delta}\bigg)$ the regret bound of our algorithm is better if $\sqrt{\log(KT)}>K$. A table for the various regret upper bounds is given in Appendix \ref{App:F}. Thus we see that $\rho_{a},\rho_{s}$ actually helps in reducing the constant associated with the factor $\sqrt{KT}$ and the $\dfrac{\log\bigg(\psi_{m}\dfrac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)}{\Delta_{i}}$ term and also both $\psi_{m}$ and $\rho_{a},\rho_{s}$ helps in stabilizing the term $\log\bigg(\psi_{m}\dfrac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)$.
+%\end{remark}	
 
 
-%\todos{(Subho) Merged proposition 2 and 3 into one to follow the UCB-Revisited case (a)}
+\begin{corollary}
+\label{Result:Corollary:2}
+For $T\geq (K\sqrt{\log K})^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}},\rho_{s}=\dfrac{1}{2^{m}} $ and $b=\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 2\sqrt{KT} + \dfrac{12\sqrt{T\log K}}{(K\sqrt{K})^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} + 2.8\dfrac{\sqrt{KT}}{p} \bigg\rbrace$.
+\end{corollary}
 
-\begin{proposition}
-\label{Result:Prop:1}
-Considering only the arm elimination condition and $p=1$ the total regret till $T$ is upper bounded by $R_{T}\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)  +  \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a} -1}} \bigg) \bigg \rbrace+\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq\sqrt{\dfrac{e}{T}}$, where $\rho_{a}\in (0,1]$ is the arm elimination parameter, $\psi_{m}$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
-\end{proposition}
+	The proof of this corollary is given in Appendix \ref{App:C}.(Supplementary Material)
 
-
-	The proof of Proposition 1 is given in \textbf{Appendix A}.(Supplementary material).
-
-\begin{remark}
-\label{Result:Rem:7}	
-	Thus, we see that the confidence interval term $c_{m}=\sqrt{\dfrac{\rho_{a}\log (\psi_{m}T\epsilon_{m}^{2})}{2 n_{m}}}$ makes the algorithm eliminate an arm $a_{i}$ as soon as $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$. The above result is in contrast with UCB-Improved which only deletes an arm if $\tilde{\Delta}_{m}<\dfrac{\Delta_{i}}{2}$, where $\tilde{\Delta}_{m}$ is initialized at $1$ and is halved after every round. We also point out here that when $c_{m}=\sqrt{\dfrac{\rho_{a}\log (\psi_{m}T\epsilon_{m}^{2})}{2 n_{m}}}$ and $\rho_{a}$ is decreased after every round, then an arbitrary arm $a_{i}$ is removed as soon as  $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ which essentially makes it a faster elimination procedure than UCB-Improved if $\rho_{a}\leq \epsilon_{m}$.
-\end{remark}
-
-%Also, the weight $w_{s_{i}}$ as shown in the proofs actually help us in faster elimination of arms by the condition $ii$ in $\xi_{1}$ explained at the start of the proof. The higher the weight faster is arm elimination but it also increases error probability which might actually lead to a higher cumulative regret. The weight $w_{s_{i}}$ depends on the cluster size and the larger the cluster size, the higher will be the weight increasing the probability of arm elimination as we want smaller and smaller number of elements in clusters so that we can discriminate effectively amongst the clusters.
-%\end{remark}
-%
-%
-%\begin{proposition}
-%With a probability of $\bigg\lbrace 1-\bigg(\dfrac{2}{\psi_{m}T\epsilon_{m}^{2})}\bigg)\bigg\rbrace$ a sub-optimal arm can be deleted within a cluster $s_{i}$ in round $m$ by the arm elimination condition, where $\epsilon_{m}=\max{\bigg\lbrace\dfrac{\hat{\Delta}_{s,m}}{\ell_{m}}, \dfrac{1}{\sqrt{\psi{(m)T}}}\bigg\rbrace}$, if $\hat{\Delta}_{s,m}\neq 0$ and $T$ is the horizon.
-%\end{proposition}
-%
-%	The proof of Proposition 3 is given in \textbf{Appendix C}.(Supplementary material)	
-%
-%\begin{remark}
-%	Thus, we see that the probability of a sub-optimal arm $a_{i}$ is eliminated in $\xi_{1}$ is  $\bigg(1-\dfrac{2}{\psi_{m}T\epsilon_{m}^{2})}\bigg)$ which increases as the algorithm falls through the round as $\epsilon_{m}$ keeps on decreasing.
-%	
-%	Due to the initial uncertainty we can sufficiently tune $\psi_{m}$ to increase our pulls in the initial rounds in a bounded fashion. But this function can be set arbitrarily high resulting in a skewed regret upper bound and so we need to define a structure and bound this function as well. We define $\psi_{m}=\dfrac{c}{m}$ where $c>0, m\geq 1$ as defined previously. Notice also that $\psi_{m}$ is a monotonically decreasing function and for any round $m$, $|\psi(m+1)|\leq |\psi_{m}|$. 
-%%In experiment 2 and 3 where $\psi_{m}=K^{5/m}$ is defined since the variance is very high in those cases. 
-%%Since $|\psi_{m}|\geq 0,\forall m$, this also leads to increase in the probability of arm deletion as compared to UCB-Revisited.
-%When the time horizon $T$ is very large or very small, as the pulls $n_{m}$ depends on $T$, we can tune $\psi_{m}$ by changing $c$ so that the exploration remains balanced. Since we are exploring locally and the pulls are increasing after every round so we decrease $\psi_{m}$ in the later rounds which not only tapers down the growth of $n_{m}$ but also decreases arm elimination probability, as in the later rounds, only arms closer to the optimal arm survive and we need careful elimination.
-
-	
-	
-	
-
-\begin{proposition}
-\label{Result:Prop:2}
-Considering only the cluster elimination condition and $p>1$, the total regret till $T$ is upper bounded by $R_{T}\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace \bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)  +  \bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s} -1}} \bigg)\bigg \rbrace +\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq \sqrt{\dfrac{e}{T}}$, where $\rho_{s}\in (0,1]$ is the cluster elimination parameter, $\psi_{m}$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
-\end{proposition}
-
-	The proof of Proposition 2 is given in \textbf{Appendix B}.(Supplementary material)
-
-
-%\todos{(Subho) Have to re-write the remark once this proposition is proved}
+\paragraph*{}A different choosing of $\psi_{m}$ makes the gap independent regret bound of our algorithm as $O(\sqrt{KT})$ which makes it of the same order as MOSS and better than UCB-Improved.
 
 %\begin{remark}
-%	Thus, from proposition $3$ we see that the cluster deletion condition is more aggressive than arm elimination condition. This is because, for cluster elimination the condition depends on the number of arms surviving till $m$-th round that is $|B_{m}|$ which itself depends on the pulls $n_{m}$ and cluster size limit $D_{m}$. We also point out that at any round $m$ there will be $|S|$ arm elimination conditions because each cluster has its own arm elimination condition weighted by $w_{s_{i}}$, resulting in the probability of $\max{\bigg\lbrace \bigg(\dfrac{2}{\psi_{m}T\epsilon_{m}^{2})}\bigg) ,\bigg(\dfrac{4}{(\psi_{m}T\epsilon_{m}^{2})^{1+|B_{m}|^{2}\epsilon_{m}}}\bigg)\bigg\rbrace}$ of being eliminated, an increase over UCB-Revisited and Median Elimination. This is because each arm can either be eliminated by the the arm elimination condition within a cluster or by the cluster elimination condition whereby all the arms within a cluster are eliminated. Also, we 
-%see that lower bounding $\epsilon_{m}=\dfrac{2}{\sqrt{\psi_{m}T}}$, lower bounds the probability of arm elimination atleast $0.5$ in $\xi_{1}$ and in $\xi_{2}$ the probability of cluster elimination and stopping very close to $1$.
+%\label{Result:Rem:5}
+%In the experimental setup we use $\psi_{m}$ as stated in \textbf{Appendix D, Definition 1} and $\rho_{s}$ and $\rho_{a}$ as stated in \textbf{Appendix E, Definition 4}.
+%%The corresponding bound can be found in \textbf{Remark \ref{App:E:Rem:1}}.
 %\end{remark}
 
-%\begin{theorem}
-%The upper bound on the total regret over horizon $T$ after round $m$ is given by $R_{T}\leq \sum_{i\in B_{m}}\bigg (\max{\bigg\lbrace \bigg(\dfrac{27}{\psi_{m}(\Delta_{i})^{\frac{3}{5}}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\psi_{m}\Delta^{2})(0.16\psi_{m}T\Delta^{2})^{2|B_{m}|^{2}\Delta/5}}\bigg)\bigg\rbrace} + \bigg(\Delta_{i}+\dfrac{27\log{(\psi_{m}T\dfrac{\Delta_{i}^{\frac{8}{5}}}{12})}}{\Delta_{i}^{\frac{3}{5}}}\bigg)\bigg)$, where $B_{m}$ is the set of arms still not eliminated in the $m$-th round and $\Delta$ is the minimal gap.
-%\end{theorem}
-
-%First level headings are all caps, flush left, bold and in point size
-%12. One line space before the first level heading and 1/2~line space
-%after the first level heading.
-
-%\subsection{Error Bound}
-%	
-%	In this section, we try to come up with an error bound for the algorithm if at any round $m$, the optimal arm $a^{*}$ gets eliminated by another sub-optimal arm. Since, arm elimination condition is the more aggressive elimination condition, we come up with an error bound that bounds the regret once the  optimal arm gets eliminated by another sub-optimal arm. The proof of this directly follows from \textbf{Theorem 1}, and mimics the proof as in \cite{auer2010ucb}.
-%	
-%\begin{theorem}
-%The error bound till round $m$ is given by $e_{t}\leq \sum_{i\in A^{'}}\bigg(\dfrac{51}{\psi_{m}\Delta_{i}^{6/5}} \bigg)+\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{51}{\psi_{m}\Delta_{b}^{6/5}} \bigg)$, where the arms surviving till $m$-th round belong to the set $A^{'}$, arms to still survive and eliminate arm $a^{*}$ after round $m$ belong to $A^{''}$.
-%\end{theorem}
-%The proof of Theorem 2 is given in \textbf{Appendix F}.(Supplementary material)
-%~\ref{App:B}.

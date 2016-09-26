@@ -1,0 +1,26 @@
+%\begin{remark}
+%\label{Result:Rem:6}
+\paragraph*{}A sketch of the proof for Theorem \ref{Result:Theorem:1} is given here. In the first step, we try to bound the probability of arm elimination of any sub-optimal arm without cluster elimination. This is shown in Proposition \ref{proofSketch:Prop:1}. By simply taking $p=1$ we can achieve arm elimination without any cluster elimination. In second step, we try to bound the probability of cluster elimination(without any arm elimination) with all arms within it.  A slight modification to the algorithm allows us to do this. By taking $p>1$, removing the arm elimination condition, stopping when we are just left with one cluster and pulling the $max\lbrace \hat{r}_{i}\rbrace$, where $a_{i}\in B_{m}$ we can achieve this.  This is shown in Proposition \ref{proofSketch:Prop:2}. Finally in step three, in the proof of Theorem \ref{Result:Theorem:1} we combine both arm elimination and cluster elimination to get the regret upper bound.  
+%\end{remark}
+	
+
+\begin{proposition}
+\label{proofSketch:Prop:1}
+Considering only the arm elimination condition and $p=1$ the total regret till $T$ is upper bounded by $\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)  +  \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a} -1}} \bigg) \bigg \rbrace+\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq\sqrt{\dfrac{e}{T}}$, where $\rho_{a}\in (0,1]$ is the arm elimination parameter, $\psi_{m}$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
+\end{proposition}
+
+
+	The proof of Proposition 1 is given in Appendix \ref{App:A}.(Supplementary material).
+
+%\begin{remark}
+%\label{Result:Rem:7}	
+\paragraph*{} Thus, we see that the confidence interval term $c_{m}=\sqrt{\dfrac{\rho_{a}\log (\psi_{m}T\epsilon_{m}^{2})}{2 n_{m}}}$ makes the algorithm eliminate an arm $a_{i}$ as soon as $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$. The above result is in contrast with UCB-Improved which only deletes an arm if $\tilde{\Delta}_{m}<\dfrac{\Delta_{i}}{2}$, where $\tilde{\Delta}_{m}$ is initialized at $1$ and is halved after every round. We also point out here that when $c_{m}=\sqrt{\dfrac{\rho_{a}\log (\psi_{m}T\epsilon_{m}^{2})}{2 n_{m}}}$ and $\rho_{a}$ is decreased after every round, then an arbitrary arm $a_{i}$ is removed as soon as  $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ which essentially makes it a faster elimination procedure than UCB-Improved if $\rho_{a}\leq \epsilon_{m}$.
+%\end{remark}
+
+
+\begin{proposition}
+\label{proofSketch:Prop:2}
+Considering only the cluster elimination condition and $p>1$, the total regret till $T$ is upper bounded by $\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace \bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)  +  \bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s} -1}} \bigg)\bigg \rbrace +\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq \sqrt{\dfrac{e}{T}}$, where $\rho_{s}\in (0,1]$ is the cluster elimination parameter, $\psi_{m}$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
+\end{proposition}
+
+	The proof of Proposition 2 is given in Appendix \ref{App:B}.(Supplementary material)
