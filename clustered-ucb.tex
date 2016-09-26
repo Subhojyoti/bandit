@@ -6,7 +6,7 @@
 
 \twocolumn[
 
-\aistatstitle{Improved Regret Bounds with Clustered UCB}
+\aistatstitle{UCB with clustering and improved exploration}
 
 \aistatsauthor{ }
 
@@ -23,7 +23,8 @@ In this paper, we present a novel algorithm which achieves a better upper bound 
 
 %Old Abstract
 
-%In this paper we achieve a lower regret bound by a novel method of using clustering of arms based on their average estimated payoff. By clustering of arms we divide the larger problem into smaller sub-problems and individually solve the sub-problems to arrive at a global solution. We prove that by this method we achieve a regret bound of the order of $O\bigg(K\log(KT\Delta^{2})\bigg)$ where $\Delta$ is the minimal gap between the means of the reward distributions of the optimal arm and a sub-optimal arm , $K$ is the number of arms and $T$ is the horizon. This improves upon UCB-Revisited having regret bound $O\bigg(K\dfrac{\log(T\Delta^{2})}{\Delta}\bigg)$ . This bound also improves upon UCB1 which has a regret of $O\bigg(\dfrac{K\log T}{\Delta}\bigg)$ and MOSS which has a minimax distribution free upper bound on the regret in the order of $O(\sqrt{TK})$ and a distribution dependent upper bound of $O\bigg(\dfrac{K\log(T\Delta^{2}/K)}{\Delta}\bigg)$. We corroborate our findings empirically and showed that by sufficient tuning of some parameters we can achieve a lower regret than all the existing algorithms mentioned.
+%In this paper we achieve a lower regret bound by a novel method of using clustering of arms based on their average estimated payoff. By clustering of arms we divide the larger problem into smaller sub-problems and individually solve the sub-problems to arrive at a global solution. We prove that by this method we achieve a regret bound of the order of $O\bigg(K\log(KT\Delta^{2})\bigg)$ where $\Delta$ is the minimal gap between the means of the reward distributions of the optimal arm and a sub-optimal arm , $K$ is the number of arms and $T$ is the horizon. This improves upon UCB-Revisited having regret bound $O\bigg(K\dfrac{\log(T\Delta^{2})}{\Delta}\bigg)$ . This bound also improves upon UCB1 which has a regret of $O\bigg(\dfrac{K\log T}{\Delta}\bigg)$ and MOSS which has a minimax distribution free upper bound on the regret in the order of $O(\sqrt{TK})$ and a distribution dependent upper bound of $O\bigg(\dfrac{K\log(T\Delta^{2}/K)}{\Delta}\bigg)$. We corroborate our findings empirically and showed that by 
+sufficient tuning of some parameters we can achieve a lower regret than all the existing algorithms mentioned.
 %\dots
 %\keywords{Multi-Armed Bandit, UCB, Exploration-Exploitation, Clustering}
 \end{abstract}
@@ -32,17 +33,6 @@ In this paper, we present a novel algorithm which achieves a better upper bound 
 \label{sec:intro}
 \input{intro}
 
-
-
-
-\section{Preliminaries}
-\label{sec:prelims}
-\input{prelims}
-	
-%Some proofs are given in Appendix A and B. 
-
-
-%\pagebreak
 \section{Clustered UCB algorithm}
 \label{sec:clusucb}
 \input{algo}
@@ -59,8 +49,9 @@ In this paper, we present a novel algorithm which achieves a better upper bound 
 
 
 \section{Conclusions and future work}
-
-Our study concludes that theoretically the regret of ClusUCB is lower than UCB1, MOSS and UCB-Improved while empirically we compared against UCB1, MOSS, UCB-Improved, UCB-V, KL-UCB, DMED and Median Elimination under certain cases when the $\Delta_{i}$'s are small and $K$ is large. Such cases can frequently occur in web advertising scenarios where the $r_{i}$ are small and a large number of ads are available in the pool. For the critical case when $\Delta_{i:r_{i}<r*}, \forall i\in A$ are equal then ClusUCB performs better than UCB-Improved, UCB1, UCB-Tuned, KL-UCB, MOSS and Median Elimination with careful choosing  of parameters as shown empirically. Also ClusUCB scales well with large $K$ as compared with UCB1, UCB-Improved, MOSS, KL-UCB and Median Elimination. We must also remember as the number of arms increases UCB1, MOSS, KL-UCB and DMED will take more time as all of these algorithms have to build their confidence set over all the arms whereas algorithms like ClusUCB, UCB-Improved and Median Elimination will take much lesser time as they keep on removing sub-optimal arms after each round. Again KL-UCB because of its calculation of the divergence function performs much slower as compared to ClusUCB. Also, ClusUCB can be used in the budgeted bandit setup since within a fixed horizon/budget $T$, the algorithm comes up with an optimal arm with an exponentially decreasing error probability. Further uses of this algorithm can be in the contextual bandit scenario whereby the clustering of arms can be done on the basis of the feature vectors of the arms(advertisements) and users.
+\label{sec:conclusions}
+Our study concludes that theoretically the regret of ClusUCB is lower than UCB1, MOSS and UCB-Improved while empirically we compared against UCB1, MOSS, UCB-Improved, UCB-V, KL-UCB, DMED and Median Elimination under certain cases when the $\Delta_{i}$'s are small and $K$ is large. Such cases can frequently occur in web advertising scenarios where the $r_{i}$ are small and a large number of ads are available in the pool. For the critical case when $\Delta_{i:r_{i}<r*}, \forall i\in A$ are equal then ClusUCB performs better than UCB-Improved, UCB1, UCB-Tuned, KL-UCB, MOSS and Median Elimination with careful choosing  of parameters as shown empirically. Also ClusUCB scales well with large $K$ as compared with UCB1, UCB-Improved, MOSS, KL-UCB and Median Elimination. We must also remember as the number of arms increases UCB1, MOSS, KL-UCB and DMED will take more time as all of these algorithms have to build their confidence set over all the arms whereas algorithms like ClusUCB, UCB-Improved and Median Elimination 
+will take much lesser time as they keep on removing sub-optimal arms after each round. Again KL-UCB because of its calculation of the divergence function performs much slower as compared to ClusUCB. Also, ClusUCB can be used in the budgeted bandit setup since within a fixed horizon/budget $T$, the algorithm comes up with an optimal arm with an exponentially decreasing error probability. Further uses of this algorithm can be in the contextual bandit scenario whereby the clustering of arms can be done on the basis of the feature vectors of the arms(advertisements) and users.
 %As $\Delta \rightarrow 0$ and $K$ becomes large Clustered UCB will perform better than KL-UCB. This type of cases frequently occur in web advertising scenarios where the $r_{i}$ are small and large number of ads are available in the pool.
 %To check the regret of various algorithms an illustrative table is given below:-
 %\newline
