@@ -22,7 +22,7 @@ From the statement of Theorem 1 we can see that taking various values of $\rho_{
 
 \begin{corollary}
 \label{Result:Corollary:1}
-For $T\geq K^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}},\rho_{s}=\dfrac{1}{2^{m}} $ and $b=\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 2\sqrt{KT\log K} + \dfrac{12\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} + 2.8\dfrac{\sqrt{KT\log K}}{p} \bigg\rbrace$.
+Taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=K^{2}T$ and using $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{4}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{4}\bigg\rbrace $ and $b\approx\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 6\sqrt{KT} + 2\dfrac{\sqrt{KT}}{p} + 64\sqrt{KT\log K} + \dfrac{32\log{(\log K)}}{\sqrt{\log K}}\bigg\rbrace$.
 \end{corollary}
 
 
@@ -35,7 +35,7 @@ For $T\geq K^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theo
 
 \begin{corollary}
 \label{Result:Corollary:2}
-Taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=\dfrac{T}{\log (KT)}$ and using $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace $ we can have a gap dependent regret bound as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
+Taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=\dfrac{T}{\log (KT)}$ and using $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace $ and $b\approx\sqrt{\dfrac{K\log K}{T}}$ we can have a gap dependent regret bound as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
 \end{corollary}
 
 	The proof of this corollary is given in Appendix \ref{App:Proof:Corollary:2}.(Supplementary Material)
@@ -47,14 +47,14 @@ term and also both $\psi_{m}$ and $\rho_{a},\rho_{s}$ helps in stabilizing the t
 %\end{remark}	
 
 
-\begin{corollary}
-\label{Result:Corollary:3}
-For $T\geq (K\sqrt{\log K})^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}},\rho_{s}=\dfrac{1}{2^{m}} $ and $b=\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 2\sqrt{KT} + \dfrac{12\sqrt{T\log K}}{(K\sqrt{K})^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} + 2.8\dfrac{\sqrt{KT}}{p} \bigg\rbrace$.
-\end{corollary}
-
-	The proof of this corollary is given in Appendix \ref{App:Proof:Corollary:3}.(Supplementary Material)
-
-\paragraph*{}A different choosing of $\psi_{m}$ makes the gap independent regret bound of our algorithm as $O(\sqrt{KT})$ which makes it of the same order as MOSS and better than UCB-Improved.
+%\begin{corollary}
+%\label{Result:Corollary:3}
+%For $T\geq (K\sqrt{\log K})^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}},\rho_{s}=\dfrac{1}{2^{m}} $ and $b=\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 2\sqrt{KT} + \dfrac{12\sqrt{T\log K}}{(K\sqrt{K})^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} + 2.8\dfrac{\sqrt{KT}}{p} \bigg\rbrace$.
+%\end{corollary}
+%
+%	The proof of this corollary is given in Appendix \ref{App:Proof:Corollary:3}.(Supplementary Material)
+%
+%\paragraph*{}A different choosing of $\psi_{m}$ makes the gap independent regret bound of our algorithm as $O(\sqrt{KT})$ which makes it of the same order as MOSS and better than UCB-Improved.
 
 %\begin{remark}
 %\label{Result:Rem:5}
