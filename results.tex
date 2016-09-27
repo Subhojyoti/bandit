@@ -30,7 +30,7 @@ Taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting 
 
 %\begin{remark}
 %\label{Result:Rem:3}
-\paragraph*{}Thus we see that the most significant term in the gap-independent regret bound is the regret accumulated for not eliminating the sub-optimal arms, and this is bounded by $2\sqrt{KT\log K} + \dfrac{4\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}$. By carefully choosing $\rho_{a},\rho_{s}$ and $\psi_{m}$ we have been able to reduce the regret for the total number of pulls to $\dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}}$ which comes from the pulls required to eliminate all the clusters. So, the total order come of as $O(\sqrt{KT\log K})$ which matches the order of $O(\sqrt{KT})$ of MOSS except the term $\sqrt{\log K}$ and is better than UCB-Improved gap independent bound of $O\big(\sqrt{KT}\dfrac{\log(K\log K)}{\sqrt{\log K}}\big)$.
+\paragraph*{} So, the total order come of as $O(\sqrt{KT\log K})$ which matches the order of $O(\sqrt{KT})$ of MOSS except the term $\sqrt{\log K}$ and is same as the UCB-Improved gap independent bound of $O\big(\sqrt{KT\log K}\big)$.
 %\end{remark}
 
 \begin{corollary}
