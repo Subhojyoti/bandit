@@ -1,8 +1,8 @@
-\subsubsection*{Notation}
+\paragraph{Notation.}
 \label{sec:prelims}
 \input{prelims}
 
-\subsubsection*{Algorithm}
+\subsubsection*{The algorithm}
 
 Algorithm~\ref{alg:clusucb} presents the pseudocode of ClusUCB.
 
@@ -22,17 +22,11 @@ Algorithm~\ref{alg:clusucb} presents the pseudocode of ClusUCB.
 \algtext*{EndArmElim}
 \algtext*{EndClusElim}
 
-\begin{algorithm}
+\begin{algorithm}[t]
 \caption{ClusUCB}
 \label{alg:clusucb}
-%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.8pt}}\\[-0.1cm]
-% \textbf{Algorithm 1:} ClusUCB(p)\\[-0.3cm]
-%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\[-0.3cm]
 \begin{algorithmic}
-%\Procedure{\underline{Phase 1: Arm Exploration}}{}
-%\State Pull each arm once and calculate $\hat{r}_{i}, \forall i\in A$
-\State {\bf Input:} A partition of $A$ into clusters from Algorithm \ref{alg:rua}, exploration parameters $\rho_a$, $\rho_s$, horizon length $T$.
-% \State Call SubroutineCluster(p)
+\State {\bf Input:} A partition of $A$ into clusters from Algorithm \ref{alg:rua}, exploration parameters $\rho_a$, $\rho_s$, time horizon $T$.
 \State {\bf Initialization:} Set $B_{0}:=A$, $\psi_{m}=\log T$, $\epsilon_{0}:=1$ and $w_{0}:=1$.
 %\State For rounds $m=1,2,.. \lceil\frac{1}{2}\log T\rceil$
 \For{$m=0,1,..\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$}	
@@ -60,7 +54,24 @@ $$\hat{r}_{i} + \sqrt{\dfrac{\rho_{a}\log{(\psi_{m}T\epsilon_{m}^{2})}}{2 n_{m}}
 \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
+ClusUCB begins with a initial clustering of arms that is performed by random uniform allocation - see Algorithm \ref{alg:rua}. The set of clusters $S$ thus obtained satisfies $|S|=p$, with individual clusters having a size that is bounded above by $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$.
+%For creating these clusters we rely on the parameter $\epsilon_{m}$, which is initialized at $1$ and halved after every round. 
+%$\hat{\Delta}_{m}$(in which all $\hat{r}_{i}$ lies) divided by $\ell$. 
+%If the range before any round is found to be $0$ then we conduct a small exploration with the alternate definition of $\epsilon_{m}=\dfrac{1}{D_{m}}$. 
+%Thus, we see that as the rounds progresses, $\epsilon_{m}$ gets smaller and smaller resulting in tighter and tighter clusters with high purity level. Single link clustering tends to create large clusters with many elements in a single cluster. To avoid this behavior, mainly because we are conducting exploration inside a cluster based on its size, we bound the maximum cluster size possible in any round by $\ell=\min\lbrace 2^{m}, K \rbrace$. Hence as $\epsilon_{m}$ tends to $\Delta$ the upper limit on the cluster size gets fixed. 
+
+Each round of ClusUCB involves both individual arm as well as cluster elimination conditions that are inspired by UCB-Improved. Notice that, unlike UCB-Improved, there is no longer a single point of reference based on which we are eliminating arms. Instead now we have as many reference points to eliminate arms as number of clusters formed. 
+Further, the exploration factors $\rho_{a}\in (0,1]$ and $\rho_{s}\in (0,1]$ governing the arm and cluster elimination conditions, respectively, are relatively more aggressive than that in UCB-Improved. The number $n_m$ of times each arm is pulled per round in ClusUCB is lower than that of UCB-Improved, which used $n_{m}=\bigg\lceil \dfrac{2log(T\epsilon_{m}^{2})}{\epsilon_{m}^{2}} \bigg\rceil$ and Median-Elimination, which used $n_m=\dfrac{4}{\epsilon^{2}}\log\big(\dfrac{3}{\delta}\big)$, where $\epsilon,\delta$ are confidence parameters.
+
+We can be this aggressive because we have divided the larger problem into smaller sub-problems, doing local exploration and eliminating sub-optimal arms within each clusters with high probability. In particular, when $K$ is large and the gaps $\Delta_i$ are small, it is efficient to remove sub-optimal arms quickly rather getting tied down in hopeless exploration. 
+The theoretical analysis confirms this intuition, as choosing $\rho_a=\rho_s = 1/2^m$ and $\psi_m=K^2T$, ClusUCB is able to achive a better gap-dependent regret upper bound as compared to UCB-Improved and MOSS. 
+%Also our total regret depends on how many arms has survived till $m$-th round and so we don't need to keep track on the number of clusters formed.
+
+%Through cluster elimination condition we ensure that the stopping condition is reached faster. This is a much aggressive elimination condition and in the proofs we give a further analysis on why this works. The parameter $\rho\in (0,1]$ in the confidence interval actually makes the cluster elimination a faster elimination condition than the elimination condition in UCB-Improved.
+	
+%This is a parameter which we use to tune our exploration and we define its structure later in the proofs. There is also the weight($w_{s_{i}}$) parameter which   is calculated online and helps in eliminating arms with a higher probability which we employ to reduce the cumulative regret and this parameter is decide online specific to the cluster $s_{i}\in S$.
+
+\begin{algorithm}[t]
 \caption{Clustering by random uniform allocation}
 \label{alg:rua}
 \begin{algorithmic}
@@ -78,17 +89,3 @@ $$\hat{r}_{i} + \sqrt{\dfrac{\rho_{a}\log{(\psi_{m}T\epsilon_{m}^{2})}}{2 n_{m}}
 
 
 
-In \textbf{Algorithm 1} we are dividing the arm set $A$ into smaller clusters which belong to the cluster set $S$, where after clustering $|S|=p$. We are bounding the cluster size by $\ell$ such that $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$ where $p$ is the number of clusters pre-specified. We randomly uniformly allocate arms in each of the clusters and this is shown in SubroutineCluster($p$).
-%For creating these clusters we rely on the parameter $\epsilon_{m}$, which is initialized at $1$ and halved after every round. 
-%$\hat{\Delta}_{m}$(in which all $\hat{r}_{i}$ lies) divided by $\ell$. 
-%If the range before any round is found to be $0$ then we conduct a small exploration with the alternate definition of $\epsilon_{m}=\dfrac{1}{D_{m}}$. 
-%Thus, we see that as the rounds progresses, $\epsilon_{m}$ gets smaller and smaller resulting in tighter and tighter clusters with high purity level. Single link clustering tends to create large clusters with many elements in a single cluster. To avoid this behavior, mainly because we are conducting exploration inside a cluster based on its size, we bound the maximum cluster size possible in any round by $\ell=\min\lbrace 2^{m}, K \rbrace$. Hence as $\epsilon_{m}$ tends to $\Delta$ the upper limit on the cluster size gets fixed. 
-
-We can also see that at any round $m$, the pulls $n_{m}$ increases at a lesser rate compared to the round-based variants UCB-Improved $n_{m}=\bigg\lceil \dfrac{2log(T\tilde{\Delta}_{m}^{2})}{\tilde{\Delta}_{m}^{2}} \bigg\rceil$, where $\tilde{\Delta}_{m}$ is initialized at $1$ and halved after every round or Median-Elimination $\dfrac{4}{\epsilon^{2}}\log\big(\dfrac{3}{\delta}\big)$, where $\epsilon,\delta$ are the parameters for PAC guarantee.
-
-	Next, in each of the round we eliminate arms like UCB-Improved(\cite{auer2010ucb}) or Median Elimination(\cite{even2006action}),however, it is important to note that there is no longer a single point of reference based on which we are eliminating arms but now we have as many reference points to eliminate arms as number of clusters formed that is $p$. We can be this aggressive because we have divided the larger problem into smaller sub-problems, doing local exploration and eliminating sub-optimal arms within each clusters with high guarantee. Hence, compared to UCB-Improved or Median Elimination, the proposed algorithm should have a higher probability of arm deletion. Especially when $K$ is large it is efficient to remove sub-optimal arms quickly rather getting tied down in hopeless exploration. The parameters $\rho_{a}\in (0,1]$ and $\rho_{s}\in (0,1]$ for arm and cluster elimination helps in aggressive elimination of arms and clusters respectively. At the end of each round we update all the  parameters.
-%Also our total regret depends on how many arms has survived till $m$-th round and so we don't need to keep track on the number of clusters formed.
-
-%Through cluster elimination condition we ensure that the stopping condition is reached faster. This is a much aggressive elimination condition and in the proofs we give a further analysis on why this works. The parameter $\rho\in (0,1]$ in the confidence interval actually makes the cluster elimination a faster elimination condition than the elimination condition in UCB-Improved.
-	
-%This is a parameter which we use to tune our exploration and we define its structure later in the proofs. There is also the weight($w_{s_{i}}$) parameter which   is calculated online and helps in eliminating arms with a higher probability which we employ to reduce the cumulative regret and this parameter is decide online specific to the cluster $s_{i}\in S$.
