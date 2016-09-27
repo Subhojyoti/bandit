@@ -18,6 +18,16 @@ Considering only the arm elimination condition and $p=1$ the total regret till $
 %\end{remark}
 
 
+\begin{corollary}
+\label{proofSketch:Corollary:1}
+For $\rho_{a}=1$ in the result of proposition $1$, $\sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)  +  \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a} -1}} \bigg) \bigg \rbrace+\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ we get a regret bound of $\sum\limits_{i\in A:\Delta_{i}\geq b}\bigg(\Delta_{i} + \dfrac{44}{\psi_{m}(\Delta_{i})^{3}} + \dfrac{32\log{(\psi_{m}T\Delta_{i}^{4})}}{\Delta_{i}}\bigg) + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{12}{\psi_{m}b^{3}}$ for using just arm elimination with $p=1$.
+\end{corollary}
+
+
+\begin{proof}
+In the result of Proposition $1$ if we take $\rho_{a}=1$ then the regret bound becomes $ \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg(\Delta_{i} + \dfrac{44}{\psi_{m}(\Delta_{i})^{3}} + \dfrac{32\log{(\psi_{m}T\Delta_{i}^{4})}}{\Delta_{i}}\bigg) + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{12}{\psi_{m}b^{3}}$. From the result we can see that for small $\Delta_{i}$ and large $K$, the terms like $ \sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{44}{\psi_{m}(\Delta_{i})^{3}}\bigg) + \sum_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{12}{\psi_{m}b^{3}}$ can become the dominant term in the regret rather than $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\log{(\psi_{m}T\Delta_{i}^{4})}}{\Delta_{i}}$. Intuitively, this actually suggests that the algorithm is trying to eliminate arms with too low exploration and so the probability of elimination is low and error(risk) is high. For this essentially we introduce $\rho_{a},\rho_{s}$ and $\psi_{m}$ and by carefully defining their values enables us to eliminate arms and clusters aggressively and thereby reduce those two terms. 
+\end{proof}
+
 \begin{proposition}
 \label{proofSketch:Prop:2}
 Considering only the cluster elimination condition and $p>1$, the total regret till $T$ is upper bounded by $\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace \bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)  +  \bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s} -1}} \bigg)\bigg \rbrace +\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq \sqrt{\dfrac{e}{T}}$, where $\rho_{s}\in (0,1]$ is the cluster elimination parameter, $\psi_{m}$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.

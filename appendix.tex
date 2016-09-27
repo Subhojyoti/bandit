@@ -70,19 +70,19 @@
 
 
 
-\section{Appendix A}
+\section{Proof of Proposition 1}
 \label{App:A}
-\begin{proposition}
-Considering only the arm elimination condition and $p=1$ the total regret till $T$ is upper bounded by $\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)  +  \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a} -1}} \bigg) \bigg \rbrace+\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq\sqrt{\dfrac{e}{T}}$, where $\rho_{a}\in (0,1]$ is the arm elimination parameter, $\psi_{m}$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
-\end{proposition}
+%\begin{proposition}
+%Considering only the arm elimination condition and $p=1$ the total regret till $T$ is upper bounded by $\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)  +  \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a} -1}} \bigg) \bigg \rbrace+\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq\sqrt{\dfrac{e}{T}}$, where $\rho_{a}\in (0,1]$ is the arm elimination parameter, $\psi_{m}$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
+%\end{proposition}
 
-\begin{proof} of Proposition 3:
+\begin{proof}:
 
 Let $p=1$ whereby we put all the arms in set $A$ into one cluster, that is we have one UCB-Improved running throughout. So, for each sub-optimal arm $a_{i}$, $m_{i}=\min{\lbrace m|\sqrt{\rho_{a}\epsilon_{m}}\leq \dfrac{\Delta_{i}}{2} \rbrace}$ be the first round when $\sqrt{\rho_{a}\epsilon_{m}}\leq \dfrac{\Delta_{i}}{2}$. Also in this proof, since the clusters are fixed, so throughout the rounds each $m_{i}$ is tied to a single arm.
 
-\subsection{Case a:} 
-Some sub-optimal arm $a_{i}$ is not eliminated in round $m_{i}$ or before and the optimal arm $a^{*}\in B_{m_{i}}$
-\newline In arm elimination condition, given the choice of confidence interval $c_{m}$, we want to bound the event $\hat{r}_{i}+c_{m_{i}}\leq \hat{r}^{*}-c_{m_{i}}$. 
+%\subsection{Case a:} 
+\paragraph*{}\textbf{Case a:} Some sub-optimal arm $a_{i}$ is not eliminated in round $m_{i}$ or before and the optimal arm $a^{*}\in B_{m_{i}}$
+\paragraph*{} In arm elimination condition, given the choice of confidence interval $c_{m}$, we want to bound the event $\hat{r}_{i}+c_{m_{i}}\leq \hat{r}^{*}-c_{m_{i}}$. 
 %In this proof we will consider $w_{s_{i}}=1$ and $\psi_{m}=1$. 
 %Later, we will discuss how different values of $w_{s_{i}}$ actually effects the regret bound.
 %with a more tighter event of $ \hat{r}_{i} + \sqrt{w_{s_{i}}}c_{m} \leq \hat{r}^{*} - \sqrt{w_{s_{i}}}c_{m}$ which will result in faster elimination of arms within a cluster, given the choice of $c_{m}$ and $w_{s_{i}}$.
@@ -148,8 +148,8 @@ $\leq \sum_{i\in A}\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}
 %\newline\hspace*{4em} $\sum_{i\in A}\bigg(\dfrac{2*4T\Delta_{i}}{T\epsilon_{m_{i}}\dfrac{\Delta_{i}}{2}^{2}}\bigg)\leq \sum_{i\in A}\bigg(\dfrac{8}{\epsilon_{m_{i}}\Delta_{i}}\bigg)\leq \sum_{i\in A}\bigg(\dfrac{32}{\Delta_{i}^{3}}\bigg)$
 
 
-\subsection{Case b1:} 
-Either an arm $a_{i}$ is eliminated in round $m_{i}$ or before or else there is no optimal arm $a^{*}\in B_{m_{i}}$. Also, since we are eliminating a sub-optimal arm $a_{i}$ on or before round $m_{i}$, it is pulled no longer than,
+\paragraph*{}\textbf{Case b1:} Either an arm $a_{i}$ is eliminated in round $m_{i}$ or before or else there is no optimal arm $a^{*}\in B_{m_{i}}$. 
+\paragraph*{} Since we are eliminating a sub-optimal arm $a_{i}$ on or before round $m_{i}$, it is pulled no longer than,
 \newline
 \hspace*{4em}$n_{m_{i}}=\bigg\lceil\dfrac{2\log{(\psi_{m}T\epsilon_{m_{i}}^{2})}}{\epsilon_{m_{i}}}\bigg\rceil$
 \newline
@@ -170,8 +170,8 @@ Summing over all arms in $A$,
 \newline
 \hspace*{4em}$\leq\sum_{i\in A}\Delta_{i}\bigg(1+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}}})}{\Delta_{i}^{2}}\bigg)$
 
-\subsection{Case b2:} 
-In this case we will consider that the optimal arm $a^{*}$ was eliminated by a sub-optimal arm. Firstly, if conditions of case b1 holds then the optimal arm $a^{*}$ will not be eliminated in round $m=m_{*}$ or it will lead to the contradiction that $r_{i}>r^{*}$. In any round $m_{*}$, if the optimal arm $a^{*}$ gets eliminated then for any round from $1$ to $m_{j}$ all arms $a_{j}$ such that $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{j}}{2}$ were eliminated according to assumption in case $b1$. Let, the arms surviving till $m_{*}$ round be denoted by $A^{'}$. This leaves any arm $a_{b}$ such that $\sqrt{\rho_{a}\epsilon_{m}}\geq\dfrac{\Delta_{b}}{2}$ to still survive and eliminate arm $a^{*}$ in round $m_{*}$. Let, such arms that survive $a^{*}$ belong to $A^{''}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}$ with $m_{j}\geq m_{*}$.  Let $m_{b}$ be the round when $\sqrt{\sqrt{\rho_{a}}\epsilon_{m}}<\dfrac{\Delta_{b}}{2}$ that is $m_{b}=min\lbrace m|\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{b}}{2}\rbrace$. Hence, the maximal regret after eliminating the arm $a^{*}$ is upper bounded by, 
+\paragraph*{}\textbf{Case b2:} Optimal arm $a^{*}$ is eliminated by a sub-optimal arm. 
+\paragraph*{} Firstly, if conditions of case b1 holds then the optimal arm $a^{*}$ will not be eliminated in round $m=m_{*}$ or it will lead to the contradiction that $r_{i}>r^{*}$. In any round $m_{*}$, if the optimal arm $a^{*}$ gets eliminated then for any round from $1$ to $m_{j}$ all arms $a_{j}$ such that $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{j}}{2}$ were eliminated according to assumption in case $b1$. Let, the arms surviving till $m_{*}$ round be denoted by $A^{'}$. This leaves any arm $a_{b}$ such that $\sqrt{\rho_{a}\epsilon_{m}}\geq\dfrac{\Delta_{b}}{2}$ to still survive and eliminate arm $a^{*}$ in round $m_{*}$. Let, such arms that survive $a^{*}$ belong to $A^{''}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}$ with $m_{j}\geq m_{*}$.  Let $m_{b}$ be the round when $\sqrt{\sqrt{\rho_{a}}\epsilon_{m}}<\dfrac{\Delta_{b}}{2}$ that is $m_{b}=min\lbrace m|\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{b}}{2}\rbrace$. Hence, the maximal regret after eliminating the arm $a^{*}$ is upper bounded by, 
 \newline
 $\sum_{m_{*}=0}^{max_{j\in A^{'}}m_{j}}\sum_{i\in A^{''}:m_{i}>m_{*}}\bigg(\dfrac{2}{(\psi_{m}T\epsilon_{m}^{2})^{\rho_{a}}} \bigg).T\max_{j\in A^{''}:m_{j}\geq m_{*}}{\Delta}_{j}$
 \newline
@@ -195,30 +195,24 @@ Summing up \textbf{Case a}, \textbf{Case b1} and \textbf{Case b2}, the total reg
 \newline $R_{T}\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)  +  \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a} -1}} \bigg) \bigg \rbrace+\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$
 \end{proof}
 
-\begin{remark}
-\label{App:A:Rem:1}
-In the above result if we take $\rho_{a}=1$ then the regret bound becomes $ \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg(\Delta_{i} + \dfrac{44}{\psi_{m}(\Delta_{i})^{3}} + \dfrac{32\log{(\psi_{m}T\Delta_{i}^{4})}}{\Delta_{i}}\bigg) + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{12}{\psi_{m}b^{3}}$. From the result we can see that for small $\Delta_{i}$ and large $K$, the terms like $ \sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{44}{\psi_{m}(\Delta_{i})^{3}}\bigg) + \sum_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{12}{\psi_{m}b^{3}}$ can become the dominant term in the regret rather than $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\log{(\psi_{m}T\Delta_{i}^{4})}}{\Delta_{i}}$. Intuitively, this actually suggests that the algorithm is trying to eliminate arms with too low exploration and so the probability of elimination is low and error(risk) is high. For this essentially we introduce $\rho_{a},\rho_{s}$ and $\psi_{m}$ and by carefully defining their values enables us to eliminate arms and clusters aggressively and thereby reduce those two terms. 
-%After proving proposition $4$ we give an alternate regret bound for arm elimination, which closely follows from the proof of both proposition $3$ and $4$.  
-\end{remark}
-
-\section{Appendix B}
+\section{Proof of Proposition 2}
 \label{App:B}
+
 \begin{figure}
 \includegraphics[scale=0.3]{img/diagCluster.jpg}
 \caption{Cluster Elimination}
 \label{Fig:ClusFig}
 \end{figure}
 
-\begin{proposition}
-Considering only the cluster elimination condition and $p>1$, the total regret till $T$ is upper bounded by $\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace \bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)  +  \bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s} -1}} \bigg)\bigg \rbrace +\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq \sqrt{\dfrac{e}{T}}$, where $\rho_{s}\in (0,1]$ is the cluster elimination parameter, $\psi_{m}$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
-\end{proposition}
-
-
-\begin{proof} of Proposition 4:
+%\begin{proposition}
+%Considering only the cluster elimination condition and $p>1$, the total regret till $T$ is upper bounded by $\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace \bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)  +  \bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s} -1}} \bigg)\bigg \rbrace +\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq \sqrt{\dfrac{e}{T}}$, where $\rho_{s}\in (0,1]$ is the cluster elimination parameter, $\psi_{m}$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
+%\end{proposition}
 
 \paragraph*{}An illustrative diagram explaining Cluster Elimination is given in \textbf{Figure \ref{Fig:ClusFig}}. A slight modification to the algorithm allows us to do cluster elimination without any arm elimination. By taking $p>1$, removing the arm elimination condition, stopping when we are just left with one cluster and pulling the $max\lbrace \hat{r}_{i}\rbrace$, where $a_{i}\in B_{m}$ we can achieve this.
 \newline
-A sketch of the proof is given below,
+
+\begin{proof}:
+\paragraph*{} A sketch of the proof is given below,
 
 \begin{itemize}
 \item Define $C_{g}$ as the active cluster set which contains the max payoff arm from all the clusters active in the $g$-th round. So, the maximum cardinality of $C_{g}$ is $p$ and also this is always a non-increasing set.
@@ -244,9 +238,8 @@ Let, for each sub-optimal cluster arm $a_{max_{s_{k}}}\in C_{g_{s_{k}}}$, $g_{s_
 
 %The parameter $\rho_{s}$ is introduced just to make sure that the cluster elimination is a more aggressive elimination than arm elimination.
 
-\subsection{Case a1:} 
-Some sub-optimal cluster arm $a_{max_{s_{k}}}$ is not eliminated in round $g_{s_{k}}$ or before and the optimal cluster arm $a^{*}\in C_{g_{s_{k}}} \subset B_{m}$
-\newline In arm elimination condition, given the choice of confidence interval $c_{g_{s_{k}}}$, we want to bound the event $\hat{r}_{s_{k}}+c_{g_{s_{k}}}\leq \hat{r}^{*}-c_{g_{s_{k}}}$.
+\paragraph*{}\textbf{Case a1:} Some sub-optimal cluster arm $a_{max_{s_{k}}}$ is not eliminated in round $g_{s_{k}}$ or before and the optimal cluster arm $a^{*}\in C_{g_{s_{k}}} \subset B_{m}$.
+\paragraph*{} In arm elimination condition, given the choice of confidence interval $c_{g_{s_{k}}}$, we want to bound the event $\hat{r}_{s_{k}}+c_{g_{s_{k}}}\leq \hat{r}^{*}-c_{g_{s_{k}}}$.
 %with a more tighter event of $ \hat{r}_{i} + \sqrt{w_{s_{k}}}c_{m} \leq \hat{r}^{*} - \sqrt{w_{s_{k}}}c_{m}$ which will result in faster elimination of arms within a cluster, given the choice of $c_{m}$ and $w_{s_{k}}$.
 \newline Now, $c_{g_{s_{k}}}=\sqrt{\dfrac{\rho_{s} \log (\psi_{m}T\epsilon_{g_{s_{k}}}^{2})}{2 n_{g_{s_{k}}}}}$, where $0 < \rho_{s}\leq 1$
 \newline Putting the value of $n_{g_{s_{k}}}=\dfrac{2\log{(\psi_{m}T\epsilon_{g_{s_{k}}}^{2})}}{\epsilon_{g_{s_{k}}}}$ in $c_{g_{s_{k}}}$,
@@ -308,14 +301,14 @@ Summing up over all $p$ clusters and bounding trivially by $T\Delta_{i}$,
 $\leq \sum_{i\in A}\bigg(\dfrac{2^{1+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)$
 %\newline Thus, we see that putting a value of $\rho_{s}=1$, nicely brings out the result of case a of proposition $3$.
 
-\subsection{Case a2:}
-In the above case we considered that $a^{*}\in C_{g_{s_{k}}}$ being the max-payoff arm from optimal cluster $s^{*}$. Now, if that is not the case and $\exists a_{max_{s^{*}}}\in s^{*}$ such that $\hat{r}_{a_{max_{s^{*}}}}> \hat{r}^{*}$, so $a_{max_{s^{*}}}$ will be in $C_{g_{s_{k}}}$ in the $g_{s_{k}}$-th round. In this case for some sub-optimal arm $a_{max_{s_{k}}}\in C_{g_{s_{k}}}$, we have to bound the probability $\mathbb{P}\bigg\lbrace\hat{r}_{a_{max_{s_{k}}}}+c_{g_{s_{k}}}\bigg\rbrace< \mathbb{P}\bigg\lbrace\hat{r}_{a_{max_{s^{*}}}}-c_{g_{s_{k}}}\bigg\rbrace$. But, this probability can be no worse than \textbf{Case a1} since $r_{max_{s^{*}}} < r^{*}$ and all arms get pulled $n_{g_{s_{k}}}$ number of times in the $g$-th round. So the regret for not eliminating a sub-optimal cluster even when $a^{*}\notin C_{g_{s_{k}}}$(but still surviving in $s^{*}$) can be no worse than $\bigg(\dfrac{2}{(T\epsilon_{g_{s_{k}}}^{2})^{\rho_{s}}}\bigg)$. After summing over all arms in $A$ and bounding trivially by $T\Delta_{i}$ we get the same result as above. The regret can be no more than,
+\paragraph*{}\textbf{Case a2:} Some sub-optimal cluster arm $a_{max_{s_{k}}}$ is not eliminated in round $g_{s_{k}}$ or before and the optimal cluster arm $a^{*}\notin C_{g_{s_{k}}} \subset B_{m}$. 
+\paragraph*{} In the above case we considered that $a^{*}\in C_{g_{s_{k}}}$ being the max-payoff arm from optimal cluster $s^{*}$. Now, if that is not the case and $\exists a_{max_{s^{*}}}\in s^{*}$ such that $\hat{r}_{a_{max_{s^{*}}}}> \hat{r}^{*}$, so $a_{max_{s^{*}}}$ will be in $C_{g_{s_{k}}}$ in the $g_{s_{k}}$-th round. In this case for some sub-optimal arm $a_{max_{s_{k}}}\in C_{g_{s_{k}}}$, we have to bound the probability $\mathbb{P}\bigg\lbrace\hat{r}_{a_{max_{s_{k}}}}+c_{g_{s_{k}}}\bigg\rbrace< \mathbb{P}\bigg\lbrace\hat{r}_{a_{max_{s^{*}}}}-c_{g_{s_{k}}}\bigg\rbrace$. But, this probability can be no worse than \textbf{Case a1} since $r_{max_{s^{*}}} < r^{*}$ and all arms get pulled $n_{g_{s_{k}}}$ number of times in the $g$-th round. So the regret for not eliminating a sub-optimal cluster even when $a^{*}\notin C_{g_{s_{k}}}$(but still surviving in $s^{*}$) can be no worse than $\bigg(\dfrac{2}{(T\epsilon_{g_{s_{k}}}^{2})^{\rho_{s}}}\bigg)$. After summing over all arms in $A$ and bounding trivially by $T\Delta_{i}$ we get the same result as above. The regret can be no more than,
 \newline
 $\sum_{i\in A}\bigg(\dfrac{2^{1+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)$
 
 
-\subsection{Case b1:} 
-Either an arm $a_{max_{s_{k}}}\in C_{g_{s_{k}}}$ is eliminated along with all the arms in the cluster $s_{k}$ in round $g_{s_{k}}$(or before) or else there is no optimal arm $a^{*}\in C_{g_{s_{k}}}$. Again, in the $g_{s_{k}}$-th round, the maximum total elements in the cluster $s_{k}$ can be no more than $\ell=\bigg\lceil \dfrac{K}{p}\bigg\rceil$.
+\paragraph*{}\textbf{Case b1:} Either an arm $a_{max_{s_{k}}}\in C_{g_{s_{k}}}$ is eliminated along with all the arms in the cluster $s_{k}$ in round $g_{s_{k}}$(or before) or else there is no optimal arm $a^{*}\in C_{g_{s_{k}}}$. 
+\paragraph*{} Again, in the $g_{s_{k}}$-th round, the maximum total elements in the cluster $s_{k}$ can be no more than $\ell=\bigg\lceil \dfrac{K}{p}\bigg\rceil$.
 \newline
 Also, since we are eliminating a sub-optimal arm $a_{max_{s_{k}}}\in C_{g_{s_{k}}}$ on or before round $g_{s_{k}}$, it is pulled (along with all the other arms in that cluster) no longer than,
 \newline
@@ -361,8 +354,8 @@ Summing over all $p$ clusters ,
 %$R_{T}\leq \sum_{i\in A}\bigg (\max{\bigg\lbrace \bigg(\dfrac{32}{(\Delta_{i})^{3}}\bigg) ,\bigg(\dfrac{25\Delta_{i}}{(\Delta^{2})(0.16T\Delta^{2})^{2|B_{m}|^{2}\Delta/5}}\bigg)\bigg\rbrace} + \bigg(\Delta_{i}+\dfrac{32\log{(T\dfrac{\Delta_{i}^{4}}{16})}}{\Delta_{i}}\bigg)\bigg)$. 
 %\todo{will prove case b2 once you verify that this approach is correct}
 
-\subsection{Case b2:} 
-In this case we will consider that the cluster $s^{*}$ containing the optimal arm $a^{*}$ was eliminated by a sub-optimal cluster. Firstly, if conditions of case $b1$ holds then the optimal arm $a^{*}\in C_{g_{s_{k}}}$ will not be eliminated in round $g_{s_{k}}=g_{*}$ or it will lead to the contradiction that $r_{a_{max_{s_{k}}}}>r^{*}$ where $a_{max_{s_{k}}},a^{*}\in C_{g_{s_{k}}}$. In any round $g_{*}$, if the optimal arm $a^{*}$ gets eliminated then for any round from $1$ to $g_{s_{j}}$ all arms $a_{s_{j}}\in C_{g_{s_{k}}},\forall s_{j}\neq s^{*}$ such that $\sqrt{\rho_{s}\epsilon_{g_{s_{k}}}}<\dfrac{\Delta_{a_{s_{j}}}}{2}$ were eliminated according to assumption in case $b1$. Let, the arms surviving till $g_{*}$ round be denoted by $C_{g}^{'}$. This leaves any arm $a_{s_{b}}$ such that $\sqrt{\rho_{s}\epsilon_{g_{s_{b}}}}\geq\dfrac{\Delta_{a_{s_{b}}}}{2}$ to still survive and eliminate arm $a^{*}$ in round $g_{*}$. Let, such arms that survive $a^{*}$ belong to $C_{g}^{''}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}\in B_{m}$ with $g_{s_{j}}\geq g_{*}$.  Let $g_{s_{b}}$ be the round when $\sqrt{\rho_{s}\epsilon_{g_{s_{b}}}}<\dfrac{\Delta_{s_{b}}}{2}$ that is $g_{b}=min\lbrace g|\sqrt{\rho_{s}\epsilon_{g_{s_{b}}}}<\dfrac{\Delta_{b}}{2}\rbrace$ and the cluster $s_{b}$ gets eliminated. Hence, the maximal regret after eliminating the arm $a^{*}$ is upper bounded by, 
+\paragraph*{}\textbf{Case b2:} Cluster $s^{*}$ containing the optimal arm $a^{*}$ is eliminated by a sub-optimal cluster and $a^{*}\in C_{g}$. 
+\paragraph*{} Firstly, if conditions of case $b1$ holds then the optimal arm $a^{*}\in C_{g_{s_{k}}}$ will not be eliminated in round $g_{s_{k}}=g_{*}$ or it will lead to the contradiction that $r_{a_{max_{s_{k}}}}>r^{*}$ where $a_{max_{s_{k}}},a^{*}\in C_{g_{s_{k}}}$. In any round $g_{*}$, if the optimal arm $a^{*}$ gets eliminated then for any round from $1$ to $g_{s_{j}}$ all arms $a_{s_{j}}\in C_{g_{s_{k}}},\forall s_{j}\neq s^{*}$ such that $\sqrt{\rho_{s}\epsilon_{g_{s_{k}}}}<\dfrac{\Delta_{a_{s_{j}}}}{2}$ were eliminated according to assumption in case $b1$. Let, the arms surviving till $g_{*}$ round be denoted by $C_{g}^{'}$. This leaves any arm $a_{s_{b}}$ such that $\sqrt{\rho_{s}\epsilon_{g_{s_{b}}}}\geq\dfrac{\Delta_{a_{s_{b}}}}{2}$ to still survive and eliminate arm $a^{*}$ in round $g_{*}$. Let, such arms that survive $a^{*}$ belong to $C_{g}^{''}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}\in B_{m}$ with $g_{s_{j}}\geq g_{*}$.  Let $g_{s_{b}}$ be the round when $\sqrt{\rho_{s}\epsilon_{g_{s_{b}}}}<\dfrac{\Delta_{s_{b}}}{2}$ that is $g_{b}=min\lbrace g|\sqrt{\rho_{s}\epsilon_{g_{s_{b}}}}<\dfrac{\Delta_{b}}{2}\rbrace$ and the cluster $s_{b}$ gets eliminated. Hence, the maximal regret after eliminating the arm $a^{*}$ is upper bounded by, 
 \newline
 $\sum_{g_{*}=0}^{max_{j\in C_{g}^{'}}g_{s_{j}}}\sum_{i\in C_{g}^{''}:g_{s_{k}}>g_{*}}\bigg(\dfrac{2}{(\psi_{m}T\epsilon_{g_{s_{k}}}^{2})^{\rho_{s}}} \bigg).T\max_{j\in C_{g}^{''}:g_{s_{j}}\geq g_{*}}{\Delta}_{a_{s_{j}}}$
 \newline
@@ -388,8 +381,8 @@ $\leq\sum_{g_{*}=0}^{max_{j\in A^{'}}g_{s_{j}}}\sum_{i\in A^{''}:g_{s_{k}}>g_{*}
 \newline
 \hspace*{0em}$\leq\sum_{i\in A^{'}}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s}-1}} \bigg)$
 
-\subsection{Case b3:}
-Now, in the above case again we considered that $a^{*}$ is in $C_{g}$. In this case we will consider that the cluster $s^{*}$ containing the optimal arm $a^{*}$ was eliminated by another sub-optimal cluster and $a^{*}\notin C_{g}$. This will be the mirror case of Case $b2$ and since $s^{*}$ gets eliminated by $a_{s_{b}}$ such that $\sqrt{\rho_{s}\epsilon_{g_{s_{b}}}}\geq\dfrac{\Delta_{a_{s_{b}}}}{2}$ round $g_{*}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}\in B_{m}$ with $g_{s_{j}}\geq g_{*}$. Following the same way above we can bound the regret as,
+\paragraph*{}\textbf{Case b3:} Cluster $s^{*}$ containing the optimal arm $a^{*}$ is eliminated by a sub-optimal cluster and $a^{*}\notin C_{g}$. 
+\paragraph*{} Now, in the above case again we considered that $a^{*}$ is in $C_{g}$. In this case we will consider that the cluster $s^{*}$ containing the optimal arm $a^{*}$ was eliminated by another sub-optimal cluster and $a^{*}\notin C_{g}$. This will be the mirror case of Case $b2$ and since $s^{*}$ gets eliminated by $a_{s_{b}}$ such that $\sqrt{\rho_{s}\epsilon_{g_{s_{b}}}}\geq\dfrac{\Delta_{a_{s_{b}}}}{2}$ round $g_{*}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}\in B_{m}$ with $g_{s_{j}}\geq g_{*}$. Following the same way above we can bound the regret as,
 \newline
 \hspace*{0em}$\leq\sum_{i\in A^{'}}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s}-1}} \bigg)$
 \newline
@@ -405,18 +398,18 @@ Thus, we see that the regret bound for using just arm elimination is actually le
 
 
 
-\section{Appendix C}
+\section{Proof of Theorem 1}
 \label{App:C}
-\begin{theorem}
-Considering both the arm elimination and cluster elimination condition and $p>1$, the total regret till $T$ is upper bounded by $\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b} \bigg\lbrace \bigg(2\Delta_{i}+\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg) + \bigg(\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg\lbrace \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)\bigg\rbrace + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace  \bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s} -1}} \bigg) \bigg\rbrace + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq \sqrt{\dfrac{e}{T}}$, where $\rho_{a},\rho_{s}\in (0,1]$ are the arm and cluster elimination parameter respectively, $A_{s^{*}}$ is the number of arms in optimal cluster $s^{*}$ such that $|A_{s^{*}}|\leq \big\lceil\frac{K}{p}\big\rceil$ , $p$ is the number of clusters and $T$ is the horizon.
-\end{theorem}
+%\begin{theorem}
+%Considering both the arm elimination and cluster elimination condition and $p>1$, the total regret till $T$ is upper bounded by $\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b} \bigg\lbrace \bigg(2\Delta_{i}+\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg) + \bigg(\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg\lbrace \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)\bigg\rbrace + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace  \bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s} -1}} \bigg) \bigg\rbrace + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq \sqrt{\dfrac{e}{T}}$, where $\rho_{a},\rho_{s}\in (0,1]$ are the arm and cluster elimination parameter respectively, $A_{s^{*}}$ is the number of arms in optimal cluster $s^{*}$ such that $|A_{s^{*}}|\leq \big\lceil\frac{K}{p}\big\rceil$ , $p$ is the number of clusters and $T$ is the horizon.
+%\end{theorem}
 
 \begin{proof}
 The optimal cluster which contains $a^{*}$ is denoted by $s^{*}$. The arms belonging to cluster $s_{k}$ is denoted by $A_{s_{k}}$. Combining both the cases of Proposition $3$ and Proposition $4$ we can see that a sub-optimal arm $a_{i}$ can only be eliminated given that either $m_{i}$ or $g_{s_{k}}$s.t $\exists a_{i}\in s_{k}$ happens with $a^{*}\in s^{*}$ still surviving. In Proposition $3$ we consider only arm elimination and in Proposition $4$ we consider only cluster elimination. Also this proof we will consider $p>1$. So there will be slight modification from what we proved in proposition $3$ with $p=1$. For random uniform allocation we will assume that each cluster $s_{k},\forall s_{k}\in S$, gets such an arm such that $r_{{max_{s_{k}}}}\geq r_{a_{i}},\forall i\in s_{k}$. Again, $r_{a^{*}}\geq r_{{max_{s_{k}}}}, \forall s_{k}\in S$.
 %Also we cluster the arms based on $\epsilon_{m}$.
 % One vital point we point out is that, $\epsilon_{m}$(in proposition $3$) = $\epsilon_{g}$(in proposition $4$).
-\subsection{Case a:} 
-In this case, a sub-optimal arm $a_{i}$ can get eliminated in $4$ ways,
+\paragraph*{}\textbf{Case a:} Some sub-optimal arm $a_{i}$ is not eliminated in round $m_{i}$ or before and the optimal arm $a^{*}\in B_{m_{i}}$. 
+\paragraph*{} In this case, a sub-optimal arm $a_{i}$ can get eliminated in $4$ ways,
 \begin{enumerate}
 \item $a_{i}$ in $s^{*}$ and $m_{i}$ happens which is Proposition $3$(case $a1$)
 \item $a_{i}$ in $s_{k}$, where $r_{max_{s_{k}}}\leq r^{*}$ and $m_{i}$ happens. This case was not dealt in Proposition $3$ as there we took $p=1$. Since, now $p>1$ and $r_{max_{s_{k}}}\leq r^{*}$, following the same way as case $a$, Proposition $3$ we can show that the probability of $a_{i}$ not getting eliminated  cannot be worse than Proposition $3$(case $a1$) given that $\sqrt{\rho_{a}\epsilon_{m}}< \dfrac{\Delta^{'}_{i}}{2}$ where $\Delta^{'}_{i}=r_{max_{s_{k}}} - r_{i}\geq\Delta_{a_{max_{s_{k}}}}$ such that $r_{i}\in s_{k}$. Plugging in this $\Delta^{'}_{i}$ in Proposition $3$, case $a$ we can derive a similar bound where $\Delta^{'}_{i}\geq \Delta_{a_{max_{s_{k}}}}$ because otherwise case $3$(next case) will happen before as $\sqrt{\epsilon_{m}\rho_{s}}< \dfrac{\Delta_{a_{max_{s_{k}}}}}{2}$ and the cluster $s_{k}$ gets eliminated or $a_{max_{s_{k}}}$ will eliminate $a^{*}$ which is dealt later.
@@ -433,13 +426,13 @@ $= \sum_{i\in A}\bigg\lbrace \bigg(\dfrac{2^{1+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{
 %$ \leq\bigg\lbrace \sum_{i\in A_{s_{k}}}\bigg(\dfrac{32}{\Delta_{i}^{3}}\bigg) + \sum_{i\in A}\bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\bigg)\bigg\rbrace$ 
 %\newline
 %before a sub-optimal arm is eliminated by arm elimination or cluster elimination condition.
-\subsection{Case b1:} 
-For any sub-optimal arm still surviving given $m_{i}$ or $g_{s_{k}}$ have not happened and $a^{*}\in s^{*}$ still surviving then they get pulled $n_{m_{i}}$ or $n_{g_{s_{k}}}$ number of times(combining the result of Proposition $3$(case $b1$) and Proposition $4$(case $b1)$). Hence, we can show that till an arm or a cluster is eliminated, the maximum regret suffered due to pulling of a sub-optimal arm(or a sub-optimal cluster) is no less than,
+\paragraph*{}\textbf{Case b1:} Either an arm $a_{i}$ is eliminated in round $m_{i} or g_{s_{k}}$ or before or else there is no optimal arm $a^{*}\in B_{m_{i}}$. 
+\paragraph*{} For any sub-optimal arm still surviving given $m_{i}$ or $g_{s_{k}}$ have not happened and $a^{*}\in s^{*}$ still surviving then they get pulled $n_{m_{i}}$ or $n_{g_{s_{k}}}$ number of times(combining the result of Proposition $3$(case $b1$) and Proposition $4$(case $b1)$). Hence, we can show that till an arm or a cluster is eliminated, the maximum regret suffered due to pulling of a sub-optimal arm(or a sub-optimal cluster) is no less than,
 \newline
 $\sum_{i\in A}\bigg\lbrace\bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)\bigg\rbrace $
 \newline
-\subsection{Case b2:} 
-Lastly we have to take into consideration the error bound, that the optimal arm $a^{*}$ or the optimal cluster $s^{*}$ gets eliminated by any sub-optimal arm or sub-optimal cluster. This, can happen in $3$ ways,
+\paragraph*{}\textbf{Case b2:}  Optimal arm $a^{*}$ is eliminated by a sub-optimal arm.  
+\paragraph*{} Here, we take into consideration the error bound, that the optimal arm $a^{*}$ or the optimal cluster $s^{*}$ gets eliminated by any sub-optimal arm or sub-optimal cluster. This, can happen in $3$ ways,
 \begin{enumerate}
 \item In $s^{*}$, $a^{*}$ got eliminated by other arms surviving till $m_{*}$. Let, the arms surviving till $m_{*}$ round be denoted by $A^{'}_{s^{*}}$. This leaves any arm $a_{b}$ such that $\sqrt{\rho_{a}\epsilon_{m}}\geq\dfrac{\Delta_{b}}{2}$ to still survive and eliminate arm $a^{*}$ in round $m_{*}$. Let, such arms that survive $a^{*}$ belong to $A^{''}_{s^{*}}$. As proved in Proposition $3$, case $b2$ this regret can be no more than,
 \newline
@@ -466,74 +459,79 @@ $R_{T}\leq \sum_{i\in A} \bigg\lbrace  \underbrace{\bigg(\dfrac{2^{1+4\rho_{s}}\
 or, $R_{T}\leq \sum\limits_{i\in A:\Delta_{i}\geq b} \bigg\lbrace \bigg(2\Delta_{i}+\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg) + \bigg(\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg\lbrace \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)\bigg\rbrace + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace  \bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s} -1}} \bigg) \bigg\rbrace + max_{i:\Delta_{i}\leq b}\Delta_{i}T$
 \end{proof}
 
+%\begin{corollary}
+%For $\rho=1$ in the result of proposition $1$, $\sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)  +  \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a} -1}} \bigg) \bigg \rbrace+\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ we get a regret bound of $\sum\limits_{i\in A:\Delta_{i}\geq b}\bigg(\Delta_{i} + \dfrac{44}{\psi_{m}(\Delta_{i})^{3}} + \dfrac{32\log{(\psi_{m}T\Delta_{i}^{4})}}{\Delta_{i}}\bigg) + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{12}{\psi_{m}b^{3}}$ for using just arm elimination with $p=1$.
+%\end{corollary}
+%
+%
+%\begin{proof}
+%%\label{App:A:Rem:1}
+%In the above result if we take $\rho_{a}=1$ then the regret bound becomes $ \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg(\Delta_{i} + \dfrac{44}{\psi_{m}(\Delta_{i})^{3}} + \dfrac{32\log{(\psi_{m}T\Delta_{i}^{4})}}{\Delta_{i}}\bigg) + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{12}{\psi_{m}b^{3}}$. From the result we can see that for small $\Delta_{i}$ and large $K$, the terms like $ \sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{44}{\psi_{m}(\Delta_{i})^{3}}\bigg) + \sum_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{12}{\psi_{m}b^{3}}$ can become the dominant term in the regret rather than $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\log{(\psi_{m}T\Delta_{i}^{4})}}{\Delta_{i}}$. Intuitively, this actually suggests that the algorithm is trying to eliminate arms with too low exploration and so the probability of elimination is low and error(risk) is high. For this essentially we introduce $\rho_{a},\rho_{s}$ and $\psi_{m}$ and by carefully defining their values enables us to eliminate arms and clusters aggressively and thereby reduce those two terms. 
+%\end{proof}
+
+
 \begin{remark}
 \label{App:C:Rem:1}
-%Considering the case when $\rho_{a}\in (0,1]$ and $\rho_{s}\in (0,1]$, the total regret bound can be rewritten as
-%\newline $R_{T}\leq \sum_{i\in A:\Delta_{i}\geq b} \bigg\lbrace \underbrace{\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}\bigg)}_{\text{case a, Arm Elim}} + \underbrace{\bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\bigg)}_{\text{case a, Clus Elim}} + \underbrace{\bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1, Arm Elim}} $ \newline $+ \underbrace{\bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1, Clus Elim}}\bigg\rbrace + \sum_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg\lbrace \underbrace{\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{b^{4\rho_{a} -1}} \bigg)}_{\text{case b2, Arm Elim}}\bigg\rbrace$\newline$ +  \sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{b^{4\rho_{s} -1}} \bigg)}_{\text{case b2, Clus Elim}} \bigg\rbrace + max_{i:\Delta_{i}\leq b}\Delta_{i}T   $
-%\newline$ =    \sum_{i\in A:\Delta\geq b} \bigg\lbrace \bigg(\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\dfrac{2^{1+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg) + \bigg(\Delta_{i}+\dfrac{32(K+p)\rho_{s}\log{(T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{p\Delta_{i}}\bigg)\bigg\rbrace + \sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace \bigg(\dfrac{24}{b^{3}} \bigg) + \bigg(\dfrac{T^{1-\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\Delta_{i}^{3}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{b^{4\rho_{a} -1}} \bigg) + \bigg(\dfrac{T^{1-\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{\Delta_{i}^{3}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{b^{4\rho_{s} -1}} \bigg) \bigg\rbrace + max_{i:\Delta\leq b}\Delta_{i}T $ which follows directly from Proposition 1,2 and Theorem 1.
 
 	If $\rho_{s}>>\rho_{a}$ we can see that two terms can become most significant terms in the regret bound. One is the term  $\bigg(K\dfrac{32\rho_{s}\log{(T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)$ and second is the terms like $\bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\bigg)$. Hence, its evident from the result that different values of $\rho_{a}$ and $\rho_{s}$ affects the regret bound differently. When $K$ is large and $p$ is small it is advantageous to run $\rho_{a} << \rho_{s}$ for any round $m$. This will aggressively eliminate arms within cluster while cluster elimination will be more conservative since each cluster will contain a large number of arms it is a good idea to eliminate clusters in the later rounds when sufficient exploration has been done. In the algorithm $\rho_{a}$ and $\rho_{s}$ are decreased in a graded manner so that the risk is low in the initial rounds when sufficient exploration has not been done.
 \end{remark}
 
-\begin{corollary}
-For $T\geq K^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}},\rho_{s}=\dfrac{1}{2^{m}} $ and $b=\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 2\sqrt{KT\log K} + \dfrac{12\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} + 2.8\dfrac{\sqrt{KT\log K}}{p} \bigg\rbrace$.
-\end{corollary}
+%\begin{corollary}
+%For $T\geq K^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}},\rho_{s}=\dfrac{1}{2^{m}} $ and $b=\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 2\sqrt{KT\log K} + \dfrac{12\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} + 2.8\dfrac{\sqrt{KT\log K}}{p} \bigg\rbrace$.
+%\end{corollary}
 
+\section{Proof Corollary 1}
+\label{App:Proof:Corollary:1}
 \begin{proof}
-We consider the $3$ cases separately,
-\subsubsection{Case a:}
-Taking into account Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}}$ and $b=\sqrt{\dfrac{K\log K}{T}}$ in $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \bigg(K\dfrac{T^{1-\frac{e}{T}}\frac{e}{T}^{2\frac{e}{T}}2^{1+4\frac{e}{T}}}{(T)^{\frac{e}{T}}\Delta_{i}^{4\frac{e}{T}-1}} \bigg)$.  Now for $T\geq K^{\frac{1}{\rho_{a}}}$ then $ \bigg(\dfrac{KT^{1-\frac{e}{T}}\frac{e}{T}^{2\frac{e}{T}}2^{1+4\frac{e}{T}}}{(T)^{\frac{e}{T}}\Delta_{i}^{4\frac{e}{T}-1}} \bigg)\approx\dfrac{2KT\Delta_{i}}{K}=\dfrac{2T\sqrt{K\log K}}{\sqrt{T}}= 2\sqrt{KT\log K}$. Similarly, for $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{S}}\rho_{a}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) \approx\dfrac{2KT\Delta_{i}}{K^{\frac{\rho_{a}}{\rho_{s}}}}= \dfrac{2KT\Delta_{i}}{K^{\sqrt{\frac{T}{e}}}} = \dfrac{2\sqrt{KT\log K}}{K^{\sqrt{\frac{T}{e}}-1}}= \dfrac{4\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}$.
-\subsubsection{Case b1:}
-\par For the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}$ by setting $b\approx \sqrt{\dfrac{K\log K}{T}}$ and the above parameter values for $\psi_{m}$ and $\rho_{s}$  in the term again we get,
+We consider the $3$ cases separately of Theorem \ref{Result:Theorem:1} ,
+\paragraph*{}\textbf{Case a:} Taking into account Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}}$ and $b=\sqrt{\dfrac{K\log K}{T}}$ in $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \bigg(K\dfrac{T^{1-\frac{e}{T}}\frac{e}{T}^{2\frac{e}{T}}2^{1+4\frac{e}{T}}}{(T)^{\frac{e}{T}}\Delta_{i}^{4\frac{e}{T}-1}} \bigg)$.  Now for $T\geq K^{\frac{1}{\rho_{a}}}$ then $ \bigg(\dfrac{KT^{1-\frac{e}{T}}\frac{e}{T}^{2\frac{e}{T}}2^{1+4\frac{e}{T}}}{(T)^{\frac{e}{T}}\Delta_{i}^{4\frac{e}{T}-1}} \bigg)\approx\dfrac{2KT\Delta_{i}}{K}=\dfrac{2T\sqrt{K\log K}}{\sqrt{T}}= 2\sqrt{KT\log K}$. Similarly, for $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{S}}\rho_{a}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) \approx\dfrac{2KT\Delta_{i}}{K^{\frac{\rho_{a}}{\rho_{s}}}}= \dfrac{2KT\Delta_{i}}{K^{\sqrt{\frac{T}{e}}}} = \dfrac{2\sqrt{KT\log K}}{K^{\sqrt{\frac{T}{e}}-1}}= \dfrac{4\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}$.
+\paragraph*{}\textbf{Case b1:} For the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}$ by setting $b\approx \sqrt{\dfrac{K\log K}{T}}$ and the above parameter values for $\psi_{m}$ and $\rho_{s}$  in the term again we get,
 $\dfrac{32\sqrt{T}\frac{e}{T}\log{(T^{3}\dfrac{K^{2}(\log K)^{2}}{T^{2}})}}{4\sqrt{K\log K}} \leq \dfrac{32\sqrt{K}\log{(TK^{2}(\log K)^{2})}}{\sqrt{\log K}}=\dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}}$.
 \par For the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}$ by setting $b\approx \sqrt{\dfrac{K\log K}{T}}$ and the above parameter values for $\psi_{m},\rho_{a}$ in the term we get, 
 $\dfrac{32K\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}= \dfrac{32K\dfrac{e}{T}\log{(T^{4}\dfrac{K^{2}(\log K)^{2}}{16T^{2}e^{2}})}}{\sqrt{\dfrac{K\log K}{T}}}\leq \dfrac{32\sqrt{K}\log{((TK)^{2}(\log K)^{2})}}{\sqrt{T\log K}}= \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}}$.
-\subsubsection{Case b2:}
-\par Similarly, $\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)=\dfrac{K}{p}\bigg(\dfrac{T^{1-\frac{e}{T}}\frac{e}{T}^{2\frac{e}{T}}2^{2\frac{e}{T}+\frac{3}{2}}}{{(T)^{\frac{e}{T}}}{(\Delta_{i})^{4*\frac{e}{T}-1}}} \bigg) $. Now, for $T\geq K^{\frac{1}{\rho_{a}}}$ the above term becomes $\approx \dfrac{2.8KT\Delta_{i}}{Kp}=\dfrac{2.8T\sqrt{K\log K}}{p\sqrt{T}}= 2.8\dfrac{\sqrt{KT\log K}}{p}$. For the term $\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m}^{\rho_{s}})\Delta_{i}^{4\rho_{s} -1}} \bigg)\approx \dfrac{8\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}$.
+\paragraph*{}\textbf{Case b2:} Similarly, $\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)=\dfrac{K}{p}\bigg(\dfrac{T^{1-\frac{e}{T}}\frac{e}{T}^{2\frac{e}{T}}2^{2\frac{e}{T}+\frac{3}{2}}}{{(T)^{\frac{e}{T}}}{(\Delta_{i})^{4*\frac{e}{T}-1}}} \bigg) $. Now, for $T\geq K^{\frac{1}{\rho_{a}}}$ the above term becomes $\approx \dfrac{2.8KT\Delta_{i}}{Kp}=\dfrac{2.8T\sqrt{K\log K}}{p\sqrt{T}}= 2.8\dfrac{\sqrt{KT\log K}}{p}$. For the term $\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m}^{\rho_{s}})\Delta_{i}^{4\rho_{s} -1}} \bigg)\approx \dfrac{8\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}$.
 
 So, the total bound for using both arm and cluster elimination comes of as $\bigg\lbrace \underbrace{2\sqrt{KT\log K} + \dfrac{4\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}}_{\text{case a}} + \underbrace{\dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}}}_{\text{case b1}} + \underbrace{\dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}}}_{\text{case b1}} + \underbrace{2.8\dfrac{\sqrt{KT\log K}}{p} + \dfrac{8\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}}_{\text{case b2}} \bigg\rbrace$.
 %+ \dfrac{8\sqrt{KT}\log(\dfrac{4*K^{2}(\log K)^{2}}{T})}{\sqrt{\log K}} 
 \end{proof}
 
-\begin{corollary}
-Taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=\dfrac{T}{\log (KT)}$ and using $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace $ we can have a gap dependent regret bound as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
-\end{corollary}
+%\begin{corollary}
+%Taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=\dfrac{T}{\log (KT)}$ and using $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace $ we can have a gap dependent regret bound as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
+%\end{corollary}
 
+\section{Proof Corollary 2}
+\label{App:Proof:Corollary:2}
 \begin{proof}
-We consider the $3$ cases separately,
-\subsubsection{Case a:}
-Taking into account Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace$ and $b=\sqrt{\dfrac{K\log K}{T}}$ in $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\frac{1}{2}}\frac{1}{2}^{2*\frac{1}{2}}2^{1+4*\frac{1}{2}}}{(\frac{T}{\log (KT)})^{\frac{1}{2}}\Delta_{i}^{4*\frac{1}{2}-1}} \bigg)=\sum_{i\in A:\Delta_{i}\geq b}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}}$. Similarly, for $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{S}}\rho_{a}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) = \sum_{i\in A:\Delta_{i}\geq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
-\subsubsection{Case b1:}
-\par For the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}$ by setting $b\approx \sqrt{\dfrac{K\log K}{T}}$ and the above parameter values for $\psi_{m}$ and $\rho_{s}$  in the term again we get,
+We consider the $3$ cases separately Theorem \ref{Result:Theorem:1},
+\paragraph*{}\textbf{Case a:} Taking into account Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace$ and $b=\sqrt{\dfrac{K\log K}{T}}$ in $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\frac{1}{2}}\frac{1}{2}^{2*\frac{1}{2}}2^{1+4*\frac{1}{2}}}{(\frac{T}{\log (KT)})^{\frac{1}{2}}\Delta_{i}^{4*\frac{1}{2}-1}} \bigg)=\sum_{i\in A:\Delta_{i}\geq b}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}}$. Similarly, for $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{S}}\rho_{a}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) = \sum_{i\in A:\Delta_{i}\geq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
+\paragraph*{}\textbf{Case b1:} For the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}$ by setting $b\approx \sqrt{\dfrac{K\log K}{T}}$ and the above parameter values for $\psi_{m}$ and $\rho_{s}$  in the term again we get,
 $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{16\log{(T^{2}\dfrac{\Delta_{i}^{4}}{4\log (KT)})}}{\Delta_{i}}\approx \sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}$. Similarly the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\approx \sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}$.
-\subsubsection{Case b2:}
-\par Lastly for the term $\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}}$. For the term $\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m}^{\rho_{s}})\Delta_{i}^{4\rho_{s} -1}} \bigg)=\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
+\paragraph*{}\textbf{Case b2:} Lastly for the term $\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}}$. For the term $\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m}^{\rho_{s}})\Delta_{i}^{4\rho_{s} -1}} \bigg)=\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
 
 So, the total gap dependent regret bound for using both arm and cluster elimination comes of as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\underbrace{\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}} }_{\text{case a}} + \underbrace{\dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}}_{\text{case b1}}\bigg\rbrace + \underbrace{\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}}_{\text{case b2}} $.
 \end{proof}
 
-\begin{corollary}
-For $T\geq (K\sqrt{\log K})^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}},\rho_{s}=\dfrac{1}{2^{m}} $ and $b=\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 2\sqrt{KT} + \dfrac{12\sqrt{T\log K}}{(K\sqrt{K})^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} + 2.8\dfrac{\sqrt{KT}}{p} \bigg\rbrace$.
-\end{corollary}
+%\begin{corollary}
+%For $T\geq (K\sqrt{\log K})^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}},\rho_{s}=\dfrac{1}{2^{m}} $ and $b=\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 2\sqrt{KT} + \dfrac{12\sqrt{T\log K}}{(K\sqrt{K})^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} + 2.8\dfrac{\sqrt{KT}}{p} \bigg\rbrace$.
+%\end{corollary}
 
+\section{Proof Corollary 3}
+\label{App:Proof:Corollary:3}
 \begin{proof}
-We consider the $3$ cases separately,
-\subsubsection{Case a:}
-Again taking into account Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}}$ and $b=\sqrt{\dfrac{K\log K}{T}}$ in $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \bigg(K\dfrac{T^{1-\frac{e}{T}}\frac{e}{T}^{2\frac{e}{T}}2^{1+4\frac{e}{T}}}{(T)^{\frac{e}{T}}\Delta_{i}^{4\frac{e}{T}-1}} \bigg)$.  Now for $T\geq (K\sqrt{\log K})^{\frac{1}{\rho_{a}}}$ then $ \bigg(\dfrac{KT^{1-\frac{e}{T}}\frac{e}{T}^{2\frac{e}{T}}2^{1+4\frac{e}{T}}}{(T)^{\frac{e}{T}}\Delta_{i}^{4\frac{e}{T}-1}} \bigg)\approx\dfrac{2KT\Delta_{i}}{K\sqrt{\log K}}=\dfrac{2T\sqrt{K}}{\sqrt{T}}= 2\sqrt{KT}$. Similarly, for $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{S}}\rho_{a}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) \approx\dfrac{2KT\Delta_{i}}{K^{\frac{\rho_{a}}{\rho_{s}}}}= \dfrac{2KT\Delta_{i}}{(K\sqrt{\log K})^{\sqrt{\frac{T}{e}}}} = \dfrac{2\sqrt{KT\log K}}{(K\sqrt{\log K})^{\sqrt{\frac{T}{e}}-1}}= \dfrac{4\sqrt{T\log K}}{(K\sqrt{\log K})^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}$.
-\subsubsection{Case b1:}
-\par For the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}$ by setting $b\approx \sqrt{\dfrac{K\log K}{T}}$ and the above parameter values for $\psi_{m}$ and $\rho_{s}$  in the term again we get,
+We consider the $3$ cases separately Theorem \ref{Result:Theorem:1},
+\paragraph*{}\textbf{Case a:} Again taking into account Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}}$ and $b=\sqrt{\dfrac{K\log K}{T}}$ in $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \bigg(K\dfrac{T^{1-\frac{e}{T}}\frac{e}{T}^{2\frac{e}{T}}2^{1+4\frac{e}{T}}}{(T)^{\frac{e}{T}}\Delta_{i}^{4\frac{e}{T}-1}} \bigg)$.  Now for $T\geq (K\sqrt{\log K})^{\frac{1}{\rho_{a}}}$ then $ \bigg(\dfrac{KT^{1-\frac{e}{T}}\frac{e}{T}^{2\frac{e}{T}}2^{1+4\frac{e}{T}}}{(T)^{\frac{e}{T}}\Delta_{i}^{4\frac{e}{T}-1}} \bigg)\approx\dfrac{2KT\Delta_{i}}{K\sqrt{\log K}}=\dfrac{2T\sqrt{K}}{\sqrt{T}}= 2\sqrt{KT}$. Similarly, for $\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{S}}\rho_{a}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) \approx\dfrac{2KT\Delta_{i}}{K^{\frac{\rho_{a}}{\rho_{s}}}}= \dfrac{2KT\Delta_{i}}{(K\sqrt{\log K})^{\sqrt{\frac{T}{e}}}} = \dfrac{2\sqrt{KT\log K}}{(K\sqrt{\log K})^{\sqrt{\frac{T}{e}}-1}}= \dfrac{4\sqrt{T\log K}}{(K\sqrt{\log K})^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}$.
+\paragraph*{}\textbf{Case b1:} For the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}$ by setting $b\approx \sqrt{\dfrac{K\log K}{T}}$ and the above parameter values for $\psi_{m}$ and $\rho_{s}$  in the term again we get,
 $\dfrac{32\sqrt{T}\frac{e}{T}\log{(T^{3}\dfrac{K^{2}(\log K)^{2}}{T^{2}})}}{4\sqrt{K\log K}} \leq \dfrac{32\sqrt{K}\log{(TK^{2}(\log K)^{2})}}{\sqrt{\log K}}=\dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}}$.
 \par For the term $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}$ by setting $b\approx \sqrt{\dfrac{K\log K}{T}}$ and the above parameter values for $\psi_{m},\rho_{a}$ in the term we get, 
 $\dfrac{32K\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}= \dfrac{32K\dfrac{e}{T}\log{(T^{4}\dfrac{K^{2}(\log K)^{2}}{16T^{2}e^{2}})}}{\sqrt{\dfrac{K\log K}{T}}}\leq \dfrac{32\sqrt{K}\log{((TK)^{2}(\log K)^{2})}}{\sqrt{T\log K}}= \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}}$.
-\subsubsection{Case b2:}
-\par Similarly, $\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)=\dfrac{K}{p}\bigg(\dfrac{T^{1-\frac{e}{T}}\frac{e}{T}^{2\frac{e}{T}}2^{2\frac{e}{T}+\frac{3}{2}}}{{(T)^{\frac{e}{T}}}{(\Delta_{i})^{4*\frac{e}{T}-1}}} \bigg) $. Now, for $T\geq (K\sqrt{\log K})^{\frac{1}{\rho_{a}}}$ the above term becomes $\approx \dfrac{2.8KT\Delta_{i}}{K\sqrt{\log K}p}=\dfrac{2.8T\sqrt{K}}{p\sqrt{T}}= 2.8\dfrac{\sqrt{KT}}{p}$. For the term $\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m}^{\rho_{s}})\Delta_{i}^{4\rho_{s} -1}} \bigg)\approx \dfrac{8\sqrt{T\log K}}{(K\sqrt{\log K})^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}$.
+\paragraph*{}\textbf{Case b2:} Similarly, $\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)=\dfrac{K}{p}\bigg(\dfrac{T^{1-\frac{e}{T}}\frac{e}{T}^{2\frac{e}{T}}2^{2\frac{e}{T}+\frac{3}{2}}}{{(T)^{\frac{e}{T}}}{(\Delta_{i})^{4*\frac{e}{T}-1}}} \bigg) $. Now, for $T\geq (K\sqrt{\log K})^{\frac{1}{\rho_{a}}}$ the above term becomes $\approx \dfrac{2.8KT\Delta_{i}}{K\sqrt{\log K}p}=\dfrac{2.8T\sqrt{K}}{p\sqrt{T}}= 2.8\dfrac{\sqrt{KT}}{p}$. For the term $\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m}^{\rho_{s}})\Delta_{i}^{4\rho_{s} -1}} \bigg)\approx \dfrac{8\sqrt{T\log K}}{(K\sqrt{\log K})^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}$.
 
 So, the total bound for using both arm and cluster elimination comes of as $\bigg\lbrace \underbrace{2\sqrt{KT} + \dfrac{4\sqrt{T\log K}}{(K\sqrt{\log K})^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}}_{\text{case a}} + \underbrace{\dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}}}_{\text{case b1}} + \underbrace{\dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}}}_{\text{case b1}} + \underbrace{2.8\dfrac{\sqrt{KT}}{p} + \dfrac{8\sqrt{T\log K}}{(K\sqrt{\log K})^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}}_{\text{case b2}} \bigg\rbrace$.
 %+ \dfrac{8\sqrt{KT}\log(\dfrac{4*K^{2}(\log K)^{2}}{T})}{\sqrt{\log K}} 
 \end{proof}
 
 
-\section{Appendix D}
+\section{Exploration Regulatory Factor}
 \label{App:D}
 In this section in Table \ref{App:D:table:1} we discuss about the various exploration regulatory function that we can use to control exploration. A similar topic has already been handled in \cite{liu2016modification} where they have introduced mainly three types of regulatory factors($d_{i}$) to the term $\bigg\lbrace\hat{r}_{i}+\sqrt{\dfrac{d_{i}\log T\tilde{\Delta}_{m}^{2}}{2n_{m}}}\bigg\rbrace$ which is used for selecting an arbitrary arm $a_{i}$ in the $t$-th timestep which maximizes the above term. This regulatory term $d_{i}$ can be of the form as $\dfrac{T}{t_{i}}$, $\dfrac{\sqrt{T}}{t_{i}}$ and $\dfrac{\log T}{t_{i}}$, where $t_{i}$ is the number of times an arm $a_{i}$ has been sampled. One has to choose a regulatory factor based on how fast the algorithm should taper its exploration in the later rounds since with time, $t_{i}$ increases and only the numerator decides how fast the exploration must decrease.
 
@@ -544,8 +542,8 @@ In this section in Table \ref{App:D:table:1} we discuss about the various explor
 \label{App:D:table:1}
 \begin{center}
 %\begin{tabular}{l|l|l|l|l}
-\begin{tabular}{p{1cm}p{4cm}p{2cm}p{2cm}p{5cm}}
-\multicolumn{1}{c}{\bf Number} &\multicolumn{1}{c}{\bf Definition}  &\multicolumn{1}{c}{\bf Upper Bound} &\multicolumn{1}{c}{\bf Lower Bound} &\multicolumn{1}{c}{\bf Remarks} \\
+\begin{tabular}{p{1.5cm}p{3.5cm}p{1.5cm}p{1.5cm}p{4.5cm}}
+\multicolumn{1}{c}{\bf No.} &\multicolumn{1}{c}{\bf Definition}  &\multicolumn{1}{c}{\bf UB} &\multicolumn{1}{c}{\bf LB} &\multicolumn{1}{c}{\bf Remarks} \\
 %\multicolumn{5}{*}{|c|}{\bf Number &\bf Definition &\bf Upper Bound &\bf Lower Bound &\bf Remarks}
 \hline \\
 1	&$\psi_{m}=\log{T}$         & $\log{T}$  &$\log{T}$ & Constant factor. Used in experiment. \\ 
@@ -560,14 +558,15 @@ In this section in Table \ref{App:D:table:1} we discuss about the various explor
 \end{tabular}
 \end{center}	
 \end{table}
-	Depending on how fast the exploration must be done we might choose any one of the above. So $\psi_{m}$ is dependent on round as opposed to each timestep or the number of times an individual arm is sampled as done in \cite{liu2016modification}. We also point out that now our number of pulls becomes $n_{m}=\bigg\lceil\dfrac{2\log{(\psi_{m}T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$ and both the arm elimination and cluster elimination confidence interval becomes $\sqrt{\dfrac{\rho_{a}\log{(\psi_{m}T\epsilon_{m}^{2})}}{2 n_{m}}}$ and $\sqrt{\dfrac{\rho_{s} \log{(\psi_{m}T\epsilon_{m}^{2})}}{2 n_{m}}}$  respectively.
+	
+\paragraph*{} Depending on how fast the exploration must be done we might choose any one of the above. So $\psi_{m}$ is dependent on round as opposed to each timestep or the number of times an individual arm is sampled as done in \cite{liu2016modification}. We also point out that now our number of pulls becomes $n_{m}=\bigg\lceil\dfrac{2\log{(\psi_{m}T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$ and both the arm elimination and cluster elimination confidence interval becomes $\sqrt{\dfrac{\rho_{a}\log{(\psi_{m}T\epsilon_{m}^{2})}}{2 n_{m}}}$ and $\sqrt{\dfrac{\rho_{s} \log{(\psi_{m}T\epsilon_{m}^{2})}}{2 n_{m}}}$  respectively.
 	
 \paragraph*{} But this $\psi_{m}=T$ significantly affects two factors, the maximum regret suffered for not eliminating arms and clusters and the error bound. Firstly(from Theorem \ref{Result:Theorem:1}, case b1), it becomes $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{(T)^{\rho_{s}}(\Delta_{i})^{4\rho_{s}-1}}\bigg)\bigg\rbrace$ from case a) in Theorem \ref{Result:Theorem:1} and $\sum_{i\in A:0\leq \Delta_{i}\leq b} \bigg(\dfrac{T^{1-\rho_{s}}2^{2\rho_{s}+3}}{(T)^{\rho_{s}}(b)^{4\rho_{s} -1}} \bigg)$ from Theorem \ref{Result:Theorem:1}, case b2. So, in both the cases we see that the exploratory regulatory factor actually decreases our risk by decreasing the error bound and at the same time increases the probability of arm or cluster elimination.
 	
 \paragraph*{} For the regret contributing term $\bigg(\dfrac{32K\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg) = \bigg(\dfrac{32K\rho_{s}\log{(T^{2}\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)$ , the term $\rho_{s}\log{(T^{2}\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}$ can be sufficiently balanced by choosing appropriate $\rho_{s}$ as shown in analysis of Corollary \ref{Result:Corollary:1}, \ref{Result:Corollary:2}.
 
 %\newpage
-\section{Appendix E}
+\section{Arm Elimination Parameters and Why Clustering?}
 \label{App:E}
 In this section in Table \ref{App:E:table:1} we mention the various definitions of $\rho_{a}$ and $\rho_{s}$. All of this definitions bounds the value of $\rho_{a}$ and $\rho_{s}$ between $(0,1]$ with some of the bounds explicitly mentioning the lower and upper limits of $\rho_{a}$ and $\rho_{s}$. $m$ signifies the round number and $m=0,1,...,\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$.
 
@@ -575,8 +574,8 @@ In this section in Table \ref{App:E:table:1} we mention the various definitions 
 \caption{Definitions of $\rho_{a},\rho_{s}$}
 \label{App:E:table:1}
 \begin{center}
-\begin{tabular}{p{1cm}p{5cm}p{1cm}p{1cm}p{6cm}}
-\multicolumn{1}{c}{\bf Number} &\multicolumn{1}{c}{\bf Definition($\rho_{s},\rho_{a}$)}  &\multicolumn{1}{c}{\bf UB($\rho_{s},\rho_{a}$)} &\multicolumn{1}{c}{\bf LB($\rho_{s},\rho_{a}$)} &\multicolumn{1}{c}{\bf Remarks} \\
+\begin{tabular}{p{1cm}p{3.5cm}p{1cm}p{1cm}p{4.5cm}}
+\multicolumn{1}{c}{\bf No.} &\multicolumn{1}{c}{\bf Definition($\rho_{s},\rho_{a}$)}  &\multicolumn{1}{c}{\bf UB($\rho_{s},\rho_{a}$)} &\multicolumn{1}{c}{\bf LB($\rho_{s},\rho_{a}$)} &\multicolumn{1}{c}{\bf Remarks} \\
 \hline \\
 1	&$\rho_{s}=\dfrac{1}{2^{m}},\rho_{a}=\dfrac{1}{2^{m}}$         & $1,1$  &$\sqrt{\frac{e}{T}}$,$\sqrt{\frac{e}{T}}$ & Used in algorithm. \\
 \hline\\ 
@@ -584,7 +583,7 @@ In this section in Table \ref{App:E:table:1} we mention the various definitions 
 \hline\\ 
 3	&$\rho_{s}=\dfrac{1}{2^{m}},\rho_{a}=\dfrac{1}{2^{2m}}$         & $1,1$  &$\sqrt{\dfrac{e}{T}},\dfrac{e}{T}$ & A more aggressive arm elimination and conservative cluster elimination. Increases risk but reduces expected regret if the optimal arm survives. Used in Corollary \ref{Result:Corollary:1}.\\ 
 \hline\\
-4	&$\rho_{s}=\dfrac{1}{2^{2m+1}},\rho_{a}=\dfrac{1}{2^{4m+1}}$         & $\dfrac{1}{2},\dfrac{1}{2}$  &$\dfrac{e}{2T},\dfrac{e^{2}}{2T^{2}}$ & A more aggressive arm elimination and conservative cluster elimination definition than Definition $3$. Used in Experiment.\\
+4	&$\rho_{s}=\dfrac{1}{2^{2m+1}},$\newline$\rho_{a}=\dfrac{1}{2^{4m+1}}$         & $\dfrac{1}{2},\dfrac{1}{2}$  &$\dfrac{e}{2T},\dfrac{e^{2}}{2T^{2}}$ & A more aggressive arm elimination and conservative cluster elimination definition than Definition $3$. Used in Experiment.\\
 %\hline\\
 %5	&$\rho_{s}=max\bigg\lbrace\frac{1}{2^{m}},\frac{1}{4}\bigg\rbrace$\newline $\rho_{a}=\frac{1}{2^{m}}$   & $1,1$  &$\frac{1}{4},\sqrt{\frac{e}{T}}$ & Used in \textbf{Remark \ref{App:E:Rem:1},\ref{App:E:Rem:2}}.\\
 \hline\\
@@ -600,16 +599,16 @@ Another important distinction we want to make is the apparent use of clustering.
 \caption{Regret Bound on Arm Elimination and Pulls}
 \label{App:E:table:2}
 \begin{center}
-\begin{tabular}{p{0.5cm}p{11cm}p{5cm}}
-\multicolumn{1}{c}{\bf Bound} &\multicolumn{1}{c}{\bf Regret Bound on Arm Elimination and Pulls} &\multicolumn{1}{c}{\bf Remarks} \\
+\begin{tabular}{p{1.4cm}p{10.2cm}p{3.5cm}}
+\multicolumn{1}{c}{\bf Elim Type} &\multicolumn{1}{c}{\bf Regret Bound on Arm Elimination and Pulls} &\multicolumn{1}{c}{\bf Remarks} \\
 \hline \\
-1)	&$\sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)\bigg\rbrace$ &Only Arm Elimination with $\rho_{a}=\frac{1}{2^{2m}}$ and $\psi_{m}=T$ gives $ 2\sqrt{KT\log K} +\dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}}. $. Hence the order is given by $O(\sqrt{KT\log K})$.\\
+Only Arm Elimination 	&$\sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\Delta_{i}+ \dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)\bigg\rbrace$ & For $\rho_{a}=\frac{1}{2^{2m}}$ and $\psi_{m}=T$ this gives $ 2\sqrt{KT\log K} +\dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}}. $. Hence the order is given by $O(\sqrt{KT\log K})$.\\
 %+ \dfrac{32\sqrt{eK}\log(K^{2}(\log K)^{2})}{\sqrt{\log K}}$
 \hline\\
-2)	&$ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\underbrace{\bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)}_{\text{case a1+a2}} +  \underbrace{\bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1}}\bigg\rbrace$ &Only Cluster Elimination with $\rho_{s}=\frac{1}{2^{2m}}$ and  $\psi_{m}=T$ gives $ 4\sqrt{KT\log K} +\dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}}$. Hence, this is larger than bound $1$ though the order is same $O(\sqrt{KT\log K})$.\\
+Only Cluster Elimination	&$ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\underbrace{\bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)}_{\text{case a1+a2}} +  \underbrace{\bigg(\Delta_{i} +\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1}}\bigg\rbrace$ & With $\rho_{s}=\frac{1}{2^{2m}}$ and  $\psi_{m}=T$ this gives $ 4\sqrt{KT\log K} +\dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}}$. Hence, this is larger bound than using only arm elimination though the order is same $O(\sqrt{KT\log K})$.\\
 %+ \dfrac{32\sqrt{eK}\log(K^{2}(\log K)^{2})}{\sqrt{\log K}}$
 \hline\\
-3)	&$\sum_{i\in A:\Delta_{i}\geq b} \bigg\lbrace \underbrace{\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg)}_{\text{case a, Arm Elim}} + \underbrace{\bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)}_{\text{case a, Clus Elim}} $ \newline $+ \underbrace{\bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1, Arm Elim}} +\underbrace{\bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1, Clus Elim}}\bigg\rbrace$ &Arm \& Cluster Elimination with $\rho_{a}=\frac{1}{2^{2m}} << \rho_{s}=\frac{1}{2^{m}}$ and $\psi_{m}=T$ gives $\bigg\lbrace 2\sqrt{KT\log K} + \dfrac{4\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} \bigg\rbrace$. This is larger than bound $1$ and $2$ though the order is same $O(\sqrt{KT\log K})$.
+Arm \& Cluster Elimination 	&$\sum_{i\in A:\Delta_{i}\geq b} \bigg\lbrace \underbrace{\bigg(\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg)}_{\text{case a, Arm Elim}} + \underbrace{\bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)}_{\text{case a, Clus Elim}} $ \newline $+ \underbrace{\bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1, Arm Elim}} +\underbrace{\bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)}_{\text{case b1, Clus Elim}}\bigg\rbrace$ & With $\rho_{a}=\frac{1}{2^{2m}} << \rho_{s}=\frac{1}{2^{m}}$ and $\psi_{m}=T$ this gives $\bigg\lbrace 2\sqrt{KT\log K} + \dfrac{4\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} \bigg\rbrace$. This is larger than the previous $2$ bounds though the order is same $O(\sqrt{KT\log K})$.
 %This can become better than bound $1$ and $2$ with $T \geq K^{\frac{17}{4}}(\log K)^{2}$.
 \end{tabular}
 \end{center}
@@ -619,18 +618,18 @@ Another important distinction we want to make is the apparent use of clustering.
 \caption{Error Bound}
 \label{App:E:table:3}
 \begin{center}
-\begin{tabular}{p{0.5cm}p{11cm}p{5cm}}
-\multicolumn{1}{c}{\bf Bound} &\multicolumn{1}{c}{\bf Error Bound} &\multicolumn{1}{c}{\bf Remarks} \\
+\begin{tabular}{p{1.4cm}p{10.2cm}p{3.5cm}}
+\multicolumn{1}{c}{\bf Elim Type} &\multicolumn{1}{c}{\bf Error Bound} &\multicolumn{1}{c}{\bf Remarks} \\
 \hline \\
-1)	&$\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a} -1}} \bigg) + \bigg( \dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)\bigg\rbrace$ &Only Arm Elimination with $\rho_{a}=\frac{1}{2^{2m}}$ and $\psi_{m}=T$ gives $5.6\sqrt{KT\log K}$. Hence, this has an order of $O(\sqrt{KT\log K})$.\\
+Only Arm Elimination	&$\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a} -1}} \bigg) + \bigg( \dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)\bigg\rbrace$ & With $\rho_{a}=\frac{1}{2^{2m}}$ and $\psi_{m}=T$ this gives $5.6\sqrt{KT\log K}$. Hence, this has an order of $O(\sqrt{KT\log K})$.\\
 \hline\\
-2)	&$\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s} -1}} \bigg)}_{\text{case b2+b3, Proposition 4}} +\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}b^{4\rho_{s} -1}} \bigg)}_{\text{case b2+b3, Proposition 4}}\bigg\rbrace$ &Only Cluster Elimination with $\rho_{s}=\frac{1}{2^{2m}}$ and $\psi_{m}=T$ gives $16\sqrt{KT\log K}$. This is more than bound $1$ but has an order of $O(\sqrt{KT\log K})$.\\
+Only Cluster Elimination	&$\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s} -1}} \bigg)}_{\text{case b2+b3, Proposition 4}} +\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}b^{4\rho_{s} -1}} \bigg)}_{\text{case b2+b3, Proposition 4}}\bigg\rbrace$ & With $\rho_{s}=\frac{1}{2^{2m}}$ and $\psi_{m}=T$ this gives $16\sqrt{KT\log K}$. This is more than the bound using only arm elimination but has an order of $O(\sqrt{KT\log K})$.\\
 \hline\\
-3)	&$\sum_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg\lbrace \underbrace{\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)}_{\text{case b2, Arm Elim, Theorem 2}}\bigg\rbrace $\newline$+ \sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}b^{4\rho_{s} -1}} \bigg)}_{\text{case b2, Clus Elim, Theorem 2}} \bigg\rbrace$ & Arm \& Cluster Elimination with $\rho_{a}=\frac{1}{2^{2m}} << \rho_{s}=\frac{1}{2^{m}}$ and $\psi_{m}=T$ gives $2.8\dfrac{\sqrt{KT\log K}}{p} +\dfrac{8\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}$. This is less than bound $1$ and $2$ with and has an order of $O(\sqrt{KT})$ for $p=\sqrt{\log K}$. So, the range of $p$ is given by $\sqrt{\log K}\leq p\leq \frac{K}{2}$
+Arm \& Cluster Elimination 	&$\sum_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg\lbrace \underbrace{\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)}_{\text{case b2, Arm Elim, Theorem 2}}\bigg\rbrace $\newline$+ \sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}b^{4\rho_{s} -1}} \bigg)}_{\text{case b2, Clus Elim, Theorem 2}} \bigg\rbrace$ & With $\rho_{a}=\frac{1}{2^{2m}} << \rho_{s}=\frac{1}{2^{m}}$ and $\psi_{m}=T$ this gives $2.8\dfrac{\sqrt{KT\log K}}{p} +\dfrac{8\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}}$. This is less than the previous $2$ bounds and has an order of $O(\sqrt{KT})$ for $p=\sqrt{\log K}$. So, the range of $p$ is given by $\sqrt{\log K}\leq p\leq \frac{K}{2}$
 \end{tabular}
 \end{center}	
 \end{table}
-From Table \ref{App:E:table:2} we can see that from the definition of $\rho_{s},\rho_{a}$ and $\psi_{m}$ we can have a regret bound for jointly doing the arm and cluster elimination of the same order as doing arm elimination or cluster elimination alone. While looking at the error term for the $3$ cases we see that using just Cluster elimination  the error term is more than using just arm elimination and the least error term comes from using both arm and cluster elimination simultaneously and $\rho_{a}<<\rho_{s}$. From Table \ref{App:E:table:3}, we can see that the error term for using both arm and cluster elimination can become low depending on how we choose $p$ since $|A_{s^{*}}|\leq \lceil\frac{A}{p}\rceil$. An intuitive justification is that since we are reducing $\rho_{a}$ and $\rho_{s}$ very fast, and if we partition the action space into clusters and for arm elimination only consider each cluster individually, the probability of eliminating $a^{*}$ reduces. 
+\paragraph*{} From Table \ref{App:E:table:2} we can see that from the definition of $\rho_{s},\rho_{a}$ and $\psi_{m}$ we can have a regret bound for jointly doing the arm and cluster elimination of the same order as doing arm elimination or cluster elimination alone. While looking at the error term for the $3$ cases we see that using just Cluster elimination  the error term is more than using just arm elimination and the least error term comes from using both arm and cluster elimination simultaneously and $\rho_{a}<<\rho_{s}$. From Table \ref{App:E:table:3}, we can see that the error term for using both arm and cluster elimination can become low depending on how we choose $p$ since $|A_{s^{*}}|\leq \lceil\frac{A}{p}\rceil$. An intuitive justification is that since we are reducing $\rho_{a}$ and $\rho_{s}$ very fast, and if we partition the action space into clusters and for arm elimination only consider each cluster individually, the probability of eliminating $a^{*}$ reduces. 
 \paragraph*{} This is shown in the experiment in Figure \ref{Fig:variousClus}. In this experiment we show the regret for $20$ arms, over $p=\lbrace 1,4,10\rbrace$ and $T=60000$ timesteps, averaged over $100$ independent runs for Bernoulli distributions, where $r_{i_{:{a_{i}\neq a^{*}}}}=0.06,\forall i\in A$ and $r^{*}=0.1$. Here, $\psi_{m}=1$ and $\rho_{s}=\frac{1}{2^{m+1}},\rho_{a}=\frac{1}{2^{2m+1}}$. In this case we see that, since $\rho_{a}$ is decreased very fast, the optimal arm $a^{*}$ gets eliminated most of the time for no clustering $p=1$. While a balance of $p,\rho_{a}$ and $\rho_{s}$ gives a much better result. ClusUCB with $p=4$ and $10$ perform better than MOSS, while $p=1$ with just arm elimination does not converge and $p=5$ with just Cluster elimination and no arm elimination also does not converge. As proved in Proposition \ref{proofSketch:Prop:2}, regret for using just cluster elimination is higher than using just arm elimination. A balance of cluster and arm elimination works best. For using just cluster elimination in ClusUCB($\sqrt{\log K}<p\leq \dfrac{K}{2}$) we stop when we are left with one cluster and output the max payoff arm of that cluster.
 
 \begin{figure}
@@ -643,7 +642,7 @@ From Table \ref{App:E:table:2} we can see that from the definition of $\rho_{s},
 
 \end{remark}
 
-\section{Appendix F}
+\section{Regret Bound Table}
 \label{App:F}
 The regret upper bound of various algorithms are given in Table \ref{sample-table}.
 \begin{table}
@@ -662,8 +661,6 @@ UCB-Improved             &\hspace*{5em}$\min\bigg\lbrace O\bigg(\sqrt{KT}\dfrac{
 MOSS				&\hspace*{5em}$\min\bigg\lbrace O\bigg(\sqrt{KT}\bigg), O\bigg(\dfrac{K\log(T\Delta^{2}/K)}{\Delta}\bigg) \bigg \rbrace$\\
 %KL-UCB         &\hspace*{5em}$O\bigg(K\bigg(\dfrac{\Delta \log(T)(1 + \epsilon)}{d(r_{i}, r^{*} )} + \log(\log(T)) + \dfrac{(\epsilon)}{T^{\beta(\epsilon)}}\bigg)\bigg)$, where $\epsilon > 0$ and $d(r_{i}, r^{*})>2\Delta_{i}^{2}$\\
 UCB-Clustered             &\hspace*{5em}$\min\bigg\lbrace O\bigg(\sqrt{KT\log K}\bigg),O\bigg(\dfrac{K\log\big (\dfrac{T\Delta^{2}}{\sqrt{\log (KT)}}\big)}{\Delta}\bigg)\bigg\rbrace$\\
-%UCB-Clustered             &\hspace*{5em}$\min\bigg\lbrace O\bigg(\dfrac{\sqrt{KT}\log{(\dfrac{K^{4}(\log K)^{2}}{T})}}{\sqrt{\log K}}+ \sqrt{KT}\bigg),O\bigg(\dfrac{K\rho_{s}\log (\dfrac{T\Delta^{4}}{\rho_{s}^{2}})}{\Delta}\bigg)\bigg\rbrace$, \\& \hspace*{5em} where $\rho_{s}\in (0,1]$\\
-%Clustered-UCB         &$O\bigg(K\bigg (\max{\bigg\lbrace \bigg(\dfrac{1}{\psi_{m}(\Delta)^{\frac{3}{5}}}\bigg) ,\bigg(\dfrac{\Delta}{(\psi_{m}\Delta^{2})(\psi_{m}T\Delta^{2})^{2K^{2}\Delta/5}}\bigg)\bigg\rbrace}$\\&$ + \bigg(\Delta +\dfrac{\log{(\psi_{m}T\Delta^{\frac{8}{5}})}}{\Delta^{\frac{3}{5}}}\bigg)\bigg)\bigg)$, let $\psi_{m}=\dfrac{c}{m},c>0$ \\
 \end{tabular}
 \end{center}
 \end{table}

@@ -17,7 +17,7 @@ Considering both the arm elimination and cluster elimination condition and $p>1$
 
 \begin{remark}
 \label{Result:Rem:1}
-From the statement of Theorem 1 we can see that taking various values of $\rho_{s}$ and $\rho_{a}$ and how these values are reduced after every round significantly affects our regret bound. A discussion on them is deferred to Remark \ref{App:A:Rem:1}(Appendix \ref{App:A}), Remark \ref{App:B:Rem:2}(Appendix \ref{App:B}), Remark \ref{App:C:Rem:1}(Appendix \ref{App:C}) and their various definitions are given in Appendix \ref{App:E}. A discussion on exploration regulatory factor($\psi_{m}$) and its effect is deferred to Appendix \ref{App:D}. A discussion on the three approaches of using only arm elimination in Algorithm 1 or using only cluster elimination or using both is deferred to Remark \ref{App:E:Rem:1}(Appendix \ref{App:E}).
+From the statement of Theorem 1 we can see that taking various values of $\rho_{s}$ and $\rho_{a}$ and how these values are reduced after every round significantly affects our regret bound. A discussion on them is deferred to Remark \ref{App:B:Rem:2}(Appendix \ref{App:B}), Remark \ref{App:C:Rem:1}(Appendix \ref{App:C}) and their various definitions are given in Appendix \ref{App:E}. A discussion on exploration regulatory factor($\psi_{m}$) and its effect is deferred to Appendix \ref{App:D}. A discussion on the three approaches of using only arm elimination in Algorithm 1 or using only cluster elimination or using both is deferred to Remark \ref{App:E:Rem:1}(Appendix \ref{App:E}).
 \end{remark}
 
 \begin{corollary}
@@ -26,7 +26,7 @@ For $T\geq K^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theo
 \end{corollary}
 
 
-	The proof of this corollary is given in Appendix \ref{App:C}.(Supplementary Material)
+	The proof of this corollary is given in Appendix \ref{App:Proof:Corollary:1}.(Supplementary Material)
 
 %\begin{remark}
 %\label{Result:Rem:3}
@@ -38,7 +38,7 @@ For $T\geq K^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theo
 Taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=\dfrac{T}{\log (KT)}$ and using $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace $ we can have a gap dependent regret bound as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
 \end{corollary}
 
-	The proof of this corollary is given in Appendix \ref{App:C}.(Supplementary Material)
+	The proof of this corollary is given in Appendix \ref{App:Proof:Corollary:2}.(Supplementary Material)
 
 %\begin{remark}
 %\label{Result:Rem:4}
@@ -47,11 +47,11 @@ Taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting 
 
 
 \begin{corollary}
-\label{Result:Corollary:2}
+\label{Result:Corollary:3}
 For $T\geq (K\sqrt{\log K})^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}},\rho_{s}=\dfrac{1}{2^{m}} $ and $b=\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 2\sqrt{KT} + \dfrac{12\sqrt{T\log K}}{(K\sqrt{K})^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} + 2.8\dfrac{\sqrt{KT}}{p} \bigg\rbrace$.
 \end{corollary}
 
-	The proof of this corollary is given in Appendix \ref{App:C}.(Supplementary Material)
+	The proof of this corollary is given in Appendix \ref{App:Proof:Corollary:3}.(Supplementary Material)
 
 \paragraph*{}A different choosing of $\psi_{m}$ makes the gap independent regret bound of our algorithm as $O(\sqrt{KT})$ which makes it of the same order as MOSS and better than UCB-Improved.
 
