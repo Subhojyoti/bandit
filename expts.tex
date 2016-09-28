@@ -106,7 +106,7 @@
 \label{fig:2}
 \begin{minipage}[b]{0.5\textwidth}
 
-\includegraphics[width=\textwidth]{img/clusUCB_variousAlgo(expt2)_3.png}
+\includegraphics[width=\textwidth]{img/clusUCB_variousAlgo(expt2)_Final.png}
 \caption{Experiment 2: Regret for various Algorithms. $T=2\times 10^{6}$}
 \end{minipage}
 \end{figure}
@@ -116,8 +116,8 @@
 \begin{figure}[!tbp]
 \label{fig:3}
 \begin{minipage}[b]{0.5\textwidth}
-\includegraphics[width=\textwidth]{img/MOSS_ClusUCB_expt3.png}
-\caption{Experiment 3: Regret Growth for ClusUCB and MOSS . $T=1\times 10^6$}
+\includegraphics[width=\textwidth]{img/clUCB_MOSS_expt3.png}
+\caption{Experiment 3: Regret Growth for ClusUCB and MOSS . $T=10^{5} + K^{2}\times 10^{4}$}
 \end{minipage}
 \end{figure}
 
@@ -133,4 +133,4 @@
 
 \paragraph{}The second experiment is conducted over a testbed of $100$ arms for the test-cases involving Gaussian reward distribution with expected rewards of the arms $r_{i_{a_{i}\neq a^{*}:1-33}}=0.01$, $r_{i_{a_{i}\neq a^{*}:34-99}}=0.06$ and $r^{*}_{i=100}=0.1$. The horizon is set for $T=2\times 10^{6}$ and and $p=20$ for ClusUCB. The regret is averaged over $100$ independent runs over each timestep and is shown in Figure 2. In this test we also show the no-clustering version of ClusUCB algorithm with $p=1$ and keeping all the other parameters same. $4$ other algorithms, MOSS, UCB1, UCB-Improved and Median-Elimination are run over this testbed and shown in this figure. Here, we see that ClusUCB($p=20$) performs better than all the algorithms mentioned above. We also see that no-clustering and using only arm elimination version of algorithm performs worse than the clustering version which stems from the fact that it outputs sub-optimal arm more often than the clustering version.
 
-\paragraph{}The third experiment is conducted over a testbed of $20-200$(interval of $10$) arms for the test-cases involving Bernoulli reward distribution with expected rewards of the arms $r_{i_{a_{i}\neq a^{*}}}=0.05$ and $r^{*}=0.1$. The horizon is set for $T=1\times 10^{6}$ and the parameters of ClusUCB are $p=K/5$ for $K=20$ to $200$. The regret is averaged over $100$ independent runs over each timestep and is shown in Figure 3. We only check the growth of regret for the two algorithms MOSS and ClusUCB over this testbed and see that ClusUCB outperforms MOSS and its growth of regret is lesser than MOSS. The jumps in the graph for ClusUCB happens because of the error(eliminating optimal arm) and the margin of error(in red) is also shown in the graph. 
+\paragraph{}The third experiment is conducted over a testbed of $20-200$(interval of $10$) arms for the test-cases involving Bernoulli reward distribution with expected rewards of the arms $r_{i_{a_{i}\neq a^{*}}}=0.05$ and $r^{*}=0.1$. The horizon is set for $T=10^{5} + K^{2}\times 10^{4}$ for $K=20$ to $200$ and the parameters of ClusUCB are $p=K/5$ for $K=20$ to $200$. The regret is averaged over $500$ independent runs over each timestep and is shown in Figure 3. We only check the growth of regret for the two algorithms MOSS and ClusUCB over this testbed and see that ClusUCB outperforms MOSS and its growth of regret is lesser than MOSS. The jumps in the graph for ClusUCB happens because of the error(eliminating optimal arm) and the margin of error(in red) is also shown in the graph. 
