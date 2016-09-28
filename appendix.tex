@@ -91,15 +91,13 @@ Summing up over all arms in $A$ and bounding trivially by $T\Delta_{i}$, we obta
 %\textbf{Case b1:} Either an arm $a_{i}$ is eliminated in round $m_{i}$ or before or else there is no optimal arm $a^{*}\in B_{m_{i}}$. 
 
 \subsection*{Case b1: \textit{Either an arm $a_{i}$ is eliminated in round $m_{i}$ or before or else there is no optimal arm $a^{*}\in B_{m_{i}}$ }}
- Since we are eliminating a sub-optimal arm $a_{i}$ on or before round $m_{i}$, it is pulled no longer than,
- 
+ Since we are eliminating a sub-optimal arm $a_{i}$ on or before round $m_{i}$, it is pulled no longer than, 
  \begin{align*}
  n_{m_{i}}=\bigg\lceil\dfrac{2\log{(\psi_{m}T\epsilon_{m_{i}}^{2})}}{\epsilon_{m_{i}}}\bigg\rceil
  \end{align*}
 %\hspace*{4em}
 %%$, since $\sqrt{\rho_{a}\epsilon_{m_{i}}}\leq\dfrac{\Delta_{i}}{2}
-So, the total contribution of $a_{i}$  till round $m_{i}$ is given by,
- 
+So, the total contribution of $a_{i}$  till round $m_{i}$ is given by, 
 \begin{align*}
 &\Delta_{i}\bigg\lceil\dfrac{2\log{(\psi_{m}T\epsilon_{m_{i}}^{2})}}{\epsilon_{m_{i}}}\bigg\rceil\\
 &\leq\Delta_{i}\bigg\lceil\dfrac{2\log{(\psi_{m}T(\dfrac{\Delta_{i}}{2\sqrt{\rho_{a}})^{4})}}}{(\dfrac{\Delta_{i}}{2\sqrt{\rho_{a}}})^{2}}\bigg\rceil \text{, since } \sqrt{\rho_{a}\epsilon_{m_{i}}}\leq\dfrac{\Delta_{i}}{2}\\
@@ -108,20 +106,16 @@ So, the total contribution of $a_{i}$  till round $m_{i}$ is given by,
 &\leq\Delta_{i}\bigg(1+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}^{2}}\bigg)
 \end{align*} 
  
-
-Summing over all arms in $A$,
- 
+Summing over all arms in $A$, 
 \begin{align*}
 \leq\sum_{i\in A}\Delta_{i}\bigg(1+\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}}})}{\Delta_{i}^{2}}\bigg)
 \end{align*}
-
 
 \subsection*{Case b2: \textit{Optimal arm $a^{*}$ is eliminated by a sub-optimal arm  }}
 
 
 	Firstly, if conditions of case b1 holds then the optimal arm $a^{*}$ will not be eliminated in round $m=m_{*}$ or it will lead to the contradiction that $r_{i}>r^{*}$. In any round $m_{*}$, if the optimal arm $a^{*}$ gets eliminated then for any round from $1$ to $m_{j}$ all arms $a_{j}$ such that $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{j}}{2}$ were eliminated according to assumption in case $b1$. Let, the arms surviving till $m_{*}$ round be denoted by $A^{'}$. This leaves any arm $a_{b}$ such that $\sqrt{\rho_{a}\epsilon_{m}}\geq\dfrac{\Delta_{b}}{2}$ to still survive and eliminate arm $a^{*}$ in round $m_{*}$. Let, such arms that survive $a^{*}$ belong to $A^{''}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}$ with $m_{j}\geq m_{*}$.  Let $m_{b}$ be the round when $\sqrt{\sqrt{\rho_{a}}\epsilon_{m}}<\dfrac{\Delta_{b}}{2}$ that is $m_{b}=min\lbrace m|\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{b}}{2}\rbrace$. Hence, the 
 maximal regret after eliminating the arm $a^{*}$ is upper bounded by, 
- 
 \begin{align*}
 &\sum_{m_{*}=0}^{max_{j\in A^{'}}m_{j}}\sum_{i\in A^{''}:m_{i}>m_{*}}\bigg(\dfrac{2}{(\psi_{m}T\epsilon_{m}^{2})^{\rho_{a}}} \bigg).T\max_{j\in A^{''}:m_{j}\geq m_{*}}{\Delta}_{j}\\
 &\leq\sum_{m_{*}=0}^{max_{j\in A^{'}}m_{j}}\sum_{i\in A^{''}:m_{i}>m_{*}}\bigg(\dfrac{2}{(\psi_{m}T\epsilon_{m}^{2})^{\rho_{a}}} \bigg).T.2\sqrt{\rho_{a}\epsilon_{m}}\text{, since } \sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{i}}{2}\\
@@ -131,9 +125,6 @@ maximal regret after eliminating the arm $a^{*}$ is upper bounded by,
 &\leq\sum_{i\in A^{'}}\bigg(\dfrac{4\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}*2^{2\rho_{a}-\frac{1}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{4\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}*2^{2\rho_{a}-\frac{1}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a}-1}} \bigg)\\
 &\leq\sum_{i\in A^{'}}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a}-1}} \bigg)
 \end{align*}
-
- 
-
 
 % 
 %\hspace*{0em}$\leq\sum_{m_{*}=0}^{max_{j\in A^{'}}m_{j}}\sum_{i\in A^{''}:m_{i}>m_{*}}\bigg(\dfrac{4.4^{3/2}}{\Delta_{i}^{3}} \bigg) $, as $\sqrt{\epsilon_{m}}\leq\dfrac{\Delta_{i}}{2}$
@@ -581,12 +572,15 @@ Only Arm Elimination	&$\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\bigg(\dfr
 \hline\\
 Only Cluster Elimination	&$\sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s} -1}} \bigg)}_{\text{case b2+b3, Proposition 4}} +\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}b^{4\rho_{s} -1}} \bigg)}_{\text{case b2+b3, Proposition 4}}\bigg\rbrace$ & With $\rho_{s}=\max\lbrace\frac{1}{4},\frac{1}{2^{m}}\rbrace$ and $\psi_{m}=K^{2}T$ this gives $5.6\sqrt{KT}$. This is more than the bound using only arm elimination but has an order of $O(\sqrt{KT})$.\\
 \hline\\
-Arm \& Cluster Elimination 	&$\sum_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg\lbrace \underbrace{\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)}_{\text{case b2, Arm Elim, Theorem 2}}\bigg\rbrace $ $+ \sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}b^{4\rho_{s} -1}} \bigg)}_{\text{case b2, Clus Elim, Theorem 2}} \bigg\rbrace$ & With $\rho_{a}=\rho_{s}=\max\lbrace\frac{1}{4},\frac{1}{2^{m}}\rbrace$ and $\psi_{m}=K^{2}T$ this gives $4\dfrac{\sqrt{KT}}{p} + 5.6\sqrt{KT}$. So we can reduce the error bound for the first term by taking $\sqrt{\log K}\leq p\leq \frac{K}{2}$. The order though will remain same $O(\sqrt{KT})$.
+Arm \& Cluster Elimination 	&$\sum_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg\lbrace \underbrace{\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{(\psi_{m})^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)}_{\text{case b2, Arm Elim, Theorem 2}}\bigg\rbrace $ $+ \sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace\underbrace{\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi_{m})^{\rho_{s}}b^{4\rho_{s} -1}} \bigg)}_{\text{case b2, Clus Elim, Theorem 2}} \bigg\rbrace$ & With $\rho_{a}=\rho_{s}=\max\lbrace\frac{1}{4},\frac{1}{2^{m}}\rbrace$ and $\psi_{m}=K^{2}T$ this gives $4\dfrac{\sqrt{KT}}{p} + 5.6\sqrt{KT}$. So we can reduce the error bound for the first term by taking $\sqrt{\log K}\leq p\leq \frac{K}{2}$. The order though will remain same 
+$O(\sqrt{KT})$.
 \end{tabular}
 \end{center}	
 \end{table}
- From Table \ref{App:E:table:2} we can see that from the definition of $\rho_{s},\rho_{a}$ and $\psi_{m}$ we can have a regret bound for jointly doing the arm and cluster elimination of the same order as doing arm elimination or cluster elimination alone. While looking at the error term for the $3$ cases we see that using just Cluster elimination  the error term is more than using just arm elimination while we can achieve a balance between the two by using both arm and cluster elimination simultaneously. In the experiments when we reduce $\rho_{a}, \rho_{s}$ such that $\rho_{a}<<\rho_{s}$ we will see a significant reduction in cumulative regret for the clustering approach. From Table \ref{App:E:table:3}, we can see that the error term for using both arm and cluster elimination can become low depending on how we choose $p$ since $|A_{s^{*}}|\leq \lceil\frac{A}{p}\rceil$. An intuitive justification is that since we are reducing $\rho_{a}$ and $\rho_{s}$ very fast, and if we partition the action space into clusters and for arm elimination only consider each cluster individually, the probability of eliminating $a^{*}$ reduces. 
- This is shown in the experiment in Figure \ref{Fig:variousClus}. In this experiment we show the regret for $20$ arms, over $p=\lbrace 1,4,10\rbrace$ and $T=60000$ timesteps, averaged over $100$ independent runs for Bernoulli distributions, where $r_{i_{:{a_{i}\neq a^{*}}}}=0.06,\forall i\in A$ and $r^{*}=0.1$. Here, $\psi_{m}=1$ and $\rho_{s}=\frac{1}{2^{m+1}},\rho_{a}=\frac{1}{2^{2m+1}}$. In this case we see that, since $\rho_{a}$ is decreased very fast, the optimal arm $a^{*}$ gets eliminated most of the time for no clustering $p=1$. While a balance of $p,\rho_{a}$ and $\rho_{s}$ gives a much better result. ClusUCB with $p=4$ and $10$ perform better than MOSS, while $p=1$ with just arm elimination does not converge and $p=5$ with just Cluster elimination and no arm elimination also does not converge. As proved in Proposition \ref{proofSketch:Prop:2}, regret for using just cluster elimination is higher than using just arm elimination. A balance of cluster and arm elimination works best. For using just cluster elimination in ClusUCB($\sqrt{\log K}<p\leq \dfrac{K}{2}$) we stop when we are left with one cluster and output the max payoff arm of that cluster.
+ From Table \ref{App:E:table:2} we can see that from the definition of $\rho_{s},\rho_{a}$ and $\psi_{m}$ we can have a regret bound for jointly doing the arm and cluster elimination of the same order as doing arm elimination or cluster elimination alone. While looking at the error term for the $3$ cases we see that using just Cluster elimination  the error term is more than using just arm elimination while we can achieve a balance between the two by using both arm and cluster elimination simultaneously. In the experiments when we reduce $\rho_{a}, \rho_{s}$ such that $\rho_{a}<<\rho_{s}$ we will see a significant reduction in cumulative regret for the clustering approach. From Table \ref{App:E:table:3}, we can see that the error term for using both arm and cluster elimination can become low depending on how we choose $p$ since $|A_{s^{*}}|\leq \lceil\frac{A}{p}\rceil$. An intuitive justification is that since we are reducing $\rho_{a}$ and $\rho_{s}$ very fast, and if we partition the action space into 
+clusters and for arm elimination only consider each cluster individually, the probability of eliminating $a^{*}$ reduces. 
+ This is shown in the experiment in Figure \ref{Fig:variousClus}. In this experiment we show the regret for $20$ arms, over $p=\lbrace 1,4,10\rbrace$ and $T=60000$ timesteps, averaged over $100$ independent runs for Bernoulli distributions, where $r_{i_{:{a_{i}\neq a^{*}}}}=0.06,\forall i\in A$ and $r^{*}=0.1$. Here, $\psi_{m}=1$ and $\rho_{s}=\frac{1}{2^{m+1}},\rho_{a}=\frac{1}{2^{2m+1}}$. In this case we see that, since $\rho_{a}$ is decreased very fast, the optimal arm $a^{*}$ gets eliminated most of the time for no clustering $p=1$. While a balance of $p,\rho_{a}$ and $\rho_{s}$ gives a much better result. ClusUCB with $p=4$ and $10$ perform better than MOSS, while $p=1$ with just arm elimination does not converge and $p=5$ with just Cluster elimination and no arm elimination also does not converge. As proved in Proposition \ref{proofSketch:Prop:2}, regret for using just cluster elimination is higher than using just arm elimination. A balance of cluster and arm elimination works best. For using just 
+cluster elimination in ClusUCB($\sqrt{\log K}<p\leq \dfrac{K}{2}$) we stop when we are left with one cluster and output the max payoff arm of that cluster.
 
 \begin{figure}
 \begin{center}
