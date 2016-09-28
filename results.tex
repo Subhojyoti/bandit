@@ -1,13 +1,30 @@
 	
 	Here, we state the main theorem of the paper which shows the regret upper bound of ClusUCB.
 	
-\begin{theorem}
+\begin{theorem}[\textbf{\textit{Regret bound}}]
 \label{Result:Theorem:1}
-Considering both the arm elimination and cluster elimination condition and $p>1$, the total regret till $T$ is upper bounded by $\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b} \bigg\lbrace \bigg(2\Delta_{i}+\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg) + \bigg(\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg\lbrace \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)\bigg\rbrace + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg\lbrace  \bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s} -1}} \bigg) \bigg\rbrace + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq \sqrt{\dfrac{e}{T}}$, where $\rho_{a},\rho_{s}\in (0,1]$ are the arm and cluster elimination parameter respectively, $A_{s^{*}}$ is the number of arms in optimal cluster $s^{*}$ such that $|A_{s^{*}}|\leq \big\lceil\frac{K}{p}\big\rceil$ , $p$ is the number of clusters and $T$ is the horizon.
+The regret $R_T$ of ClusUCB satisfies
+\begin{align*}
+&\E [R_{T}]\leq 
+\sum\limits_{i\in A:\Delta_{i}\geq b} \bigg\lbrace \bigg(2\Delta_{i}+\dfrac{2^{1+4\rho_{a}}\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}}\bigg) \\
+&+ \bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\dfrac{32\rho_{a}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)\\
+%%%%%%%
+& + \bigg(\dfrac{32\rho_{s}\log{(\psi_{m}T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)\bigg\rbrace + \\
+%%%
+&
+\sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\bigg\lbrace \bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi_{m}^{\rho_{a}}b^{4\rho_{a} -1}} \bigg)\bigg\rbrace + \\
+%%%%%%%
+&\sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\bigg\lbrace  \bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{\psi_{m}^{\rho_{s}}b^{4\rho_{s} -1}} \bigg) \bigg\rbrace \\
+%%%%
+&+ max_{i:\Delta_{i}\leq b}\Delta_{i}T, 
+\end{align*}
+for all $b\geq \sqrt{\dfrac{e}{T}}$ and $\rho_{a},\rho_{s}\in (0,1]$.
 \end{theorem}
+\begin{proof}
+ A sketch of the proof is given in Section \ref{sec:proofSketch} and the complete proof is available in Appendix \ref{App:A}.
+\end{proof}
 
-
-	The proof of this is given in Appendix \ref{App:A}.(Supplementary Material)
+	
 	
 %\begin{remark}
 %\label{Result:Rem:1}
@@ -15,36 +32,40 @@ Considering both the arm elimination and cluster elimination condition and $p>1$
 %%which makes the logarithmic term  the main term for suitable $b$
 %\end{remark}
 
-\begin{remark}
-\label{Result:Rem:1}
 From the statement of Theorem 1 we can see that taking various values of $\rho_{s}$ and $\rho_{a}$ and how these values are reduced after every round significantly affects our regret bound. A discussion on them is deferred to Remark \ref{App:B:Rem:2}(Appendix \ref{App:B}), Remark \ref{App:C:Rem:1}(Appendix \ref{App:C}) and their various definitions are given in Appendix \ref{App:E}. A discussion on exploration regulatory factor($\psi_{m}$) and its effect is deferred to Appendix \ref{App:D}. A discussion on the three approaches of using only arm elimination in Algorithm 1 or using only cluster elimination or using both is deferred to Remark \ref{App:E:Rem:1}(Appendix \ref{App:E}).
-\end{remark}
 
-\begin{corollary}
-\label{Result:Corollary:1}
-Taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=K^{2}T$ and using $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{4}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{4}\bigg\rbrace $ and $b\approx\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 6\sqrt{KT} + 2\dfrac{\sqrt{KT}}{p} + 64\sqrt{KT\log K} + \dfrac{32\log{(\log K)}}{\sqrt{\log K}}\bigg\rbrace$.
-\end{corollary}
-
-
-	The proof of this corollary is given in Appendix \ref{App:Proof:Corollary:1}.(Supplementary Material)
-
-%\begin{remark}
-%\label{Result:Rem:3}
-\paragraph*{} So, the total order come of as $O(\sqrt{KT\log K})$ which matches the order of $O(\sqrt{KT})$ of MOSS except the term $\sqrt{\log K}$ and is same as the UCB-Improved gap independent bound of $O\big(\sqrt{KT\log K}\big)$.
-%\end{remark}
-
-\begin{corollary}
+%%%% Gap dependent bound
+\begin{corollary}[\textbf{\textit{Gap-dependent bound}}]
 \label{Result:Corollary:2}
-Taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi_{m}=\dfrac{T}{\log (KT)}$ and using $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace $ and $b\approx\sqrt{\dfrac{K\log K}{T}}$ we can have a gap dependent regret bound as $ \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}$.
+With $\psi_{m}=\frac{T}{\log (KT)}$, $\rho_{a}=max\bigg\lbrace\frac{1}{2^{m}},\frac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\frac{1}{2^{m}},\frac{1}{2}\bigg\rbrace $ and $b\approx\sqrt{\frac{K\log K}{T}}$,  we have the following gap-dependent bound for the regret of ClusUCB:
+\begin{align*}
+&\E R_T \!\le\! \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(\frac{T\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace \\
+&+ \sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}} 
+\end{align*}
 \end{corollary}
-
-	The proof of this corollary is given in Appendix \ref{App:Proof:Corollary:2}.(Supplementary Material)
+\begin{proof}
+ See Appendix \ref{App:Proof:Corollary:2}.
+\end{proof}
 
 %\begin{remark}
 %\label{Result:Rem:4}
-\paragraph*{}When we consider gap-dependent bound, by choosing appropriate values of $\rho_{a},\rho_{s},\psi_{m}$ and $p$ we see that the most significant term in the regret is $\sum_{i\in A:\Delta_{i}\geq b}\dfrac{64\log{\big(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}}\big)}}{\Delta_{i}}$. Hence we see the regret upper bound of $O\bigg(\dfrac{K\log \big(\dfrac{T\Delta^{2}}{\sqrt{\log (KT)}}\big)}{\Delta}\bigg)$ is lower than the gap dependent bound of UCB1 of $O\bigg(\dfrac{K\log T}{\Delta}\bigg)$ and that of UCB-Improved, $O\bigg(\dfrac{K\log T\Delta^{2}}{\Delta}\bigg)$. Also comparing against that of MOSS, $O\bigg(\dfrac{K\log(T\Delta^{2}/K)}{\Delta}\bigg)$ the regret bound of our algorithm is better if $\sqrt{\log(KT)}>K$. A table for the various regret upper bounds is given in Appendix \ref{App:F}. Thus we see that $\rho_{a},\rho_{s}$ actually helps in reducing the constant associated with the factor $\sqrt{KT}$ and the $\dfrac{\log\bigg(\psi_{m}\dfrac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)}{\Delta_{i}}$ 
-term and also both $\psi_{m}$ and $\rho_{a},\rho_{s}$ helps in stabilizing the term $\log\bigg(\psi_{m}\dfrac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)$.
+The most significant term in the bound above is $\sum_{i\in A:\Delta_{i}\geq b}\frac{64\log{\big(T\frac{\Delta_{i}^{2}}{\sqrt{\log (KT)}}\big)}}{\Delta_{i}}$ and hence, the regret upper bound for ClusUCB is of the order $O\bigg(\frac{K\log \big(\frac{T\Delta^{2}}{\sqrt{\log (KT)}}\big)}{\Delta}\bigg)$. As shown in Table \ref{tab:regret-bds}, the gap-dependent bound of ClusUCB is always better than UCB1, UCB-Improved and better than that of MOSS when $\sqrt{\log(KT)}>K$.  Thus, we observe that clustering in conjunction with improved exploration via $\rho_{a},\rho_{s}$ helps in reducing the constant associated with the factor $\sqrt{KT}$ and the $\frac{\log\bigg(\psi_{m}\frac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)}{\Delta_{i}}$ 
+term and $\psi_{m},\rho_{a},\rho_{s}$ helps in stabilizing the term $\log\bigg(\frac{\psi_{m}T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)$.
 %\end{remark}	
+
+\begin{corollary}[\textbf{\textit{Gap-independent bound}}]
+\label{Result:Corollary:1}
+With $\psi_{m}=K^{2}T$, $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{4}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{4}\bigg\rbrace $ and $b\approx\sqrt{\dfrac{K\log K}{T}}$, the regret of ClusUCB is bounded  by $\bigg\lbrace 6\sqrt{KT} + 2\dfrac{\sqrt{KT}}{p} + 64\sqrt{KT\log K} + \dfrac{32\log{(\log K)}}{\sqrt{\log K}}\bigg\rbrace$.
+\end{corollary}
+\begin{proof}
+ See Appendix \ref{App:Proof:Corollary:1}.
+\end{proof}
+
+%\begin{remark}
+%\label{Result:Rem:3}
+From the above result, we observe that the order of the regret upper bound of ClusUCB is $O(\sqrt{KT\log K})$ and this matches the order of UCB-Improved. On the other hand, the current analysis used to arrive at Theorem \ref{Result:Theorem:1} for ClusUCB is not enough to obtain the order $O(\sqrt{KT})$ bound of MOSS.
+%\end{remark}
+
 
 
 %\begin{corollary}
