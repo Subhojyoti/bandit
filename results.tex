@@ -18,7 +18,7 @@ The regret $R_T$ of ClusUCB satisfies
 %%%%
 &+ max_{i:\Delta_{i}\leq b}\Delta_{i}T, 
 \end{align*}
-for all $b\geq \sqrt{\dfrac{e}{T}}$ and $\rho_{a},\rho_{s}\in (0,1]$.
+for all $b\geq \sqrt{\dfrac{e}{T}}$, $\rho_{a},\rho_{s}\in (0,1]$ and $\psi_{m}=K^{2}T$.
 \end{theorem}
 \begin{proof}
  A sketch of the proof is given in Section \ref{sec:proofSketch} and the complete proof is available in Appendix \ref{App:A}.
@@ -36,15 +36,15 @@ From the statement of Theorem 1 we can see that taking various values of $\rho_{
 
 %%%% Gap dependent bound
 \begin{corollary}[\textbf{\textit{Gap-dependent bound}}]
-\label{Result:Corollary:2}
+\label{Result:Corollary:1}
 With $\psi_{m}=\frac{T}{\log (KT)}$, $\rho_{a}=max\bigg\lbrace\frac{1}{2^{m}},\frac{1}{2}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\frac{1}{2^{m}},\frac{1}{2}\bigg\rbrace $ and $b\approx\sqrt{\frac{K\log K}{T}}$,  we have the following gap-dependent bound for the regret of ClusUCB:
 \begin{align*}
 &\E R_T \!\le\! \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(\frac{T\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace \\
-&+ \sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}} 
+&+ \sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\dfrac{5.6\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\dfrac{16\sqrt{\log (KT)}}{\Delta_{i}} 
 \end{align*}
 \end{corollary}
 \begin{proof}
- See Appendix \ref{App:Proof:Corollary:2}.
+ See Appendix \ref{App:Proof:Corollary:1}.
 \end{proof}
 
 %\begin{remark}
@@ -54,16 +54,34 @@ term and $\psi_{m},\rho_{a},\rho_{s}$ helps in stabilizing the term $\log\bigg(\
 %\end{remark}	
 
 \begin{corollary}[\textbf{\textit{Gap-independent bound}}]
-\label{Result:Corollary:1}
-With $\psi_{m}=K^{2}T$, $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{4}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{4}\bigg\rbrace $ and $b\approx\sqrt{\dfrac{K\log K}{T}}$, the regret of ClusUCB is bounded  by $\bigg\lbrace 6\sqrt{KT} + 2\dfrac{\sqrt{KT}}{p} + 64\sqrt{KT\log K} + \dfrac{32\log{(\log K)}}{\sqrt{\log K}}\bigg\rbrace$.
+\label{Result:Corollary:2}
+With $\psi_{m}=K^{2}T$, $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{4}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{4}\bigg\rbrace $ and $b\approx\sqrt{\dfrac{K\log K}{T}}$, the regret of ClusUCB is bounded  by $\bigg\lbrace 11.6\sqrt{KT} + 4\dfrac{\sqrt{KT}}{p} + 64\sqrt{KT\log K} + \dfrac{32\log{(\log K)}}{\sqrt{\log K}}\bigg\rbrace$.
 \end{corollary}
 \begin{proof}
- See Appendix \ref{App:Proof:Corollary:1}.
+ See Appendix \ref{App:Proof:Corollary:2}.
 \end{proof}
 
 %\begin{remark}
 %\label{Result:Rem:3}
 From the above result, we observe that the order of the regret upper bound of ClusUCB is $O(\sqrt{KT\log K})$ and this matches the order of UCB-Improved. On the other hand, the current analysis used to arrive at Theorem \ref{Result:Theorem:1} for ClusUCB is not enough to obtain the order $O(\sqrt{KT})$ bound of MOSS.
+
+\begin{corollary}[\textbf{\textit{Gap-independent bound($\rho_{a}<\rho_{s}$)}}]
+\label{Result:Corollary:2}
+With $\psi_{m}=K^{2}T$, $\rho_{a}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{4}\bigg\rbrace,\rho_{s}=max\bigg\lbrace\dfrac{1}{2^{m}},\dfrac{1}{2}\bigg\rbrace $ and $b\approx\sqrt{\dfrac{K\log K}{T}}$, the regret of ClusUCB is bounded  by $\bigg\lbrace 2\sqrt{KT} + 64\sqrt{KT\log K} + \dfrac{32\log{(\log K)}}{\sqrt{\log K}} + 4\dfrac{\sqrt{KT}}{p}  + 16\sqrt{\dfrac{T}{K\log K}}\bigg\rbrace$.
+\end{corollary}
+\begin{proof}
+ See Appendix \ref{App:Proof:Corollary:3}.
+ 
+From the above result we can justify the use of different values of $\rho_{a}$ and $\rho_{s}$ which enables us to reduce the error term,
+
+\begin{align*}
+4\dfrac{\sqrt{KT}}{p} + 16\sqrt{\dfrac{T}{K\log K}}
+\end{align*}
+
+for $ \sqrt{\log K} \leq p\leq\frac{K}{2}$
+
+\end{proof}
+
 %\end{remark}
 
 
