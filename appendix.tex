@@ -351,10 +351,10 @@ Summing up \textbf{Case a1}, \textbf{Case a2}, \textbf{Case b1},\textbf{Case b2}
   
 \end{proof}
 
-\begin{remark}
-\label{App:B:Rem:2}
-Thus, we see that the regret bound for using just arm elimination is actually less than the regret bound for using just cluster elimination. Another takeaway from this result is that a lower value of $\rho_{a},\rho_{s}\in (0,1]$ makes the algorithm risky(by increasing the error bound), but reduces expected regret whereas a higher value of $\rho_{a},\rho_{s} > 1$ actually makes the algorithm less risky but at a cost of higher expected regret. The risk stems from the fact that the probability of sub-optimal arm not getting eliminated increases without proper exploration. So, there is always this trade-off between exploration, elimination and risk. So, in our algorithm we decrease the $\rho_{s}$ and $\rho_{a}$ in a graded fashion but $\rho_{s}$ and $\rho_{a}$ is always bounded that is, $\rho_{s},\rho_{a} \in (0,1]$(see Appendix E).
-\end{remark}
+%\begin{remark}
+%\label{App:B:Rem:2}
+%Thus, we see that the regret bound for using just arm elimination is actually less than the regret bound for using just cluster elimination. Another takeaway from this result is that a lower value of $\rho_{a},\rho_{s}\in (0,1]$ makes the algorithm risky(by increasing the error bound), but reduces expected regret whereas a higher value of $\rho_{a},\rho_{s} > 1$ actually makes the algorithm less risky but at a cost of higher expected regret. The risk stems from the fact that the probability of sub-optimal arm not getting eliminated increases without proper exploration. So, there is always this trade-off between exploration, elimination and risk. So, in our algorithm we decrease the $\rho_{s}$ and $\rho_{a}$ in a graded fashion but $\rho_{s}$ and $\rho_{a}$ is always bounded that is, $\rho_{s},\rho_{a} \in (0,1]$(see Appendix E).
+%\end{remark}
 
 
 
@@ -437,11 +437,11 @@ s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{
 %\end{proof}
 
 
-\begin{remark}
-\label{App:C:Rem:1}
-
-	If $\rho_{s}>>\rho_{a}$ we can see that two terms can become most significant terms in the regret bound. One is the term  $\bigg(K\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)$ and second is the terms like $\bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)$. Hence, its evident from the result that different values of $\rho_{a}$ and $\rho_{s}$ affects the regret bound differently. When $K$ is large and $p$ is small it is advantageous to run $\rho_{a} << \rho_{s}$ for any round $m$. This will aggressively eliminate arms within cluster while cluster elimination will be more conservative since each cluster will contain a large number of arms it is a good idea to eliminate clusters in the later rounds when sufficient exploration has been done. In the algorithm $\rho_{a}$ and $\rho_{s}$ are decreased in a graded manner so that the risk is low in the initial rounds when sufficient exploration has not been done.
-\end{remark}
+%\begin{remark}
+%\label{App:C:Rem:1}
+%
+%	If $\rho_{s}>>\rho_{a}$ we can see that two terms can become most significant terms in the regret bound. One is the term  $\bigg(K\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)$ and second is the terms like $\bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)$. Hence, its evident from the result that different values of $\rho_{a}$ and $\rho_{s}$ affects the regret bound differently. When $K$ is large and $p$ is small it is advantageous to run $\rho_{a} << \rho_{s}$ for any round $m$. This will aggressively eliminate arms within cluster while cluster elimination will be more conservative since each cluster will contain a large number of arms it is a good idea to eliminate clusters in the later rounds when sufficient exploration has been done. In the algorithm $\rho_{a}$ and $\rho_{s}$ are decreased in a graded manner so that the risk is low in the initial rounds when sufficient exploration has not been done.
+%\end{remark}
 
 
 
@@ -501,53 +501,53 @@ Here we take $b\approx\sqrt{\dfrac{K\log K}{T}}$, $\psi=\dfrac{T}{\log(KT)}$, $\
 %For $T\geq K^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}},\rho_{s}=\dfrac{1}{2^{m}} $ and $b=\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 2\sqrt{KT\log K} + \dfrac{12\sqrt{T\log K}}{K^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} + 2.8\dfrac{\sqrt{KT\log K}}{p} \bigg\rbrace$.
 %\end{corollary}
 
-\section{Proof of Corollary 2}
-\label{App:Proof:Corollary:2}
-\begin{proof}
-Here we take $b\approx\sqrt{\dfrac{K\log K}{T}}$, $\psi=K^{2}T$, $\rho_{a}=\dfrac{1}{4}$ and $\rho_{s}=\dfrac{1}{4}$
-	
-	Taking into account Theorem \ref{Result:Theorem:1}, putting the above values in 
-	\begin{align*}
-	\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)=& \bigg(K\dfrac{T^{1-\frac{1}{4}}\frac{1}{4}^{2\frac{1}{4}}2^{1+4\frac{1}{4}}}{(T)^{\frac{1}{4}}\Delta_{i}^{4\frac{1}{4}-1}} \bigg)=2\sqrt{KT}
-	\end{align*}		
-	 Similarly, for the term
-	 \begin{align*}
-	 \sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) = 4\sqrt{KT}
-	 \end{align*}
-	 
-	
-	For the term regarding number of pulls,
-	\begin{align*}
-	\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}} &= \dfrac{32\sqrt{T}\frac{1}{4}\log{(T^{2}\dfrac{K^{4}(\log K)^{2}}{T^{2}})}}{\sqrt{K\log K}}\\
-	&\leq  \dfrac{16\sqrt{KT}\log{(K^{2}(\log K))}}{\sqrt{\log K}}\\
-	&=32\sqrt{KT\log K} + \dfrac{16\log{(\log K)}}{\sqrt{\log K}}
-	\end{align*}		
-	
-	Similarly for the term,
-	\begin{align*}
-	\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} = 32\sqrt{KT\log K} + \dfrac{16\log{(\log K)}}{\sqrt{\log K}}
-	\end{align*}		
-	
- 	Lastly we can bound the error terms as, 
-	\begin{align*}
-	\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)=\dfrac{K}{p}\bigg(\dfrac{T^{1-\frac{1}{4}}\frac{1}{4}^{2\frac{1}{4}}2^{2\frac{1}{4}+\frac{3}{2}}}{{(T)^{\frac{1}{4}}}{(\Delta_{i})^{4*\frac{1}{4}-1}}} \bigg) = \dfrac{2 \sqrt{KT} }{p}
-	\end{align*}	 	
- 	Similarly for the term,
- 	\begin{align*}
- 	\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi^{\rho_{s}})\Delta_{i}^{4\rho_{s} -1}} \bigg)= 2.8 \sqrt{KT} 
-	\end{align*} 	 
- 	
-
-	So, the total bound for using both arm and cluster elimination comes of as $\bigg\lbrace 11.6\sqrt{KT} + 4\dfrac{\sqrt{KT}}{p} + 64\sqrt{KT\log K} + \dfrac{32\log{(\log K)}}{\sqrt{\log K}}\bigg\rbrace$.
-%+ \dfrac{8\sqrt{KT}\log(\dfrac{4*K^{2}(\log K)^{2}}{T})}{\sqrt{\log K}} 
-\end{proof}
+%\section{Proof of Corollary 2}
+%\label{App:Proof:Corollary:2}
+%\begin{proof}
+%Here we take $b\approx\sqrt{\dfrac{K\log K}{T}}$, $\psi=K^{2}T$, $\rho_{a}=\dfrac{1}{4}$ and $\rho_{s}=\dfrac{1}{4}$
+%	
+%	Taking into account Theorem \ref{Result:Theorem:1}, putting the above values in 
+%	\begin{align*}
+%	\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)=& \bigg(K\dfrac{T^{1-\frac{1}{4}}\frac{1}{4}^{2\frac{1}{4}}2^{1+4\frac{1}{4}}}{(T)^{\frac{1}{4}}\Delta_{i}^{4\frac{1}{4}-1}} \bigg)=2\sqrt{KT}
+%	\end{align*}		
+%	 Similarly, for the term
+%	 \begin{align*}
+%	 \sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) = 4\sqrt{KT}
+%	 \end{align*}
+%	 
+%	
+%	For the term regarding number of pulls,
+%	\begin{align*}
+%	\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}} &= \dfrac{32\sqrt{T}\frac{1}{4}\log{(T^{2}\dfrac{K^{4}(\log K)^{2}}{T^{2}})}}{\sqrt{K\log K}}\\
+%	&\leq  \dfrac{16\sqrt{KT}\log{(K^{2}(\log K))}}{\sqrt{\log K}}\\
+%	&=32\sqrt{KT\log K} + \dfrac{16\log{(\log K)}}{\sqrt{\log K}}
+%	\end{align*}		
+%	
+%	Similarly for the term,
+%	\begin{align*}
+%	\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} = 32\sqrt{KT\log K} + \dfrac{16\log{(\log K)}}{\sqrt{\log K}}
+%	\end{align*}		
+%	
+% 	Lastly we can bound the error terms as, 
+%	\begin{align*}
+%	\sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{2\rho_{a}+\frac{3}{2}}}{\psi^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)=\dfrac{K}{p}\bigg(\dfrac{T^{1-\frac{1}{4}}\frac{1}{4}^{2\frac{1}{4}}2^{2\frac{1}{4}+\frac{3}{2}}}{{(T)^{\frac{1}{4}}}{(\Delta_{i})^{4*\frac{1}{4}-1}}} \bigg) = \dfrac{2 \sqrt{KT} }{p}
+%	\end{align*}	 	
+% 	Similarly for the term,
+% 	\begin{align*}
+% 	\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+3}}{(\psi^{\rho_{s}})\Delta_{i}^{4\rho_{s} -1}} \bigg)= 2.8 \sqrt{KT} 
+%	\end{align*} 	 
+% 	
+%
+%	So, the total bound for using both arm and cluster elimination comes of as $\bigg\lbrace 11.6\sqrt{KT} + 4\dfrac{\sqrt{KT}}{p} + 64\sqrt{KT\log K} + \dfrac{32\log{(\log K)}}{\sqrt{\log K}}\bigg\rbrace$.
+%%+ \dfrac{8\sqrt{KT}\log(\dfrac{4*K^{2}(\log K)^{2}}{T})}{\sqrt{\log K}} 
+%\end{proof}
 
 %\begin{corollary}
 %For $T\geq (K\sqrt{\log K})^{\frac{1}{\rho_{a}}}$, taking into account the regret bound in Theorem \ref{Result:Theorem:1}, putting the value of $\psi=T$ and using $\rho_{a}=\dfrac{1}{2^{2m}},\rho_{s}=\dfrac{1}{2^{m}} $ and $b=\sqrt{\dfrac{K\log K}{T}}$ we can have a gap independent regret bound as $\bigg\lbrace 2\sqrt{KT} + \dfrac{12\sqrt{T\log K}}{(K\sqrt{K})^{\sqrt{\frac{T}{e}}-\frac{1}{2}}} + \dfrac{64\sqrt{K}\log{(\sqrt{T}K\log K)}}{\sqrt{\log K}} + \dfrac{64\sqrt{K}\log{(TK\log K)}}{\sqrt{T\log K}} + 2.8\dfrac{\sqrt{KT}}{p} \bigg\rbrace$.
 %\end{corollary}
 
-\section{Proof of Corollary 3}
-\label{App:Proof:Corollary:3}
+\section{Proof of Corollary 2}
+\label{App:Proof:Corollary:2}
 \begin{proof}
 Here we take $b\approx\sqrt{\dfrac{K\log K}{T}}$, $\psi=K^{2}T$, $\rho_{a}=\dfrac{1}{4}$ and $\rho_{s}=\dfrac{1}{2}$
 	
