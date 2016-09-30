@@ -75,13 +75,13 @@ With $\psi=K^{2}T$, $\rho_{a}=\dfrac{1}{4}$ ,$\rho_{s}=\dfrac{1}{2} $ and $b\app
 From the above result we see that this bound is less than than the bound in Corollary \ref{Result:Corollary:2}. Here we also define the error bound, which is the bound on the regret obtained after elimination of the optimal arm $a^{*}$. So the  error bound from Corollary \ref{Result:Corollary:2} is 
 
 \begin{align*}
-5.6\dfrac{\sqrt{KT}}{p} + 16\sqrt{\dfrac{T}{K\log K}}
+5.6\sqrt{KT} + 4\dfrac{\sqrt{KT}}{p}
 \end{align*}
 
 which is more than the error bound from Corollary \ref{Result:Corollary:3},
 
 \begin{align*}
-4\dfrac{\sqrt{KT}}{p} + 16\sqrt{\dfrac{T}{K\log K}}
+16\sqrt{\dfrac{T}{K\log K}} + 4\dfrac{\sqrt{KT}}{p}
 \end{align*}
 
 for $ \sqrt{\log K} \leq p\leq\frac{K}{2}$. So by taking $\rho_{a} < \rho_{s}$ we are able to reduce the error bound and this helps the algorithm to perform better in regimes where the gaps are small by keeping the optimal arm safe with high probability. 
