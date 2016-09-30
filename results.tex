@@ -32,7 +32,7 @@ for all $b\geq \sqrt{\dfrac{e}{T}}$, $\rho_{a}=\dfrac{1}{2},\rho_{s}=\dfrac{1}{2
 %%which makes the logarithmic term  the main term for suitable $b$
 %\end{remark}
 
-From the statement of Theorem 1 we can see that taking various values of $\rho_{s}$ and $\rho_{a}$ and how these values are reduced after every round significantly affects our regret bound. A discussion on them is deferred to Remark \ref{App:B:Rem:2}(Appendix \ref{App:B}), Remark \ref{App:C:Rem:1}(Appendix \ref{App:C}) and their various definitions are given in Appendix \ref{App:E}. A discussion on exploration regulatory factor($\psi$) and its effect is deferred to Appendix \ref{App:D}. A discussion on the three approaches of using only arm elimination in Algorithm 1 or using only cluster elimination or using both is deferred to Remark \ref{App:E:Rem:1}(Appendix \ref{App:E}).
+From the statement of Theorem 1 we can see that taking various values of $\rho_{s}$ and $\rho_{a}$ and how these values are reduced after every round significantly affects our regret bound. A discussion on their various definitions are given in Appendix \ref{App:E}. A discussion on exploration regulatory factor($\psi$) and its effect is deferred to Appendix \ref{App:D}. A discussion on the three approaches of using only arm elimination in Algorithm 1 or using only cluster elimination or using both is deferred to Remark \ref{App:E:Rem:1}(Appendix \ref{App:E}).
 
 %%%% Gap dependent bound
 \begin{corollary}[\textbf{\textit{Gap-dependent bound}}]
@@ -49,9 +49,23 @@ With $\psi=\frac{T}{\log (KT)}$, $\rho_{a}=\frac{1}{2}$, $\rho_{s}=\frac{1}{2} $
 
 %\begin{remark}
 %\label{Result:Rem:4}
-The most significant term in the bound above is $\sum_{i\in A:\Delta_{i}\geq b}\frac{64\log{\big(T\frac{\Delta_{i}^{2}}{\sqrt{\log (KT)}}\big)}}{\Delta_{i}}$ and hence, the regret upper bound for ClusUCB is of the order $O\bigg(\frac{K\log \big(\frac{T\Delta^{2}}{\sqrt{\log (KT)}}\big)}{\Delta}\bigg)$. As shown in Table \ref{tab:regret-bds}, the gap-dependent bound of ClusUCB is always better than UCB1, UCB-Improved and better than that of MOSS when $\sqrt{\log(KT)}>K$.  Thus, we observe that clustering in conjunction with improved exploration via $\rho_{a},\rho_{s}$ helps in reducing the constant associated with the factor $\sqrt{KT}$ and the $\frac{\log\bigg(\psi\frac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)}{\Delta_{i}}$ 
-term and $\psi,\rho_{a},\rho_{s}$ helps in stabilizing the term $\log\bigg(\frac{\psi  T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)$.
-%\end{remark}	
+The most significant term in the bound above is $\sum_{i\in A:\Delta_{i}\geq b}\frac{64\log{\big(T\frac{\Delta_{i}^{2}}{\sqrt{\log (KT)}}\big)}}{\Delta_{i}}$ and hence, the regret upper bound for ClusUCB is of the order $O\bigg(\frac{K\log \big(\frac{T\Delta^{2}}{\sqrt{\log (KT)}}\big)}{\Delta}\bigg)$. As shown in Table \ref{tab:regret-bds}, the gap-dependent bound of ClusUCB is always better than UCB1, UCB-Improved and better than that of MOSS. This can be shown by,
+
+\begin{align*}
+K*K\log\bigg(\dfrac{T\Delta^{2}}{K}\bigg) = K\log\bigg( \dfrac{T^{K-1}\Delta^{2K-2}}{K^{K}} * T\Delta^{2}\bigg)
+\end{align*}
+
+So, this can become greater than $K\log\bigg(\dfrac{T\Delta^{2}}{\sqrt{\log(KT)}}\bigg)$ when,
+\begin{align*}
+\dfrac{T^{K-1}\Delta^{2K-2}}{K^{K}} > \dfrac{1}{\sqrt{\log(KT)}}
+\end{align*}
+
+Now, this is true for all $K\geq 2$ and $\Delta > \dfrac{2}{\sqrt{T}(\log 2T)^{\frac{1}{4}}}$. But we know that,ClusUCB regret bound is valid for all $\Delta \geq \sqrt{\dfrac{e}{T}} > \dfrac{2}{\sqrt{T}(\log 2T)^{\frac{1}{4}}}$. Hence for all $\sqrt{\dfrac{e}{T}} \leq \Delta\leq 1$ and $K\geq 2$, the gap dependent bound is better than MOSS.
+
+
+
+
+
 
 %\begin{corollary}[\textbf{\textit{Gap-independent bound}}]
 %\label{Result:Corollary:2}
@@ -71,6 +85,9 @@ With $\psi=K^{2}T$, $\rho_{a}=\dfrac{1}{4}$ ,$\rho_{s}=\dfrac{1}{2} $ and $b\app
 
 
 From the above result, we observe that the order of the regret upper bound of ClusUCB is $O(\sqrt{KT\log K})$ and this matches the order of UCB-Improved. On the other hand, the current analysis used to arrive at Theorem \ref{Result:Theorem:1} for ClusUCB is not enough to obtain the order $O(\sqrt{KT})$ bound of MOSS.
+
+Thus, we observe that clustering in conjunction with improved exploration via $\rho_{a},\rho_{s}$ helps in reducing the constant associated with the factor $\sqrt{KT}$ and the $\frac{\log\bigg(\psi\frac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)}{\Delta_{i}}$ 
+term and $\psi,\rho_{a},\rho_{s}$ helps in stabilizing the term $\log\bigg(\frac{\psi  T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)$.
 
 %\begin{corollary}[\textbf{\textit{Gap-independent bound}}]
 %\label{Result:Corollary:3}
