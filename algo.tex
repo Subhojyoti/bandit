@@ -27,21 +27,21 @@ Algorithm~\ref{alg:clusucb} presents the pseudocode of ClusUCB.
 \label{alg:clusucb}
 \begin{algorithmic}
 \State {\bf Input:} A partition of $A$ into clusters from Algorithm \ref{alg:rua}, exploration parameters $\rho_a$, $\rho_s$, time horizon $T$.
-\State {\bf Initialization:} Set $B_{0}:=A$, $\psi_{m}=\log T$, $\epsilon_{0}:=1$ and $w_{0}:=1$.
+\State {\bf Initialization:} Set $B_{0}:=A$, $\psi=\log T$, $\epsilon_{0}:=1$ and $w_{0}:=1$.
 %\State For rounds $m=1,2,.. \lceil\frac{1}{2}\log T\rceil$
 \For{$m=0,1,..\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$}	
-\State Pull each arm in $s_{k}$ $n_{m}=\bigg\lceil\dfrac{2\log{(\psi_{m}T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$ number of times, $\forall s_{k}\in S$ 
+\State Pull each arm in $s_{k}$ $n_{m}=\bigg\lceil\dfrac{2\log{(\psi T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$ number of times, $\forall s_{k}\in S$ 
 %\State \hspace*{2em} Calculate $w_{s_{i}}=\bigg\lceil\dfrac{1}{\ell\hat{\Delta}_{s_{i}}}\bigg\rceil$,if $\hat{\Delta}_{s_{i}}\neq 0, \forall s_{i}\in S$
 %\newline\hspace*{8em}$=1$, otherwise, and $\hat{\Delta}_{s_{i}}=\max_{i\in s_{i}}{\lbrace\hat{r}_{i}\rbrace}-\min_{j\in s_{i}}{\lbrace\hat{r}_{j}\rbrace}, i\neq j$
 \ArmElim
 \State For each cluster $s_k \in S$, delete arm $a_{i}\in s_{k}$ if
-$$\hat{r}_{i} + \sqrt{\dfrac{\rho_{a}\log{(\psi_{m}T\epsilon_{m}^{2})}}{2 n_{m}}}  < \max_{a_{j}\in s_{k}}\bigg\lbrace\hat{r}_{j} -\sqrt{\dfrac{\rho_{a}\log{(T\epsilon_{m}^{2})}}{2 n_{m}}} \bigg\rbrace.$$
+$$\hat{r}_{i} + \sqrt{\dfrac{\rho_{a}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{m}}}  < \max_{a_{j}\in s_{k}}\bigg\lbrace\hat{r}_{j} -\sqrt{\dfrac{\rho_{a}\log{(T\epsilon_{m}^{2})}}{2 n_{m}}} \bigg\rbrace.$$
 % where $\rho_{a}=\dfrac{1}{w_{m}}$ and remove all such arms from $B_{m}$.
 \EndArmElim
 \ClusElim
 \State Delete cluster $s_{k}\in S$ if 
 \begin{align*}
- \max_{a_{i}\in s_{k}}\bigg\lbrace\hat{r}_{i} + \sqrt{\dfrac{\rho_{s}\log{(\psi_{m}T\epsilon_{m}^{2})}}{2 n_{m}}}\bigg\rbrace  \\
+ \max_{a_{i}\in s_{k}}\bigg\lbrace\hat{r}_{i} + \sqrt{\dfrac{\rho_{s}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{m}}}\bigg\rbrace  \\
  < \max_{a_{j}\in B_{m}} \bigg\lbrace\hat{r}_{j} - \sqrt{\dfrac{\rho_{s} \log{(T\epsilon_{m}^{2})}}{2 n_{m}}}\bigg\rbrace.
 \end{align*}
 %  and remove all such arms in the cluster $s_{k}$ from $B_{m}$ to obtain $B_{m+1}$.
