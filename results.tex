@@ -7,15 +7,15 @@ The regret $R_T$ of ClusUCB satisfies
 \begin{align*}
 &\E [R_{T}]\!\leq\! 
 \sum\limits_{\substack{i\in A,\\\Delta_{i}\geq b}} \bigg\lbrace 2\Delta_{i}+
-\frac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} 
-+ \frac{2C_1(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} \\
+\dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} 
++ \dfrac{2C_1(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} \\
 &\qquad\qquad+ \frac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}
-+ \dfrac{32\rho_{s}\log{(\psi T\frac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace  \\
++ \dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace  \\
 %%%
 &\qquad\qquad+
-\sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\bigg\lbrace \frac{T^{1-\rho_{a}}C_2(\rho_{a})}{\Delta_{i}^{4\rho_{a}-1}}+\frac{T^{1-\rho_{a}}C_2(\rho_a)}{b^{4\rho_{a} -1}} \bigg\rbrace + \\
+\sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\bigg\lbrace \dfrac{C_2(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}+\dfrac{C_2(\rho_a)T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} \bigg\rbrace + \\
 %%%%%%%
-&\!\sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\!\bigg\lbrace \! \frac{2T^{1-\rho_{s}}C_2(\rho_{s})}{\Delta_{i}^{4\rho_{s}-1}} +\frac{2T^{1-\rho_{s}}C_2(\rho_{s})}{b^{4\rho_{s} -1}} \bigg\rbrace 
+&\!\sum\limits_{\substack{i\in A,\\ \Delta_{i}\geq b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} + \!\sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}}  
 \!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T, 
 \end{align*}
 where $b\geq \sqrt{\frac{e}{T}}$, $C_1(x) = \frac{2^{1+4x}x^{2x}}{\psi^{x}}$ and $C_2(x) = \frac{2^{2x+\frac{3}{2}}x^{2x}}{\psi^{x}}$. 
@@ -41,8 +41,9 @@ We now specialize the result in the theorem above by substituting specific value
 \label{Result:Corollary:1}
 With $\psi=\frac{T}{\log (KT)}$, $\rho_{a}=\frac{1}{2}$, $\rho_{s}=\frac{1}{2} $ and $b\approx\sqrt{\frac{K\log K}{T}}$,  we have the following gap-dependent bound for the regret of ClusUCB:
 \begin{align*}
-&\E R_T \!\le\! \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(\frac{T\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace \\
-&+ \sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\dfrac{5.6\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\dfrac{16\sqrt{\log (KT)}}{\Delta_{i}} 
+\E [R_T] &\!\le\! \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{20\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(\frac{T\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace \\
+&+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i}\geq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} \\ 
+&+ \sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}} 
 \end{align*}
 \end{corollary}
 \begin{proof}
@@ -74,8 +75,8 @@ $K\geq 2$. Since Corollary \ref{Result:Corollary:1} holds for all $\Delta \geq \
 With $\psi=K^{2}T$, $\rho_{a}=\frac{1}{4}$, $\rho_{s}=\frac{1}{2}$ and $b\approx\sqrt{\dfrac{K\log K}{T}}$, 
  we have the following gap-dependent bound for the regret of ClusUCB:
 \begin{align*}
-\E R_T &\!\le\! 2\sqrt{KT} + 64\sqrt{KT\log K} + \dfrac{32\log{(\log K)}}{\sqrt{\log K}} \\
-&\qquad+ 4\dfrac{\sqrt{KT}}{p}  + 16\sqrt{\dfrac{T}{K\log K}}.
+\E [R_T] &\!\le\! 2\sqrt{KT} + 64\sqrt{KT\log K} + \dfrac{32\log{(\log K)}}{\sqrt{\log K}} \\
+&\qquad+ 4\dfrac{\sqrt{KT}}{p}  + 8\sqrt{\dfrac{T}{K\log K}} + 8\sqrt{\dfrac{T}{e}} .
 \end{align*}
 \end{corollary}
 \begin{proof}
