@@ -1,21 +1,38 @@
 %\begin{remark}
 %\label{Result:Rem:6}
-\paragraph*{}A sketch of the proof for Theorem \ref{Result:Theorem:1} is given here. In the first step, we try to bound the probability of arm elimination of any sub-optimal arm without cluster elimination. This is shown in Proposition \ref{proofSketch:Prop:1}. By simply taking $p=1$ we can achieve arm elimination without any cluster elimination. In second step, we try to bound the probability of cluster elimination(without any arm elimination) with all arms within it.  A slight modification to the algorithm allows us to do this. By taking $p>1$, removing the arm elimination condition, stopping when we are just left with one cluster and pulling the $max\lbrace \hat{r}_{i}\rbrace$, where $a_{i}\in B_{m}$ we can achieve this.  This is shown in Proposition \ref{proofSketch:Prop:2}. Finally in step three, in the proof of Theorem \ref{Result:Theorem:1} we combine both arm elimination and cluster elimination to get the regret upper bound.  
+We sketch the proof for Theorem \ref{Result:Theorem:1} here. 
+The proof involves the following steps:\\
+\textbf{\textit{Step 1:}}
+We analyze ClusUCB-AE, i.e., the variant of ClusUCB that uses arm elimination condition only. In other words, we bound the probability of sub-optimal arm elimination, which in turn bounds the expected regret of ClusUCB-AE (see Proposition \ref{proofSketch:Prop:1} below). 
+
+\textbf{\textit{Step 2:}}
+We analyze ClusUCB-CE, i.e., the variant of ClusUCB that uses cluster elimination condition only and pulls the best arm within the last leftover cluster.
+Proposition \ref{proofSketch:Prop:2} presents the expected regret for ClusUCB-CE.
+
+\textbf{\textit{Step 3:}}
+Finally we combine the individual bounds in the steps above to get the regret upper bound in Theorem \ref{Result:Theorem:1}.  
 %\end{remark}
 	
 
 \begin{proposition}
 \label{proofSketch:Prop:1}
-Considering only the arm elimination condition and $p=1$ the total regret till $T$ is upper bounded by $\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{C_{1}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi  T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg)
- +  \bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a} -1}} \bigg) \bigg \rbrace+\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\psi^{\rho_{a}}b^{4\rho_{a} -1}} \bigg) + max_{i:\Delta_{i}\leq b}\Delta_{i}T$ for all $b\geq\sqrt{\dfrac{e}{T}}$, where  $C_1(x) = \frac{2^{1+4x}x^{2x}}{\psi^{x}}$,  $C_2(x) = \frac{2^{2x+\frac{3}{2}}x^{2x}}{\psi^{x}}$, $\rho_{a}=\dfrac{1}{2}$ is the arm elimination parameter, $\psi=K^{2}T$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
+The regret $R_T$ for ClusUCB-AE satisfies
+\begin{align*}
+&\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\frac{C_{1}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} + \Delta_{i}\\
+&+\frac{32\rho_{a}\log{(\dfrac{\psi  T\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}
+ +  \frac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a} -1}}  \bigg \rbrace\\
+&+\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\frac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\psi^{\rho_{a}}b^{4\rho_{a} -1}}  + \max_{i:\Delta_{i}\leq b}\Delta_{i}T,
+\end{align*}
+ for all $b\geq\sqrt{\dfrac{e}{T}}$, where  $C_1(x) = \frac{2^{1+4x}x^{2x}}{\psi^{x}}$,  $C_2(x) = \frac{2^{2x+\frac{3}{2}}x^{2x}}{\psi^{x}}$, $\rho_{a}=\dfrac{1}{2}$ is the arm elimination parameter, $\psi=K^{2}T$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
 \end{proposition}
+\begin{proof}
+Follows in a similar fashion as the proof of Theorem 3.1 in \cite{auer2010ucb}. For the sake of completeness, the proof is given in Appendix \ref{App:A}.
+\end{proof}
 
-
-	The proof of Proposition 1 is given in Appendix \ref{App:A}.(Supplementary material).
 
 %\begin{remark}
 %\label{Result:Rem:7}	
-\paragraph*{} Thus, we see that the confidence interval term $c_{m}=\sqrt{\dfrac{\rho_{a}\log (\psi T\epsilon_{m}^{2})}{2 n_{m}}}$ makes the algorithm eliminate an arm $a_{i}$ as soon as $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$. The above result is in contrast with UCB-Improved which only deletes an arm if $\tilde{\Delta}_{m}<\dfrac{\Delta_{i}}{2}$, where $\tilde{\Delta}_{m}$ is initialized at $1$ and is halved after every round. We also point out here that when $c_{m}=\sqrt{\dfrac{\rho_{a}\log (\psi T\epsilon_{m}^{2})}{2 n_{m}}}$ and $\rho_{a}$ is decreased after every round, then an arbitrary arm $a_{i}$ is removed as soon as  $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ which essentially makes it a faster elimination procedure than UCB-Improved if $\rho_{a}\leq \epsilon_{m}$.
+%\paragraph*{} Thus, we see that the confidence interval term $c_{m}=\sqrt{\dfrac{\rho_{a}\log (\psi T\epsilon_{m}^{2})}{2 n_{m}}}$ makes the algorithm eliminate an arm $a_{i}$ as soon as $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$. The above result is in contrast with UCB-Improved which only deletes an arm if $\tilde{\Delta}_{m}<\dfrac{\Delta_{i}}{2}$, where $\tilde{\Delta}_{m}$ is initialized at $1$ and is halved after every round. We also point out here that when $c_{m}=\sqrt{\dfrac{\rho_{a}\log (\psi T\epsilon_{m}^{2})}{2 n_{m}}}$ and $\rho_{a}$ is decreased after every round, then an arbitrary arm $a_{i}$ is removed as soon as  $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{i}}{2}$ which essentially makes it a faster elimination procedure than UCB-Improved if $\rho_{a}\leq \epsilon_{m}$.
 %\end{remark}
 
 
@@ -34,5 +51,6 @@ In the result of Proposition $1$ if we take $\rho_{a}=1$ then the regret bound b
 \label{proofSketch:Prop:2}
 Considering only the cluster elimination condition and $p>1$, the total regret till $T$ is upper bounded by $\E [R_{T}]\leq \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2C_{1}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg) + \underbrace{\bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s} -1}} \bigg)}_{\text{case b2+b3}}\bigg\rbrace + \sum_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}} \bigg) $ for all $b\geq \sqrt{\dfrac{e}{T}}$, where $C_1(x) = \frac{2^{1+4x}x^{2x}}{\psi^{x}}$,  $C_2(x) = \frac{2^{2x+\frac{3}{2}}x^{2x}}{\psi^{x}}$, $\rho_{s}=\dfrac{1}{2} $ is the cluster elimination parameter, $\psi=K^{2}T$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
 \end{proposition}
-
-	The proof of Proposition 2 is given in Appendix \ref{App:B}.(Supplementary material)
+\begin{proof}
+See Appendix \ref{App:B}.
+\end{proof}
