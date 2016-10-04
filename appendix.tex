@@ -573,7 +573,7 @@ Here we take $b\approx\sqrt{\dfrac{K\log K}{T}}$, $\psi=\dfrac{T}{\log(KT)}$, $\
 \section{Proof of Corollary 2}
 \label{App:Proof:Corollary:2}
 \begin{proof}
-Here we take $b\approx\sqrt{\dfrac{K\log K}{T}}$, $\psi=K^{2}T$, $\rho_{a}=\dfrac{1}{4}$ and $\rho_{s}=\dfrac{1}{2}$
+Here we take $b\approx\sqrt{\dfrac{K\log K}{T}} > \sqrt{\dfrac{e}{T}}$(the minimum value for $b$), $\psi=K^{2}T$, $\rho_{a}=\dfrac{1}{4}$ and $\rho_{s}=\dfrac{1}{2}$
 	
 	Taking into account Theorem \ref{Result:Theorem:1}, putting the above values in 
 	\begin{align*}
@@ -587,7 +587,7 @@ Here we take $b\approx\sqrt{\dfrac{K\log K}{T}}$, $\psi=K^{2}T$, $\rho_{a}=\dfra
 	
 	For the term regarding number of pulls,
 	\begin{align*}
-	\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}} &= \dfrac{32\sqrt{T}\frac{1}{2}\log{(T^{2}\dfrac{K^{4}(\log K)^{2}}{T^{2}})}}{\sqrt{K\log K}}\\
+	\sum_{i\in A:\Delta_{i}\geq b}\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}} &= \dfrac{32K\sqrt{T}\frac{1}{2}\log{(T^{2}\dfrac{K^{4}(\log K)^{2}}{T^{2}})}}{\sqrt{K\log K}}\\
 	&\leq  \dfrac{32\sqrt{KT}\log{(K^{2}(\log K))}}{\sqrt{\log K}}\\
 	&=64\sqrt{KT\log K} + \dfrac{32\log{(\log K)}}{\sqrt{\log K}}
 	\end{align*}		
