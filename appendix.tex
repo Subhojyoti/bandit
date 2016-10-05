@@ -473,7 +473,7 @@ Hence, the total regret by combining \textbf{case a}, \textbf{case b1} and \text
 \section{Proof of Corollary 1}
 \label{App:Proof:Corollary:1}
 \begin{proof}
-Here we take $b\approx\sqrt{\dfrac{K\log K}{T}}$, $\psi=\dfrac{T}{\log(KT)}$, $\rho_{a}=\dfrac{1}{2}$ and $\rho_{s}=\dfrac{1}{2}$
+Here we take $\psi=\dfrac{T}{\log(KT)}$, $\rho_{a}=\dfrac{1}{2}$ and $\rho_{s}=\dfrac{1}{2}$.
 
 	Taking into account Theorem \ref{Result:Theorem:1}, putting the above values in 
 	\begin{align*}
@@ -573,7 +573,14 @@ Here we take $b\approx\sqrt{\dfrac{K\log K}{T}}$, $\psi=\dfrac{T}{\log(KT)}$, $\
 \section{Proof of Corollary 2}
 \label{App:Proof:Corollary:2}
 \begin{proof}
-Here we take $b\approx\sqrt{\dfrac{K\log K}{T}} > \sqrt{\dfrac{e}{T}}$(the minimum value for $b$), $\psi=K^{2}T$, $\rho_{a}=\dfrac{1}{4}$ and $\rho_{s}=\dfrac{1}{2}$
+As stated in \cite{auer2010ucb}, we can have a bound on regret of the order of $\sqrt{KT\log K}$ in non-stochastic setting. This is shown in Exp4(\cite{auer2002nonstochastic}) algorithm. Similarly, by putting  $\Delta_{i}=\Delta=\sqrt{\dfrac{K\log K}{T}}$ in the bound of UCB1(\cite{auer2002finite}) we get,
+
+\begin{align*}
+\sum_{i:r_{i}<r^{*}}const \dfrac{\log T}{\Delta_{i}}=\dfrac{\sqrt{KT}\log T}{\sqrt{\log K}}
+\end{align*}
+So, this bound is worse than the non-stochastic setting and is clearly improvable and the lower bound as proposed by Mannor and Tsitsiklis(\cite{mannor2004sample}) of $\sqrt{KT}$ is possible as shown in \cite{audibert2009minimax} for MOSS.
+
+	Hence, we take $b\approx\sqrt{\dfrac{K\log K}{T}} > \sqrt{\dfrac{e}{T}}$(the minimum value for $b$), $\psi=K^{2}T$, $\rho_{a}=\dfrac{1}{4}$ and $\rho_{s}=\dfrac{1}{2}$.
 	
 	Taking into account Theorem \ref{Result:Theorem:1}, putting the above values in 
 	\begin{align*}

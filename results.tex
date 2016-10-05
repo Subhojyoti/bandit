@@ -39,7 +39,7 @@ We now specialize the result in the theorem above by substituting specific value
 %%%% Gap dependent bound
 \begin{corollary}[\textbf{\textit{Gap-dependent bound}}]
 \label{Result:Corollary:1}
-With $\psi=\frac{T}{\log (KT)}$, $\rho_{a}=\frac{1}{2}$, $\rho_{s}=\frac{1}{2} $ and $b\approx\sqrt{\frac{K\log K}{T}}$,  we have the following gap-dependent bound for the regret of ClusUCB:
+With $\psi=\frac{T}{\log (KT)}$, $\rho_{a}=\frac{1}{2}$ and $\rho_{s}=\frac{1}{2}$,  we have the following gap-dependent bound for the regret of ClusUCB:
 \begin{align*}
 \E [R_T] &\!\le\! \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{20\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(\frac{T\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace \\
 &+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i}\geq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} \\ 

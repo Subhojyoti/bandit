@@ -65,8 +65,10 @@ As described in the pseudocode in Algorithm~\ref{alg:clusucb}, ClusUCB begins wi
 Each round of ClusUCB involves both individual arm as well as cluster elimination conditions that are inspired by UCB-Improved. Notice that, unlike UCB-Improved, there is no longer a single point of reference based on which we are eliminating arms. Instead now we have as many reference points to eliminate arms as number of clusters formed. 
 Further, the exploration factors $\rho_{a}\in (0,1]$ and $\rho_{s}\in (0,1]$ governing the arm and cluster elimination conditions, respectively, are relatively more aggressive than that in UCB-Improved. 
 
+In this context we must also point out a similar discussion on the arm elimination parameters was handled in \cite{audibert2009exploration}(section $5.1$). There the authors proved that by introducing the factor $\rho$ in the confidence interval term of UCB1 such that $c=\sqrt{\dfrac{\rho\log T}{n_{i}}}$, where $n_{i}$ is the number of times the arm $a_{i}$ has been sampled, we can make the expected regret $\E [R_{T}]$ linearly dependent on $\rho$. So this $\rho$ in the confidence term controls the exploration and larger the $\rho$, higher is the exploration. In the original UCB1 algorithm this coefficient was set to $\rho=2$. In ClusUCB, both $\rho_{a}$ and $\rho_{s}$ are taken to be $\leq 1$. 
+
 When $K$ is large and the gaps $\Delta_i$ are small, it is efficient to remove sub-optimal arms quickly rather getting tied down in hopeless exploration. 
-The theoretical analysis confirm this intuition, as choosing $\rho_a=\rho_s = \frac{1}{2}$ and $\psi_m=\frac{T}{\log (KT)}$, ClusUCB is able to achive a better gap-dependent regret upper bound as compared to UCB-Improved and MOSS (see Corollary \ref{Result:Corollary:1} in the next section). 
+The theoretical analysis confirm this intuition, as choosing $\rho_a=\rho_s = \frac{1}{2}$ and $\psi=\frac{T}{\log (KT)}$, ClusUCB is able to achive a better gap-dependent regret upper bound as compared to UCB-Improved and MOSS (see Corollary \ref{Result:Corollary:1} in the next section). 
 
 %For creating these clusters we rely on the parameter $\epsilon_{m}$, which is initialized at $1$ and halved after every round. 
 %$\hat{\Delta}_{m}$(in which all $\hat{r}_{i}$ lies) divided by $\ell$. 
