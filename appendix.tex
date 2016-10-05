@@ -475,7 +475,7 @@ Hence, the total regret by combining \textbf{case a}, \textbf{case b1} and \text
 \begin{proof}
 Here we take $\psi=\dfrac{T}{\log(KT)}$, $\rho_{a}=\dfrac{1}{2}$ and $\rho_{s}=\dfrac{1}{2}$.
 
-	Taking into account Theorem \ref{Result:Theorem:1}, putting the above values in 
+	Taking into account Theorem \ref{Result:Theorem:1} for all $b\geq \sqrt{\dfrac{e}{T}}$, putting the above values in 
 	\begin{align*}
 	\sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \sum_{i\in A:\Delta_{i}\geq b}\bigg(\dfrac{T^{1-\frac{1}{2}}\frac{1}{2}^{2*\frac{1}{2}}2^{1+4*\frac{1}{2}}}{(\frac{T}{\log (KT)})^{\frac{1}{2}}\Delta_{i}^{4*\frac{1}{2}-1}} \bigg)=\sum_{i\in A:\Delta_{i}\geq b}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}}
 	\end{align*}
@@ -573,7 +573,7 @@ Here we take $\psi=\dfrac{T}{\log(KT)}$, $\rho_{a}=\dfrac{1}{2}$ and $\rho_{s}=\
 \section{Proof of Corollary 2}
 \label{App:Proof:Corollary:2}
 \begin{proof}
-As stated in \cite{auer2010ucb}, we can have a bound on regret of the order of $\sqrt{KT\log K}$ in non-stochastic setting. This is shown in Exp4(\cite{auer2002nonstochastic}) algorithm. Similarly, by putting  $\Delta_{i}=\Delta=\sqrt{\dfrac{K\log K}{T}}$ in the bound of UCB1(\cite{auer2002finite}) we get,
+As stated in \cite{auer2010ucb}, we can have a bound on regret of the order of $\sqrt{KT\log K}$ in non-stochastic setting. This is shown in Exp4(\cite{auer2002nonstochastic}) algorithm. Similarly, by choosing  $\Delta_{i}=\Delta=\sqrt{\dfrac{K\log K}{T}}$ for all $a_{i:i\neq *}\in A$, in the bound of UCB1(\cite{auer2002finite}) we get,
 
 \begin{align*}
 \sum_{i:r_{i}<r^{*}}const \dfrac{\log T}{\Delta_{i}}=\dfrac{\sqrt{KT}\log T}{\sqrt{\log K}}
