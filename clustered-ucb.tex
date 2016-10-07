@@ -20,7 +20,7 @@ In this paper, we present a novel algorithm for the stochastic multi-armed bandi
 Our proposed method, referred to as ClusUCB, partitions the arms into clusters and then follows the UCB-Improved strategy with aggressive exploration factors to eliminate sub-optimal arms as well as clusters. 
 From a theoretical analysis, we establish that ClusUCB achieves a better gap-dependent regret upper bound than UCB-Improved\cite{auer2010ucb} and MOSS\cite{audibert2009minimax} algorithms. 
 % We corroborate our findings both theoretically and empirically and show that by careful tuning of ClusUCB's exploration parameters, we can achieve a lower regret in comparison to MOSS and UCB-Improved. 
-Further, numerical experiments on test-cases with small gaps between optimal and sub-optimal mean rewards show that ClusUCB results in lower cumulative regret than popular bandit algorithms such as UCB1\cite{auer2002finite}, UCB-Improved, MOSS, UCB-V\cite{audibert2009exploration}, KL-UCB\cite{garivier2011kl} and DMED\cite{honda2010asymptotically}.
+Further, numerical experiments on test-cases with small gaps between optimal and sub-optimal mean rewards show that ClusUCB results in lower cumulative regret than popular bandit algorithms such as UCB1\cite{auer2002finite}, UCB-Improved, MOSS, UCB-V\cite{audibert2009exploration}, Thompson Sampling\cite{agrawal2011analysis},Median Elimination\cite{even2006action}, KL-UCB\cite{garivier2011kl} and DMED\cite{honda2010asymptotically}.
 
 %Old Abstract 27.8.2016
 
@@ -48,9 +48,10 @@ Further, numerical experiments on test-cases with small gaps between optimal and
 \label{sec:results}
 \input{results}
 
-\section{Proof Sketch}
-\label{sec:proofSketch}
-\input{proofSketch}
+\section{Proof of Theorem 1}
+%\section{Proof Sketch}
+\label{sec:proofTheorem}
+\input{proofTheorem}
 
 \section{Simulation experiments}
 \label{sec:expts}
@@ -59,7 +60,7 @@ Further, numerical experiments on test-cases with small gaps between optimal and
 
 \section{Conclusions and future work}
 \label{sec:conclusions}
-Our study concludes that theoretically the gap-dependent regret bound of ClusUCB is lower than MOSS and UCB-Improved. From the numerical experiments on setting with small gaps between optimal and sub-optimal mean rewards, we observed that ClusUCB outperforms UCB1, MOSS, UCB-Improved, UCB-V, KL-UCB, DMED and Median Elimination algorithms. 
+Our study concludes that theoretically the gap-dependent regret bound of ClusUCB is lower than MOSS and UCB-Improved. From the numerical experiments on setting with small gaps between optimal and sub-optimal mean rewards, we observed that ClusUCB outperforms UCB1, MOSS, UCB-Improved, UCB-V, Thompson Sampling, KL-UCB, DMED and Median Elimination algorithms. 
 While we exhibited better regret bounds for ClusUCB, it would be interesting future research to improve the theoretical analysis of ClusUCB to achieve the gap-independent regret bound of MOSS and possibly also the gap-dependent bound conjectured in Section 2.4.3 of \cite{bubeck2012regret}.
 % under certain cases when the $\Delta_{i}$'s are small and $K$ is large. Such cases can frequently occur in web advertising scenarios where the $r_{i}$ are small and a large number of ads are available in the pool. For the critical case when $\Delta_{i:r_{i}<r*}, \forall i\in A$ are equal then ClusUCB performs better than UCB-Improved, UCB1, UCB-Tuned, KL-UCB, MOSS and Median Elimination with careful choosing  of parameters as shown empirically. 
 % It is advantageous to employ ClusUCB as it scales well with the number of arms, in comparison to algorithms such as UCB1, UCB-Improved, MOSS, KL-UCB and Median Elimination. 

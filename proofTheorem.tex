@@ -1,0 +1,143 @@
+\label{sec:proofTheorem}
+
+We sketch the proof for Theorem \ref{Result:Theorem:1} here. 
+The proof involves the following steps:\\
+\textbf{\textit{Step 1:}}
+We analyze ClusUCB-AE, i.e., the variant of ClusUCB that uses arm elimination condition only. In other words, we bound the probability of sub-optimal arm elimination, which in turn bounds the expected regret of ClusUCB-AE (see Proposition \ref{proofSketch:Prop:1} below). 
+
+\textbf{\textit{Step 2:}}
+We analyze ClusUCB-CE, i.e., the variant of ClusUCB that uses cluster elimination condition only and pulls the best arm within the last leftover cluster.
+Proposition \ref{proofSketch:Prop:2} presents the expected regret for ClusUCB-CE (see Proposition \ref{proofSketch:Prop:2} below). 
+
+\textbf{\textit{Step 3:}}
+Finally we combine the individual bounds in the steps above to get the regret upper bound in Theorem \ref{Result:Theorem:1}.  
+	
+
+
+
+
+\begin{proof}
+The optimal cluster which contains $a^{*}$ is denoted by $s^{*}$. The subset of arms belonging to cluster $s_{k}$ is denoted by $A_{s_{k}}$ and similarly the subset of arms belonging to $s^{*}$ is denoted by $A_{s^{*}}$. Combining both the cases of Proposition \ref{proofSketch:Prop:1} and Proposition \ref{proofSketch:Prop:2} we can see that a sub-optimal arm $a_{i}$ can only be eliminated given that either $m_{i}$ or $g_{s_{k}}$s.t $\exists a_{i}\in s_{k}$ happens with $a^{*}\in s^{*}$ still surviving. In Proposition \ref{proofSketch:Prop:1} we consider only arm elimination and in Proposition \ref{proofSketch:Prop:2} we consider only cluster elimination. Also this proof we will consider $p>1$. So there will be slight modification from what we proved in proposition \ref{proofSketch:Prop:1} with $p=1$. For random uniform allocation we will assume that each cluster $s_{k},\forall s_{k}\in S$, gets such an arm such that $r_{{max_{s_{k}}}}\geq r_{a_{i}},\forall i\in s_{k}$. Again, $r_{a^{*}}\geq r_{{max_{s_{k}}}}, \forall s_{k}\in S$. Here also we take $\rho_{a},\rho_{s}\in (0,1]$ as a constant in this proof whereby in Corollary \ref{Result:Corollary:1} and \ref{Result:Corollary:2} we use the different definitions. The theoretical analysis remains same as we have always bounded the values of $\rho_{a}\in (0,1]$(see Appendix \ref{App:E}). Let $A^{'}=\lbrace i \in A,\Delta_{i}> b\rbrace$ and $A^{''}=\lbrace i \in A,0 < \Delta_{i} \leq b\rbrace$. 
+%Also we cluster the arms based on $\epsilon_{m}$.
+% One vital point we point out is that, $\epsilon_{m}$(in proposition $3$) = $\epsilon_{g}$(in proposition $4$).
+\subsection*{Case a: \textit{Some sub-optimal arm $a_{i}$ is not eliminated in round $max(m_{i},g_{s_{k}})$ or before and the optimal arm $a^{*}\in B_{m_{i}}$}}
+ 
+	In this case, we are looking at event of the maximum round till which atleast one of $m_{i}$ or $g_{s_{k}}$ did not happen. So, a sub-optimal arm $a_{i}$ cannot get eliminated in $4$ ways,
+\begin{enumerate}
+\item $a_{i}$ in $s^{*}$ and $m_{i}$ does not happen which is Proposition \ref{proofSketch:Prop:1}, case $a1$.
+\item $a_{i}$ in $s_{k}$, where $r_{max_{s_{k}}}\leq r^{*}$ and $m_{i}$ does not happen. This case was not dealt in Proposition \ref{proofSketch:Prop:1} as there we took $p=1$. Since, now $p>1$ and $r_{max_{s_{k}}}\leq r^{*}$, following the same way as case $a$, Proposition \ref{proofSketch:Prop:1} we can show that the probability of $a_{i}$ not getting eliminated  cannot be worse than Proposition \ref{proofSketch:Prop:1}, case $a1$ given that $\sqrt{\rho_{a}\epsilon_{m}}< \dfrac{\Delta^{'}_{i}}{2}$ where $\Delta^{'}_{i}=r_{max_{s_{k}}} - r_{i}\geq\Delta_{a_{max_{s_{k}}}}$ such that $r_{i}\in s_{k}$. Plugging in this $\Delta^{'}_{i}$ in Proposition \ref{proofSketch:Prop:1}, case $a$ we can derive a similar bound where $\Delta^{'}_{i}\geq \Delta_{a_{max_{s_{k}}}}$ because otherwise $\sqrt{\epsilon_{m}\rho_{s}}< \dfrac{\Delta_{a_{max_{s_{k}}}}}{2}$ will happen and the cluster $s_{k}$ gets eliminated or $a_{max_{s_{k}}}$ will eliminate $a^{*}$ which is dealt later.
+\item $a_{i}\in s_{k}, a^{*}\in C_{g_{s_{k}}}$ and $g_{s_{k}}$ does not happen which is Proposition \ref{proofSketch:Prop:2}, case $a1$.
+\item $a_{i}\in s_{k}, a^{*}\notin C_{g_{s_{k}}}$ and $g_{s_{k}}$ does not happen which is Proposition \ref{proofSketch:Prop:2}, case $a2$.
+\end{enumerate}
+Taking summation of the events mentioned above($a1$-$a4$) gives us an upper bound on the regret given that the optimal arm $a^{*}$ is still surviving, 
+\begin{align*}
+ &\underbrace{\sum_{i\in A_{s^{*}}^{'}}\bigg(\dfrac{C_{1}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}\bigg)}_{\text{case a1}} + \underbrace{\sum_{i\in A\setminus A_{s^{*}}^{'}}\bigg(\dfrac{C_{1}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}\bigg)}_{\text{case a2}} \\
+ & + \sum_{i\in A^{'}}\bigg\lbrace \underbrace{\bigg(\dfrac{2C_{1}(\rho_{s})T^{1-\rho_{s}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)}_{\text{case a3+a4}}\bigg\rbrace \\
+& = \sum_{i\in A^{'}}\bigg\lbrace \bigg(\dfrac{C_{1}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}\bigg) + \bigg(\dfrac{2C_{1}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\bigg)\bigg\rbrace
+\end{align*}
+
+%& = \sum_{i\in A}\bigg\lbrace \bigg(\dfrac{2^{1+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi^{\rho_{a}}\Delta_{i}^{4\rho_{s}-1}}\bigg) + \bigg(\dfrac{2^{2+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)\bigg\rbrace
+
+
+\subsection*{Case b: \textit{Either an arm $a_{i}$ is eliminated in round $m_{i}$ or $g_{s_{k}}$ or before or else there is no optimal arm $a^{*}\in B_{m_{i}}$}} 
+
+\subsubsection*{Case b1: \textit{If an optimal arm $a^{*}\in B_{m_{i}}$ then the maximum pull of all arms $a_{i}\in A^{'}$}} 
+ 
+	For any sub-optimal arm still surviving given $m_{i}$ or $g_{s_{k}}:a_{i}\in s_{k}$ have not happened and $a^{*}\in s^{*}$ still surviving then they get pulled $n_{m_{i}}$ or $n_{g_{s_{k}}}$ number of times(combining the result of Proposition \ref{proofSketch:Prop:1} (case $b1$) and Proposition \ref{proofSketch:Prop:2} (case $b1)$). Hence, we can show that till an arm or a cluster is eliminated, the maximum regret suffered due to pulling of a sub-optimal arm(or a sub-optimal cluster) is no less than,
+ \begin{align*}
+ &\sum_{i\in A^{'}}\bigg\lbrace\bigg(\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\bigg) \\
+ &+ \bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg)\bigg\rbrace 
+ \end{align*}
+
+ 
+\subsubsection*{Case b2: \textit{Optimal arm $a^{*}$ is eliminated by a sub-optimal arm}}
+  
+	Here, we take into consideration the error bound, that the optimal arm $a^{*}$ or the optimal cluster $s^{*}$ gets eliminated by any sub-optimal arm or sub-optimal cluster. This, can happen in $3$ ways,
+\begin{enumerate}
+\item In $s^{*}$, $a^{*}$ got eliminated by other arms surviving till $m_{*}$. Let, the arms surviving till $m_{*}$ round be denoted by $A^{'}_{s^{*}}$ such that $A^{'}_{s^{*}}=\lbrace i \in A_{s^{*}},\Delta_{i}> b\rbrace$. This leaves any arm $a_{b}$ such that $\sqrt{\rho_{a}\epsilon_{m}}\geq\dfrac{\Delta_{b}}{2}$ to still survive and eliminate arm $a^{*}$ in round $m_{*}$. Let, such arms that survive $a^{*}$ belong to $A^{''}_{s^{*}}$ such that $A^{''}_{s^{*}}=\lbrace i \in A_{s^{*}},0 < \Delta_{i} \leq b\rbrace$. As proved in Proposition \ref{proofSketch:Prop:1}, case $b2$ this regret can be no more than,
+ \begin{align*}
+ &\sum_{i\in A^{'}_{s^{*}}}\bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a} -1}} \bigg)+\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} \bigg)
+ \end{align*}
+We also see that here, we are concerned only within $s^{*}$ because of our assumption that there is only one $a^{*}\in A$ and clusters are fixed.
+\item $a^{*}\in C_{g}$ and $s^{*}$ gets eliminated by some other cluster. This is equivalent to Proposition \ref{proofSketch:Prop:2}, case $b2$
+\item $a^{*}\notin C_{g}$ and $s^{*}$ gets eliminated by some other cluster. This is equivalent to Proposition \ref{proofSketch:Prop:2}, case $b3$
+\end{enumerate} 
+
+
+Combining cases $b21$, $b22$ and $b23$ as mentioned above we can show,
+ \begin{align*}
+ &\underbrace{\sum_{i\in A^{'}_{s^{*}}}\bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a} -1}} \bigg)+\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} \bigg)}_{\text{case b21}} \\
+ & + \underbrace{\sum_{i\in A^{'}}\bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} \bigg)}_{\text{case b22}}+\underbrace{\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}} \bigg)}_{\text{case b23}}
+ \end{align*}
+ 
+
+Hence, the total regret by combining \textbf{case a} and \textbf{case b} is given by,
+ \begin{align*}
+ & R_{T}\leq \sum_{i\in A^{'}} \bigg\lbrace  \underbrace{\dfrac{C_{1}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}}_{\text{case a1+a2}} + \underbrace{  \dfrac{2C_{1}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}}_{\text{case a3}} \\
+ & + \underbrace{2\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} +\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}}_{\text{case b1}}\bigg\rbrace \\
+ & + \underbrace{\sum_{i\in A_{s^{*}}^{'}} \dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a} -1}}  + \sum_{i\in A_{s^{*}}^{''} \setminus A_{s^{*}}^{'} }\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a} -1}} }_{\text{case b2}}\\ 
+ & + \underbrace{\sum_{i\in  A^{'} } \dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}  + \sum_{i\in A^{''}\setminus A^{'} }2C_{2}(\rho_{s})\dfrac{T^{1-\rho_{s}}}{\psi^{\rho_{s}}b^{4\rho_{s} -1}} }_{\text{case b2}} \\ 
+ & + max_{i:\Delta_{i}\leq b}\Delta_{i}T \\
+ = & \sum_{i\in A:\Delta_{i}\geq b} \bigg\lbrace 2\Delta_{i}+\dfrac{C_{1}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} + \dfrac{2C_{1}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} \\
+ & + \dfrac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} + \dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}} \bigg\rbrace \\
+ & + \sum_{\substack{i\in A_{s^{*}}: \\ \Delta_{i}\geq b}} \bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} \bigg)+ \sum_{\substack{i\in A_{s^{*}}: \\ 0\leq\Delta_{i}\leq b}}\bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} \bigg) \\
+ & + \sum_{\substack{i\in A:\\ \Delta_{i}\geq b}} \bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} \bigg) + \sum_{\substack{i\in A: \\ 0\leq\Delta_{i}\leq b}}\bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}} \bigg) \\
+ & + max_{i:\Delta_{i}\leq b}\Delta_{i}T
+ \end{align*}
+
+\end{proof}
+
+
+\begin{proposition}
+\label{proofSketch:Prop:1}
+The regret $R_T$ for ClusUCB-AE satisfies
+\begin{align*}
+&\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\frac{C_{1}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} + \Delta_{i}\\
+&+\frac{32\rho_{a}\log{(\dfrac{\psi  T\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}
+ +  \frac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a} -1}}  \bigg \rbrace\\
+&+\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\frac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{b^{4\rho_{a} -1}}  + \max_{i:\Delta_{i}\leq b}\Delta_{i}T
+\end{align*}
+, for all $b\geq\sqrt{\dfrac{e}{T}}$, where  $C_1(x) = \frac{2^{1+4x}x^{2x}}{\psi^{x}}$,  $C_2(x) = \frac{2^{2x+\frac{3}{2}}x^{2x}}{\psi^{x}}$, $\rho_{a}=\dfrac{1}{2}$ is the arm elimination parameter, $\psi=K^{2}T$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
+\end{proposition}
+\begin{proof}
+Follows in a similar fashion as the proof of Theorem $1$ in \cite{auer2010ucb}. For the sake of completeness, the proof is given in Appendix \ref{App:A}.
+\end{proof}
+
+
+
+
+\begin{corollary}
+\label{proofSketch:Corollary:1}
+For $\rho_{a}=1$ in the result of proposition $1$ for ClusUCB-AE, 
+%\begin{align*}
+%& \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\frac{C_{1}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} + \Delta_{i}\\
+%&+\frac{32\rho_{a}\log{(\dfrac{\psi  T\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}
+% +  \frac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a} -1}}  \bigg \rbrace\\
+%&+\sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\frac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{b^{4\rho_{a} -1}}  + \max_{i:\Delta_{i}\leq b}\Delta_{i}T
+%\end{align*}
+ 
+ we get a regret bound of 
+ \begin{align*}
+ &\sum\limits_{i\in A:\Delta_{i}\geq b}\bigg(\Delta_{i} + \dfrac{44}{\psi(\Delta_{i})^{3}} + \dfrac{32\log{(\psi T\Delta_{i}^{4})}}{\Delta_{i}}\bigg)\\ 
+ & + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{12}{\psi b^{3}}
+ \end{align*}.
+\end{corollary}
+
+\begin{proof}
+The proof of this corollary is given in Appendix \ref{App:Proof:Corollary:3}.
+\end{proof}
+
+
+\begin{proposition}
+\label{proofSketch:Prop:2}
+For $p>1$, the regret $R_T$ for ClusUCB-CE satisfies,
+\begin{align*}
+&\E [R_{T}]\leq \sum\limits_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\bigg(\dfrac{2C_{1}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\bigg)\\
+& + \bigg(\Delta_{i}+\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg) + \bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s} -1}} \bigg)\bigg\rbrace \\
+& + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}} \bigg)
+\end{align*}
+, for all $b\geq \sqrt{\dfrac{e}{T}}$, where $C_1(x) = \frac{2^{1+4x}x^{2x}}{\psi^{x}}$,  $C_2(x) = \frac{2^{2x+\frac{3}{2}}x^{2x}}{\psi^{x}}$, $\rho_{s}=\dfrac{1}{2} $ is the cluster elimination parameter, $\psi=K^{2}T$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
+\end{proposition}
+\begin{proof}
+See Appendix \ref{App:B}.
+\end{proof}
