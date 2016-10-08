@@ -6,16 +6,16 @@
 The regret $R_T$ of ClusUCB satisfies
 \begin{align*}
 &\E [R_{T}]\!\leq\! 
-\sum\limits_{\substack{i\in A,\\\Delta_{i}\geq b}} \bigg\lbrace 2\Delta_{i}+
+\sum\limits_{\substack{i\in A,\\\Delta_{i} > b}} \bigg\lbrace 2\Delta_{i}+
 \dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} 
 + \dfrac{2C_1(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} \\
 &\qquad\qquad+ \frac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}
 + \dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace  \\
 %%%
-&+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i}\geq b}} 
+&+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}} 
 \frac{C_2(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}+\sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\frac{C_2(\rho_a)T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} + \\
 %%%%%%%
-&\!\sum\limits_{\substack{i\in A,\\ \Delta_{i}\geq b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} + \!\sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}}  
+&\!\sum\limits_{\substack{i\in A,\\ \Delta_{i} > b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} + \!\sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}}  
 \!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T, 
 \end{align*}
 where $b\geq \sqrt{\frac{e}{T}}$, $C_1(x) = \frac{2^{1+4x}x^{2x}}{\psi^{x}}$, $C_2(x) = \frac{2^{2x+\frac{3}{2}}x^{2x}}{\psi^{x}}$ and $A_{s^{*}}$ is the subset of arms in cluster $s^{*}$ containing optimal arm $a^{*}$.
@@ -41,11 +41,11 @@ We now specialize the result in the theorem above by substituting specific value
 \label{Result:Corollary:1}
 With $\psi=\frac{T}{\log (KT)}$, $\rho_{a}=\frac{1}{2}$ and $\rho_{s}=\frac{1}{2}$,  we have the following gap-dependent bound for the regret of ClusUCB:
 \begin{align*}
-\E [R_T] &\!\le\! \sum_{i\in A:\Delta_{i}\geq b}\bigg\lbrace\dfrac{20\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(\frac{T\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace \\
-&+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i}\geq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} \\ 
+\E [R_T] &\!\le\! \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace\dfrac{20\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(\frac{T\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace \\
+&+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} \\ 
 &+ \sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}} ,
 \end{align*} 
- for all $b\geq \sqrt{\dfrac{e}{T}}$.
+ for all $b\geq \sqrt{\frac{e}{T}}$.
 \end{corollary}
 \begin{proof}
  See Appendix \ref{App:Proof:Corollary:1}.
@@ -144,6 +144,6 @@ $$\tilde R_T = 4\dfrac{\sqrt{KT}}{p} + 8\sqrt{\dfrac{T}{K\log K}} + 8\sqrt{\dfra
 %for $b\geq \sqrt{\dfrac{e}{T}}.$ 
 Hence, in comparison to ClusUCB-AE and ClusUCB-CE, the elimination error contribution to regret is lower in ClusUCB when $\sqrt{\log K}\leq p\leq \frac{K}{2}$. 
  
-Thus, we observe that clustering in conjunction with improved exploration via $\rho_{a},\rho_{s}$ helps in reducing the constant associated with the factor $\sqrt{KT}$ for the gap-independent regret bound for ClusUCB.
+Thus, we observe that clustering in conjunction with improved exploration via $\rho_{a},\rho_{s}$ and $\psi$ helps in reducing the constant associated with the factor $\sqrt{KT}$ for the gap-independent regret bound for ClusUCB.
 %Moreover, the most significant terms complementary  to $\tilde R_T$ in Theorem \ref{Result:Theorem:1} is  $\frac{\log\bigg(\psi\frac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)}{\Delta_{i}}$ and a careful choice of $\psi,\rho_{a}$ and $\rho_{s}$ in Corollary \ref{Result:Corollary:1}   
 %term and  helps in stabilizing the term $\log\bigg(\frac{\psi  T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)$.
