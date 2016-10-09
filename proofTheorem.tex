@@ -17,31 +17,45 @@
 
 
 \begin{proof}
-%The optimal cluster which contains $a^{*}$ is denoted by $s^{*}$. The subset of arms belonging to cluster $s_{k}$ is denoted by $A_{s_{k}}$ and similarly the subset of arms belonging to $s^{*}$ is denoted by $A_{s^{*}}$. 
-For random uniform allocation we will assume that each cluster $s_{k},\forall s_{k}\in S$, gets such an arm such that $r_{{max_{s_{k}}}}\geq r_{a_{i}},\forall i\in s_{k}$. Again, $r_{a^{*}}\geq r_{{max_{s_{k}}}}, \forall s_{k}\in S$. Here also we take $\rho_{a},\rho_{s}\in (0,1]$ as a constant in this proof whereby in Corollary \ref{Result:Corollary:1} and \ref{Result:Corollary:2} we use the different definitions. Let $A^{'}=\lbrace i \in A,\Delta_{i}> b\rbrace$,  $A^{''}=\lbrace i \in A,0 < \Delta_{i} \leq b\rbrace$, $A^{'}_{s_{k}}=\lbrace i \in A_{s_{k}},\Delta_{i}> b\rbrace$ and  $A^{''}_{s_{k}}=\lbrace i \in A_{s_{k}},0 < \Delta_{i} \leq b\rbrace$. $C_{g}$ is the cluster set containing max payoff arm from each cluster in $g$-th round. Let for each sub-optimal arm $a_{i}$, $m_{i}=\min{\lbrace m|\sqrt{\rho_{a}\epsilon_{m}}\leq \dfrac{\Delta_{i}}{2} \rbrace}$ and $g_{s_{k}}=\min{\lbrace g|\sqrt{\rho_{s}\epsilon_{g}}\leq \dfrac{\Delta_{a_{max_{s_{k}}}}}{2} \rbrace}$. 
-
+%The optimal cluster which contains $a^{*}$ is denoted by $s^{*}$. The subset of arms belonging to cluster $s_{k}$ is denoted by $A_{s_{k}}$ and similarly the subset of arms belonging to $s^{*}$ is denoted by $A_{s^{*}}$.
+\todos[inline]{What is there to assume in the stmt: ``For random uniform allocation we will ...''} 
+For random uniform allocation we will assume that each cluster $s_{k},\forall s_{k}\in S$, gets such an arm such that $r_{{max_{s_{k}}}}\geq r_{a_{i}},\forall i\in s_{k}$. Again, $r_{a^{*}}\geq r_{{max_{s_{k}}}}, \forall s_{k}\in S$. 
+\todos[inline]{Algorithm \ref{alg:clusucb} has $\rho_{a},\rho_{s}\in (0,1]$ as constants and the stmt ``Here we take..'' is needless}
+Here also we take $\rho_{a},\rho_{s}\in (0,1]$ as a constant in this proof whereby in Corollary \ref{Result:Corollary:1} and \ref{Result:Corollary:2} we use the different definitions. Let $A^{'}=\lbrace i \in A,\Delta_{i}> b\rbrace$,  $A^{''}=\lbrace i \in A,0 < \Delta_{i} \leq b\rbrace$, $A^{'}_{s_{k}}=\lbrace i \in A_{s_{k}},\Delta_{i}> b\rbrace$ and  $A^{''}_{s_{k}}=\lbrace i \in A_{s_{k}},0 < \Delta_{i} \leq b\rbrace$. $C_{g}$ is the cluster set containing max payoff arm from each cluster in $g$-th round. Let for each sub-optimal arm $a_{i}$, $m_{i}=\min{\lbrace m|\sqrt{\rho_{a}\epsilon_{m}}\leq \dfrac{\Delta_{i}}{2} \rbrace}$ and $g_{s_{k}}=\min{\lbrace g|\sqrt{\rho_{s}\epsilon_{g}}\leq \dfrac{\Delta_{a_{max_{s_{k}}}}}{2} \rbrace}$. 
+\todos[inline]{define $g_{s_k}$ for each cluster $s_k \in S$}
+\todos[inline]{$a_{max_{s_{k}}}$ is never defined. In the notation of Sec 2 $r_{max_{s_{k}}}$ is defined as the best arm within the cluster $s_k$}
+\todos[inline]{Change max to the operator $\max$ everywhere}
+\todos[inline]{critical error: $m_i$ defintion should be with $\sqrt{\rho_{a}\epsilon_{m}}< \frac{\Delta_{i}}{2}$. Same for $g$} 
 %be the first round when $\sqrt{\rho_{a}\epsilon_{m}}\leq \dfrac{\Delta_{i}}{2}$ and for each sub-optimal cluster arm $a_{max_{s_{k}}}\in C_{g_{s_{k}}}$,
 %So, $g_{s_{k}}$ be the first round when $\sqrt{\rho_{s}\epsilon_{g_{s_{k}}}}\leq \dfrac{\Delta_{a_{max_{s_{k}}}}}{2}$ where $a_{max_{s_{k}}}\in C_{g_{s_{k}}}$ is the maximum payoff arm in cluster $s_{k}$ and then $s_{k}$ gets eliminated
 %The theoretical analysis remains same as we have always bounded the values of $\rho_{a}\in (0,1]$(see Appendix \ref{App:E}).
 %Also we cluster the arms based on $\epsilon_{m}$.
 % One vital point we point out is that, $\epsilon_{m}$(in proposition $3$) = $\epsilon_{g}$(in proposition $4$).
 \subsection*{Case a: \textit{Some sub-optimal arm $a_{i}$ is not eliminated in round $max(m_{i},g_{s_{k}})$ or before and the optimal arm $a^{*}\in B_{m_{i}}$}}
- 
+
+\todos[inline]{The stmt ``In this case, we are looking at event of the maximum round till which atleast one of $m_{i}$ or $g_{s_{k}}$ did not happen.'' is unnecessary give the case caption above} 
 	In this case, we are looking at event of the maximum round till which atleast one of $m_{i}$ or $g_{s_{k}}$ did not happen. So, a sub-optimal arm $a_{i}$ cannot get eliminated in $4$ ways,
+	\todos[inline]{Get rid of enumerate to save space. You could just have the case labels, say case a1 and such}
 \begin{enumerate}
-\item $a_{i}$ in $s^{*}$ and $m_{i}$ does not happen. In arm elimination condition, given the choice of confidence interval $c_{m}$, we want to bound the probability of the event $\hat{r}_{i}+c_{m_{i}}\leq \hat{r}^{*}-c_{m_{i}}$. 
+\item $a_{i}$ in $s^{*}$ and $m_{i}$ does not happen. In arm elimination condition, given the choice of confidence interval $c_{m}$, we want to bound the probability of the event $\hat{r}_{i}+c_{m_{i}}\leq \hat{r}^{*}-c_{m_{i}}$.
+\todos[inline]{The stmt ``bound the probability of the event $\hat{r}_{i}+c_{m_{i}}\leq \hat{r}^{*}-c_{m_{i}}$'' is wrong. We bound the complementary event using Hoeffding} 
+\todos[inline]{The stmt ``$m_{i}$ does not happen'' makes no sense given that we are in round $\max(m_i,g_i)$}
+\todos[inline]{What is $c_m$?}
 
   Now, $c_{m_{i}}=\sqrt{\frac{\rho_{a}\log (\psi T\epsilon_{m_{i}}^{2})}{2 n_{m_{i}}}}$.
   Putting the value of $n_{m_{i}}=\frac{2\log{(\psi T\epsilon_{m_{i}}^{2})}}{\epsilon_{m_{i}}}$ in $c_{m_{i}}$ we get,
   $c_{m_{i}} = \sqrt{\rho_{a}\epsilon_{m_{i}+1}} < \frac{\Delta_{i}}{4} $, as $\rho_{a}\in (0,1]$
 
+\todos[inline]{In the following, $\exists a_i$ is spurious given that we are talking about arm $a_i$ all through in this case} 
   Again, $\exists a_{i} \in A_{s^{*}}^{'}$ such that, 
   \begin{align*}
 \hat{r}_{i} + c_{m_{i}}&\leq r_{i} + 2c_{m_{i}} 
  \leq r_{i} + \Delta_{i} - 2c_{m_{i}}
  \leq \hat{r}^{*} - c_{m_{i}}   
   \end{align*}
-
+\todos[inline]{$r_{i} + 2c_{m_{i}} 
+ < r_{i} + \Delta_{i} - 2c_{m_{i}}$}
+\todos[inline]{The final inequality above does not hold unless you assume $\hat{r}^{*}\geq r^{*} - c_{m_{i}}$ and this is never mentioned?}
   Hence, we get that as soon as $\sqrt{\rho_{a}\epsilon_{m_{i}}}<\frac{\Delta_{i}}{2}$, $\exists a_{i}$ which gets eliminated. Applying Chernoff-Hoeffding bound and considering independence of events,
   \begin{align*}
 \mathbb{P}\lbrace\hat{r}^{*}&\leq r^{*} - c_{m_{i}}\rbrace\leq exp(-2c_{m_{i}}^{2}n_{m_{i}})\\
