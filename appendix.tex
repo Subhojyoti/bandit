@@ -455,9 +455,25 @@ Summing up \textbf{Case a} and \textbf{Case b}, the total regret till round $g$ 
 \section{Proof of Corollary 1}
 \label{App:Proof:Corollary:1}
 \begin{proof}
-Here we take $\psi=\dfrac{T}{\log(KT)}$, $\rho_{a}=\dfrac{1}{2}$ and $\rho_{s}=\dfrac{1}{2}$.
+Here we take $\psi=\dfrac{T}{\log(KT)}$, $\rho_{a}=\dfrac{1}{2}$ and $\rho_{s}=\dfrac{1}{2}$. Taking into account Theorem \ref{Result:Theorem:1} for all $b\geq \sqrt{\dfrac{e}{T}}$ and considering $\Delta_{i}=\Delta_{i}^{'}, \forall i\in A$, the regret upper bound can be reduced to,
+%\sum\limits_{\substack{i\in A_{s^{*}},\\\Delta_{i} > b}}\dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} 
+%+ \sum\limits_{\substack{i\in A \setminus A_{s^{*}},\\\Delta_{i}^{'} > b}} \dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{'^{4\rho_{a}-1}}} 
+\begin{align*}
+	&\E [R_{T}]\leq \sum\limits_{\substack{i\in A,\\\Delta_{i} > b}} \bigg\lbrace 2\Delta_{i}+ \dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{'^{4\rho_{a}-1}}} +
+\dfrac{2C_1(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} 
++ \frac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} \\
+&+ \dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace  
+%%%
++ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}} 
+\frac{C_2(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}
+ +\sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\frac{C_2(\rho_a)T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} + 
+%%%%%%%
+\!\sum\limits_{\substack{i\in A,\\ \Delta_{i} > b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\\
+& + \!\sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}}  
+\!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T, 
+\end{align*}
 
-	Taking into account Theorem \ref{Result:Theorem:1} for all $b\geq \sqrt{\dfrac{e}{T}}$, putting the above values in 
+	Now, putting the above parameter values in 
 	\begin{align*}
 	\sum_{i\in A:\Delta_{i} > b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \sum_{i\in A:\Delta_{i} > b}\bigg(\dfrac{T^{1-\frac{1}{2}}\frac{1}{2}^{2*\frac{1}{2}}2^{1+4*\frac{1}{2}}}{(\frac{T}{\log (KT)})^{\frac{1}{2}}\Delta_{i}^{4*\frac{1}{2}-1}} \bigg)=\sum_{i\in A:\Delta_{i} > b}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}}
 	\end{align*}
@@ -564,7 +580,27 @@ So, this bound is worse than the non-stochastic setting and is clearly improvabl
 
 	Hence, we take $b\approx\sqrt{\dfrac{K\log K}{T}} > \sqrt{\dfrac{e}{T}}$(the minimum value for $b$), $\psi=K^{2}T$, $\rho_{a}=\dfrac{1}{4}$ and $\rho_{s}=\dfrac{1}{2}$.
 	
-	Taking into account Theorem \ref{Result:Theorem:1}, putting the above values in 
+	Taking into account Theorem \ref{Result:Theorem:1}, for the same gap $\Delta_{i}=\Delta_{i}^{'}=\Delta$ the regret bound reduces to,
+	
+	\begin{align*}
+	&\E [R_{T}]\leq \sum\limits_{\substack{i\in A,\\\Delta_{i} > b}} \bigg\lbrace 2\Delta_{i}+ \dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{'^{4\rho_{a}-1}}} +
+\dfrac{2C_1(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} 
++ \frac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} \\
+&+ \dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace  
+%%%
++ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}} 
+\frac{C_2(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}
+ +\sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\frac{C_2(\rho_a)T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} + 
+%%%%%%%
+\!\sum\limits_{\substack{i\in A,\\ \Delta_{i} > b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\\
+& + \!\sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}}  
+\!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T, 
+\end{align*}
+	
+	
+	
+	
+	Now, putting the above parameter values in 
 	\begin{align*}
 	\sum_{i\in A:\Delta_{i} > b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)=& \bigg(K\dfrac{T^{1-\frac{1}{4}}\frac{1}{4}^{2\frac{1}{4}}2^{1+4\frac{1}{4}}}{(T)^{\frac{1}{4}}\Delta_{i}^{4\frac{1}{4}-1}} \bigg)=2\sqrt{KT}
 	\end{align*}		
