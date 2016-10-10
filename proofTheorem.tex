@@ -89,7 +89,9 @@ Thus, the probability that a sub-optimal arm $a_{i}$ is not eliminated in any ro
 
 %\todos[inline]{The description in the text below for this case doesnt make sense to me. The final bound arrived at uses $\Delta_i$, while it doesnt figure here in the argument here at all. }
 %We can show that the probability of $a_{i}$ not getting eliminated cannot be worse than Case $a1$ given that $m_{i}^{'}< g_{s_{k}}$ or else $g_{s_{k}}$ will happen and the cluster $s_{k}$ will get eliminated or $a_{\max_{s_{k}}}$ will eliminate $a^{*}$ which are dealt later. 
+
 Approaching the same way as above we define $\Delta_{i}^{'}=r_{a_{\max_{s_{k}}}} - r_{i}$, for $a_{i}\in s_{k}$, $m_{i}^{'}=\min{\lbrace m|\sqrt{\rho_{a}\epsilon_{m}} < \frac{\Delta_{i}^{'}}{2} \rbrace}$.Then plugging in $\Delta^{'}_{i}$ in Case $a1$ and bounding the complementary events mentioned in \ref{eq:armelim-casea} by using $r_{i}$ and $r_{a_{\max_{s_{k}}}}$, we can show that for an arm $a_{i}\in A_{s_{k}}^{'}$ the maximum probability of not getting eliminated on or before $m_{i}^{'}$ is  $\bigg(\dfrac{2}{(\psi T\epsilon_{m_{i}^{'}}^{2})^{\rho_{a}}}\bigg)$. So bounding trivially over $T\Delta_{i}^{'}$ the regret is bounded by,
+
 \begin{align*}
 & \sum_{i\in A_{s_{k}}^{'}}\frac{C_{1}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{'^{{4\rho_{a}-1}}}} 
    \end{align*}
@@ -242,6 +244,7 @@ Firstly, if conditions of  Case $a$ and $b1$ holds then the optimal arm $a^{*}$ 
 % &\sum_{i\in A^{'}_{s^{*}}}\bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a} -1}} \bigg)+\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} \bigg)
 % \end{align*}
 %We also see that here, we are concerned only within $s^{*}$ because of our assumption that there is only one $a^{*}\in A$ and clusters are fixed.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
 \textbf{Case b22:} \textit{$a^{*}\in C_{g}$ and $s^{*}$ gets eliminated by another sub-optimal cluster arm} 
