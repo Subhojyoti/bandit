@@ -62,7 +62,7 @@ To handle the second problem mentioned above, ClusUCB partitions the larger prob
 
 
 As described in the pseudocode in Algorithm~\ref{alg:clusucb}, ClusUCB begins with a initial clustering of arms that is performed by random uniform allocation (see Algorithm \ref{alg:rua}). The set of clusters $S$ thus obtained satisfies $|S|=p$, with individual clusters having a size that is bounded above by $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$.
-Each round of ClusUCB involves both individual arm as well as cluster elimination conditions that are inspired by UCB-Improved. Notice that, unlike UCB-Improved, there is no longer a single point of reference based on which we are eliminating arms. Instead now we have as many reference points to eliminate arms as number of clusters formed. 
+Each round of ClusUCB involves both individual arm as well as cluster elimination conditions. These elimination conditions are inspired by UCB-Improved. Notice that, unlike UCB-Improved, there is no longer a single point of reference based on which we are eliminating arms. Instead now we have as many reference points to eliminate arms as number of clusters formed. 
 Further, the exploration factors $\rho_{a}\in (0,1]$ and $\rho_{s}\in (0,1]$ governing the arm and cluster elimination conditions, respectively, are relatively more aggressive than that in UCB-Improved. 
 
 %Discussion on UCB-V, not quite sure
