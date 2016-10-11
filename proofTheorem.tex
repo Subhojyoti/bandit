@@ -317,7 +317,7 @@ by Chernoff-Hoeffding bound and considering independence of events and show that
 %	\begin{align*}
 %  \hat{r}_{a_{\max_{s_{k}}}} \geq r_{a_{\max_{s_{k}}}} +c_{g_{s_{k}}} \text{ and } \hat{r}_{a_{\max_{s^{*}}}} \leq r_{a_{\max_{s^{*}}}} -c_{g_{s_{k}}}
 %\end{align*} 
-So $s^{*}$ gets eliminated by $a_{\max_{s_{b}}}$ such that $\sqrt{\rho_{s}\epsilon_{g_{s_{b}}}}\geq\frac{\Delta_{a_{\max_{s_{b}}}}}{2}$ in round $g_{*}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}\in A^{''}$ with $g_{s_{j}}\geq g_{*}$. Following the same way above we can bound the regret as,
+So $s^{*}$ gets eliminated by $a_{\max_{s_{b}}}$ such that $g_{s_{b}}\geq g_{*}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}\in A^{''}$ with $g_{s_{j}}\geq g_{*}$. Following the same way above we can bound the regret as,
 %In this case we will consider that the cluster $s^{*}$ containing the optimal arm $a^{*}$ was eliminated by another sub-optimal cluster and $a^{*}\notin C_{g}$. 
 \begin{align*}
 &\sum_{i\in A^{'}}\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} +\sum_{i\in A^{''}\setminus A^{'}}\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{\psi^{\rho_{s}}b^{4\rho_{s}-1}} \\
