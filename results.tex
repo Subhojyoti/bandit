@@ -62,9 +62,10 @@ We now specialize the result in the theorem above by substituting specific value
 \label{Result:Corollary:1}
 With $\psi=\frac{T}{\log (KT)}$, $\rho_{a}=\frac{1}{2}$ and $\rho_{s}=\frac{1}{2}$,  we have the following gap-dependent bound for the regret of ClusUCB:
 \begin{align*}
-\E [R_T] &\!\le\! \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace\dfrac{20\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(\frac{T\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace \\
+\E [R_T] &\!\le\! \sum_{\substack{i\in A_{s^{*}}: \\ \Delta_{i} > b}}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}} + \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace 3\Delta_{i}\\
+& + \dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{96\log{(\frac{T\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace \\
 &+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} \\ 
-&+ \sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}} ,
+&+ \sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}} + \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T
 \end{align*} 
  for all $b\geq \sqrt{\frac{e}{T}}$.
 \end{corollary}
@@ -72,10 +73,14 @@ With $\psi=\frac{T}{\log (KT)}$, $\rho_{a}=\frac{1}{2}$ and $\rho_{s}=\frac{1}{2
  See Appendix \ref{App:Proof:Corollary:1}.
 \end{proof}
 
+%\sum_{i\in A_{s^{*}}:\Delta_{i} > b}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}} + \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + 3\Delta_{i} +\dfrac{96\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:\Delta_{i} > b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} 
+%	\\ &+ \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}}
+%	 + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}} + \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T
+
 %Considering the same gap of $\Delta_{i} = \Delta_{i}^{'}, \forall i\in A$ and 
 %\begin{remark}
 %\label{Result:Rem:4}
-The most significant term in the bound above is $\sum_{i\in A:\Delta_{i}\geq b}\frac{64\log{\big(T\frac{\Delta_{i}^{2}}{\sqrt{\log (KT)}}\big)}}{\Delta_{i}}$ and hence, the regret upper bound for ClusUCB is of the order $O\bigg(\frac{K\log \big(\frac{T\Delta^{2}}{\sqrt{\log (KT)}}\big)}{\Delta}\bigg)$. As shown in Table \ref{tab:regret-bds}, the gap-dependent bound of ClusUCB is always better than UCB1 and UCB-Improved. 
+The most significant term in the bound above is $\sum_{i\in A:\Delta_{i}\geq b}\frac{96\log{\big(T\frac{\Delta_{i}^{2}}{\sqrt{\log (KT)}}\big)}}{\Delta_{i}}$ and hence, the regret upper bound for ClusUCB is of the order $O\bigg(\frac{K\log \big(\frac{T\Delta^{2}}{\sqrt{\log (KT)}}\big)}{\Delta}\bigg)$. As shown in Table \ref{tab:regret-bds}, the gap-dependent bound of ClusUCB is always better than UCB1 and UCB-Improved. 
 %. This can be shown by,
 %
 %\begin{align*}
@@ -98,8 +103,8 @@ $K\geq 2$. Since Corollary \ref{Result:Corollary:1} holds for all $\Delta \geq \
 Considering the same gap of $\Delta_{i} = \Delta =\sqrt{\dfrac{K\log K}{T}}$ for all $a_{i:i\neq *}$ and with $\psi=K^{2}T$, $\rho_{a}=\frac{1}{4}$ and $\rho_{s}=\frac{1}{2}$, 
  we have the following gap-independent bound for the regret of ClusUCB:
 \begin{align*}
-\E [R_T] &\!\le\! 2\sqrt{KT} + 64\sqrt{KT\log K} + \dfrac{32\log{(\log K)}}{\sqrt{\log K}} \\
-&\qquad+ 4\dfrac{\sqrt{KT}}{p}  + 16\sqrt{\dfrac{T}{K\log K}} + 8\sqrt{\dfrac{T}{e}} .
+\E [R_T] &\!\le\!  6\dfrac{\sqrt{KT}}{p} + 128\sqrt{KT\log K} + \dfrac{64\sqrt{KT}\log{(\log K)}}{\sqrt{\log K}}\\
+ &+ 16\sqrt{\dfrac{T}{K\log K}} + 8\sqrt{\dfrac{T}{e}}
 \end{align*}
 \end{corollary}
 \begin{proof}

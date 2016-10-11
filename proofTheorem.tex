@@ -57,13 +57,13 @@ Let $A^{'}=\lbrace i \in A,\Delta_{i}> b\rbrace$,  $A^{''}=\lbrace i \in A,0 < \
 % One vital point we point out is that, $\epsilon_{m}$(in proposition $3$) = $\epsilon_{g}$(in proposition $4$).
 The analysis proceeds by considering the contribution to the regret in each of the following cases:
 
-\textbf{Case a:} \textit{Some sub-optimal arm $a_{i}$ is not eliminated in round $\max(m_{i},g_{s_{k}})$ or before and the optimal arm $a^{*}\in C_{\max(m_{i},g_{s_{k}})}$}
+\textbf{Case a:} \textit{Some sub-optimal arm $a_{i}$ is not eliminated in round $\max(m_{i},g_{s_{k}})$ or before, with the optimal arm $a^{*}\in C_{\max(m_{i},g_{s_{k}})}$.}
 
 %\todos[inline]{The stmt ``In this case, we are looking at event of the maximum round till which atleast one of $m_{i}$ or $g_{s_{k}}$ did not happen.'' is unnecessary give the case caption above} 
 %	In this case, we are looking at event of the maximum round till which atleast one of $m_{i}$ or $g_{s_{k}}$ did not happen. 
 We consider an arbitrary sub-optimal arm $a_{i}$ and analyze the contribution to the regret when $a_i$ is not eliminated in the following exhaustive sub-cases:\\
 %\todos[inline]{Get rid of enumerate to save space. You could just have the case labels, say case a1 and such}
-\textbf{Case a1:} \textit{In round $m_i$, $a_{i} \in s^{*}$.} 
+\textbf{Case a1:} \textit{In round $\max(m_{i},g_{s_{k}})$, $a_{i} \in s^{*}$.}
 
 Similar to case (a) of \cite{auer2010ucb}, observe that when the following two conditions hold, arm $a_i$ gets eliminated:
 \begin{align}
@@ -130,7 +130,7 @@ Thus, the probability that a sub-optimal arm $a_{i}$ is not eliminated in any ro
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
-\textbf{Case a2:} \textit{In round $g_{s_{k}}$, $a_{i}\in s_{k}\neq s^{*}, a^{*}\in C_{g_{s_{k}}}$} 
+\textbf{Case a2:} \textit{In round $\max(m_{i},g_{s_{k}})$, $a_{i} \in s_k$ for some $s_k \ne s^{*}$.}
 
 %\todos[inline]{Fix this case analysis to read as well as case a1. The first part until the Hoeffding bounds can be shorter than case a1, as the analysis to arrive at Hoeffding events follows using parallel arguments.} 
 %then in cluster elimination condition, given the choice of confidence interval $c_{g_{s_{k}}}=\sqrt{\frac{\rho_{s} \log (\psi T\epsilon_{g_{s_{k}}}^{2})}{2 n_{g_{s_{k}}}}}$, we want to bound the probability of the event $\hat{r}_{s_{k}}+c_{g_{s_{k}}}\geq \hat{r}^{*}-c_{g_{s_{k}}}$.
@@ -224,7 +224,7 @@ Summing the bounds in Cases $a1-a2$ and observing that the bounds in the aforeme
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Case b:} \textit{For each arm $a_i$, either $a_{i}$ is eliminated in round $\max (m_{i},g_{s_{k}})$ or before or there is no optimal arm $a^{*}$ in $C_{\max(m_{i},g_{s_{k}})}$.} \\
 
-\textbf{Case b1:} \textit{$a^{*}\in C_{\max \lbrace m_{i},g_{s_{k}} \rbrace}$ and each $a_{i}\in A^{'}$ is  eliminated on or before $\max \lbrace m_{i},g_{s_{k}} \rbrace$} 
+\textbf{Case b1:} \textit{$a^{*}\in C_{\max(m_{i},g_{s_{k}})}$ and each $a_{i}\in A^{'}$ is  eliminated on or before $\max (m_{i},g_{s_{k}})$.} 
 
 %\todos[inline]{Case b1 caption is highly unclear}
 
@@ -248,7 +248,7 @@ Summing the bounds in Cases $a1-a2$ and observing that the bounds in the aforeme
 %\text{, since } \sqrt{\rho_{a}\epsilon_{m_{i}}}\leq\dfrac{\Delta_{i}}{2}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
-\textbf{Case b2:} \textit{Optimal arm $a^{*}$ is eliminated by a sub-optimal arm}
+\textbf{Case b2:} \textit{Optimal arm $a^{*}$ is eliminated by a sub-optimal arm.}\\
   
 	This, can happen in $3$ ways,
 \newline
@@ -317,7 +317,7 @@ by Chernoff-Hoeffding bound and considering independence of events and show that
 %	\begin{align*}
 %  \hat{r}_{a_{\max_{s_{k}}}} \geq r_{a_{\max_{s_{k}}}} +c_{g_{s_{k}}} \text{ and } \hat{r}_{a_{\max_{s^{*}}}} \leq r_{a_{\max_{s^{*}}}} -c_{g_{s_{k}}}
 %\end{align*} 
-So $s^{*}$ gets eliminated by $a_{\max_{s_{b}}}$ such that $\sqrt{\rho_{s}\epsilon_{g_{s_{b}}}}\geq\frac{\Delta_{a_{\max_{s_{b}}}}}{2}$ in round $g_{*}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}\in A^{''}$ with $g_{s_{j}}\geq g_{*}$. Following the same way above we can bound the regret as,
+So $s^{*}$ gets eliminated by $a_{\max_{s_{b}}}$ such that $g_{s_{b}}\geq g_{*}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}\in A^{''}$ with $g_{s_{j}}\geq g_{*}$. Following the same way above we can bound the regret as,
 %In this case we will consider that the cluster $s^{*}$ containing the optimal arm $a^{*}$ was eliminated by another sub-optimal cluster and $a^{*}\notin C_{g}$. 
 \begin{align*}
 &\sum_{i\in A^{'}}\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} +\sum_{i\in A^{''}\setminus A^{'}}\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{\psi^{\rho_{s}}b^{4\rho_{s}-1}} \\
@@ -330,7 +330,7 @@ Combining Cases $b21$, $b22$ and $b23$ as mentioned above we can show,
  & + \underbrace{\sum_{i\in A^{'}}\bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} \bigg)}_{\text{case b22}}+\underbrace{\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}} \bigg)}_{\text{case b23}}
  \end{align*}
  
-\textbf{Case b3:} \textit{$a^{*}\notin C_{\max \lbrace m_{i},g_{s_{k}} \rbrace}$ and $s^{*}$ does not get eliminated by another sub-optimal cluster arm} 
+\textbf{Case b3:} \textit{Optimal arm $a^{*}$ is not in $C_{\max(m_{i},g_{s_{k}})}$.}
 
 Since, the optimal arm $a^{*}\in s^{*}$ is not eliminated, also $s^{*}$ is not eliminated in this case and for all sub-optimal arms $a_i$ in $A'$ which have not been eliminated on or before $\max \lbrace m_{i},g_{s_{k}} \rbrace$ will get pulled no less than,
 

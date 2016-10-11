@@ -463,32 +463,32 @@ Summing up \textbf{Case a} and \textbf{Case b}, the total regret till round $g$ 
 \section{Proof of Corollary 1}
 \label{App:Proof:Corollary:1}
 \begin{proof}
-Here we take $\psi=\dfrac{T}{\log(KT)}$, $\rho_{a}=\dfrac{1}{2}$ and $\rho_{s}=\dfrac{1}{2}$. Taking into account Theorem \ref{Result:Theorem:1} for all $b\geq \sqrt{\dfrac{e}{T}}$ and considering $\Delta_{i}=\Delta_{i}^{'}, \forall i\in A$, the regret upper bound can be reduced to,
+Here we take $\psi=\dfrac{T}{\log(KT)}$, $\rho_{a}=\dfrac{1}{2}$ and $\rho_{s}=\dfrac{1}{2}$. Taking into account Theorem \ref{Result:Theorem:1} for all $b\geq \sqrt{\dfrac{e}{T}}$ and 
+%and considering $\Delta_{i}=\Delta_{i}^{'}, \forall i\in A$, the regret upper bound can be reduced to,
 %\sum\limits_{\substack{i\in A_{s^{*}},\\\Delta_{i} > b}}\dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} 
 %+ \sum\limits_{\substack{i\in A \setminus A_{s^{*}},\\\Delta_{i}^{'} > b}} \dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{'^{4\rho_{a}-1}}} 
-\begin{align*}
-	&\E [R_{T}]\leq \sum\limits_{\substack{i\in A,\\\Delta_{i} > b}} \bigg\lbrace 2\Delta_{i}+ \dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{'^{4\rho_{a}-1}}} +
-\dfrac{2C_1(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} 
-+ \frac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} \\
-&+ \dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace  
-%%%
-+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}} 
-\frac{C_2(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}
- +\sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\frac{C_2(\rho_a)T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} + 
-%%%%%%%
-\!\sum\limits_{\substack{i\in A,\\ \Delta_{i} > b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\\
-& + \!\sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}}  
-\!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T, 
-\end{align*}
-
-	Now, putting the above parameter values in 
+%\begin{align*}
+%	&\E [R_{T}]\leq \sum\limits_{\substack{i\in A,\\\Delta_{i} > b}} \bigg\lbrace 2\Delta_{i}+ \dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{'^{4\rho_{a}-1}}} +
+%\dfrac{2C_1(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} 
+%+ \frac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} \\
+%&+ \dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace  
+%%%%
+%+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}} 
+%\frac{C_2(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}
+% +\sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\frac{C_2(\rho_a)T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} + 
+%%%%%%%%
+%\!\sum\limits_{\substack{i\in A,\\ \Delta_{i} > b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\\
+%& + \!\sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}}  
+%\!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T, 
+%\end{align*}
+and putting the above parameter values in 
 	\begin{align*}
-	\sum_{i\in A:\Delta_{i} > b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \sum_{i\in A:\Delta_{i} > b}\bigg(\dfrac{T^{1-\frac{1}{2}}\frac{1}{2}^{2*\frac{1}{2}}2^{1+4*\frac{1}{2}}}{(\frac{T}{\log (KT)})^{\frac{1}{2}}\Delta_{i}^{4*\frac{1}{2}-1}} \bigg)=\sum_{i\in A:\Delta_{i} > b}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}}
+	\sum_{i\in A_{s^{*}}:\Delta_{i} > b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)= \sum_{i\in A_{s^{*}}:\Delta_{i} > b}\bigg(\dfrac{T^{1-\frac{1}{2}}\frac{1}{2}^{2*\frac{1}{2}}2^{1+4*\frac{1}{2}}}{(\frac{T}{\log (KT)})^{\frac{1}{2}}\Delta_{i}^{4*\frac{1}{2}-1}} \bigg)=\sum_{i\in A_{s^{*}}:\Delta_{i} > b}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}}
 	\end{align*}
 	
 	Similarly for the term,
 	\begin{align*}
-	\sum_{i\in A:\Delta_{i} > b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{a}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) = \sum_{i\in A:\Delta_{i} > b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}
+	\sum_{i\in A:\Delta_{i} > b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{a}^{2\rho_{s}}2^{1+4\rho_{s}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) = \sum_{i\in A:\Delta_{i} > b}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}}
 	\end{align*}		
 			
 	
@@ -499,7 +499,7 @@ Here we take $\psi=\dfrac{T}{\log(KT)}$, $\rho_{a}=\dfrac{1}{2}$ and $\rho_{s}=\
 	 Similarly the term, 
 	
 	\begin{align*}
-	\sum_{i\in A:\Delta_{i} > b}\dfrac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\approx \sum_{i\in A:\Delta_{i} > b}\dfrac{32\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}
+	\sum_{i\in A:\Delta_{i} > b}\dfrac{64\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\approx \sum_{i\in A:\Delta_{i} > b}\dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}
 	\end{align*}		 
 	 
 
@@ -518,10 +518,12 @@ Here we take $\psi=\dfrac{T}{\log(KT)}$, $\rho_{a}=\dfrac{1}{2}$ and $\rho_{s}=\
 	
 	So, the total gap dependent regret bound for using both arm and cluster elimination comes of as
 	\begin{align*}
-	& \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:\Delta_{i} > b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}}\\ 
-	& + \sum\limits_{i\in A:\Delta_{i} > b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}\\
-	& = \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace\dfrac{20\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:\Delta_{i} > b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}}\\ 
-	& + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}}
+	& \sum_{i\in A_{s^{*}}:\Delta_{i} > b}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}} + \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}}  + 3\Delta_{i} + \dfrac{96\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:\Delta_{i} > b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} 
+	\\ &+ \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}}
+	 + \sum\limits_{i\in A:\Delta_{i} > b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}} + \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T  \\
+	& = \sum_{i\in A_{s^{*}}:\Delta_{i} > b}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}} + \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace\dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + 3\Delta_{i} +\dfrac{96\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace + \sum\limits_{i\in A_{s^{*}}:\Delta_{i} > b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} 
+	\\ &+ \sum\limits_{i\in A_{s^{*}}:0\leq\Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}}
+	 + \sum\limits_{i\in A:0\leq\Delta_{i}\leq b}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}} + \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T
 	\end{align*}
 	
 \end{proof}
@@ -588,33 +590,33 @@ So, this bound is worse than the non-stochastic setting and is clearly improvabl
 
 	Hence, we take $b\approx\sqrt{\dfrac{K\log K}{T}} > \sqrt{\dfrac{e}{T}}$(the minimum value for $b$), $\psi=K^{2}T$, $\rho_{a}=\dfrac{1}{4}$ and $\rho_{s}=\dfrac{1}{2}$.
 	
-	Taking into account Theorem \ref{Result:Theorem:1}, for the same gap $\Delta_{i}=\Delta_{i}^{'}=\Delta$ the regret bound reduces to,
+%	Taking into account Theorem \ref{Result:Theorem:1}, for the same gap $\Delta_{i}=\Delta_{i}^{'}=\Delta$ the regret bound reduces to,
+%	
+%	\begin{align*}
+%	&\E [R_{T}]\leq \sum\limits_{\substack{i\in A,\\\Delta_{i} > b}} \bigg\lbrace 2\Delta_{i}+ \dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{'^{4\rho_{a}-1}}} +
+%\dfrac{2C_1(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} 
+%+ \frac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} \\
+%&+ \dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace  
+%%%%
+%+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}} 
+%\frac{C_2(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}
+% +\sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\frac{C_2(\rho_a)T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} + 
+%%%%%%%%
+%\!\sum\limits_{\substack{i\in A,\\ \Delta_{i} > b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\\
+%& + \!\sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}}  
+%\!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T, 
+%\end{align*}
 	
+	
+	
+	
+	Taking into account Theorem \ref{Result:Theorem:1} and putting the above parameter values in
 	\begin{align*}
-	&\E [R_{T}]\leq \sum\limits_{\substack{i\in A,\\\Delta_{i} > b}} \bigg\lbrace 2\Delta_{i}+ \dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{'^{4\rho_{a}-1}}} +
-\dfrac{2C_1(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} 
-+ \frac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} \\
-&+ \dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace  
-%%%
-+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}} 
-\frac{C_2(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}
- +\sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\frac{C_2(\rho_a)T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} + 
-%%%%%%%
-\!\sum\limits_{\substack{i\in A,\\ \Delta_{i} > b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\\
-& + \!\sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}}  
-\!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T, 
-\end{align*}
-	
-	
-	
-	
-	Now, putting the above parameter values in 
-	\begin{align*}
-	\sum_{i\in A:\Delta_{i} > b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)=& \bigg(K\dfrac{T^{1-\frac{1}{4}}\frac{1}{4}^{2\frac{1}{4}}2^{1+4\frac{1}{4}}}{(T)^{\frac{1}{4}}\Delta_{i}^{4\frac{1}{4}-1}} \bigg)=2\sqrt{KT}
+	\sum_{i\in A_{s^{*}}:\Delta_{i} > b}\bigg(\dfrac{T^{1-\rho_{a}}\rho_{a}^{2\rho_{a}}2^{1+4\rho_{a}}}{\psi^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)=& \bigg(K\dfrac{T^{1-\frac{1}{4}}\frac{1}{4}^{2\frac{1}{4}}2^{1+4\frac{1}{4}}}{p(T)^{\frac{1}{4}}\Delta_{i}^{4\frac{1}{4}-1}} \bigg)=2\dfrac{\sqrt{KT}}{p}
 	\end{align*}		
 	 Similarly, for the term, 
 	 \begin{align*}
-	 \sum_{i\in A:\Delta_{i} > b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2+4\rho_{s}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) = 8\sqrt{\dfrac{T}{K\log K}}
+	 \sum_{i\in A:\Delta_{i} > b}\bigg(\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{1+4\rho_{s}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg) = 4\sqrt{\dfrac{T}{K\log K}}
 	 \end{align*}
 	 
 	
@@ -622,12 +624,12 @@ So, this bound is worse than the non-stochastic setting and is clearly improvabl
 	\begin{align*}
 	\sum_{i\in A:\Delta_{i} > b}\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}} &= \dfrac{32K\sqrt{T}\frac{1}{2}\log{(T^{2}\dfrac{K^{4}(\log K)^{2}}{T^{2}})}}{\sqrt{K\log K}}\\
 	&\leq  \dfrac{32\sqrt{KT}\log{(K^{2}(\log K))}}{\sqrt{\log K}}\\
-	&=64\sqrt{KT\log K} + \dfrac{32\log{(\log K)}}{\sqrt{\log K}}
+	&=64\sqrt{KT\log K} + \dfrac{32\sqrt{KT}\log{(\log K)}}{\sqrt{\log K}}
 	\end{align*}		
 	
 	Similarly for the term,
 	\begin{align*}
-	\sum_{i\in A:\Delta_{i} > b}\dfrac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} = 32\sqrt{KT\log K} + \dfrac{16\log{(\log K)}}{\sqrt{\log K}}
+	\sum_{i\in A:\Delta_{i} > b}\dfrac{64\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} = 64\sqrt{KT\log K} + \dfrac{32\sqrt{KT}\log{(\log K)}}{\sqrt{\log K}}
 	\end{align*}		
 	
  	Lastly we can bound the error terms as, 
@@ -644,7 +646,7 @@ So, this bound is worse than the non-stochastic setting and is clearly improvabl
 	\end{align*} 	
  	
 
-	So, the total bound for using both arm and cluster elimination comes of as $\bigg\lbrace 2\sqrt{KT} + 4\dfrac{\sqrt{KT}}{p} + 96\sqrt{KT\log K} + \dfrac{48\log{(\log K)}}{\sqrt{\log K}} + 16\sqrt{\dfrac{T}{K\log K}} + 8\sqrt{\dfrac{T}{e}}\bigg\rbrace$.
+	So, the total bound for using both arm and cluster elimination comes of as $\bigg\lbrace 6\dfrac{\sqrt{KT}}{p} + 128\sqrt{KT\log K} + \dfrac{64\sqrt{KT}\log{(\log K)}}{\sqrt{\log K}} + 16\sqrt{\dfrac{T}{K\log K}} + 8\sqrt{\dfrac{T}{e}}\bigg\rbrace$.
 \end{proof}
 
 \section{Proof of Corollary 3}
