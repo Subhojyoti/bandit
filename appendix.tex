@@ -16,11 +16,19 @@ Let $p=1$ whereby we put all the arms in set $A$ into one cluster, that is we ha
 
 \subsection*{Case a: \textit{Some sub-optimal arm $a_{i}$ is not eliminated in round $m_{i}$ or before and the optimal arm $a^{*}\in B_{m_{i}}$}}
 
- In arm elimination condition, given the choice of confidence interval $c_{m_{i}}=\sqrt{\dfrac{\rho_{a}\log (\psi T\epsilon_{m_{i}}^{2})}{2 n_{m_{i}}}}$, we want to bound the probability of the event $\hat{r}_{i}+c_{m_{i}}\geq \hat{r}^{*}-c_{m_{i}}$. 
+ %In arm elimination condition, given the choice of confidence interval $c_{m_{i}}=\sqrt{\dfrac{\rho_{a}\log (\psi T\epsilon_{m_{i}}^{2})}{2 n_{m_{i}}}}$, we want to bound the probability of the event $\hat{r}_{i}+c_{m_{i}}\geq \hat{r}^{*}-c_{m_{i}}$. 
 %In this proof we will consider $w_{s_{i}}=1$ and $\psi=1$. 
 %Later, we will discuss how different values of $w_{s_{i}}$ actually effects the regret bound.
 %with a more tighter event of $ \hat{r}_{i} + \sqrt{w_{s_{i}}}c_{m} \leq \hat{r}^{*} - \sqrt{w_{s_{i}}}c_{m}$ which will result in faster elimination of arms within a cluster, given the choice of $c_{m}$ and $w_{s_{i}}$.
 %Now, $c_{m_{i}}=\sqrt{\dfrac{\rho_{a}\log (\psi T\epsilon_{m_{i}}^{2})}{2 n_{m_{i}}}}$.
+  
+	Following the steps of Theorem \ref{Result:Theorem:1} Case $a1$, an arbitrary sub-optimal arm $a_{i}\in A^{'}$ can get eliminated only when the event,
+	\begin{align}
+	\hat{r}_{i}  \le r_{i} + c_{m_{i}} \text{ and } 
+ 	\hat{r}^{*}\geq  r^{*} - c_{m_{i}}
+	\end{align}
+	
+	takes place. So to bound the regret we need to bound the probability of the complementary event of these two conditions.
   
   Putting the value of $n_{m_{i}}=\dfrac{2\log{(\psi T\epsilon_{m_{i}}^{2})}}{\epsilon_{m_{i}}}$ in $c_{m_{i}}$,
   $c_{m_{i}}=\sqrt{\dfrac{\rho_{a}\epsilon_{m_{i}}\log (\psi T\epsilon_{m_{i}}^{2})}{2*2 \log(\psi T\epsilon_{m_{i}}^{2})}}=\dfrac{\sqrt{\rho_{a}\epsilon_{m_{i}}}}{2} = \sqrt{\rho_{a}\epsilon_{m_{i}+1}} < \dfrac{\Delta_{i}}{4} $, as $\rho_{a}\in (0,1]$.
@@ -34,7 +42,7 @@ Let $p=1$ whereby we put all the arms in set $A$ into one cluster, that is we ha
 &= \hat{r}_{i} + 4c_{m_{i}} - 2c_{m_{i}} \\
  &< r_{i} + \Delta_{i} - 2c_{m_{i}}\\
  &= r^{*} -2c_{m_{i}} \\
- &\leq \hat{r}^{*} - c_{m_{i}} \text{, as } \hat{r}^{*}\geq r^{*} - c_{m_{i}}
+ &\leq \hat{r}^{*} - c_{m_{i}}
   \end{align*}
 
 %% \hspace*{14em}$= \hat{r}_{i}-\sqrt{\epsilon_{m}} + 2c_{m} +\sqrt{\epsilon_{m}}$
@@ -47,7 +55,7 @@ Let $p=1$ whereby we put all the arms in set $A$ into one cluster, that is we ha
 %\leq \hat{r}^{*} - \sqrt{w}c_{m}
 %  $\Rightarrow\hat{r}_{i}+c_{m}\leq \hat{r}_{i} - \sqrt{w}c_{m}  \leq r^{*} - \sqrt{w}c_{m}$
 %  $\Rightarrow \hat{r}_{i} \leq {r}^{*} - 2\sqrt{w_{s_{i}}}c_{m} - 2c_{m} \leq \hat{r}^{*} - 2\sqrt{w_{s_{i}}}c_{m}$
-  So, we need to bound the probability of the event of $\hat{r}_{i}+c_{m_{i}}\geq \hat{r}^{*}-c_{m_{i}}$.
+% So, we need to bound the probability of the event of $\hat{r}_{i}+c_{m_{i}}\geq \hat{r}^{*}-c_{m_{i}}$.
 %given that $\sqrt{\rho_{a}\epsilon_{m_{i}}}<\dfrac{\Delta_{i}}{2}$ becomes true for arm $a_{i}$ on or before $m_{i}$-th round with $c_{m_{i}}=\sqrt{\dfrac{\rho_{a}\log (\psi T\epsilon_{m_{i}}^{2})}{2 n_{m_{i}}}}$.
 %  $\Rightarrow \hat{r}_{i}+2c_{m}\leq \hat{r}_{i} + 2\sqrt{w}c_{m} \leq \hat{r}^{*}$
 %  $\Rightarrow \hat{r}_{i} + \sqrt{w}c_{m} \leq \hat{r}^{*} - \sqrt{w}c_{m}$
@@ -78,7 +86,7 @@ Applying Chernoff-Hoeffding bound and considering independence of events,
  
 Similarly, $\mathbb{P}\lbrace\hat{r}_{i}\geq r_{i} + c_{m_{i}}\rbrace\leq \dfrac{1}{(\psi  T\epsilon_{m_{i}}^{2})^{\rho_{a}}}$
  
-Summing, the two up, the probability that a sub-optimal arm $a_{i}$ is not eliminated in $m_{i}$-th round is  $\bigg(\dfrac{2}{(\psi T\epsilon_{m_{i}}^{2})^{\rho_{a}}}\bigg)$. 
+Summing, the two up, the probability that a sub-optimal arm $a_{i}$ is not eliminated on or before $m_{i}$-th round is  $\bigg(\dfrac{2}{(\psi T\epsilon_{m_{i}}^{2})^{\rho_{a}}}\bigg)$. 
  
 Summing up over all arms in $A$ and bounding trivially by $T\Delta_{i}$, we obtain
    \begin{align*}
@@ -101,7 +109,7 @@ Summing up over all arms in $A$ and bounding trivially by $T\Delta_{i}$, we obta
 
 \subsection*{Case b: \textit{Either an arm $a_{i}$ is eliminated in round $m_{i}$ or before or else there is no optimal arm $a^{*}\in B_{m_{i}}$ }}
 
-\subsubsection*{Case b1: \textit{If an optimal arm $a^{*}\in B_{m_{i}}$ then bound the maximum pull of all arms $a_{i}\in A^{'}$} till $ m_{i}$ }
+\subsubsection*{Case b1: \textit{$a^{*}\in B_{m_{i}}$ and $a_{i}\in A^{'}$ is  eliminated on or before $m_{i}$ } }
 
  Since we are eliminating a sub-optimal arm $a_{i}$ on or before round $m_{i}$, it is pulled no longer than, 
  \begin{align*}
@@ -126,11 +134,11 @@ Summing over all arms in $A^{'}$ the total regret is given by,
 \subsubsection*{Case b2: \textit{Optimal arm $a^{*}$ is eliminated by a sub-optimal arm  }}
 
 
-	Firstly, if conditions of Case $b1$ holds then the optimal arm $a^{*}$ will not be eliminated in round $m=m_{*}$ or it will lead to the contradiction that $r_{i}>r^{*}$. In any round $m_{*}$, if the optimal arm $a^{*}$ gets eliminated then for any round from $1$ to $m_{j}$ all arms $a_{j}$ such that $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{j}}{2}$ were eliminated according to assumption in case $b1$. Let, the arms surviving till $m_{*}$ round be denoted by $A^{'}$. This leaves any arm $a_{b}$ such that $\sqrt{\rho_{a}\epsilon_{m}}\geq\dfrac{\Delta_{b}}{2}$ to still survive and eliminate arm $a^{*}$ in round $m_{*}$. Let, such arms that survive $a^{*}$ belong to $A^{''}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}$ with $m_{j}\geq m_{*}$.  Let $m_{b}$ be the round when $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{b}}{2}$ that is $m_{b}=\min\lbrace m|\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{b}}{2}\rbrace$. Hence, the maximal regret after eliminating the arm $a^{*}$ is upper bounded by, 
+	Firstly, if conditions of Cases $a-b1$ holds then the optimal arm $a^{*}$ will not be eliminated in round $m=m_{*}$ or it will lead to the contradiction that $r_{i}>r^{*}$. In any round $m_{*}$, if the optimal arm $a^{*}$ gets eliminated then for any round from $1$ to $m_{j}$ all arms $a_{j}$ such that $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{j}}{2}$ were eliminated according to assumption in Case $a$. Let, the arms surviving till $m_{*}$ round be denoted by $A^{'}$. This leaves any arm $a_{b}$ such that $\sqrt{\rho_{a}\epsilon_{m}}\geq\dfrac{\Delta_{b}}{2}$ to still survive and eliminate arm $a^{*}$ in round $m_{*}$. Let, such arms that survive $a^{*}$ belong to $A^{''}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}$ with $m_{j}\geq m_{*}$.  Let $m_{b}$ be the round when $\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{b}}{2}$ that is $m_{b}=\min\lbrace m|\sqrt{\rho_{a}\epsilon_{m}}<\dfrac{\Delta_{b}}{2}\rbrace$. Hence, the maximal regret after eliminating the arm $a^{*}$ is upper bounded by, 
 \begin{align*}
-&\sum_{m_{*}=0}^{max_{j\in A^{'}}m_{j}}\sum_{i\in A^{''}:m_{i}>m_{*}}\bigg(\dfrac{2}{(\psi  T\epsilon_{m}^{2})^{\rho_{a}}} \bigg).T\max_{j\in A^{''}:m_{j}\geq m_{*}}{\Delta}_{j}\\
-&\leq\sum_{m_{*}=0}^{max_{j\in A^{'}}m_{j}}\sum_{i\in A^{''}:m_{i}>m_{*}}\bigg(\dfrac{2}{(\psi  T\epsilon_{m}^{2})^{\rho_{a}}} \bigg).T.2\sqrt{\rho_{a}\epsilon_{m}}\\
-&\leq\sum_{m_{*}=0}^{max_{j\in A^{'}}m_{j}}\sum_{i\in A^{''}:m_{i}>m_{*}}4\bigg(\dfrac{T^{1-\rho_{a}}}{\psi^{\rho_{a}}\epsilon_{m}^{2\rho_{a}-\frac{1}{2}}} \bigg)\\
+&\sum_{m_{*}=0}^{max_{j\in A^{'}}m_{j}}\sum_{i\in A^{''}:m_{i}>m_{*}}\bigg(\dfrac{2}{(\psi  T\epsilon_{m_{*}}^{2})^{\rho_{a}}} \bigg).T\max_{j\in A^{''}:m_{j}\geq m_{*}}{\Delta}_{j}\\
+&\leq\sum_{m_{*}=0}^{max_{j\in A^{'}}m_{j}}\sum_{i\in A^{''}:m_{i}>m_{*}}\bigg(\dfrac{2}{(\psi  T\epsilon_{m_{*}}^{2})^{\rho_{a}}} \bigg).T.2\sqrt{\rho_{a}\epsilon_{m_{*}}}\\
+&\leq\sum_{m_{*}=0}^{max_{j\in A^{'}}m_{j}}\sum_{i\in A^{''}:m_{i}>m_{*}}4\bigg(\dfrac{T^{1-\rho_{a}}}{\psi^{\rho_{a}}\epsilon_{m_{*}}^{2\rho_{a}-\frac{1}{2}}} \bigg)\\
 &\leq\sum_{i\in A^{''}:m_{i}>m_{*}}\sum_{m_{*}=0}^{\min{\lbrace m_{i},m_{b}\rbrace}}\bigg(\dfrac{4T^{1-\rho_{a}}}{\psi^{\rho_{a}}2^{-(2\rho_{a}-\frac{1}{2})m_{*}}} \bigg)\\
 &\leq\sum_{i\in A^{'}}\bigg(\dfrac{4T^{1-\rho_{a}}}{\psi^{\rho_{a}}2^{-(2\rho_{a}-\frac{1}{2})m_{*}}} \bigg)+\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{4T^{1-\rho_{a}}}{\psi^{\rho_{a}}2^{-(2\rho_{a}-\frac{1}{2})m_{b}}} \bigg)\\
 &\leq\sum_{i\in A^{'}}\bigg(\dfrac{4\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}*2^{2\rho_{a}-\frac{1}{2}}}{\psi^{\rho_{a}}\Delta_{i}^{4\rho_{a}-1}} \bigg)+\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{4\rho_{a}^{2\rho_{a}}T^{1-\rho_{a}}*2^{2\rho_{a}-\frac{1}{2}}}{\psi^{\rho_{a}}b^{4\rho_{a}-1}} \bigg)\\
