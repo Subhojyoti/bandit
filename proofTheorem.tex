@@ -11,10 +11,33 @@
 %
 %\textbf{\textit{Step 3:}}
 %Finally we combine the individual bounds in the steps above to get the regret upper bound in Theorem \ref{Result:Theorem:1}.  
+
+\pagebreak
+\subsection*{New proof sketch}
+
+Suppose we consider the following cases and analyze the contribution to expected regret for each of them:
+
+\textbf{Case a:} \textit{Some sub-optimal arm $a_{i}$ is not eliminated in round $\max(m_{i},g_{s_{k}})$ or before, with the optimal arm $a^{*}\in C_{\max(m_{i},g_{s_{k}})}$.}\\
+Note that in this case, we assume that optimal arm $a^*$ is in the set of cluster-heads in round $\max(m_{i},g_{s_{k}})$.
 	
+\textbf{Case a1:} \textit{In round $\max(m_{i},g_{s_{k}})$, $a_{i} \in s^{*}$.} \\
+For this case, the analysis is as in case a1 before. 
 
+\textbf{Case a2:} \textit{In round $\max(m_{i},g_{s_{k}})$, $a_{i} \in s_k$ for some $s_k \ne s^{*}$.} \\
+Since $a^*$ is in the set of cluster-heads $ C_{\max(m_{i},g_{s_{k}})}$, the analysis for this case is the same as that for case a3 earlier. In other words, $a_i$ belongs to a sub-optimal cluster $s_k$ and we bound the probability that the cluster $s_k$ does not get eliminated via the cluster elimination condition.
 
+\textbf{Case b:} \textit{For each arm $a_i$, either $a_{i}$ is eliminated in round $\max (m_{i},g_{s_{k}})$ or before or there is no optimal arm $a^{*}$ in $C_{\max(m_{i},g_{s_{k}})}$.} \\
+The case caption above is quite similar to that earlier, except that we have $C_{\max(m_{i},g_{s_{k}})}$ instead of $B_{\max(m_{i},g_{s_{k}})}$.
 
+\textbf{Case b1:} \textit{$a^{*}\in C_{\max(m_{i},g_{s_{k}})}$ and each $a_{i}\in A^{'}$ is  eliminated on or before $\max (m_{i},g_{s_{k}})$.} 
+
+\textbf{Case b2:} \textit{Optimal arm $a^{*}$ is eliminated by a sub-optimal arm.}\\
+This case should be like earlier case b2, though I have not checked the details of b22,b23 cases.
+
+\textbf{Case b3:} \textit{Optimal arm $a^{*}$ is not in $C_{\max(m_{i},g_{s_{k}})}$.}\\
+This is a new case and we should attempt to analyze the regret contribution for this.
+
+\hrulefill
 
 \begin{proof}
 %The optimal cluster which contains $a^{*}$ is denoted by $s^{*}$. The subset of arms belonging to cluster $s_{k}$ is denoted by $A_{s_{k}}$ and similarly the subset of arms belonging to $s^{*}$ is denoted by $A_{s^{*}}$.
