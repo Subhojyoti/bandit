@@ -17,8 +17,8 @@ The regret $R_T$ of ClusUCB satisfies
 \frac{C_2(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}
 +\sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\frac{C_2(\rho_a)T^{1-\rho_{a}}}{b^{4\rho_{a} -1}}\\ 
 %%%%%%%
-&+ \!\sum\limits_{\substack{i\in A,\\ \Delta_{i} > b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}
- + \!\sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\! \! \dfrac{2C_2(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}}  
+&+ \!\sum\limits_{\substack{i\in A,\\ \Delta_{i} > b}}\! \! \dfrac{C_2(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}
+ + \!\sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\! \! \dfrac{C_2(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}}  
 \!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T, 
 \end{align*}
 
@@ -63,9 +63,9 @@ We now specialize the result in the theorem above by substituting specific value
 With $\psi=\frac{T}{\log (KT)}$, $\rho_{a}=\frac{1}{2}$ and $\rho_{s}=\frac{1}{2}$,  we have the following gap-dependent bound for the regret of ClusUCB:
 \begin{align*}
 \E [R_T] &\!\le\! \sum_{\substack{i\in A_{s^{*}}: \\ \Delta_{i} > b}}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}} + \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace 3\Delta_{i}\\
-& + \dfrac{12\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{96\log{(\frac{T\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace \\
+& + \dfrac{6.8\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{96\log{(\frac{T\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace \\
 &+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} \\ 
-&+ \sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\dfrac{8\sqrt{\log (KT)}}{\Delta_{i}} + \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T
+&+ \sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \max\limits_{i\in A:\Delta_{i}\leq b}\Delta_{i}T
 \end{align*} 
  for all $b\geq \sqrt{\frac{e}{T}}$.
 \end{corollary}
@@ -104,7 +104,7 @@ Considering the same gap of $\Delta_{i} = \Delta =\sqrt{\dfrac{K\log K}{T}}$ for
  we have the following gap-independent bound for the regret of ClusUCB:
 \begin{align*}
 \E [R_T] &\!\le\!  6\dfrac{\sqrt{KT}}{p} + 128\sqrt{KT\log K} + \dfrac{64\sqrt{KT}\log{(\log K)}}{\sqrt{\log K}}\\
- &+ 16\sqrt{\dfrac{T}{K\log K}} + 8\sqrt{\dfrac{T}{e}}
+ &+ 6.8\sqrt{\dfrac{T}{K\log K}} + 2.8\sqrt{\dfrac{T}{e}}
 \end{align*}
 \end{corollary}
 \begin{proof}
