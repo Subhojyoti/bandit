@@ -181,30 +181,6 @@ Summing up over all $p$ clusters and bounding trivially by $T\Delta_{i}$,
 % &= \sum_{i\in A^{'}}\bigg(\frac{C_{1}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\bigg) \text{, where } C_1(x) = \frac{2^{1+4x}x^{2x}}{\psi^{x}}
 %&\leq \sum_{i\in A}\bigg(\frac{2^{1+4\rho_{s}}T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}\Delta_{i}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}}}\bigg)\\
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
-%\textbf{Case a4:} \textit{In round $g_{s_{k}}$, $a_{i}\in s_{k}, a^{*}\notin C_{g_{s_{k}}}$, but $a_{\max_{s^{*}}}\in C_{g_{s_{k}}}$, where $a_{\max_{s^{*}}}$ satisfies $\hat{r}_{a_{\max_{s^{*}}}}> \hat{r}^{*}$ and $a_{max_{s^{*}}} \in s^*$ } 
-%
-%In this case for some sub-optimal arm $a_{\max_{s_{k}}}\in C_{g_{s_{k}}}$, we have to bound the events
-%	\begin{align*}
-%  \hat{r}_{a_{\max_{s_{k}}}} \geq r_{a_{\max_{s_{k}}}} +c_{g_{s_{k}}} \text{ and } \hat{r}_{a_{\max_{s^{*}}}} \leq r_{a_{\max_{s^{*}}}} -c_{g_{s_{k}}}
-%\end{align*}
-%%	\begin{align*}
-%%	&\mathbb{P}\bigg\lbrace\hat{r}_{a_{\max_{s_{k}}}}+c_{g_{s_{k}}}\bigg\rbrace \geq \mathbb{P}\bigg\lbrace\hat{r}_{a_{\max_{s^{*}}}}-c_{g_{s_{k}}}\bigg\rbrace
-%%	\end{align*}		 
-%	 
-%	 
-%	 But, this probability can be no worse than Case $a3$ since $r_{\max_{s^{*}}} < r^{*}$ and all arms get pulled $n_{g_{s_{k}}}$ number of times on or before the $g_{s_{k}}$-th round. After summing over all arms in $A^{'}$ and bounding 
-%trivially by $T\Delta_{i}$ we get the same result as above and can show that the regret can be no more than,
-% \begin{align*}
-% &\sum_{i\in A^{'}}\bigg(\frac{2^{1+4\rho_{s}}\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}}\bigg)=\sum_{i\in A^{'}}\bigg(\frac{C_{1}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\bigg)
-% \end{align*}
-% 
-%Summing the bounds in Cases a1--a4 and observing that the bounds in the aforementioned cases hold for any round $\max(m_i,g_{s_k})$, we obtain the following contribution to the expected regret from case a:
-%   %Taking summation of the events mentioned above($a1$-$a4$) gives us an upper bound on the regret given that the optimal arm $a^{*}$ is still surviving, 
-%\begin{align*}
-%&\sum_{i\in A_{s^*}} \frac{C_{1}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} + \sum_{i\in A^{'} \setminus  A_{s^*} } \frac{C_{1}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{'^{4\rho_{a}-1}}} \\
-% & + \sum_{i\in A^{'}}\bigg(\frac{2C_{1}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}\bigg)
-%\end{align*}
 
 
 Summing the bounds in Cases $a1-a2$ and observing that the bounds in the aforementioned cases hold for any round $C_{\max \lbrace m_i,g_{s_k}\rbrace}$, we obtain the following contribution to the expected regret from case a:
@@ -224,37 +200,46 @@ Summing the bounds in Cases $a1-a2$ and observing that the bounds in the aforeme
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Case b:} \textit{For each arm $a_i$, either $a_{i}$ is eliminated in round $\max (m_{i},g_{s_{k}})$ or before or there is no optimal arm $a^{*}$ in $C_{\max(m_{i},g_{s_{k}})}$.} \\
 
-\textbf{Case b1:} \textit{$a^{*}\in C_{\max(m_{i},g_{s_{k}})}$ and each $a_{i}\in A^{'}$ is  eliminated on or before $\max (m_{i},g_{s_{k}})$.} 
+\textbf{Case b1:} \textit{$a^{*}\in C_{\max(m_{i},g_{s_{k}})}$ for each arm $a_i \in A'$ and cluster $s_k \in \check A$.} 
+\todos{define $\check A$}
 
-%\todos[inline]{Case b1 caption is highly unclear}
+The condition in the case description above implies the following: \\
+\begin{inparaenum}[\bfseries (i)]
+\item each sub-optimal arm $a_{i}\in A^{'}$ is  eliminated on or before $\max (m_{i},g_{s_{k}})$ and hence  pulled not more than pulled $n_{m_{i}}$ number of times.\\
+\item each sub-optimal cluster $s_k \in \check A$ is  eliminated on or before $\max (m_{i},g_{s_{k}})$ and hence  pulled not more than pulled $n_{g_{s_{k}}}$ number of times.
+\end{inparaenum}
 
-%\todos[inline]{Fix margin overflows}
-
-%\todos[inline]{max should be $\max$ and exp should be $\exp$: throughout the paper}
-
-	For any sub-optimal arm $a_{i}\in s_{k}$ is eliminated on or before $\max\lbrace m_{i}, g_{s_{k}} \rbrace$ with $a^{*}\in s^{*}$ still surviving then they get pulled not more than $n_{m_{i}}$ or $n_{g_{s_{k}}}$ number of times. Hence, the maximum regret suffered due to pulling of a sub-optimal arm(or a sub-optimal cluster) is no less than,
+Hence, the maximum regret suffered due to pulling of a sub-optimal arm or a sub-optimal cluster is no more than the following:
  \begin{align*}
- &\sum_{i\in A^{'}}\Delta_{i}\bigg\lceil\dfrac{2\log{(\psi T\epsilon_{m_{i}}^{2})}}{\epsilon_{m_{i}}}\bigg\rceil + \sum_{k=1}^{p}\sum_{i\in A_{s_{k}}^{'}}\Delta_{i}\bigg\lceil\dfrac{2\log{(\psi T\epsilon_{g_{s_{k}}}^{2})}}{\epsilon_{g_{s_{k}}}}\bigg\rceil \\
-&\leq\sum_{i\in A^{'}}\Delta_{i}\bigg(1+\dfrac{32\rho_{a}\log{(\psi T(\dfrac{\Delta_{i}}{2\sqrt{\rho_{a}}})^{4})}}{\Delta_{i}^{2}}\bigg) \\
-&+ \sum_{i\in A^{'}}\Delta_{i}\bigg(1+\dfrac{32\rho_{s}\log{(\psi T(\dfrac{\Delta_{i}}{2\sqrt{\rho_{s}}})^{4})}}{\Delta_{i}^{2}}\bigg)
+ &\sum_{i\in A^{'}}\Delta_{i}\bigg\lceil\dfrac{2\log{(\psi T\epsilon_{m_{i}}^{2})}}{\epsilon_{m_{i}}}\bigg\rceil 
+\!+\! \sum_{k=1}^{p}\sum_{i\in A_{s_{k}}^{'}}\Delta_{i}\bigg\lceil\dfrac{2\log{(\psi T\epsilon_{g_{s_{k}}}^{2})}}{\epsilon_{g_{s_{k}}}}\bigg\rceil \\
+&\leq\sum_{i\in A^{'}}\Delta_{i}\bigg(1+\dfrac{32\rho_{a}\log{\left(\psi T\left(\frac{\Delta_{i}}{2\sqrt{\rho_{a}}}\right)^{4}\right)}}{\Delta_{i}^{2}}\bigg) \\
+&\quad+ \sum_{i\in A^{'}}\Delta_{i}\bigg(1+\dfrac{32\rho_{s}\log{\left(\psi T\left(\frac{\Delta_{i}}{2\sqrt{\rho_{s}}}\right)^{4}\right)}}{\Delta_{i}^{2}}\bigg)
 \\
-&\text{ since } \sqrt{\rho_{a}\epsilon_{m_{i}}}\leq\frac{\Delta_{i}}{2} \text{ \& } \sqrt{\rho_{s}\epsilon_{n_{g_{s_{k}}}}}\leq\frac{\Delta_{i}}{2}
-\\
- &\leq \sum_{i\in A^{'}}\bigg\lbrace 2\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} +\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace 
+ &\leq \sum_{i\in A^{'}}\bigg\lbrace 2\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} \\
+& \qquad \qquad +\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace 
  \end{align*}
+In the above, the first inequality follows since $\sqrt{\rho_{a}\epsilon_{m_{i}}}\leq\frac{\Delta_{i}}{2}$ and $\sqrt{\rho_{s}\epsilon_{n_{g_{s_{k}}}}}\leq\frac{\Delta_{i}}{2}$.
 
 %&\leq\Delta_{i}\bigg(1+\dfrac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}^{2}}\bigg)\\
 %&\leq\Delta_{i}\bigg\lceil\dfrac{2\log{(\psi T(\dfrac{\Delta_{i}}{2\sqrt{\rho_{a}})^{4})}}}{(\dfrac{\Delta_{i}}{2\sqrt{\rho_{a}}})^{2}}\bigg\rceil \\
 %\text{, since } \sqrt{\rho_{a}\epsilon_{m_{i}}}\leq\dfrac{\Delta_{i}}{2}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
-\textbf{Case b2:} \textit{Optimal arm $a^{*}$ is eliminated by a sub-optimal arm.}\\
-  
-	This, can happen in $3$ ways,
-\newline
-\textbf{Case b21:} \textit{In $s^{*}$, $a^{*}$ got eliminated by other arms surviving till $m_{*}$} 
-
-Firstly, if conditions of  Case $a$ holds then the optimal arm $a^{*}$ will not be eliminated in round $m=m_{*}$ or it will lead to the contradiction that $r_{i}>r^{*}$ for any $i\in A^{'}$. In any round $m_{*}$, if the optimal arm $a^{*}$ gets eliminated then for any round from $1$ to $m_{j}$ all arms $a_{j}\in s^{*}$ such that $m_{j} < m_{*}$ were eliminated according to assumption in Case $a$. Let, the arms surviving till $m_{*}$ round be denoted by $A^{'}$. This leaves any arm $a_{b}$ such that $m_{b}\geq m_{*} $ to still survive and eliminate arm $a^{*}$ in round $m_{*}$. Let, such arms that survive $a^{*}$ belong to $A^{''}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms in $A^{''}$ with $m_{j}\geq m_{*}$.  Let $m_{b}=\min\lbrace m|\sqrt{\rho_{a}\epsilon_{m}}<\frac{\Delta_{b}}{2}\rbrace$. Let $C_2(x) = \frac{2^{2x+\frac{3}{2}}x^{2x}}{\psi^{x}}$. Hence, the maximal regret after eliminating the arm $a^{*}$ is upper bounded by, 
+%\textbf{Case b2:} \textit{Optimal arm $a^{*}$ is eliminated by a sub-optimal arm.}\\
+  %
+	%This, can happen in $3$ ways,
+%\newline
+\textbf{Case b2:} \textit{$a^{*}$ is eliminated by some sub-optimal arm in $s^*$} \\
+%In this case, we are concerned with the arm elimination condition only. 
+Optimal arm $a^*$ can get eliminated by some sub-optimal arm $a_i$ only if arm elimination condition holds, i.e., 
+\begin{align*}
+\hat r_{i} - c_{m_{i}} > \hat{r}^{*}+ c_{m_{i}},
+\end{align*}
+where, as mentioned before, $c_{m_{i}}=\sqrt{\frac{\rho_{a}\log (\psi T\epsilon_{m_{i}}^{2})}{2 n_{m_{i}}}}$.
+From analysis in case a1, notice that, if \eqref{eq:armelim-casea} holds in conjunction with the above, arm $a_i$ gets eliminated. Also, recall from case a1 that the events complementary   to  \eqref{eq:armelim-casea} have low-probability and can be upper bounded by $\frac{2}{(\psi  T\epsilon_{m_{*}}^{2})^{\rho_{a}}}$. Moreover, a sub-optimal arm that eliminates $a^*$ has to survive until round $m_*$. In other words, 
+all arms $a_{j}\in s^{*}$ such that $m_{j} < m_{*}$ are eliminated on or before $m_*$ (this corresponds to case b1). 
+Let, the arms surviving till $m_{*}$ round be denoted by $A^{'}$. This leaves any arm $a_{b}$ such that $m_{b}\geq m_{*} $ to still survive and eliminate arm $a^{*}$ in round $m_{*}$. Let, such arms that survive $a^{*}$ belong to $A^{''}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms in $A^{''}$ with $m_{j}\geq m_{*}$.  Let $m_{b}=\min\lbrace m|\sqrt{\rho_{a}\epsilon_{m}}<\frac{\Delta_{b}}{2}\rbrace$. Let $C_2(x) = \frac{2^{2x+\frac{3}{2}}x^{2x}}{\psi^{x}}$. Hence, the maximal regret after eliminating the arm $a^{*}$ is upper bounded by, 
 \begin{align*}
 &\sum_{m_{*}=0}^{max_{j\in A^{'}_{s^{*}}}m_{j}}\sum_{\substack{i\in A^{''}_{s^{*}}: \\ m_{i}\geq m_{*}}}\bigg(\dfrac{2}{(\psi  T\epsilon_{m_{*}}^{2})^{\rho_{a}}} \bigg).T\max_{\substack{j\in A^{''}_{s^{*}}: \\ m_{j}\geq m_{*}}}{\Delta}_{j}\\
 &\leq\sum_{m_{*}=0}^{max_{j\in A^{'}_{s^{*}}}m_{j}}\sum_{i\in A^{''}_{s^{*}}:m_{i} \geq m_{*}}\bigg(\dfrac{2}{(\psi  T\epsilon_{m_{*}}^{2})^{\rho_{a}}} \bigg).T.2\sqrt{\rho_{a}\epsilon_{m_{*}}} \\
@@ -275,7 +260,7 @@ Firstly, if conditions of  Case $a$ holds then the optimal arm $a^{*}$ will not 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
-\textbf{Case b22:} \textit{$a^{*}\in C_{\max \lbrace m_{i},g_{s_{k}}\rbrace}$ and $s^{*}$ gets eliminated by another sub-optimal cluster arm} 
+\textbf{Case b3:} \textit{$s^{*}$ is eliminated by some sub-optimal cluster.} 
 %\newline
 %Firstly, if conditions of case $b1$ holds then the optimal arm $a^{*}\in C_{g_{s_{k}}}$ will not be eliminated in round $g_{s_{k}}=g_{*}$ or it will lead to the contradiction that $r_{a_{max_{s_{k}}}}>r^{*}$ where $a_{max_{s_{k}}},a^{*}\in C_{g_{s_{k}}}$. In any round $g_{*}$, if the optimal arm $a^{*}$ gets eliminated then for any round from $1$ to $g_{s_{j}}$ all arms $a_{s_{j}}\in C_{g_{s_{k}}},\forall s_{j}\neq s^{*}$ such that $\sqrt{\rho_{s}\epsilon_{g_{s_{k}}}}<\dfrac{\Delta_{a_{s_{j}}}}{2}$ were eliminated according to assumption in case $b1$. Let, the arms surviving till $g_{*}$ round be denoted by $C_{g}^{'}$. This leaves any arm $a_{s_{b}}$ such that $\sqrt{\rho_{s}\epsilon_{g_{s_{b}}}}\geq\dfrac{\Delta_{a_{s_{b}}}}{2}$ to still survive and eliminate arm $a^{*}$ in round $g_{*}$. Let, such arms that survive $a^{*}$ belong to $C_{g}^{''}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}\in B_{m}$ with $g_{s_{j}}\geq g_{
 %*}$.  Let $g_{s_{b}}$ be the round when $\sqrt{\rho_{s}\epsilon_{g_{s_{b}}}}<\dfrac{\Delta_{s_{b}}}{2}$ that is $g_{b}=min\lbrace g|\sqrt{\rho_{s}\epsilon_{g_{s_{b}}}}<\dfrac{\Delta_{b}}{2}\rbrace$ and the cluster $s_{b}$ gets eliminated. Hence, the maximal regret after eliminating the arm $a^{*}$ is upper bounded by, 
@@ -283,7 +268,15 @@ Firstly, if conditions of  Case $a$ holds then the optimal arm $a^{*}$ will not 
 % &\sum_{g_{*}=0}^{max_{j\in C_{g}^{'}}g_{s_{j}}}\sum_{i\in C_{g}^{''}:g_{s_{k}}>g_{*}}\bigg(\dfrac{2}{(\psi T\epsilon_{g_{s_{k}}}^{2})^{\rho_{s}}} \bigg).T\max_{j\in C_{g}^{''}:g_{s_{j}}\geq g_{*}}{\Delta}_{a_{s_{j}}}
 % \end{align*}
 
-Following the same way as Case $b21$, in any round $g_{*}$, if the optimal arm $a^{*}$ gets eliminated then for any round from $1$ to $g_{s_{j}}$ all arms $a_{\max_{s_{j}}}$ such that $g_{s_{j}}< g_{*}$ were eliminated according to assumption in Case $a$. Let, the arms surviving till $g_{*}$ round in $C_{\max \lbrace m_{i},g_{s^{*}}\rbrace}$ be denoted by $C_{g}^{'}$. This leaves any arm $a_{\max_{s_{b}}}$ such that $g_{s_{b}}\geq g_{*}$ to still survive and eliminate arm $a^{*}$ in round $g_{*}$. Let, such arms that survive $a^{*}$ belong to $C_{g}^{''}$. Hence, maximal regret after eliminating $a^{*}$ is,
+A sub-optimal cluster $s_k$ will eliminate $s^*$ in round $g_*$ only if the cluster elimination condition of Algorithm \ref{alg:clusucb} holds, which in the case when $a^{*}\in C_{g_{*}}$ is the following:
+\begin{align}
+\hat r_{\max_{s_k}} - c_{g_{*}} > \hat{r}^{*}+ c_{g_{*}}.
+\label{eq:caseb3-cluselim}
+\end{align}
+Notice that when $a^{*}\notin C_{g_{*}}$, since $r_{a_{max_{s_{k}}}}>r^{*}$, the inequality in \eqref{eq:caseb3-cluselim} has to hold for cluster $s_k$ to eliminate $s^*$.
+As in case $b2$, the probability that a given sub-optimal cluster $s_k$ eliminates $s^*$ is upper bounded by  $\frac{2}{(\psi T\epsilon_{g_{s^{*}}}^{2})^{\rho_{s}}}$ and all sub-optimal clusters with $g_{s_{j}}< g_{*}$ are eliminated before round $g_*$. 
+
+Let, the arms surviving till $g_{*}$ round in $C_{\max \lbrace m_{i},g_{s^{*}}\rbrace}$ be denoted by $C_{g}^{'}$. This leaves any arm $a_{\max_{s_{b}}}$ such that $g_{s_{b}}\geq g_{*}$ to still survive and eliminate arm $a^{*}$ in round $g_{*}$. Let, such arms that survive $a^{*}$ belong to $C_{g}^{''}$. Hence, maximal regret after eliminating $a^{*}$ is,
  \begin{align*}
  &\sum_{g_{*}=0}^{max_{j\in C_{g}^{'}}g_{s_{j}}}\sum_{\substack{i\in C_{g}^{''}: \\ g_{s_{k}} \geq g_{*}}}\bigg(\dfrac{2}{(\psi T\epsilon_{g_{s^{*}}}^{2})^{\rho_{s}}} \bigg).T\max_{\substack{j\in C_{g}^{''}: \\ g_{s_{j}}\geq g_{*}}}{\Delta}_{a_{\max_{s_{j}}}}
  \end{align*}
@@ -305,32 +298,32 @@ Like Case $b21$, we can bound the regret as,
 % &\leq\sum_{i\in A^{'}}\bigg(\dfrac{4\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}*2^{2\rho_{s}-\frac{1}{2}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} \bigg)+\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{4\rho_{s}^{2\rho_{s}}T^{1-\rho_{s}}*2^{2\rho_{s}-\frac{1}{2}}}{\psi^{\rho_{s}}b^{4\rho_{s}-1}} \bigg)\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
-\textbf{Case b23:} \textit{$a^{*}\notin C_{\max \lbrace m_{i},g_{s_{k}} \rbrace}$ and $s^{*}$ gets eliminated by another sub-optimal cluster arm} 
-
-This will be the mirror case of Case $b22$ with $a^{*}\notin C_{g}$. So, let $a_{\max_{s^{*}}}$ satisfies $\hat{r}_{a_{\max_{s^{*}}}}> \hat{r}^{*}$ in round $C_{\max \lbrace m_{i},g_{s^{*}} \rbrace}$. Following the same way as Case $a2$, we can bound the events
-\begin{align*}
-  \hat{r}_{a_{\max_{s_{k}}}} \geq r_{a_{\max_{s_{k}}}} +c_{g_{s_{k}}} \text{ and } \hat{r}_{a_{\max_{s^{*}}}} \leq r_{a_{\max_{s^{*}}}} -c_{g_{s_{k}}}
-\end{align*}
+%\textbf{Case b23:} \textit{$a^{*}\notin C_{\max \lbrace m_{i},g_{s_{k}} \rbrace}$ and $s^{*}$ gets eliminated by another sub-optimal cluster arm} 
+%
+%This will be the mirror case of Case $b22$ with $a^{*}\notin C_{g}$. So, let $a_{\max_{s^{*}}}$ satisfies $\hat{r}_{a_{\max_{s^{*}}}}> \hat{r}^{*}$ in round $C_{\max \lbrace m_{i},g_{s^{*}} \rbrace}$. Following the same way as Case $a2$, we can bound the events
+%\begin{align*}
+  %\hat{r}_{a_{\max_{s_{k}}}} \geq r_{a_{\max_{s_{k}}}} +c_{g_{s_{k}}} \text{ and } \hat{r}_{a_{\max_{s^{*}}}} \leq r_{a_{\max_{s^{*}}}} -c_{g_{s_{k}}}
+%\end{align*}
+ %
+%by Chernoff-Hoeffding bound and considering independence of events and show that it cannot be worse than $\bigg(\dfrac{2}{(\psi  T\epsilon_{g_{s^{*}}}^{2})^{\rho_{s}}}\bigg)$ for any $g_{s_{k}}=g_{*}$.
+%%In this case for some sub-optimal arm $a_{\max_{s_{k}}}\in C_{g_{s_{k}}}$, we have to bound the events
+%%	\begin{align*}
+%%  \hat{r}_{a_{\max_{s_{k}}}} \geq r_{a_{\max_{s_{k}}}} +c_{g_{s_{k}}} \text{ and } \hat{r}_{a_{\max_{s^{*}}}} \leq r_{a_{\max_{s^{*}}}} -c_{g_{s_{k}}}
+%%\end{align*} 
+%So $s^{*}$ gets eliminated by $a_{\max_{s_{b}}}$ such that $g_{s_{b}}\geq g_{*}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}\in A^{''}$ with $g_{s_{j}}\geq g_{*}$. Following the same way above we can bound the regret as,
+%%In this case we will consider that the cluster $s^{*}$ containing the optimal arm $a^{*}$ was eliminated by another sub-optimal cluster and $a^{*}\notin C_{g}$. 
+%\begin{align*}
+%&\sum_{i\in A^{'}}\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} +\sum_{i\in A^{''}\setminus A^{'}}\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{\psi^{\rho_{s}}b^{4\rho_{s}-1}} \\
+%& = \sum_{i\in A^{'}}\dfrac{C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} +\sum_{i\in A^{''}\setminus A^{'}}\dfrac{C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s}-1}}
+%\end{align*}
+%\newline
+%Combining Cases $b21$, $b22$ and $b23$ as mentioned above we can show,
+ %\begin{align*}
+ %&\underbrace{\sum_{i\in A^{'}_{s^{*}}}\bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a} -1}} \bigg)+\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} \bigg)}_{\text{case b21}} \\
+ %& + \underbrace{\sum_{i\in A^{'}}\bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} \bigg)}_{\text{case b22}}+\underbrace{\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}} \bigg)}_{\text{case b23}}
+ %\end{align*}
  
-by Chernoff-Hoeffding bound and considering independence of events and show that it cannot be worse than $\bigg(\dfrac{2}{(\psi  T\epsilon_{g_{s^{*}}}^{2})^{\rho_{s}}}\bigg)$ for any $g_{s_{k}}=g_{*}$.
-%In this case for some sub-optimal arm $a_{\max_{s_{k}}}\in C_{g_{s_{k}}}$, we have to bound the events
-%	\begin{align*}
-%  \hat{r}_{a_{\max_{s_{k}}}} \geq r_{a_{\max_{s_{k}}}} +c_{g_{s_{k}}} \text{ and } \hat{r}_{a_{\max_{s^{*}}}} \leq r_{a_{\max_{s^{*}}}} -c_{g_{s_{k}}}
-%\end{align*} 
-So $s^{*}$ gets eliminated by $a_{\max_{s_{b}}}$ such that $g_{s_{b}}\geq g_{*}$. Also maximal regret per step after eliminating $a^{*}$ is the maximal $\Delta_{j}$ among the remaining arms $a_{j}\in A^{''}$ with $g_{s_{j}}\geq g_{*}$. Following the same way above we can bound the regret as,
-%In this case we will consider that the cluster $s^{*}$ containing the optimal arm $a^{*}$ was eliminated by another sub-optimal cluster and $a^{*}\notin C_{g}$. 
-\begin{align*}
-&\sum_{i\in A^{'}}\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{\psi^{\rho_{s}}\Delta_{i}^{4\rho_{s}-1}} +\sum_{i\in A^{''}\setminus A^{'}}\dfrac{T^{1-\rho_{s}}\rho_{s}^{2\rho_{s}}2^{2\rho_{s}+\frac{3}{2}}}{\psi^{\rho_{s}}b^{4\rho_{s}-1}} \\
-& = \sum_{i\in A^{'}}\dfrac{C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} +\sum_{i\in A^{''}\setminus A^{'}}\dfrac{C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s}-1}}
-\end{align*}
-\newline
-Combining Cases $b21$, $b22$ and $b23$ as mentioned above we can show,
- \begin{align*}
- &\underbrace{\sum_{i\in A^{'}_{s^{*}}}\bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a} -1}} \bigg)+\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\bigg(\dfrac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} \bigg)}_{\text{case b21}} \\
- & + \underbrace{\sum_{i\in A^{'}}\bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} \bigg)}_{\text{case b22}}+\underbrace{\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}} \bigg)}_{\text{case b23}}
- \end{align*}
- 
-\textbf{Case b3:} \textit{Optimal arm $a^{*}$ is not in $C_{\max(m_{i},g_{s_{k}})}$.}
+\textbf{Case b4:} \textit{$a^{*}$ is not in $C_{\max(m_{i},g_{s_{k}})}$, but belongs to $B_{\max(m_{i},g_{s_{k}})}$.}
 
 Since, the optimal arm $a^{*}\in s^{*}$ is not eliminated, also $s^{*}$ is not eliminated in this case and for all sub-optimal arms $a_i$ in $A'$ which have not been eliminated on or before $\max \lbrace m_{i},g_{s_{k}} \rbrace$ will get pulled no less than,
 

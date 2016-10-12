@@ -52,6 +52,8 @@ $$\hat{r}_{i} + \sqrt{\dfrac{\rho_{a}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{m}}}  
 \end{algorithmic}
 \end{algorithm}
 
+\todos[inline]{Shouldn't there be a $\psi$ inside the log term on RHS of both elim conditions of Algorithm \ref{alg:clusucb}?}
+
 As mentioned in a recent work \cite{liu2016modification}, UCB-Improved has two shortcomings: 	
 \begin{enumerate}
 \item A significant number of pulls are spent in early exploration, since each round $m$ of UCB-Improved involves pulling every arm an identical $n_{m}=\bigg\lceil \dfrac{ 2\log(T\epsilon^{2}_{m})}{\epsilon^{2}_{m}} \bigg\rceil$ number of times. The quantity $\epsilon_{m}$ is initialized to $1$ and halved after every round.
