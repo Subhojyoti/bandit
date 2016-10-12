@@ -21,7 +21,7 @@
       \legend{UCB-V,DMED,KL-UCB,MOSS,UCB1,TS,ClusUCB(p=4)}
       \end{axis}
       \end{tikzpicture}}\\}
-			\caption{Experiment $1$: $20$ Bernoulli-distributed arms with $r_{i_{a_{i}\neq a^{*}}}=0.07$ and $r^{*}=0.1$.}
+			\caption{Experiment $1$: $20$ Bernoulli-distributed arms with $r_{i_{{i}\neq {*}}}=0.07$ and $r^{*}=0.1$.}
   \label{fig:1}
   \end{subfigure}
 	&
@@ -43,7 +43,7 @@
       \legend{ClusUCB-AE(p=1),ClusUCB(p=20),Med-Elim,UCB-Improved,MOSS,UCB1}
       \end{axis}
       \end{tikzpicture}}\\}
-			\caption{Experiment $2$: $100$ Gaussian-distributed arms with $r_{i_{a_{i}\neq a^{*}:1-33}}=0.01$, $r_{i_{a_{i}\neq a^{*}:34-99}}=0.06$ and $r^{*}_{i=100}=0.1$.}
+			\caption{Experiment $2$: $100$ Gaussian-distributed arms with $r_{i_{{i}\neq {*}:1-33}}=0.01$, $r_{i_{{i}\neq {*}:34-99}}=0.06$ and $r^{*}_{i=100}=0.1$.}
   \label{fig:2}
   \end{subfigure}
 	&
@@ -62,7 +62,7 @@
       \legend{ClusUCB(p=K/10),MOSS}
       \end{axis}
       \end{tikzpicture}}\\}
-			\caption{Experiment $3$: $20$ to $500$ Bernoulli-distributed arms with $r_{i_{a_{i}\neq a^{*}}}=0.05$ and $r^{*}=0.1$.}
+			\caption{Experiment $3$: $20$ to $500$ Bernoulli-distributed arms with $r_{i_{{i}\neq {*}}}=0.05$ and $r^{*}=0.1$.}
   \label{fig:3}
   \end{subfigure}
   \end{tabular}
@@ -113,13 +113,13 @@ Corollary \ref{Result:Corollary:2}) because this will aggressively eliminate arm
 
 %For parameter settings of ClusUCB and further experiments see Appendix \ref{App:Further:Expt}.
 
-The first experiment is conducted over a testbed of $20$ arms for the test-cases involving Bernoulli reward distribution with expected rewards of the arms $r_{i_{a_{i}\neq a^{*}}}=0.07$ and $r^{*}=0.1$. These type of cases are frequently encountered in web-advertising domain. The horizon $T$ is set to $60000$ and the number of clusters $p$ for ClusUCB is set to $4$. The regret is averaged over $100$ independent runs and is shown in Figure \ref{fig:1}. 
+The first experiment is conducted over a testbed of $20$ arms for the test-cases involving Bernoulli reward distribution with expected rewards of the arms $r_{i_{{i}\neq {*}}}=0.07$ and $r^{*}=0.1$. These type of cases are frequently encountered in web-advertising domain. The horizon $T$ is set to $60000$ and the number of clusters $p$ for ClusUCB is set to $4$. The regret is averaged over $100$ independent runs and is shown in Figure \ref{fig:1}. 
 ClusUCB, MOSS, UCB1, UCB-V, KL-UCB, TS and DMED are run in this experimental setup and we observe that ClusUCB performs better than all the aforementioned algorithms. Because of the short horizon $T$, we do not implement UCB-Improved and Median Elimination on this test-case. We also observe that in this case the cumulative regret of ClusUCB and TS are very similar to each other although ClusUCB is slightly better.
 
-	The second experiment is conducted over a testbed of $100$ arms involving Gaussian reward distribution with expected rewards of the arms $r_{i_{a_{i}\neq a^{*}:1-33}}=0.01$, $r_{i_{a_{i}\neq a^{*}:34-99}}=0.06$ and $r^{*}_{i=100}=0.1$ with variance set at $\sigma = 0.3,\forall i\in A$. The horizon $T$ is set for a large duration of $2\times 10^{6}$ and the number of clusters $p=20$. The regret is averaged over $100$ independent runs and is shown in Figure \ref{fig:2}. In this case, in addition to ClusUCB, we also show the performance of no-clustering version of ClusUCB algorithm (i.e., $p=1$).   From the results sin Figure \ref{fig:2}, we observe that ClusUCB with $p=20$ outperforms ClusUCB with $p=1$ as well as MOSS, UCB1, UCB-Improved and Median-Elimination($\epsilon=0.03,\delta=0.1$). We also observed that the ClusUCB variant that uses only  the arm elimination condition in Algorithm \ref{alg:clusucb} performs worse than the variant that employs both cluster and arm elimination conditions. Also UCB-
+	The second experiment is conducted over a testbed of $100$ arms involving Gaussian reward distribution with expected rewards of the arms $r_{i_{{i}\neq {*}:1-33}}=0.01$, $r_{i_{{i}\neq {*}:34-99}}=0.06$ and $r^{*}_{i=100}=0.1$ with variance set at $\sigma = 0.3,\forall i\in A$. The horizon $T$ is set for a large duration of $2\times 10^{6}$ and the number of clusters $p=20$. The regret is averaged over $100$ independent runs and is shown in Figure \ref{fig:2}. In this case, in addition to ClusUCB, we also show the performance of no-clustering version of ClusUCB algorithm (i.e., $p=1$).   From the results sin Figure \ref{fig:2}, we observe that ClusUCB with $p=20$ outperforms ClusUCB with $p=1$ as well as MOSS, UCB1, UCB-Improved and Median-Elimination($\epsilon=0.03,\delta=0.1$). We also observed that the ClusUCB variant that uses only  the arm elimination condition in Algorithm \ref{alg:clusucb} performs worse than the variant that employs both cluster and arm elimination conditions. Also UCB-
 Improved performs the worst and it confirms our assumption that it spends too much pulls in initial exploration.
 
-	The third experiment is conducted over a testbed of $20-500$ (interval of $10$) arms with Bernoulli reward distribution, where the expected rewards of the arms are $r_{i_{a_{i}\neq a^{*}}}=0.05$ and $r^{*}=0.1$. The horizon $T$ is set to $10^{5} + K^{2}\times 10^{4}$ and the number of arms are increased from $K=20$ to $500$. The proposed algorithm ClusUCB is run with $p=K/10$. The regret is averaged over $500$ independent runs and is shown in Figure \ref{fig:3}. We report the performance of MOSS and ClusUCB only over this setup. From the results in Figure \ref{fig:3}, it is evident that the growth of regret for ClusUCB is lower than that of MOSS. 
+	The third experiment is conducted over a testbed of $20-500$ (interval of $10$) arms with Bernoulli reward distribution, where the expected rewards of the arms are $r_{i_{{i}\neq {*}}}=0.05$ and $r^{*}=0.1$. The horizon $T$ is set to $10^{5} + K^{2}\times 10^{4}$ and the number of arms are increased from $K=20$ to $500$. The proposed algorithm ClusUCB is run with $p=K/10$. The regret is averaged over $500$ independent runs and is shown in Figure \ref{fig:3}. We report the performance of MOSS and ClusUCB only over this setup. From the results in Figure \ref{fig:3}, it is evident that the growth of regret for ClusUCB is lower than that of MOSS. 
 \begin{figure}
 \centering
   \begin{tabular}{c}
@@ -152,7 +152,7 @@ Improved performs the worst and it confirms our assumption that it spends too mu
 \end{figure}
 
 
-	The fourth experiment is performed over a testbed having $20$ Bernoulli-distributed arms with $r_{i_{:{a_{i}\neq a^{*}}}}=0.06,\forall i\in A$ and $r^{*}=0.1$. In Figure \ref{Fig:variousClus}, we report the results with $T=60000$ averaged over $100$ independent runs for ClusUCB with  $p=\lbrace 1,4,10\rbrace$. Also, in this experiment we take $\psi = 1$ to make sure that the exploration is low. Under these conditions, exploration is low and the elimination parameters are decreased very fast. This leads to a greater number of errors committed by ClusUCB-AE that is ClusUCB($p=1$). Two other benchmark algorithms are considered here, MOSS which is one of our main competitors and TS which has performed near equivalently in experiment $1$(see Fig \ref{fig:1}). In this case we see that, since $\rho_{a}$ is decreased very fast, the optimal arm $a^{*}$ gets eliminated most of the time for no clustering $p=1$. While a balance of $p,\rho_{a}$ and $\rho_{s}$ gives a much better result. ClusUCB with $p=4$ and $10$ 
+	The fourth experiment is performed over a testbed having $20$ Bernoulli-distributed arms with $r_{i_{:{{i}\neq {*}}}}=0.06,\forall i\in A$ and $r^{*}=0.1$. In Figure \ref{Fig:variousClus}, we report the results with $T=60000$ averaged over $100$ independent runs for ClusUCB with  $p=\lbrace 1,4,10\rbrace$. Also, in this experiment we take $\psi = 1$ to make sure that the exploration is low. Under these conditions, exploration is low and the elimination parameters are decreased very fast. This leads to a greater number of errors committed by ClusUCB-AE that is ClusUCB($p=1$). Two other benchmark algorithms are considered here, MOSS which is one of our main competitors and TS which has performed near equivalently in experiment $1$(see Fig \ref{fig:1}). In this case we see that, since $\rho_{a}$ is decreased very fast, the optimal arm $a^{*}$ gets eliminated most of the time for no clustering $p=1$. While a balance of $p,\rho_{a}$ and $\rho_{s}$ gives a much better result. ClusUCB with $p=4$ and $10$ 
 perform better than MOSS, while $p=1$ with just arm elimination does not converge and $p=5,10$ with just Cluster elimination and no arm elimination also does not converge. In this test-bed we see that ClusUCB($p=4$) beats TS. As proved in Proposition \ref{proofTheorem:Prop:2}, regret for using just cluster elimination is higher than using just arm elimination. A balance of cluster and arm elimination works best. For using just cluster elimination in ClusUCB($\sqrt{\log K}<p\leq \dfrac{K}{2}$) we stop when we are left with one cluster and output the max payoff arm of that cluster.
 	
 	
