@@ -1,13 +1,14 @@
 	
-	Here, we state the main theorem of the paper which shows the regret upper bound of ClusUCB.
+We now state the main result that upper bounds the expected regret of ClusUCB.
 	
 \begin{theorem}[\textbf{\textit{Regret bound}}]
 \label{Result:Theorem:1}
 The regret $R_T$ of ClusUCB satisfies
 
 \begin{align*}
-&\E [R_{T}]\!\leq\! 
-\sum\limits_{\substack{i\in A_{s^{*}},\\\Delta_{i} > b}}\dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} 
+&\E [R_{T}]\leq 
+\sum\limits_{\substack{i\in A_{s^{*}},\\\Delta_{i} > b}}\dfrac{C_1(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} \\
+&
 + \sum\limits_{\substack{i\in A,\\\Delta_{i} > b}} \bigg\lbrace 3\Delta_{i}+
 \dfrac{C_1(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} \\
 &+ \frac{64\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} 
@@ -43,7 +44,7 @@ where $b\geq \sqrt{\frac{e}{T}}$, $C_1(x) = \frac{2^{1+4x}x^{2x}}{\psi^{x}}$, $C
 %, $\rho_{a}=\dfrac{1}{2},\rho_{s}=\dfrac{1}{2}$ and $\psi=K^{2}T$.
 \end{theorem}
 \begin{proof}
- The proof is given in Section \ref{sec:proofTheorem}.
+ See Section \ref{sec:proofTheorem}.
 \end{proof}
 
 %, $\Delta_{i}^{'}=r_{a_{\max_{s_{k}}}} - r_{i}$, such that $a_{i}\in s_{k}$
@@ -142,7 +143,7 @@ From the above result, we observe that the order of the regret upper bound of Cl
 %\end{proof}
 
 \subsection*{Analysis of elimination error}
-Let $\tilde R_T$ denote the contribution  to the expected regret in the case when the optimal arm gets eliminated by some sub-optimal arm during one of the rounds of ClusUCB. 
+Let $\tilde R_T$ denote the contribution  to the expected regret in the case when the optimal arm $a^*$ gets eliminated during one of the rounds of ClusUCB. This can happen if a sub-optimal arm eliminates $a^*$ or if a sub-optimal cluster eliminates the cluster $s^*$ that contains $a^*$ - these correspond to cases b2 and b3 in the proof of Theorem \ref{Result:Theorem:1} (see Section \ref{sec:proofTheorem}). 
 %Let $E_{m,j}$ denote the event that the optimal arm is eliminated by a sub-optimal arm $j$ in round $m$ of ClusUCB. 
 %\begin{align}
 %\tilde R_T = \sum_{m=0}^{max_{j\in A^{'}}m_{j}}\sum_{i\in A^{''}:m_{i}>m_{*}}\bigg(\dfrac{2}{(\psi  T\epsilon_{m}^{2})^{\rho_{a}}} \bigg).T\max_{j\in A^{''}:m_{j}\geq m_{*}}{\Delta}_{j}

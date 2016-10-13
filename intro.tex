@@ -4,14 +4,14 @@ Given the goal of maximizing the cumulative reward, the learning algorithm faces
 
 Formally, let $r_i$, $i=1,\ldots,K$ denote the mean rewards of the $K$ arms and $r^* = \max_i r_i$ the optimal mean reward. The objective in the stochastic bandit problem is to minimize the cumulative regret, which is defined as follows:
 \begin{align*}
-R_{T}=r^{*}T - \sum_{i\in A} r_{i}N_{i},
+R_{T}=r^{*}T - \sum_{i\in A} r_{i}N_{i}(T),
 \end{align*}
-where $T$ is the number of rounds, $N_{i}=\sum_{m=1}^n I(I_m=i)$ is the number of times the algorithm chose arm $i$ up to round $T$.
+where $T$ is the number of rounds, $N_{i}(T)=\sum_{m=1}^n I(I_m=i)$ is the number of times the algorithm chose arm $i$ up to round $T$.
 The expected regret of an algorithm after $T$ rounds can be written as
 %\newline
 %\newline
 \begin{align*}
-\E[R_{T}]= \sum_{i=1}^K \E[N_i] \Delta_i,
+\E[R_{T}]= \sum_{i=1}^K \E[N_i(T)] \Delta_i,
 \end{align*}
 where $\Delta_{i}=r^{*}-r_{i}$ denotes the gap between the means of the optimal arm and of the $i$-th arm. 
 
@@ -26,9 +26,8 @@ From a theoretical standpoint, an asymptotic lower bound for the regret was esta
 $\liminf_{T \to \infty}\frac{\E[R_{T}]}{\log T}\geq\sum_{\{i:r_{i}<r^{*}\}}\dfrac{(r^{*}-r_{i})}{D(p_{i}||p^{*})},$
 where $D(p_{i}||p^{*})$ is the Kullback-Leibler divergence between the reward densities $p_{i}$ and $p^{*}$, corresponding to arms with mean $r_{i}$ and $r^{*}$, respectively.
 
-	There have been several algorithm with strong regret guarantees. The foremost among them is UCB1 \cite{auer2002finite}, which has a regret upper bound of $O\bigg(\dfrac{K\log T}{\Delta}\bigg)$, where $\Delta = \min_{i:\Delta_i>0} \Delta_i$. This result is asymptotically order-optimal for the class of distributions considered. However, the worst case gap independent regret bound of UCB1  can be as bad as $O \bigg(\sqrt{TK\log T}\bigg)$.  In \cite{audibert2009minimax}, the authors propose the MOSS algorithm and establish that the worst case regret of MOSS is $O\bigg(\sqrt{TK}\bigg)$ which improves upon UCB1 by a factor of order $\sqrt{\log T}$ and a gap-dependent regret of $\sum_{i:\Delta_{i}>0}\dfrac{K\log(2+T\Delta_{i}^{2}/K)}{\Delta_{i}}$. However, in certain regimes, the gap-dependent regret bound of MOSS can be worse than UCB1(\cite{audibert2009minimax},\cite{lattimore2015optimally}). The UCB-Improved algorithm, proposed in \cite{auer2010ucb}, is a round-based algorithm variant of UCB1 that 
-has a gap-dependent regret bound of $O\bigg(\dfrac{K\log T\Delta^{2}}{\Delta}\bigg)$ and a worst case regret of $O\bigg(\sqrt{TK\log K}\bigg)$. An algorithm is \textit{round-based} if it pulls all the arms equal number of times in each round and then proceeds to eliminate one or more arms that it identifies to be sub-optimal.
-
+	There have been several algorithms with strong regret guarantees. The foremost among them is UCB1 \cite{auer2002finite}, which has a regret upper bound of $O\bigg(\dfrac{K\log T}{\Delta}\bigg)$, where $\Delta = \min_{i:\Delta_i>0} \Delta_i$. This result is asymptotically order-optimal for the class of distributions considered. However, the worst case gap independent regret bound of UCB1  can be as bad as $O \bigg(\sqrt{TK\log T}\bigg)$.  In \cite{audibert2009minimax}, the authors propose the MOSS algorithm and establish that the worst case regret of MOSS is $O\bigg(\sqrt{TK}\bigg)$ which improves upon UCB1 by a factor of order $\sqrt{\log T}$. However, the gap-dependent regret of MOSS is  $O\left(\dfrac{K^{2}\log\left(T\Delta^{2}/K\right)}{\Delta}\right)$ and in certain regimes, this can be worse than even UCB1 (see \cite{audibert2009minimax},\cite{lattimore2015optimally}). The UCB-Improved algorithm, proposed in \cite{auer2010ucb}, is a round-based algorithm\footnote{An algorithm is \textit{round-based} if it pulls all the arms equal number of times in each round and then proceeds to eliminate one or more arms that it identifies to be sub-optimal.} variant of UCB1 that 
+has a gap-dependent regret bound of $O\bigg(\dfrac{K\log T\Delta^{2}}{\Delta}\bigg)$, which is better than that of UCB1. On the other hand, the worst case regret of UCB-Improved is $O\bigg(\sqrt{TK\log K}\bigg)$. 
 %\todos{What regime is this? Can you give a reference here?} 
 	
 	%But this algorithm performs worse empirically as stated in \cite{lattimore2015optimally}. \textit{In this work we try to address one of the open questions as raised in \cite{bubeck2012regret} that is to find an algorithm with regret always better than MOSS and UCB-Improved.}
@@ -41,10 +40,12 @@ has a gap-dependent regret bound of $O\bigg(\dfrac{K\log T\Delta^{2}}{\Delta}\bi
 	%We also make a distinction between round-based algorithms like UCB-Improved, Successive Reject(\cite{audibert2010best}), Successive Elimination(\cite{even2006action}) and Median-Elimination(\cite{even2006action}) whereby the algorithm pulls all the arms equal number of times in each round/phase, then proceeds to eliminate some number of arms it identifies to be sub-optimal with high probability and this continues till you are left with one arm. \textit{Our algorithm is also a round based algorithm}. Finally, we must point out that our setup is strictly limited to stochastic scenario as opposed to adversarial setup as studied in the paper \cite{auer2002nonstochastic} where an adversary sets the reward for the arms for every timestep.
 	
 \subsection*{Our Work}
-We propose a variant of UCB algorithm, henceforth referred to as ClusUCB that incorporates clustering and an improved exploration scheme. ClusUCB is a round-based algorithm that
+We propose a variant of UCB algorithm, henceforth referred to as ClusUCB, that incorporates clustering and an improved exploration scheme. ClusUCB is a round-based algorithm that
 starts with a partition of the arms into small clusters, each having uniform set of arms. 
-The clustering is done at the start with a pre-specified the number of clusters. 
-Each round of ClusUCB involves both (individual) arm elimination as well as cluster elimiation. While the conditions governing the arm and cluster eliminations are inspired by UCB-Improved, the exploration factors governing these conditions are relatively more aggressive than that in UCB-Improved. The clustering of arms provides two benefits. First, it creates a context where UCB-Improved can be run in parallel on smaller sets of arms, which could lead to fewer pulls and a more aggressive elimination of sub optimal arms. Second, similar to many round based strategies, the cluster elimination leads to whole sets of arms being simultaneously eliminated when they are found to yield poor results. These two simultaneous criteria for arm elimination can be seen as borrowing the strengths of both UCB-Improved as well as other popular round based approaches.
+The clustering is done at the start with a pre-specified number of clusters. 
+Each round of ClusUCB involves both (individual) arm elimination as well as cluster elimiation. While the conditions governing the arm and cluster eliminations are inspired by UCB-Improved, the exploration factors governing these conditions are relatively more aggressive than that in UCB-Improved. 
+
+The clustering of arms provides two benefits. First, it creates a context where UCB-Improved can be run in parallel on smaller sets of arms, which could lead to fewer pulls and a more aggressive elimination of sub optimal arms. Second, similar to many round based strategies, the cluster elimination leads to whole sets of arms being simultaneously eliminated when they are found to yield poor results. These two simultaneous criteria for arm elimination can be seen as borrowing the strengths of both UCB-Improved as well as other popular round based approaches.
 
 The motivation for our work stems from the remark in Section 2.4.3 of \cite{bubeck2012bandits}, where the authors conjecture that one should be able to obtain a bandit algorithm with a
 gap-dependent regret bound that is better than MOSS \cite{audibert2009minimax} and UCB-Improved \cite{auer2010ucb}, in particular, with a regret bound of the order 
@@ -87,6 +88,6 @@ On four synthetic setups with small gaps, we observe empirically that ClusUCB ou
 % %\item We also provide a short discussion on what other applications our algorithm can be employed successfully.
 % \end{enumerate}
 	
-The rest of the paper is organized as follows: In Section \ref{sec:clusucb}, we present the ClusUCB algorithm. In Section \ref{sec:results}, we present the associated regret bounds and prove the main theorem on the regret upper bound  for ClusUCB in Section \ref{sec:proofTheorem}. In Section \ref{sec:expts}, we present the numerical experiments and provide concluding remarks in Section \ref{sec:conclusions}. Further proofs on corollaries and propositions are mentioned in Appendix. 
+The rest of the paper is organized as follows: In Section \ref{sec:clusucb}, we present the ClusUCB algorithm. In Section \ref{sec:results}, we present the associated regret bounds and prove the main theorem on the regret upper bound  for ClusUCB in Section \ref{sec:proofTheorem}. In Section \ref{sec:expts}, we present the numerical experiments and provide concluding remarks in Section \ref{sec:conclusions}. Further proofs of corollaries and propositions presented in Section \ref{sec:proofTheorem} are provided in the appendices. 
 
 %Appendix \ref{App:A}, \ref{App:B} deals with proofs of  2  propositions which are derived from our main regret bound theorem. Appendix \ref{App:Proof:Corollary:1}, \ref{App:Proof:Corollary:2}, \ref{App:Proof:Corollary:3} deals with proofs of 3 corollaries which specializes the result of our main regret bound theorem. Appendix \ref{App:D} deals with exploration regulatory factor and appendix \ref{App:E} explains why we do clustering. The last appendix \ref{App:Further:Expt} deals with further experiments on two different testbeds.
