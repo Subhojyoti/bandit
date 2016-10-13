@@ -44,7 +44,7 @@
 %$\Delta_{i}^{'}=r_{a_{\max_{s_{k}}}} - r_{i}$ such that $a_{i}\in s_{k}$,
 % m_{i}^{'}=\min{\lbrace m|\sqrt{\rho_{a}\epsilon_{m}} < \frac{\Delta_{i}^{'}}{2} \rbrace}
 Let $A^{'}=\lbrace i \in A,\Delta_{i}> b\rbrace$,  $A^{''}=\lbrace i \in A, \Delta_{i} > 0\rbrace$, $A^{'}_{s_{k}}=\lbrace i \in A_{s_{k}},\Delta_{i}> b\rbrace$ and $A^{''}_{s_{k}}=\lbrace i \in A_{s_{k}}, \Delta_{i} > 0 \rbrace$. $C_{g}$ is the cluster set containing max payoff arm from each cluster in $g$-th round. The arm having the highest payoff in a cluster $s_{k}$ is denote by $a_{\max_{s_{k}}}$. Let for each sub-optimal arm ${i}\in A$, $m_{i}=\min{\lbrace m|\sqrt{\rho_{a}\epsilon_{m}} < \frac{\Delta_{i}}{2} \rbrace}$ and let for each cluster $s_{k}\in S$, $g_{s_{k}}=\min{\lbrace g|\sqrt{\rho_{s}\epsilon_{g}} < \frac{\Delta_{a_{\max_{s_{k}}}}}{2} \rbrace}$. 
-Let $\tilde{A}=\lbrace {i}\in A^{'} | {i}\in s_{k} $ and $ \Delta_{i}> b \rbrace$.
+Let $\check{A}=\lbrace {i}\in A^{'} | {i}\in s_{k} , \forall s_{k}\in S \rbrace$.
 %and $A^{'''}_{s_{k}}=\lbrace i \in A_{s_{k}}, b < \Delta_{a_{\max_{s_{k}}}} < \Delta_{i}^{'}  \rbrace$
 %\todos[inline]{define $g_{s_k}$ for each cluster $s_k \in S$}
 %\todos[inline]{$a_{max_{s_{k}}}$ is never defined. In the notation of Sec 2 $r_{max_{s_{k}}}$ is defined as the best arm within the cluster $s_k$}
@@ -83,7 +83,7 @@ The arm $i$ gets eliminated because
   %Now, $c_{m_{i}}=\sqrt{\frac{\rho_{a}\log (\psi T\epsilon_{m_{i}}^{2})}{2 n_{m_{i}}}}$.
 In the above, we have used the fact that \\ $c_{m_{i}} = \sqrt{\rho_{a}\epsilon_{m_{i}+1}} < \frac{\Delta_{i}}{4}$, since $n_{m_{i}}=\frac{2\log{(\psi T\epsilon_{m_{i}}^{2})}}{\epsilon_{m_{i}}}$ and $\rho_{a}\in (0,1]$.
 
-From the foregoing, we have to bound the events complementary to that in \eqref{eq:armelim-casea1} for an arm $i$ to not get eliminated. Considering Chernoff-Hoeffding bound and independence of the above events this is done as follows:
+From the foregoing, we have to bound the events complementary to that in \eqref{eq:armelim-casea1} for an arm $i$ to not get eliminated. Considering Chernoff-Hoeffding bound this is done as follows:
 %\todos[inline]{In the following, $\exists a_i$ is spurious given that we are talking about arm $a_i$ all through in this case} 
 %  %Again, $\exists a_{i} \in A_{s^{*}}^{'}$ such that, 
 %\todos[inline]{$r_{i} + 2c_{m_{i}} 
@@ -280,7 +280,7 @@ As in case $b2$, the probability that a given sub-optimal cluster $s_k$ eliminat
 
 This leaves any arm $a_{\max_{s_{b}}}$ such that $g_{s_{b}}\geq g_{*}$ to still survive and eliminate arm ${*}$ in round $g_{*}$. Let, such arms that survive ${*}$ belong to $C_{g}^{''}$. Hence, following the same way as case $b2$,  the maximal regret after eliminating ${*}$ is,
  \begin{align*}
- &\sum_{g_{*}=0}^{max_{j\in C_{g}^{'}}g_{s_{j}}}\sum_{\substack{i\in C_{g}^{''}: \\ g_{s_{k}} \geq g_{*}}}\bigg(\dfrac{2}{(\psi T\epsilon_{g_{s^{*}}}^{2})^{\rho_{s}}} \bigg).T\max_{\substack{j\in C_{g}^{''}: \\ g_{s_{j}}\geq g_{*}}}{\Delta}_{a_{\max_{s_{j}}}}
+ &\sum_{g_{*}=0}^{max_{a_{\max_{s_{j}}}\in C_{g}^{'}}g_{s_{j}}}\sum_{\substack{a_{\max_{s_{k}}}\in C_{g}^{''}: \\ g_{s_{k}} \geq g_{*}}}\bigg(\dfrac{2}{(\psi T\epsilon_{g_{s^{*}}}^{2})^{\rho_{s}}} \bigg).T\max_{\substack{a_{\max_{s_{j}}}\in C_{g}^{''}: \\ g_{s_{j}}\geq g_{*}}}{\Delta}_{a_{\max_{s_{j}}}}
  \end{align*}
 Using $A'\supset C_{g}^{'}$ and $A''\supset C_{g}^{''}$, we can bound the regret contribution from this case in a similar manner as Case $b2$ as follows:
 % \begin{align*}
@@ -349,7 +349,7 @@ The main claim follows by summing the contributions to the expected regret from 
 The regret $R_T$ for ClusUCB-AE satisfies
 \begin{align*}
 &\E [R_{T}]\leq \sum\limits_{\substack{i\in A\\\Delta_{i} > b}}\bigg\lbrace\frac{C_{1}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} + \Delta_{i}+\frac{32\rho_{a}\log{(\frac{\psi  T\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}}\\
-& +  \frac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a} -1}}  \bigg \rbrace +\sum\limits_{\substack{i\in A\\0\leq\Delta_{i}\leq b}}\frac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{b^{4\rho_{a} -1}}  + \max_{i:\Delta_{i}\leq b}\Delta_{i}T,
+& +  \frac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a} -1}}  \bigg \rbrace +\sum\limits_{\substack{i\in A\\0\leq\Delta_{i}\leq b}}\frac{C_{2}(\rho_{a})T^{1-\rho_{a}}}{b^{4\rho_{a} -1}}  + \max_{\substack{i\in A: \\ \Delta_{i}\leq b}}\Delta_{i}T,
 \end{align*}
 for all $b\geq\sqrt{\frac{e}{T}}$. In the above, $C_1, C_2$ are as defined in Theorem \ref{Result:Theorem:1}.
 % (x) = \frac{2^{1+4x}x^{2x}}{\psi^{x}}$,  $C_2(x) = \frac{2^{2x+\frac{3}{2}}x^{2x}}{\psi^{x}}$, $\rho_{a}=\frac{1}{2}$ is the arm elimination parameter, $\psi=K^{2}T$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
@@ -365,8 +365,8 @@ The regret $R_T$ for ClusUCB-CE satisfies,
 \begin{align*}
 &\E [R_{T}]\leq \sum\limits_{\substack{i\in A: \\ \Delta_{i} > b}}\bigg\lbrace\dfrac{C_{1}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} + \dfrac{C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s} -1}} \\
 & + 2\Delta_{i}+\dfrac{64\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}} \bigg\rbrace 
- + \sum\limits_{\substack{i\in A: \\ 0\leq\Delta_{i}\leq b}}\bigg(\dfrac{C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}} \bigg)\\
- & + \max_{i:\Delta_{i}\leq b}\Delta_{i}T,
+ + \sum\limits_{\substack{i\in A: \\ 0\leq\Delta_{i}\leq b}}\dfrac{C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}} \\
+ & + \max_{i\in A:\Delta_{i}\leq b}\Delta_{i}T,
 \end{align*}
  for all $b\geq \sqrt{\frac{e}{T}}$, with $C_1$ and $C_2$ as defined in Theorem \ref{Result:Theorem:1}.
 %  (x) = \frac{2^{1+4x}x^{2x}}{\psi^{x}}$,  $C_2(x) = \frac{2^{2x+\frac{3}{2}}x^{2x}}{\psi^{x}}$, $\rho_{s}=\frac{1}{2} $ is the cluster elimination parameter, $\psi=K^{2}T$ is the exploration regulatory factor, $p$ is the number of clusters and $T$ is the horizon.
