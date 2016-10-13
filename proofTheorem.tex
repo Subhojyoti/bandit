@@ -281,7 +281,7 @@ As in case $b2$, the probability that a given sub-optimal cluster $s_k$ eliminat
 
 This leaves any arm $a_{\max_{s_{b}}}$ such that $g_{s_{b}}\geq g_{*}$ to still survive and eliminate arm ${*}$ in round $g_{*}$. Let, such arms that survive ${*}$ belong to $C_{g}^{''}$. Hence, following the same way as case $b2$,  the maximal regret after eliminating ${*}$ is,
  \begin{align*}
- &\sum_{g_{*}=0}^{max_{a_{\max_{s_{j}}}\in C_{g}^{'}}g_{s_{j}}}\sum_{\substack{a_{\max_{s_{k}}}\in C_{g}^{''}: \\ g_{s_{k}} \geq g_{*}}}\bigg(\dfrac{2}{(\psi T\epsilon_{g_{s^{*}}}^{2})^{\rho_{s}}} \bigg).T\max_{\substack{a_{\max_{s_{j}}}\in C_{g}^{''}: \\ g_{s_{j}}\geq g_{*}}}{\Delta}_{a_{\max_{s_{j}}}}
+ \!\!\sum_{g_{*}=0}^{\max\limits_{a_{\max_{s_{j}}}\in C_{g}^{'}}g_{s_{j}}}\!\!\!\!\!\sum_{\substack{\scriptsize a_{\max_{s_{k}}}\in C_{g}^{''}: \\ g_{s_{k}} \geq g_{*}}}\bigg(\dfrac{2}{(\psi T\epsilon_{g_{s^{*}}}^{2})^{\rho_{s}}} \bigg)T\max_{\substack{a_{\max_{s_{j}}}\in C_{g}^{''}: \\ g_{s_{j}}\geq g_{*}}}{\Delta}_{a_{\max_{s_{j}}}}
  \end{align*}
 Using $A'\supset C_{g}^{'}$ and $A''\supset C_{g}^{''}$, we can bound the regret contribution from this case in a similar manner as Case $b2$ as follows:
 % \begin{align*}
