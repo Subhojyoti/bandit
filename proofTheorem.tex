@@ -203,7 +203,8 @@ Summing the bounds in Cases $a1-a2$ and observing that the bounds in the aforeme
 \textbf{Case b:} \textit{For each arm $i$, either ${i}$ is eliminated in round $\max (m_{i},g_{s_{k}})$ or before or there is no optimal arm ${*}$ in $C_{\max(m_{i},g_{s_{k}})}$.} \\
 
 \textbf{Case b1:} \textit{${*}\in C_{\max(m_{i},g_{s_{k}})}$ for each arm $i \in A'$ and cluster $s_k \in \check A$.} 
-\todos{define $\check A$}
+
+%\todos{define $\check A$}
 
 The condition in the case description above implies the following: \\
 \begin{inparaenum}[\bfseries (i)]
@@ -221,7 +222,7 @@ Hence, the maximum regret suffered due to pulling of a sub-optimal arm or a sub-
  &\leq \sum_{i\in A^{'}}\bigg\lbrace 2\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} \\
 & \qquad \qquad +\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace 
  \end{align*}
-In the above, the first inequality follows since $\sqrt{\rho_{a}\epsilon_{m_{i}}}\leq\frac{\Delta_{i}}{2}$ and $\sqrt{\rho_{s}\epsilon_{n_{g_{s_{k}}}}}\leq\frac{\Delta_{i}}{2}$.
+In the above, the first inequality follows since $\sqrt{\rho_{a}\epsilon_{m_{i}}} < \frac{\Delta_{i}}{2}$ and $\sqrt{\rho_{s}\epsilon_{n_{g_{s_{k}}}}} < \frac{\Delta_{a_{\max_{s_{k}}}}}{2}$.
 
 %&\leq\Delta_{i}\bigg(1+\dfrac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}^{2}}\bigg)\\
 %&\leq\Delta_{i}\bigg\lceil\dfrac{2\log{(\psi T(\dfrac{\Delta_{i}}{2\sqrt{\rho_{a}})^{4})}}}{(\dfrac{\Delta_{i}}{2\sqrt{\rho_{a}}})^{2}}\bigg\rceil \\
