@@ -25,19 +25,23 @@
 \caption{ClusUCB}
 \label{alg:clusucb}
 \begin{algorithmic}
-\State {\bf Input:} A partition of $A$ into clusters from Algorithm \ref{alg:rua}, time horizon $T$, exploration parameters $\rho_a$, $\rho_s$ and $\psi$.
+\State {\bf Input:} Number of clusters $p$, time horizon $T$, exploration parameters $\rho_a$, $\rho_s$ and $\psi$.
+\State The arms are partitioned at random into $p$ clusters of size up to $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$ each.
 \State {\bf Initialization:} Set $B_{0}:=A$ and $\epsilon_{0}:=1$.
 \For{$m=0,1,..\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$}	
 \State Pull each arm in $B_m$ so that the total number of times it has been pulled is $n_{m}=\bigg\lceil\dfrac{2\log{(\psi T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$. 
+% A partition of $A$ into clusters from Algorithm \ref{alg:rua}
 %\State \hspace*{2em} Calculate $w_{s_{i}}=\bigg\lceil\dfrac{1}{\ell\hat{\Delta}_{s_{i}}}\bigg\rceil$,if $\hat{\Delta}_{s_{i}}\neq 0, \forall s_{i}\in S$
 %\newline\hspace*{8em}$=1$, otherwise, and $\hat{\Delta}_{s_{i}}=\max_{i\in s_{i}}{\lbrace\hat{r}_{i}\rbrace}-\min_{j\in s_{i}}{\lbrace\hat{r}_{j}\rbrace}, i\neq j$
 \ArmElim
-\State For each cluster $s_k \in S$, delete arm ${i}\in s_{k}$ if
-$$\hat{r}_{i} + \sqrt{\dfrac{\rho_{a}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{m}}}  < \max_{{j}\in s_{k}}\bigg\lbrace\hat{r}_{j} -\sqrt{\dfrac{\rho_{a}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{m}}} \bigg\rbrace.$$
+\State For each cluster $s_k \in S_{m}$, delete arm ${i}\in s_{k}$ from $B_{m}$ if
+\begin{align*}
+\hat{r}_{i} + \sqrt{\dfrac{\rho_{a}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{m}}}  < \max_{{j}\in s_{k}}\bigg\lbrace\hat{r}_{j} -\sqrt{\dfrac{\rho_{a}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{m}}} \bigg\rbrace
+\end{align*}
 % where $\rho_{a}=\dfrac{1}{w_{m}}$ and remove all such arms from $B_{m}$.
 \EndArmElim
 \ClusElim
-\State Delete cluster $s_{k}\in S$ if 
+\State Delete cluster $s_{k}\in S_{m}$ and remove all arm $i\in s_{k}$ from $B_{m}$ if 
 \begin{align*}
  \max_{{i}\in s_{k}}\bigg\lbrace\hat{r}_{i} + \sqrt{\dfrac{\rho_{s}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{m}}}\bigg\rbrace  \\
  < \max_{{j}\in B_{m}} \bigg\lbrace\hat{r}_{j} - \sqrt{\dfrac{\rho_{s} \log{(\psi T\epsilon_{m}^{2})}}{2 n_{m}}}\bigg\rbrace.
@@ -45,6 +49,7 @@ $$\hat{r}_{i} + \sqrt{\dfrac{\rho_{a}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{m}}}  
 %  and remove all such arms in the cluster $s_{k}$ from $B_{m}$ to obtain $B_{m+1}$.
 \EndClusElim
 \State Set $\epsilon_{m+1}:=\dfrac{\epsilon_{m}}{2}$
+\State Set $B_{m+1}:=B_{m}$
 %\State \hspace*{2em} $\ell_{m+1}:=\min\lbrace 2\ell_{m}, K\rbrace$
 %\State \hspace*{2em} $w_{m+1}:=2w_{m}$
 \State Stop if $|B_{m}|=1$ and pull $\max_{{i}\in B_{m}}\hat{r}_{i}$ till $T$ is reached.
@@ -67,7 +72,9 @@ As described in the pseudocode in Algorithm~\ref{alg:clusucb}, ClusUCB begins wi
 Each round of ClusUCB involves both individual arm as well as cluster elimination conditions. These elimination conditions are inspired by UCB-Improved. Notice that, unlike UCB-Improved, there is no longer a single point of reference based on which we are eliminating arms. Instead now we have as many reference points to eliminate arms as number of clusters formed. 
 %Further, the exploration factors $\rho_{a}\in (0,1]$ and $\rho_{s}\in (0,1]$ governing the arm and cluster elimination conditions, respectively, are relatively more aggressive than that in UCB-Improved. 
 
-The exploration regulatory factor $\psi$ governing the arm and cluster elimination conditions in ClusUCB is more aggressive than that in UCB-Improved. Intuitively, when $K$ is large and the gaps $\Delta_i$ are small, it is efficient to remove sub-optimal arms quickly. 
+The exploration regulatory factor $\psi$ governing the arm and cluster elimination conditions in ClusUCB is more aggressive than that in UCB-Improved. With appropriate choice of $\psi$ and $\rho_a$ and $\rho_s$ we can achieve aggressive elimination even when the gaps $\Delta_i$ are small and $K$ is large. 
+
+%and the gaps $\Delta_i$ are small, it is efficient to remove sub-optimal arms quickly. 
 
 In \cite{liu2016modification}, the authors recommend incorporating a factor of $d_i$ inside the log-term of the UCB values, i.e., $\max \lbrace\hat{r}_{i}+\sqrt{\frac{d_{i}\log T\tilde{\Delta}_{m}^{2}}{2n_{m}}}\rbrace$. 
 The authors there examine the following choices for $d_i$: $\frac{T}{t_{i}}$, $\frac{\sqrt{T}}{t_{i}}$ and $\frac{\log T}{t_{i}}$, where $t_{i}$ is the number of times an arm ${i}$ has been sampled.
@@ -95,21 +102,21 @@ Unlike \cite{liu2016modification}, we employ cluster as well as arm elimination 
 	
 %This is a parameter which we use to tune our exploration and we define its structure later in the proofs. There is also the weight($w_{s_{i}}$) parameter which   is calculated online and helps in eliminating arms with a higher probability which we employ to reduce the cumulative regret and this parameter is decide online specific to the cluster $s_{i}\in S$.
 
-\begin{algorithm}[t]
-\caption{Clustering by random uniform allocation}
-\label{alg:rua}
-\begin{algorithmic}
-\State Set $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$
-\State Permute arms in $A$ randomly to create $A_{random}$.
-\State Create clusters $s_{i}=\lbrace {i}\rbrace, \forall i\in A_{random}$
-\For{ $i=1$ to $K$}
-\For{$j=i+1$ to $K$}
-\State Merge $s_{i},s_{j}$ into $s_{i}$ if $\exists {i}\in s_{i} $ and $\exists {j}\in s_{j},$ such that $|s_{i}|+|s_{j}|\leq \ell$
-\EndFor
-\EndFor
-\State Rename all partitions that have been formed as $s_{1}$ to $s_{p}$, where $|S|=p$ after merging
-\end{algorithmic}
-\end{algorithm}
+%\begin{algorithm}[t]
+%\caption{Clustering by random uniform allocation}
+%\label{alg:rua}
+%\begin{algorithmic}
+%\State Set $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$
+%\State Permute arms in $A$ randomly to create $A_{random}$.
+%\State Create clusters $s_{i}=\lbrace {i}\rbrace, \forall i\in A_{random}$
+%\For{ $i=1$ to $K$}
+%\For{$j=i+1$ to $K$}
+%\State Merge $s_{i},s_{j}$ into $s_{i}$ if $\exists {i}\in s_{i} $ and $\exists {j}\in s_{j},$ such that $|s_{i}|+|s_{j}|\leq \ell$
+%\EndFor
+%\EndFor
+%\State Rename all partitions that have been formed as $s_{1}$ to $s_{p}$, where $|S|=p$ after merging
+%\end{algorithmic}
+%\end{algorithm}
 
 
 

@@ -1,4 +1,4 @@
-In this paper, we consider the stochastic multi-armed bandit problem, a classical problem in sequential decision making. In this setting,  a learning algorithm is provided with a set of arms with reward distributions unknown to the algorithm. The learning proceeds in an iterative fashion, where in each round, the algorithm chooses an arm and receives a stochastic reward that is drawn from a stationary distribution specific to the arm selected.  
+In this paper, we consider the stochastic multi-armed bandit problem, a classical problem in sequential decision making. In this setting,  a learning algorithm is provided with a set of decisions (or arms) with reward distributions unknown to the algorithm. The learning proceeds in an iterative fashion, where in each round, the algorithm chooses an arm and receives a stochastic reward that is drawn from a stationary distribution specific to the arm selected.  
 Given the goal of maximizing the cumulative reward, the learning algorithm faces the exploration-exploitation dilemma, i.e., in each round should the algorithm select the arm which has the highest observed mean reward so far 
 (\textit{exploitation}), or should the algorithm choose a new arm to gain more knowledge of the true mean reward of the arms and thereby avert a sub-optimal greedy decision (\textit{exploration}). 
 
@@ -41,11 +41,13 @@ has a gap-dependent regret bound of $O\bigg(\dfrac{K\log T\Delta^{2}}{\Delta}\bi
 	
 \subsection*{Our Work}
 We propose a variant of UCB algorithm, henceforth referred to as ClusUCB, that incorporates clustering and an improved exploration scheme. ClusUCB is a round-based algorithm that
-starts with a partition of the arms into small clusters, each having uniform set of arms. 
+starts with a partition of the arms into small clusters, each having same number of arms. 
 The clustering is done at the start with a pre-specified number of clusters. 
-Each round of ClusUCB involves both (individual) arm elimination as well as cluster elimiation. While the conditions governing the arm and cluster eliminations are inspired by UCB-Improved, the exploration factors governing these conditions are relatively more aggressive than that in UCB-Improved. 
+Each round of ClusUCB involves both (individual) arm elimination as well as cluster elimination. 
 
-The clustering of arms provides two benefits. First, it creates a context where UCB-Improved can be run in parallel on smaller sets of arms, which could lead to fewer pulls and a more aggressive elimination of sub optimal arms. Second, similar to many round based strategies, the cluster elimination leads to whole sets of arms being simultaneously eliminated when they are found to yield poor results. These two simultaneous criteria for arm elimination can be seen as borrowing the strengths of both UCB-Improved as well as other popular round based approaches.
+%While the conditions governing the arm and cluster eliminations are inspired by UCB-Improved, the exploration factors governing these conditions are relatively more aggressive than that in UCB-Improved. 
+
+The clustering of arms provides two benefits. First, it creates a context where UCB-Improved like algorithm can be run in parallel on smaller sets of arms with limited exploration, which could lead to fewer pulls of sub-optimal arms with the help of  more aggressive elimination of sub optimal arms. Second, the cluster elimination leads to whole sets of sub-optimal arms being simultaneously eliminated when they are found to yield poor results. These two simultaneous criteria for arm elimination can be seen as borrowing the strengths of UCB-Improved as well as other popular round based approaches.
 
 The motivation for our work stems from the remark in Section 2.4.3 of \cite{bubeck2012bandits}, where the authors conjecture that one should be able to obtain a bandit algorithm with a
 gap-dependent regret bound that is better than MOSS \cite{audibert2009minimax} and UCB-Improved \cite{auer2010ucb}, in particular, with a regret bound of the order 

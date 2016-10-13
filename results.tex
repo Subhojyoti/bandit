@@ -144,7 +144,7 @@ From the above result, we observe that the order of the regret upper bound of Cl
 %\end{proof}
 
 \subsection*{Analysis of elimination error}
-Let $\tilde R_T$ denote the contribution  to the expected regret in the case when the optimal arm $a^*$ gets eliminated during one of the rounds of ClusUCB. This can happen if a sub-optimal arm eliminates $a^*$ or if a sub-optimal cluster eliminates the cluster $s^*$ that contains $a^*$ - these correspond to cases b2 and b3 in the proof of Theorem \ref{Result:Theorem:1} (see Section \ref{sec:proofTheorem}). 
+Let $\tilde R_T$ denote the contribution  to the expected regret in the case when the optimal arm $*$ gets eliminated during one of the rounds of ClusUCB. This can happen if a sub-optimal arm eliminates $*$ or if a sub-optimal cluster eliminates the cluster $s^*$ that contains $*$ - these correspond to cases b2 and b3 in the proof of Theorem \ref{Result:Theorem:1} (see Section \ref{sec:proofTheorem}). 
 %Let $E_{m,j}$ denote the event that the optimal arm is eliminated by a sub-optimal arm $j$ in round $m$ of ClusUCB. 
 %\begin{align}
 %\tilde R_T = \sum_{m=0}^{max_{j\in A^{'}}m_{j}}\sum_{i\in A^{''}:m_{i}>m_{*}}\bigg(\dfrac{2}{(\psi  T\epsilon_{m}^{2})^{\rho_{a}}} \bigg).T\max_{j\in A^{''}:m_{j}\geq m_{*}}{\Delta}_{j}
@@ -164,7 +164,7 @@ A similar exercise for ClusUCB-CE (see Case b2 in Appendix \ref{App:B})
 %\end{align*}  
 with $\rho_{s}=\frac{1}{4}$ and $\psi=K^{2}T$ yields $\tilde R_T = 2\sqrt{KT}$. 
 
-Finally, for ClusUCB, the relevant terms from Theorem \ref{Result:Theorem:1} that correspond $\tilde R_T$ 
+Finally, for ClusUCB, the relevant terms from Theorem \ref{Result:Theorem:1} that corresponds to $\tilde R_T$ 
 %are 
 %\begin{align*}
 %& \sum\limits_{\substack{i\in A,\\ \Delta_{i}\geq b}}\! \! \bigg\lbrace \frac{C_2(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}+ \sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\frac{C_2(\rho_a)T^{1-\rho_{a}}}{b^{4\rho_{a} -1}} \bigg\rbrace + \\
