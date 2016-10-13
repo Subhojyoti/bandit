@@ -525,10 +525,8 @@ Here we take $\psi=\dfrac{T}{\log(KT)}$, $\rho_{a}=\dfrac{1}{2}$ and $\rho_{s}=\
 + \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}} 
 \frac{C_2(\rho_{a})T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}}
 +\sum\limits_{\substack{i\in A_{s^{*}},\\0 < \Delta_{i}\leq b}}\frac{C_2(\rho_a)T^{1-\rho_{a}}}{b^{4\rho_{a} -1}}\\ 
-%%%%%%%
-&+ \!\sum\limits_{\substack{i\in A,\\ \Delta_{i} > b}}\! \! \dfrac{C_2(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}}
- + \!\sum\limits_{\substack{i\in A,\\0 < \Delta_{i}\leq b}}\! \! \dfrac{C_2(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s} -1}}  + \sum_{i\in A\setminus A_{s^*}: \Delta_{i} > b}\dfrac{C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} +\sum_{i\in A\setminus A_{s^*}: 0 < \Delta_{i} \leq b}\dfrac{C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s}-1}}\\
-& \!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T
+ & + \sum_{i\in A\setminus A_{s^*}: \Delta_{i} > b}\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} +\sum_{i\in A\setminus A_{s^*}: 0 < \Delta_{i} \leq b}\dfrac{2C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s}-1}} +
+ \!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T
 \end{align*}
 
 and putting the parameter values in the above Theorem \ref{Result:Theorem:1} result,
@@ -569,19 +567,18 @@ and putting the parameter values in the above Theorem \ref{Result:Theorem:1} res
 	So, the total gap dependent regret bound for using both arm and cluster elimination comes of as
 	\begin{align*}
 	& \sum_{i\in A_{s^{*}}:\Delta_{i} > b}\bigg\lbrace \dfrac{4\sqrt{\log (KT)}}{\Delta_{i}} + \Delta_{i} + \dfrac{32\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}} \bigg\rbrace + \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}} + 2\Delta_{i} + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace\\
-	 & + \sum\limits_{i\in A_{s^{*}}:\Delta_{i} > b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} 
-	+ \sum\limits_{i\in A_{s^{*}}:0 < \Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}}
-	 + \sum\limits_{i\in A:\Delta_{i} > b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A:0 < \Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} \\
-	 &+ \sum\limits_{i\in A\setminus A_{s^{*}}:\Delta_{i} > b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A\setminus A \cup A_{s^{*}} :0 < \Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \max\limits_{i\in A:\Delta_{i}\leq b}\Delta_{i}T  \\
-	=& \sum_{i\in A_{s^{*}}:\Delta_{i} > b}\bigg\lbrace \dfrac{6.8\sqrt{\log (KT)}}{\Delta_{i}} + \Delta_{i} + \dfrac{32\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}} \bigg\rbrace + \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace\dfrac{6.8\sqrt{\log (KT)}}{\Delta_{i}} + 2\Delta_{i} \\
-	%%%%%%%%%%%%%%%%
-	&+ \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace 
-	+ \sum\limits_{i\in A_{s^{*}}:0 < \Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}}
-	 + \sum\limits_{i\in A:0 < \Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} 
-	 + \sum\limits_{i\in A\setminus A_{s^{*}}:\Delta_{i} > b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} \\
-	 %%%%%%%%%%%%%%%
-	 &+ \sum\limits_{i\in A\setminus A \cup A_{s^{*}} :0 < \Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \max\limits_{i\in A:\Delta_{i}\leq b}\Delta_{i}T 
+	 & + \sum\limits_{i\in A_{s^{*}}:\Delta_{i} > b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A_{s^{*}}:0< \Delta_{i} <leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}}\\
+	& + \sum\limits_{i\in A\setminus A_{s^{*}}:\Delta_{i} > b}\dfrac{5.6\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{i\in A\setminus A \cup A_{s^{*}} :0 < \Delta_{i}\leq b}\dfrac{5.6\sqrt{\log (KT)}}{\Delta_{i}} + \max\limits_{i\in A:\Delta_{i}\leq b}\Delta_{i}T 
 	\end{align*}
+	
+%	=& \sum_{i\in A_{s^{*}}:\Delta_{i} > b}\bigg\lbrace \dfrac{6.8\sqrt{\log (KT)}}{\Delta_{i}} + \Delta_{i} + \dfrac{32\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}} \bigg\rbrace + \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace\dfrac{6.8\sqrt{\log (KT)}}{\Delta_{i}} + 2\Delta_{i} \\
+%	%%%%%%%%%%%%%%%%
+%	&+ \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace 
+%	+ \sum\limits_{i\in A_{s^{*}}:0 < \Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}}
+%	 + \sum\limits_{i\in A:0 < \Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} 
+%	 + \sum\limits_{i\in A\setminus A_{s^{*}}:\Delta_{i} > b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} \\
+%	 %%%%%%%%%%%%%%%
+%	 &+ \sum\limits_{i\in A\setminus A \cup A_{s^{*}} :0 < \Delta_{i}\leq b}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \max\limits_{i\in A:\Delta_{i}\leq b}\Delta_{i}T 
 	
 \end{proof}
 
