@@ -219,8 +219,9 @@ Hence, the maximum regret suffered due to pulling of a sub-optimal arm or a sub-
 &\leq\sum_{i\in A^{'}}\Delta_{i}\bigg(1+\dfrac{32\rho_{a}\log{\left(\psi T\left(\frac{\Delta_{i}}{2\sqrt{\rho_{a}}}\right)^{4}\right)}}{\Delta_{i}^{2}}\bigg) \\
 &\quad+ \sum_{i\in A^{'}}\Delta_{i}\bigg(1+\dfrac{32\rho_{s}\log{\left(\psi T\left(\frac{\Delta_{i}}{2\sqrt{\rho_{s}}}\right)^{4}\right)}}{\Delta_{i}^{2}}\bigg)
 \\
- &\leq \sum_{i\in A^{'}}\bigg\lbrace 2\Delta_{i}+\dfrac{32\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})}}{\Delta_{i}} \\
-& \qquad \qquad +\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace 
+ &\leq \sum_{i\in A^{'}}\!\bigg[ 2\Delta_{i}+\dfrac{32(\rho_{a}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{a}^{2}})} + \rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})})}{\Delta_{i}} \bigg]
+%  \\
+% & \qquad \qquad +\dfrac{32\rho_{s}\log{(\psi T\dfrac{\Delta_{i}^{4}}{16\rho_{s}^{2}})}}{\Delta_{i}}\bigg\rbrace 
  \end{align*}
 In the above, the first inequality follows since $\sqrt{\rho_{a}\epsilon_{m_{i}}} < \frac{\Delta_{i}}{2}$ and $\sqrt{\rho_{s}\epsilon_{n_{g_{s_{k}}}}} < \frac{\Delta_{a_{\max_{s_{k}}}}}{2}$.
 

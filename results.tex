@@ -61,13 +61,21 @@ We now specialize the result in the theorem above by substituting specific value
 \begin{corollary}[\textbf{\textit{Gap-dependent bound}}]
 \label{Result:Corollary:1}
 With $\psi=\frac{T}{\log (KT)}$, $\rho_{a}=\frac{1}{2}$ and $\rho_{s}=\frac{1}{2}$,  we have the following gap-dependent bound for the regret of ClusUCB:
+% \begin{align*}
+% \E [R_T] &\!\le\! \sum_{\substack{i\in A_{s^{*}}: \\ \Delta_{i} > b}}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}} + \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace 3\Delta_{i}\\
+% & + \dfrac{6.8\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{96\log{(\frac{T\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace \\
+% &+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} \\ 
+% &+ \sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \max\limits_{i\in A:\Delta_{i}\leq b}\Delta_{i}T
+% \end{align*} 
 \begin{align*}
-\E [R_T] &\!\le\! \sum_{\substack{i\in A_{s^{*}}: \\ \Delta_{i} > b}}\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}} + \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace 3\Delta_{i}\\
-& + \dfrac{6.8\sqrt{\log (KT)}}{\Delta_{i}}  + \dfrac{96\log{(\frac{T\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace \\
-&+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{\substack{i\in A_{s^{*}},\\0\leq\Delta_{i}\leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} \\ 
-&+ \sum\limits_{\substack{i\in A,\\0\leq\Delta_{i}\leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}} + \max\limits_{i\in A:\Delta_{i}\leq b}\Delta_{i}T
-\end{align*} 
- for all $b\geq \sqrt{\frac{e}{T}}$.
+&\E [R_T] \!\le\! 
+\sum_{\substack{i\in A_{s^{*}}:\\\Delta_{i} > b}}\bigg\lbrace \dfrac{6.8\sqrt{\log (KT)}}{\Delta_{i}} + \Delta_{i} + \\
+& \dfrac{32\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}} \bigg\rbrace + \sum_{i\in A:\Delta_{i} > b}\bigg\lbrace\dfrac{4\sqrt{\log (KT)}}{\Delta_{i}} + 2\Delta_{i} \\
+& + \dfrac{64\log{(T\dfrac{\Delta_{i}^{2}}{\sqrt{\log (KT)}})}}{\Delta_{i}}\bigg\rbrace
+	  + \sum\limits_{\substack{i\in A_{s^{*}}:\\0< \Delta_{i} \leq b}}\dfrac{2.8\sqrt{\log (KT)}}{\Delta_{i}}\\
+	& + \sum\limits_{\substack{i\in A\setminus A_{s^{*}}:\\\Delta_{i} > b}}\dfrac{5.6\sqrt{\log (KT)}}{\Delta_{i}} + \sum\limits_{\substack{i\in A\setminus A \cup A_{s^{*}}:\\0 < \Delta_{i}\leq b}}\dfrac{5.6\sqrt{\log (KT)}}{\Delta_{i}} \\
+	& + \max\limits_{i\in A:\Delta_{i}\leq b}\Delta_{i}T, \quad \text{ for all }b\geq \sqrt{\frac{e}{T}}.
+	\end{align*} 
 \end{corollary}
 \begin{proof}
  See Appendix \ref{App:Proof:Corollary:1}.
@@ -102,9 +110,15 @@ $K\geq 2$. Since Corollary \ref{Result:Corollary:1} holds for all $\Delta \geq \
 \label{Result:Corollary:2}
 Considering the same gap of $\Delta_{i} = \Delta =\sqrt{\dfrac{K\log K}{T}}$ for all ${i:i\neq *}$ and with $\psi=K^{2}T$, $\rho_{a}=\frac{1}{4}$ and $\rho_{s}=\frac{1}{2}$, 
  we have the following gap-independent bound for the regret of ClusUCB:
+% \begin{align*}
+% &\E [R_T] \le  6\dfrac{\sqrt{KT}}{p} + 128\sqrt{KT\log K} \\
+%  &+ \dfrac{64\sqrt{KT}\log{(\log K)}}{\sqrt{\log K}}+ 6.8\sqrt{\dfrac{T}{K\log K}} + 2.8\sqrt{\dfrac{T}{e}}
+% \end{align*}
 \begin{align*}
-&\E [R_T] \le  6\dfrac{\sqrt{KT}}{p} + 128\sqrt{KT\log K} \\
- &+ \dfrac{64\sqrt{KT}\log{(\log K)}}{\sqrt{\log K}}+ 6.8\sqrt{\dfrac{T}{K\log K}} + 2.8\sqrt{\dfrac{T}{e}}
+&\E [R_T] \le 
+\frac{6\sqrt{KT}}{p} \!+\! \frac{32\sqrt{KT\log K}}{p} \!+\! \frac{16\sqrt{KT}\log{(\log K)}}{p\sqrt{\log K}}\\
+&+ 9.6\sqrt{\frac{T}{K\log K}} + 96\sqrt{KT\log K}
+ + \frac{48\sqrt{KT}\log{(\log K)}}{\sqrt{\log K}}\\&  + 5.6\sqrt{\frac{T}{e}}. 
 \end{align*}
 \end{corollary}
 \begin{proof}
