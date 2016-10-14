@@ -41,7 +41,7 @@
 % where $\rho_{a}=\dfrac{1}{w_{m}}$ and remove all such arms from $B_{m}$.
 \EndArmElim
 \ClusElim
-\State Delete cluster $s_{k}\in S_{m}$ and remove all arm $i\in s_{k}$ from $B_{m}$ if 
+\State Delete cluster $s_{k}\in S_{m}$ and remove all arms $i\in s_{k}$ from $B_{m}$ if 
 \begin{align*}
  \max_{{i}\in s_{k}}\bigg\lbrace\hat{r}_{i} + \sqrt{\dfrac{\rho_{s}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{m}}}\bigg\rbrace  \\
  < \max_{{j}\in B_{m}} \bigg\lbrace\hat{r}_{j} - \sqrt{\dfrac{\rho_{s} \log{(\psi T\epsilon_{m}^{2})}}{2 n_{m}}}\bigg\rbrace.
@@ -52,7 +52,7 @@
 \State Set $B_{m+1}:=B_{m}$
 %\State \hspace*{2em} $\ell_{m+1}:=\min\lbrace 2\ell_{m}, K\rbrace$
 %\State \hspace*{2em} $w_{m+1}:=2w_{m}$
-\State Stop if $|B_{m}|=1$ and pull $\max_{{i}\in B_{m}}\hat{r}_{i}$ till $T$ is reached.
+\State Stop if $|B_{m}|=1$ and pull ${i}\in B_{m}$ till $T$ is reached.
 \EndFor
 \end{algorithmic}
 \end{algorithm}
