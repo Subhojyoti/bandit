@@ -17,9 +17,14 @@
  \algnewcommand\algorithmicendClusElim{}
 \algrenewtext{ClusElim}[1]{\algorithmicClusElim\ #1}
 \algrenewtext{EndClusElim}{\algorithmicendClusElim}
-
 \algtext*{EndArmElim}
 \algtext*{EndClusElim}
+
+\algblock{ResParam}{EndResParam}
+\algnewcommand\algorithmicResParam{\textbf{\em Reset Parameters}}
+ \algnewcommand\algorithmicendResParam{}
+\algrenewtext{ResParam}[1]{\algorithmicResParam\ #1}
+\algrenewtext{EndResParam}{\algorithmicendResParam}
 
 \begin{algorithm}[t]
 \caption{ClusUCB}
