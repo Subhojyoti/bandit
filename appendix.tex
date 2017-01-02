@@ -1263,6 +1263,59 @@ For arms $a_i \notin s^*$, the contribution to the regret cannot be greater than
 The main claim follows by summing the contributions to the expected regret from each of the cases above.
 \end{proof}
 
+\section{Adaptive Clustered UCB}
+
+\begin{algorithm}[t]
+\caption{AClusUCB}
+\label{alg:aclusucb}
+\begin{algorithmic}
+\State {\bf Input:} Time horizon $T$, exploration parameters $\rho_a$, $\rho_s$ and $\psi$.
+\State {\bf Initialization:} Set $m:=0$, $B_{0}:=A$, $S_0 = S$, $\epsilon_{0}:=1$, $M=\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$, $n_{0}=\bigg\lceil\dfrac{2\log{(\psi T\epsilon_{0}^{2})}}{\epsilon_{0}}\bigg\rceil$, $\ell_{0}:=2$ and  $N_{0}=K*n_{0}$.
+%\State Create a partition $S_0$ of the arms into $K$ singleton clusters for each of the $K$ arms.
+\State Pull each arm once
+\For{$t=K+1,..,T$}	
+\State Pull arm $i$ in $B_m$ such that $\max_{i\in B_{m}}\bigg\lbrace \hat{r}_{i} + \sqrt{\dfrac{\rho_{s}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{i}}} \bigg\rbrace$
+\State $t:=t+1$
+\State Call CreateClusters()
+\ArmElim
+\State For each cluster $s_k \in S_{m}$, delete arm ${i}\in s_{k}$ from $B_{m}$ if
+\begin{align*}
+\hat{r}_{i} + \sqrt{\dfrac{\rho_{a}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{i}}}  < \max_{{j}\in s_{k}}\bigg\lbrace\hat{r}_{j} -\sqrt{\dfrac{\rho_{a}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{j}}} \bigg\rbrace
+\end{align*}
+% where $\rho_{a}=\dfrac{1}{w_{m}}$ and remove all such arms from $B_{m}$.
+\EndArmElim
+\ClusElim
+\State Delete cluster $s_{k}\in S_{m}$ and remove all arms $i\in s_{k}$ from $B_{m}$ if 
+\begin{align*}
+ \max_{{i}\in s_{k}}\bigg\lbrace\hat{r}_{i} + \sqrt{\dfrac{\rho_{s}\log{(\psi T\epsilon_{m}^{2})}}{2 n_{i}}}\bigg\rbrace 
+ < \max_{{j}\in B_{m}} \bigg\lbrace\hat{r}_{j} - \sqrt{\dfrac{\rho_{s} \log{(\psi T\epsilon_{m}^{2})}}{2 n_{j}}}\bigg\rbrace.
+\end{align*}
+%  and remove all such arms in the cluster $s_{k}$ from $B_{m}$ to obtain $B_{m+1}$.
+\EndClusElim
+
+\If{$t\geq N_{m}$ and $m\leq M$}
+\ResParam
+\State $\epsilon_{m+1}:=\dfrac{\epsilon_{m}}{2}$\vspace{0.5ex}
+\State $\ell_{m+1}=2*\ell_{m}$
+\State $B_{m+1}:=B_{m}$
+\State $n_{m}:=\bigg\lceil\dfrac{2\log{(\psi T\epsilon_{m}^{2})}}{\epsilon_{m}}\bigg\rceil$
+\State $N_{m}:=t+|B_{m}| * n_{m}$
+\State $m:=m+1$
+\EndResParam
+%\State \hspace*{2em} $\ell_{m+1}:=\min\lbrace 2\ell_{m}, K\rbrace$
+%\State \hspace*{2em} $w_{m+1}:=2w_{m}$
+\State Stop if $|B_{m}|=1$ and pull ${i}\in B_{m}$ till $T$ is reached.
+\EndIf
+\EndFor
+\end{algorithmic}
+\Procedure{CreateClusters}{}
+\State Create singleton cluster $\lbrace i\rbrace$ for each arm $i\in B_{m}$ and call this partition as $S_{m}$.
+\State For two cluster $s_{k},s_{d}\in S_{m}$, join the clusters if any $|\hat{r}_{i}-\hat{r_{j}}| \leq \epsilon_{m}$ and $|s_{k}|+|s_{d}|\leq \ell_{m}$, where $i\in s_{k}$ and $j\in s_{d}$ 
+\EndProcedure
+\end{algorithm}
+
+In the previous section we saw that EClusUCB deals with too much early exploration through optimistic greedy sampling. This reduces the cumulative regret, but still one of the principal disadvantage that EClusUCB suffers from is the lack of knowledge of the number of clusters $p$. One way to handle this is to estimate the number of clusters on the fly. In Algorithm \ref{alg:aclusucb}, named Adaptive Clustered UCB , hence referred to as AClusUCB, we explore this idea. AClusuCB uses \emph{hierarchical clustering} (see \cite{friedman2001elements}) to find the number of clusters present. ACLusUCB is similar to EClusUCB with $2$ major differences. The first difference is the call to procedure CreateClusters at every timestep. CreateCluster sub-routine first creates a singleton cluster for each of the surviving arms in $B_{m}$ and then clusters those singleton clusters $s_{k}, s_{d}\in S_{m}$ (say) if any arm $i\in s_{k}$ and $j\in s_{d}$ is such that $|\hat{r}_{i}-\hat{r}_{j}|\leq \epsilon_{m}$. We cluster based on $\epsilon_{m}$ because we have no prior knowledge of the gaps and we are estimating the gap by $\epsilon_{m}$. Also, we are destroying the clusters after every timestep and re-estimating the clusters based on the condition specified. Since, the environment is stochastic, the initial clusters will have very poor purity (arms with $\epsilon_{m}$-close expected means lying in a single cluster) whereas in the later rounds the purity becomes better which leads to the optimal arm $*$ lying in a single cluster of its own which will eliminate all the other clusters based on the cluster elimination condition. The second difference is that, we limit the cluster size from start by $\ell_{m}=2$ and then double it after every round. Since the environment is stochastic, if we do not limit the cluster size, then in the initial rounds it will result in huge chains of clusters because the initial estimates of $\hat{r}_{i}\forall i\in A$ will be poor. This condition just helps in stopping such large chains of clusters.    
+
 \section{More Experiments}
 
 In the first experiment, we check the performance of EClusUCB against $4$ algorithms, UCB1, OCUCB\cite{lattimore2015optimally}, MOSS and TS. The testbed is similar to Experiment $1$, with $20$ arms involving Bernoulli reward distribution with expected rewards of the arms $r_{i_{{i}\neq {*}}}=0.07$ and $r^{*}=0.1$ and horizon $T$ is set to $60000$. The number pf clusters $p$ is set to $5$ and the result is shown in Figure \ref{Fig:EClusUCBexpt1}. Here, we choose the $\psi=\lbrace \frac{T}{\log (KT)}, \log T\rbrace$. From the result we see that EClusUCB is sensitive to the exploratory regulatory factor $\psi$. The first choice of $\psi$ is conservative and does too much exploration while the second choice is optimistic and explores less. Both $\rho_{a}$ and $\rho_{s}$ is set to $\frac{1}{2}$ in all the cases. We see that OCUCB will eventually perform better than MOSS which does not stabilize in $60000$ timesteps but both of them is beaten by EClusUCB. The careful choosing of $\rho_{a}$, $\rho_{s}$ and $\psi$ enables this.
@@ -1284,15 +1337,16 @@ In the first experiment, we check the performance of EClusUCB against $4$ algori
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/CLUCBo2comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/CLUCBo1comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/OCUCBcomp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/ACLUCB2comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/UCB1comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/MOSScomp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/TScomp_subsampled.txt};
-      \legend{EClusUCB($\psi=\log T$),EClusUCB($\psi=\frac{T}{\log(KT)}$),OCUCB,UCB1,MOSS,TS}
+      \legend{EClusUCB($\psi=\log T$),EClusUCB($\psi=\frac{T}{\log(KT)}$),AClusUCB,OCUCB,UCB1,MOSS,TS}
       %\legend{ClusUCB (NC, p=1),ClusUCB (C, p=4),ClusUCB(C, p=10) ,MOSS, ClusUCB(C, p=5, NAE), ClusUCB(C, p=10, NAE)}
       %\legend{ClusUCB(1,A),ClusUCB(4,B),ClusUCB(10,B), MOSS,ClusUCB(5,S), ClusUCB(10,A)}
       \end{axis}
       \end{tikzpicture}}\\}
-			\caption{Experiment $5$: Cumulative regret for EClusUCB against various other UCB variants and Thompson Sampling}
+			\caption{Experiment $5$: Cumulative regret for EClusUCB and AClusUCB against various other UCB variants and Thompson Sampling}
   \label{Fig:EClusUCBexpt1}
   \end{subfigure}
 	&
@@ -1309,14 +1363,16 @@ In the first experiment, we check the performance of EClusUCB against $4$ algori
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/CLUCBo2comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/CLUCB1comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/CLUCB2comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/ACLUCB2comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/MOSScomp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/TScomp_subsampled.txt};
-	 \legend{EClusUCB1,EClusUCB2,EClusUCB3,EClusUCB4,MOSS,TS}
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/UCB1comp_subsampled.txt};
+	 \legend{EClusUCB1,EClusUCB2,EClusUCB3,EClusUCB4,AClusUCB,MOSS,TS,UCB1}
 	%\legend{EClusUCB($\psi=\log T,$),EClusUCB($\psi=\frac{T}{\log(KT)}$),OCUCB,UCB1,MOSS,TS}
       %\legend{EClusUCB($\log T, 0.5, 0.5$),EClusUCB($\frac{T}{\log(KT)},0.5,0.5$),EClusUCB($\log T, 0.25, 0.25$),EClusUCB($\frac{T}{\log(KT)},0.25,0.25$)}
       \end{axis}
       \end{tikzpicture}}\\}
-			\caption{Experiment $6$: Cumulative regret for EClusUCB with different parameters. EClusUCB1: $\psi=log T, \rho_{a}=\rho_{s}=0.5$. EClusUCB2: $\psi=\frac{T}{\log(KT)}, \rho_{a}=\rho_{s}=0.5$. EClusUCB3: $\psi=log T, \rho_{a}=\rho_{s}=0.25$. EClusUCB4: $\psi=\frac{T}{\log(KT)}, \rho_{a}=\rho_{s}=0.25$ }
+			\caption{Experiment $6$: Cumulative regret for EClusUCB with different parameters and AClusUCB. EClusUCB1: $\psi=log T, \rho_{a}=\rho_{s}=0.5$. EClusUCB2: $\psi=\frac{T}{\log(KT)}, \rho_{a}=\rho_{s}=0.5$. EClusUCB3: $\psi=log T, \rho_{a}=\rho_{s}=0.25$. EClusUCB4: $\psi=\frac{T}{\log(KT)}, \rho_{a}=\rho_{s}=0.25$ }
   \label{Fig:EClusUCBexpt2}
   \end{subfigure}  
   \end{tabular}

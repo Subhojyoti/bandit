@@ -26,18 +26,16 @@ class ClusUCB(object):
     #Calculate rewards
     def rewards(self,choice, timesteps):
         #Gaussain Reward
-        #return random.gauss(self.means[choice],1)
+        return random.gauss(self.means[choice],1.0)
         #Bernoulli Reward(1 sample from Binomial Distribution)
-        return sum(numpy.random.binomial(1,self.means[choice],1))/1.0
+        #return sum(numpy.random.binomial(1,self.means[choice],1))/1.0
 
     #Count the number of remaining arms
     def remArms(self):
         count=0
-        arm=-1
         for i in range(self.numActions):
             if self.B[i]!=-1:
                 count=count+1
-                arm=i
         return count
 
     
@@ -50,6 +48,13 @@ class ClusUCB(object):
                 arm=i
         return count
 
+    def exp_func(self):
+        
+        #self.func=1.0
+        #self.func=math.log(self.horizon)
+        #self.func=self.numActions*self.numActions*self.horizon
+        self.func=self.horizon / math.log(self.horizon*self.numActions)
+        return self.func
 
     #Initialize Clusters
     def setInit(self):
@@ -138,13 +143,17 @@ class ClusUCB(object):
                                 maxSetArm=d
 
 
-
-                    self.func=math.log(self.horizon)
-
-                    c=math.sqrt((math.log(self.func*self.horizon*self.rangetake*self.rangetake))/(2*self.weightSet*(self.nm)))
+                    #self.func=1.0
+                    #self.func=math.log(self.horizon)
+                    #self.func=self.numActions*self.numActions*self.horizon
+                    #self.func=self.horizon / math.log(self.horizon*self.numActions)
+                    #c=math.sqrt((self.rho_s * math.log(self.exp_func() *self.horizon*self.rangetake*self.rangetake))/(2*(self.nm)))
+                    
+                    c1=math.sqrt((self.rho_s * math.log(self.exp_func() *self.horizon*self.rangetake*self.rangetake))/(2*(self.numPlays[maxSetArm])))
+                    c_max=math.sqrt((self.rho_s * math.log(self.exp_func() *self.horizon*self.rangetake*self.rangetake))/(2*(self.numPlays[take])))
                     
 
-                    if (self.avgPayOffSums[maxSetArm] + c < self.avgPayOffSums[take]-c and take!=maxSetArm):
+                    if (self.avgPayOffSums[maxSetArm] + c1 < self.avgPayOffSums[take]-c_max and take!=maxSetArm):
 
                         print "Remove Set:"+ str(k), str(len(self.sets[k]))
 
@@ -170,18 +179,22 @@ class ClusUCB(object):
                         max1=self.avgPayOffSums[g]
                         take=g
 
-
-                self.func=math.log(self.horizon)
-
-                c=math.sqrt((math.log(self.func*self.horizon*self.rangetake*self.rangetake))/(2*self.weightArm*self.nm))
-
+                #self.func=1.0
+                #self.func=math.log(self.horizon)
+                #self.func=self.numActions*self.numActions*self.horizon
+                #self.func=self.horizon / math.log(self.horizon*self.numActions)
+                
+                #c=math.sqrt((self.rho_a * math.log(self.exp_func() *self.horizon*self.rangetake*self.rangetake))/(2*self.nm))
+                
+                c1=math.sqrt((self.rho_a * math.log(self.exp_func() *self.horizon*self.rangetake*self.rangetake))/(2*self.numPlays[i]))
+                c_max=math.sqrt((self.rho_a * math.log(self.exp_func() *self.horizon*self.rangetake*self.rangetake))/(2*self.numPlays[take]))
 
 
                 l_copy=Set(self.sets[i])
                     
                 for b in self.sets[i]:
 
-                    if (self.avgPayOffSums[b] + c < self.avgPayOffSums[take] - c) and b!=take:
+                    if (self.avgPayOffSums[b] + c1 < self.avgPayOffSums[take] - c_max) and b!=take:
                     #if self.avgPayOffSums[b] + c*math.sqrt(self.weight*1.0/self.rangetake) < self.avgPayOffSums[take1] - c*math.sqrt(self.weight*1.0/self.rangetake):
                         
                         self.B[b]=-1
@@ -202,12 +215,13 @@ class ClusUCB(object):
     def calculate_pulls(self):
 
 
-        self.func=math.log(self.horizon)
-        self.nm=int(math.ceil((2*math.log(self.func*self.horizon*self.rangetake*self.rangetake))/(self.rangetake)))
+        #self.func=math.log(self.horizon)
+        #self.func=self.horizon / math.log(self.horizon*self.numActions)
+        self.nm= int(math.ceil((2*math.log(self.exp_func() *self.horizon*self.rangetake*self.rangetake))/(self.rangetake)))
+        self.T = self.timestep + (self.remArms() * self.nm )
                 
-                
-        print "nm:"+str(self.nm)
-        return self.nm
+        print "nm: "+str(self.nm), "T: "+str(self.T)
+        #return self.nm
 
 
     '''
@@ -221,7 +235,7 @@ class ClusUCB(object):
         '''
         self.numActions = arms
 
-        self.horizon=60000
+        self.horizon=500
         #self.horizon=100000 + self.numActions*self.numActions*1000
 
 
@@ -232,10 +246,11 @@ class ClusUCB(object):
 
 
         self.numRounds = math.floor(0.5*math.log10(self.horizon/math.e)/math.log10(2))
+        #self.numRounds = math.floor(0.5*math.log10(self.horizon)/math.log10(2))
 
         print "\n\nnumrounds:"+str(self.numRounds)
 
-        self.means =[0.06 for i in range(self.numActions)]
+        self.means =[0.07 for i in range(self.numActions)]
 
 
         '''
@@ -273,9 +288,11 @@ class ClusUCB(object):
 
         self.nm=1.0
         self.m=0.0
-        self.weightSet=1.0
-        self.weightArm=1.0
+        self.rho_s=0.5
+        self.rho_a=0.5
+        self.alpha=self.numRounds
         self.p=p
+        self.ucbs=[0.0 for i in range(self.numActions)]
 
         self.payoffSums = [0] * self.numActions
         self.numPlays = [0] * self.numActions
@@ -290,7 +307,9 @@ class ClusUCB(object):
         self.arm_reward = [0]*self.numActions
         self.setSizeLimit=math.ceil((self.numActions*1.0)/self.p)
         print "sizeLimit: "+str(self.setSizeLimit)
-        self.func=math.log(self.horizon)
+        #self.func=math.log(self.horizon)
+        #self.func=1.0
+        #self.func=self.numRounds / math.log(self.horizon*self.numActions)
 
         self.actionRegret=[]
 
@@ -299,106 +318,98 @@ class ClusUCB(object):
         #Group Arms
         self.setCreation()
         
-        while True:
-
-            print "\n\nRound: "+str(self.m)
-            print "AvgPayOffsums: " + str(self.avgPayOffSums)
-            print "Final sets: "+str(self.sets)
-            
-            print "B: "+str(self.B)
-
-
-            self.calculate_pulls()
-
-
-            #Pull all arms equally in the round
-            for i in range(len(self.sets)):
-                if len(self.sets[i])>=1:
-
-
-                    for arm in self.sets[i]:
-
-                        if self.B[arm]!=-1:
-                            for k in range(self.nm):
-                                theReward = self.rewards(arm, self.timestep)
-
-                                self.arm_reward[arm]=self.arm_reward[arm]+theReward
-                                self.numPlays[arm] += 1
-                                self.payoffSums[arm] += theReward
-                                self.avgPayOffSums[arm] = self.payoffSums[arm] / self.numPlays[arm]
-
-                                self.cumulativeReward += theReward
-                                self.bestActionCumulativeReward += theReward if arm == self.bestAction else self.rewards(self.bestAction, self.timestep)
-                                self.regret = self.bestActionCumulativeReward - self.cumulativeReward
-                                
-                                self.actionRegret.append(self.regret)
-
-                                self.timestep=self.timestep+1
-
-
-
-
-            self.ArmElimination()
-            self.SetElimination()
-
-
-            
-            print "Sets: "+str(self.sets)
-            print "SetLimit: "+str(self.setSizeLimit) + " epsilon: "+str(self.rangetake) + " func: "+str(self.func)
-
-            print "NumPlays:" + str(self.numPlays)
-            print "Total Plays: "+str(sum(self.numPlays))
-            print self.remSets(),self.remArms()
-
-            #update parameters
-            self.rangetake=self.rangetake/2
-            self.weightSet=pow(2,self.m)*pow(2,self.m)*2.0
-            self.weightArm=pow(2,self.m)*pow(2,self.m)*pow(2,self.m)*pow(2,self.m)*2.0
-
-
-            if (self.m>= self.numRounds or self.remArms() == 1) or self.timestep>self.horizon:
-                break
-
-            self.m=self.m+1
-
-
-        #Find the max arm
-        maxarm=self.min1
-        take=-1
+        #Pull each arm once
         for i in range(self.numActions):
-            if self.B[i]!=-1:
-                if maxarm<self.avgPayOffSums[i]:
-                    maxarm=self.avgPayOffSums[i]
-                    take=i
-        arm=take
+            theReward = self.rewards(i, self.timestep)
 
-
-        print "last arm:"+str(arm) + " turn:"+str(turn) + " wrong:"+str(wrong)
-
-        #if horizon not reached dpull the best Arm outputed till horizon
-        while self.timestep<self.horizon:
-
-            theReward = self.rewards(arm,self.timestep)
-            self.arm_reward[arm]=self.arm_reward[arm]+theReward
-            self.numPlays[arm] += 1
-            self.payoffSums[arm] += theReward
-
-            self.avgPayOffSums[arm] = self.payoffSums[arm] / self.numPlays[arm]
+            self.arm_reward[i]=self.arm_reward[i]+theReward
+            self.numPlays[i] += 1
+            self.payoffSums[i] += theReward
+            self.avgPayOffSums[i] = self.payoffSums[i] / self.numPlays[i]
 
             self.cumulativeReward += theReward
-            self.bestActionCumulativeReward += theReward if arm == self.bestAction else self.rewards(self.bestAction, self.timestep)
+            self.bestActionCumulativeReward += theReward if i == self.bestAction else self.rewards(self.bestAction, self.timestep)
             self.regret = self.bestActionCumulativeReward - self.cumulativeReward
+                                
             self.actionRegret.append(self.regret)
 
             self.timestep=self.timestep+1
         
+        self.calculate_pulls()
         
+        while True:
+
+            for i in range(self.numActions):
+                if self.B[i]!=-1:
+                    #c=math.sqrt((self.rho_s * math.log(self.exp_func() *self.horizon*self.rangetake*self.rangetake))/(2*(self.numPlays[i])))
+                    #self.alpha=self.numRounds/self.numPlays[i]
+                    c=math.sqrt((self.rho_s * math.log(self.exp_func() *self.horizon*self.rangetake*self.rangetake))/(2*(self.numPlays[i])))
+                    self.ucbs[i]=self.avgPayOffSums[i] + c
+                
+            #arm = max(range(self.numActions), key=lambda j: self.ucbs[j])
+            take=self.min1
+            arm=-1
+            for i in range(self.numActions):
+                if take < self.ucbs[i] and self.B[i]!=-1:
+                    take = self.ucbs[i]
+                    arm=i
+            
+            
+            theReward = self.rewards(arm, self.timestep)
+
+            self.arm_reward[arm]=self.arm_reward[arm]+theReward
+            self.numPlays[arm] += 1
+            self.payoffSums[arm] += theReward
+            self.avgPayOffSums[arm] = self.payoffSums[arm] / self.numPlays[arm]
+    
+            self.cumulativeReward += theReward
+            self.bestActionCumulativeReward += theReward if arm == self.bestAction else self.rewards(self.bestAction, self.timestep)
+            self.regret = self.bestActionCumulativeReward - self.cumulativeReward
+                                    
+            self.actionRegret.append(self.regret)
+    
+            self.timestep=self.timestep+1
+            
+            self.ArmElimination()
+            self.SetElimination()
+            
+            if self.timestep>=self.horizon:
+                break   
+             
+            if self.timestep >= self.T and self.m <= self.numRounds:
+                   
+                print "\n\nRound: "+str(self.m)
+                print "AvgPayOffsums: " + str(self.avgPayOffSums)
+                print "Final sets: "+str(self.sets)
+                
+                print "B: "+str(self.B)
+                print "numPlays: " +str(self.numPlays)
+                
+                #self.ArmElimination()
+                #self.SetElimination()
+                
+                #update parameters
+                
+                self.rangetake=self.rangetake/2
+                self.m = self.m + 1
+
+                self.calculate_pulls()
+                
+        '''
         #Print output file for regret for each timestep
-        f = open('expt/testRegretclUCB01.txt', 'a')
+        f = open('expt1/testRegretclUCB02.txt', 'a')
         for r in range(len(self.actionRegret)):
             f.write(str(self.actionRegret[r])+"\n")
         f.close()
-
+        '''
+                
+        print "\n\nEnd Horizon: "+str(self.timestep)
+        print "AvgPayOffsums: " + str(self.avgPayOffSums)
+        print "Final sets: "+str(self.sets)
+                
+        print "B: "+str(self.B)
+        print "numPlays: " +str(self.numPlays)        
+        
         return self.cumulativeReward,self.bestActionCumulativeReward,self.regret,arm,self.timestep
 
 
@@ -416,18 +427,18 @@ if __name__ == "__main__":
             numpy.random.seed(arms+turn)
 
             #Make p=1 for ClusUCB-AE
-            p=10
+            p=5
 
             ucb= ClusUCB()
-            cumulativeReward,bestActionCumulativeReward,regret,bestArm,timestep=ucb.clusUCB(arms,10,turn,wrong)
+            cumulativeReward,bestActionCumulativeReward,regret,bestArm,timestep=ucb.clusUCB(arms,p,turn,wrong)
             if bestArm!=arms-2:
                 wrong=wrong+1
 
-            print "turn: "+str(turn)+"\twrong: "+str(wrong)+"\tarms: "+str(arms)+"\tbarm: "+str(bestArm)+"\tReward: "+str(cumulativeReward)+"\tbestCumReward: "+str(bestActionCumulativeReward)+"\tregret: "+str(regret)
+            print "turn: "+str(turn+1)+"\twrong: "+str(wrong)+"\tarms: "+str(arms)+"\tbarm: "+str(bestArm)+"\tReward: "+str(cumulativeReward)+"\tbestCumReward: "+str(bestActionCumulativeReward)+"\tregret: "+str(regret)
 
 
             #Print final output file for cumulative regret
-            f = open('expt/clUCB01.txt', 'a')
+            f = open('expt1/clUCB03.txt', 'a')
             f.writelines("arms: %d\tbArms: %d\ttimestep: %d\tregret: %d\tcumulativeReward: %.2f\tbestCumulativeReward: %.2f\n" % (arms, bestArm, timestep, regret, cumulativeReward, bestActionCumulativeReward))
             f.close()
 
