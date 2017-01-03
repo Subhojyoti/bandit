@@ -1307,11 +1307,11 @@ The main claim follows by summing the contributions to the expected regret from 
 \State Stop if $|B_{m}|=1$ and pull ${i}\in B_{m}$ till $T$ is reached.
 \EndIf
 \EndFor
-\end{algorithmic}
 \Procedure{CreateClusters}{}
 \State Create singleton cluster $\lbrace i\rbrace$ for each arm $i\in B_{m}$ and call this partition as $S_{m}$.
 \State For two cluster $s_{k},s_{d}\in S_{m}$, join the clusters if any $|\hat{r}_{i}-\hat{r_{j}}| \leq \epsilon_{m}$ and $|s_{k}|+|s_{d}|\leq \ell_{m}$, where $i\in s_{k}$ and $j\in s_{d}$ 
 \EndProcedure
+\end{algorithmic}
 \end{algorithm}
 
 In the previous section we saw that EClusUCB deals with too much early exploration through optimistic greedy sampling. This reduces the cumulative regret, but still one of the principal disadvantage that EClusUCB suffers from is the lack of knowledge of the number of clusters $p$. One way to handle this is to estimate the number of clusters on the fly. In Algorithm \ref{alg:aclusucb}, named Adaptive Clustered UCB , hence referred to as AClusUCB, we explore this idea. AClusuCB uses \emph{hierarchical clustering} (see \cite{friedman2001elements}) to find the number of clusters present. ACLusUCB is similar to EClusUCB with $2$ major differences. The first difference is the call to procedure CreateClusters at every timestep. CreateCluster sub-routine first creates a singleton cluster for each of the surviving arms in $B_{m}$ and then clusters those singleton clusters $s_{k}, s_{d}\in S_{m}$ (say) if any arm $i\in s_{k}$ and $j\in s_{d}$ is such that $|\hat{r}_{i}-\hat{r}_{j}|\leq \epsilon_{m}$. We cluster based on $\epsilon_{m}$ because we have no prior knowledge of the gaps and we are estimating the gap by $\epsilon_{m}$. Also, we are destroying the clusters after every timestep and re-estimating the clusters based on the condition specified. Since, the environment is stochastic, the initial clusters will have very poor purity (arms with $\epsilon_{m}$-close expected means lying in a single cluster) whereas in the later rounds the purity becomes better which leads to the optimal arm $*$ lying in a single cluster of its own which will eliminate all the other clusters based on the cluster elimination condition. The second difference is that, we limit the cluster size from start by $\ell_{m}=2$ and then double it after every round. Since the environment is stochastic, if we do not limit the cluster size, then in the initial rounds it will result in huge chains of clusters because the initial estimates of $\hat{r}_{i}\forall i\in A$ will be poor. This condition just helps in stopping such large chains of clusters.    
@@ -1334,14 +1334,14 @@ In the first experiment, we check the performance of EClusUCB against $4$ algori
        clip mode=individual,grid,grid style={gray!30},
   legend style={at={(0.5,-0.2)},anchor=north, legend columns=3} ]
       % UCB
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/CLUCBo2comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/CLUCBo1comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/CLUCBo2comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/OCUCBcomp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/ACLUCB2comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/UCB1comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/MOSScomp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/TScomp_subsampled.txt};
-      \legend{EClusUCB($\psi=\log T$),EClusUCB($\psi=\frac{T}{\log(KT)}$),AClusUCB,OCUCB,UCB1,MOSS,TS}
+      \legend{EClusUCB($\psi=\log T$),EClusUCB($\psi=\frac{T}{\log(KT)}$),OCUCB,AClusUCB,,UCB1,MOSS,TS}
       %\legend{ClusUCB (NC, p=1),ClusUCB (C, p=4),ClusUCB(C, p=10) ,MOSS, ClusUCB(C, p=5, NAE), ClusUCB(C, p=10, NAE)}
       %\legend{ClusUCB(1,A),ClusUCB(4,B),ClusUCB(10,B), MOSS,ClusUCB(5,S), ClusUCB(10,A)}
       \end{axis}
@@ -1363,11 +1363,11 @@ In the first experiment, we check the performance of EClusUCB against $4$ algori
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/CLUCBo2comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/CLUCB1comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/CLUCB2comp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/ACLUCB2comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/UCB1comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/MOSScomp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/TScomp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/UCB1comp_subsampled.txt};
-	 \legend{EClusUCB1,EClusUCB2,EClusUCB3,EClusUCB4,AClusUCB,MOSS,TS,UCB1}
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/ACLUCB2comp_subsampled.txt};
+	 \legend{EClusUCB1,EClusUCB2,EClusUCB3,EClusUCB4,UCB1,MOSS,TS,AClusUCB}
 	%\legend{EClusUCB($\psi=\log T,$),EClusUCB($\psi=\frac{T}{\log(KT)}$),OCUCB,UCB1,MOSS,TS}
       %\legend{EClusUCB($\log T, 0.5, 0.5$),EClusUCB($\frac{T}{\log(KT)},0.5,0.5$),EClusUCB($\log T, 0.25, 0.25$),EClusUCB($\frac{T}{\log(KT)},0.25,0.25$)}
       \end{axis}

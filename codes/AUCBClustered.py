@@ -26,9 +26,9 @@ class ClusUCB(object):
     #Calculate rewards
     def rewards(self,choice, timesteps):
         #Gaussain Reward
-        #return random.gauss(self.means[choice],1.0)
+        return random.gauss(self.means[choice],1)
         #Bernoulli Reward(1 sample from Binomial Distribution)
-        return sum(numpy.random.binomial(1,self.means[choice],1))/1.0
+        #return sum(numpy.random.binomial(1,self.means[choice],1))/1.0
 
     #Count the number of remaining arms
     def remArms(self):
@@ -236,7 +236,7 @@ class ClusUCB(object):
         '''
         self.numActions = arms
 
-        self.horizon=60000
+        self.horizon=1000000
         #self.horizon=100000 + self.numActions*self.numActions*1000
 
 
@@ -251,7 +251,7 @@ class ClusUCB(object):
 
         print "\n\nnumrounds:"+str(self.numRounds)
 
-        self.means =[0.07 for i in range(self.numActions)]
+        self.means =[0.05 for i in range(self.numActions)]
 
 
         '''
@@ -336,6 +336,8 @@ class ClusUCB(object):
             self.actionRegret.append(self.regret)
 
             self.timestep=self.timestep+1
+            
+            
         
         self.calculate_pulls()
         #self.setInit()
@@ -372,8 +374,12 @@ class ClusUCB(object):
             self.actionRegret.append(self.regret)
     
             self.timestep=self.timestep+1
-
-            self.setCreation()
+            
+            if self.timestep%100000==0:
+                print self.timestep
+            
+            if self.remArms()>1:
+                self.setCreation()
             self.ArmElimination()
             self.SetElimination()
 
@@ -406,7 +412,7 @@ class ClusUCB(object):
                 
         '''
         #Print output file for regret for each timestep
-        f = open('expt9/testRegretaclUCB02.txt', 'a')
+        f = open('expt2/testRegretaclUCB02.txt', 'a')
         for r in range(len(self.actionRegret)):
             f.write(str(self.actionRegret[r])+"\n")
         f.close()
@@ -427,10 +433,10 @@ if __name__ == "__main__":
 
     wrong=0
 
-    arms=20
-    while arms<=20:
+    arms=100
+    while arms<=100:
 
-        for turn in range(0,1):
+        for turn in range(1,3):
 
             #set the random seed, same for all environment
             numpy.random.seed(arms+turn)
@@ -447,8 +453,8 @@ if __name__ == "__main__":
 
 
             #Print final output file for cumulative regret
-            f = open('expt9/aclUCB01.txt', 'a')
-            #f.writelines("arms: %d\tbArms: %d\ttimestep: %d\tregret: %d\tcumulativeReward: %.2f\tbestCumulativeReward: %.2f\n" % (arms, bestArm, timestep, regret, cumulativeReward, bestActionCumulativeReward))
+            f = open('expt2/aclUCB01.txt', 'a')
+            f.writelines("arms: %d\tbArms: %d\ttimestep: %d\tregret: %d\tcumulativeReward: %.2f\tbestCumulativeReward: %.2f\n" % (arms, bestArm, timestep, regret, cumulativeReward, bestActionCumulativeReward))
             f.close()
 
         arms=arms+1

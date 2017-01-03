@@ -51,9 +51,9 @@ class ClusUCB(object):
     def exp_func(self):
         
         #self.func=1.0
-        #self.func=math.log(self.horizon)
+        self.func=math.log(self.horizon)
         #self.func=self.numActions*self.numActions*self.horizon
-        self.func=self.horizon / math.log(self.horizon*self.numActions)
+        #self.func=self.horizon / math.log(self.horizon*self.numActions)
         return self.func
 
     #Initialize Clusters
@@ -235,7 +235,7 @@ class ClusUCB(object):
         '''
         self.numActions = arms
 
-        self.horizon=500
+        self.horizon=1000000
         #self.horizon=100000 + self.numActions*self.numActions*1000
 
 
@@ -250,7 +250,7 @@ class ClusUCB(object):
 
         print "\n\nnumrounds:"+str(self.numRounds)
 
-        self.means =[0.07 for i in range(self.numActions)]
+        self.means =[0.05 for i in range(self.numActions)]
 
 
         '''
@@ -418,8 +418,8 @@ if __name__ == "__main__":
 
     wrong=0
 
-    arms=20
-    while arms<=20:
+    arms=100
+    while arms<=100:
 
         for turn in range(0,1):
 
@@ -427,7 +427,7 @@ if __name__ == "__main__":
             numpy.random.seed(arms+turn)
 
             #Make p=1 for ClusUCB-AE
-            p=5
+            p=10
 
             ucb= ClusUCB()
             cumulativeReward,bestActionCumulativeReward,regret,bestArm,timestep=ucb.clusUCB(arms,p,turn,wrong)
@@ -438,7 +438,7 @@ if __name__ == "__main__":
 
 
             #Print final output file for cumulative regret
-            f = open('expt1/clUCB03.txt', 'a')
+            f = open('expt2/clUCB01.txt', 'a')
             f.writelines("arms: %d\tbArms: %d\ttimestep: %d\tregret: %d\tcumulativeReward: %.2f\tbestCumulativeReward: %.2f\n" % (arms, bestArm, timestep, regret, cumulativeReward, bestActionCumulativeReward))
             f.close()
 
