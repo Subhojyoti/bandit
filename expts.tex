@@ -35,12 +35,12 @@
   legend style={at={(0.5,-0.2)},anchor=north,legend columns=3} ]
       % UCB
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/clUCBNCcomp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/clUCBCcomp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/clucb_p_10_comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/Med_Elimcomp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/UCB_Improvedcomp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/MOSScomp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/UCB1comp_subsampled.txt};
-      \legend{ClusUCB-AE(p=1),ClusUCB(p=20),Med-Elim,UCB-Improved,MOSS,UCB1}
+      \legend{ClusUCB-AE(p=1),ClusUCB(p=10),Med-Elim,UCB-Improved,MOSS,UCB1}
       \end{axis}
       \end{tikzpicture}}\\}
 			\caption{Experiment $2$: $100$ Gaussian-distributed arms with $r_{i_{{i}\neq {*}:1-33}}=0.01$, $r_{i_{{i}\neq {*}:34-99}}=0.06$ and $r^{*}_{i=100}=0.1$.}
@@ -121,6 +121,37 @@ ClusUCB, MOSS, UCB1, UCB-V, KL-UCB, TS and DMED are run in this experimental set
 Improved is poor in comparison to other algorithms, which is probably because of pulls wasted in initial exploration.
 
 	The third experiment is conducted over a testbed of $20-500$ (interval of $10$) arms with Bernoulli reward distribution, where the expected rewards of the arms are $r_{i_{{i}\neq {*}}}=0.05$ and $r^{*}=0.1$. The horizon $T$ is set to $10^{5} + K^{2}\times 10^{4}$ and the number of arms are increased from $K=20$ to $500$. The proposed algorithm ClusUCB is run with $p=K/10$. The regret is averaged over $500$ independent runs and is shown in Figure \ref{fig:3}. We report the performance of MOSS and ClusUCB only over this setup. From the results in Figure \ref{fig:3}, it is evident that the growth of regret for ClusUCB is lower than that of MOSS. 
+%\begin{figure}
+%\centering
+%  \begin{tabular}{c}
+%  %&
+%  %%%%%%Expt4
+%  \begin{subfigure}{0.45\textwidth}
+% \tabl{c}{\scalebox{0.7}{\begin{tikzpicture}
+%      \begin{axis}[
+%	xlabel={timestep},
+%	ylabel={Cumulative regret},
+%       clip mode=individual,grid,grid style={gray!30},
+%  legend style={at={(0.5,-0.2)},anchor=north, legend columns=4} ]
+%      % UCB
+%\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/clUCB1comp_subsampled.txt};
+%\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/clUCB2comp_subsampled.txt};
+%\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/clUCB3comp_subsampled.txt};
+%\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/MOSScomp_subsampled.txt};
+%\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/clUCB4comp_subsampled.txt};
+%\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/clUCB5comp_subsampled.txt};
+%\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/TScomp_subsampled.txt};
+%      \legend{ClusUCB(1A),ClusUCB(4B),ClusUCB(10B),MOSS,ClusUCB(5S),ClusUCB(10S),TS}
+%      %\legend{ClusUCB (NC, p=1),ClusUCB (C, p=4),ClusUCB(C, p=10) ,MOSS, ClusUCB(C, p=5, NAE), ClusUCB(C, p=10, NAE)}
+%      %\legend{ClusUCB(1,A),ClusUCB(4,B),ClusUCB(10,B), MOSS,ClusUCB(5,S), ClusUCB(10,A)}
+%      \end{axis}
+%      \end{tikzpicture}}\\}
+%			\caption{Experiment $4$: Cumulative regret for ClusUCB variants: $1,4,5,10$ correspond to number $p$ of clusters and A, S, B correspond to having only arm elimination, only cluster elimination and having both in Algorithm \ref{alg:clusucb}. For using just cluster elimination in ClusUCB, we stop when we left with only one cluster and play the max payoff arm of that cluster for the remaining time horizon. }
+%  \label{Fig:variousClus}
+%  \end{subfigure}
+%  \end{tabular}
+%\end{figure}
+
 \begin{figure}
 \centering
   \begin{tabular}{c}
@@ -134,14 +165,16 @@ Improved is poor in comparison to other algorithms, which is probably because of
        clip mode=individual,grid,grid style={gray!30},
   legend style={at={(0.5,-0.2)},anchor=north, legend columns=4} ]
       % UCB
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/clUCB1comp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/clUCB2comp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/clUCB3comp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/MOSScomp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/clUCB4comp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/clUCB5comp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4/TScomp_subsampled.txt};
-      \legend{ClusUCB(1A),ClusUCB(4B),ClusUCB(10B),MOSS,ClusUCB(5S),ClusUCB(10S),TS}
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCBNC_comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB3_comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB5_comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB7_comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB8_comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB9_comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB11_comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB13_comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB15_comp_subsampled.txt};
+      \legend{ClusUCB(1),ClusUCB(3),ClusUCB(5),ClusUCB(7),ClusUCB(9),ClusUCB(11),  ClusUCB(13),ClusUCB(15)} 
       %\legend{ClusUCB (NC, p=1),ClusUCB (C, p=4),ClusUCB(C, p=10) ,MOSS, ClusUCB(C, p=5, NAE), ClusUCB(C, p=10, NAE)}
       %\legend{ClusUCB(1,A),ClusUCB(4,B),ClusUCB(10,B), MOSS,ClusUCB(5,S), ClusUCB(10,A)}
       \end{axis}
@@ -151,7 +184,6 @@ Improved is poor in comparison to other algorithms, which is probably because of
   \end{subfigure}
   \end{tabular}
 \end{figure}
-
 
 	The fourth experiment is performed over a testbed having $20$ Bernoulli-distributed arms with $r_{i_{:{{i}\neq {*}}}}=0.06,\forall i\in A$ and $r^{*}=0.1$. In Figure \ref{Fig:variousClus}, we report the results with $T=60000$ averaged over $100$ independent runs for ClusUCB with  $p=\lbrace 1,4,10\rbrace$. Also, in this experiment we take $\psi = 1$ to make sure that the exploration is low. Under these conditions, exploration is low and the elimination parameters are decreased very fast. This leads to a greater number of errors committed by ClusUCB-AE that is ClusUCB($p=1$). Two other benchmark algorithms are considered here, MOSS which is one of our main competitors and TS which has performed near equivalently in experiment $1$(see Fig \ref{fig:1}). In this case we see that, since $\rho_{a}$ is decreased very fast, the optimal arm $a^{*}$ gets eliminated most of the time for no clustering $p=1$. While a balance of $p,\rho_{a}$ and $\rho_{s}$ gives a much better result. ClusUCB with $p=4$ and $10$ 
 perform better than MOSS, while $p=1$ with just arm elimination does not converge and $p=5,10$ with just Cluster elimination and no arm elimination also does not converge, implying both cluster and arm elimination are necessary. This also concurs with the theoretical observations (see Proposition \ref{proofTheorem:Prop:2} and the discussion in Section \ref{sec:results} on the analysis of elimination error).
