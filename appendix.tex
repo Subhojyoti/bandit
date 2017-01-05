@@ -994,7 +994,7 @@ The regret $R_T$ of EClusUCB satisfies
 & \!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T, 
 \end{align*}
 
-where $b\geq \sqrt{\frac{e}{T}}$, $C_1(x) = \frac{2^{1+4x}x^{2x}}{\psi^{x}}$, $C_2(x) = \frac{2^{2x+\frac{3}{2}}x^{2x}}{\psi^{x}}$ and $A_{s^{*}}$ is the subset of arms in cluster $s^{*}$ containing optimal arm $a^{*}$.
+where $b\geq \sqrt{\frac{e}{T}}$, $C_1(x) = \frac{2^{1+4x}x^{2x}}{\psi^{x}}$, $C_2(x) = \frac{2^{2x+\frac{3}{2}}x^{2x}}{\psi^{x}}$, $\rho_{a}\leq \rho_{s}$ and $A_{s^{*}}$ is the subset of arms in cluster $s^{*}$ containing optimal arm $a^{*}$.
 %, $\rho_{a}=\dfrac{1}{2},\rho_{s}=\dfrac{1}{2}$ and $\psi=K^{2}T$.
 \end{theorem}
 
@@ -1264,13 +1264,83 @@ The main claim follows by summing the contributions to the expected regret from 
 \end{proof}
 
 \section{Proof of Theorem 3}
+\begin{theorem}
+\label{Result:Theorem:3}
+
+For every $0<\eta <1$ and $\gamma > 1$, there exists $\tau$ such that for all $T>\tau$ the simple regret of EClusUCB is upper bounded by,
+\begin{align*}
+SR_{EClusUCB} \leq 4K \gamma \exp(\frac{1}{2}- \rho_{a} -\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{a}}}\bigg) + 4K \gamma \exp(\frac{1}{2}- \rho_{s} -\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{s}}}\bigg) 
+\end{align*}
+
+with probability at least $1-\eta$, where $c_{0}>0$ is a constant.
+
+\end{theorem}
 
 
 \begin{proof}
-We follow the same steps as in Theorem 2, \cite{liu2016modification}. 
+We follow the same steps as in Theorem 2, \cite{liu2016modification}. First we will state the two facts used by this proof.
+
+\begin{enumerate}
+\item \emph{Fact 1:} From Theorem \ref{Result:Theorem:2} we know that the probability of elimination of a sub-optimal arm in the $\max(m_{i},g_{s_{k}})$ round is $\bigg(\frac{2}{(\psi T\epsilon_{m_{i}}^{2})^{\rho_{a}}}\bigg)$ and of a sub-optimal cluster is $\bigg(\dfrac{2}{(\psi  T\epsilon_{g_{s_{k}}}^{2})^{\rho_{s}}}\bigg)$.
+\item \emph{Fact 2:} From \cite{tolpin2012mcts} we know that, for every $0<\eta <1$ and $\gamma > 1$, there exists $\tau$ such that for all $T>\tau$ the probability of a sub-optimal arm $i$ being sampled in the $m$-th round is bounded by $P_{m}\leq 2\gamma \exp(-c_{m}\dfrac{\sqrt{T}}{2})$, where $c_{m}=\dfrac{c_{0}}{2^{m}}$.
+\end{enumerate}
+
+We start with an upper bound on the number of plays $\delta_{\max(m_{i},g_{s_{k}})}$ in the $\max(m_{i},g_{s_{k}})$-th round divided by the total number of plays $T$. We know  from Fact $1$  that the total number of arms surviving in the $\max(m_{i},g_{s_{k}})$-th arm is 
+
+\begin{align*}
+|B_{\max(m_{i},g_{s_{k}})}|=\bigg(\dfrac{2K}{(\psi T\epsilon_{m_{i}}^{2})^{\rho_{a}}}\bigg) + \bigg(\dfrac{2K}{(\psi  T\epsilon_{g_{s_{k}}}^{2})^{\rho_{s}}}\bigg)
+\end{align*}     
+
+Again in EClusUCB, we know that the number of pulls allocated for each surviving arm $i$ in the $\max(m_{i},g_{s_{k}})$-th round is $n_{\max(m_{i},g_{s_{k}})}=\dfrac{2\log (\psi T \epsilon_{\max(m_{i},g_{s_{k}})}^{2})}{\epsilon_{\max(m_{i},g_{s_{k}})}}$. Therefore, the proportion of plays $\delta_{\max(m_{i},g_{s_{k}})}$ in the $\max(m_{i},g_{s_{k}})$-th round can be written as,
+
+\begin{align*}
+\delta_{\max(m_{i},g_{s_{k}})}=\dfrac{(|B_{\max(m_{i},g_{s_{k}})}|.n_{\max(m_{i},g_{s_{k}})})}{T} &\leq \bigg(\dfrac{1}{T}.\dfrac{2K}{(\psi T\epsilon_{m_{i}}^{2})^{\rho_{a}}}.\dfrac{2\log (\psi T \epsilon_{m_{i}}^{2})}{\epsilon_{m_{i}}}\bigg) + \bigg(\dfrac{1}{T}.\dfrac{2K}{(\psi  T\epsilon_{g_{s_{k}}}^{2})^{\rho_{s}}}.\dfrac{2\log (\psi T \epsilon_{g_{s_{k}}}^{2})}{\epsilon_{g_{s_{k}}}}\bigg)\\
+& \leq \bigg(\dfrac{4K\log (\psi T \epsilon_{m_{i}}^{2})}{T\epsilon_{m_{i}}(\psi T\epsilon_{m_{i}}^{2})^{\rho_{a}}}\bigg) + \bigg(\dfrac{4K\log (\psi T \epsilon_{g_{s_{k}}}^{2})}{T\epsilon_{g_{s_{k}}}(\psi  T\epsilon_{g_{s_{k}}}^{2})^{\rho_{s}}}\bigg)
+\end{align*}
+
+Now, $\epsilon_{m_{i}}\geq \sqrt{\dfrac{e}{T}}$ and $\epsilon_{g_{s_{k}}}\geq \sqrt{\dfrac{e}{T}}$ for all rounds $m=0,1,2,...,\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$.
+
+\begin{align*}
+\delta_{\max(m_{i},g_{s_{k}})} &\leq \bigg(\dfrac{4K\log (\psi T \epsilon_{m_{i}}^{2})}{T\epsilon_{m_{i}}(\psi T\epsilon_{m_{i}}^{2})^{\rho_{a}}}\bigg) + \bigg(\dfrac{4K\log (\psi T \epsilon_{g_{s_{k}}}^{2})}{T\epsilon_{g_{s_{k}}}(\psi  T\epsilon_{g_{s_{k}}}^{2})^{\rho_{s}}}\bigg)\\
+& \leq \bigg(\dfrac{4K\log (\psi T )}{T\epsilon_{M}(\psi T\epsilon_{M}^{2})^{\rho_{a}}}\bigg) + \bigg(\dfrac{4K\log (\psi T )}{T\epsilon_{M}(\psi  T\epsilon_{M}^{2})^{\rho_{s}}}\bigg)\\
+& \leq \bigg(\dfrac{4Ke^{\frac{1}{2}-\rho_{a}}\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{a}}}\bigg) + \bigg(\dfrac{4Ke^{\frac{1}{2}-\rho_{s}}\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{s}}}\bigg)
+\end{align*}
+
+Now, applying the bound from Fact 2, we can show that the probability of the sub-optimal arm $i$ being pulled is bounded above by,
+
+\begin{align*}
+P_{i} = \sum_{m=0}^{M} \delta_{m}.P_{m} &\leq \sum_{m=0}^{M} \bigg\lbrace\bigg(\dfrac{4Ke^{\frac{1}{2}-\rho_{a}}\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{a}}}\bigg) + \bigg(\dfrac{4Ke^{\frac{1}{2}-\rho_{s}}\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{s}}}\bigg)\bigg\rbrace 2\gamma \exp(-\dfrac{c_{m}\sqrt{T}}{4})\\
+& \leq M.\bigg\lbrace\bigg(\dfrac{4Ke^{\frac{1}{2}-\rho_{a}}\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{a}}}\bigg) + \bigg(\dfrac{4Ke^{\frac{1}{2}-\rho_{s}}\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{s}}}\bigg)\bigg\rbrace 2\gamma \exp(-\dfrac{c_{0}\sqrt{T}}{2^{M}.4})\\
+& \leq \log_{2}\dfrac{T}{e}\gamma \exp(\dfrac{c_{0}\sqrt{e}}{4})\bigg\lbrace\bigg(\dfrac{4Ke^{\frac{1}{2}-\rho_{a}}\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{a}}}\bigg) + \bigg(\dfrac{4Ke^{\frac{1}{2}-\rho_{s}}\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{s}}}\bigg)\bigg\rbrace \text{, for $M=\big \lfloor \dfrac{1}{2}\log_{2} \dfrac{T}{e}\big\rfloor$}
+\end{align*}
+
+Hence, the simple regret of EClusUCB is upper bounded by,
+
+\begin{align*}
+SR_{EClusUCB} &= \sum_{i=1}^{K} \Delta_{i}. P_{i} \leq \sum_{i=1}^{K} \Delta_{i}. \log_{2}\dfrac{T}{e}\gamma \exp(\dfrac{c_{0}\sqrt{e}}{4})\bigg\lbrace\bigg(\dfrac{4Ke^{\frac{1}{2}-\rho_{a}}\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{a}}}\bigg) + \bigg(\dfrac{4Ke^{\frac{1}{2}-\rho_{s}}\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{s}}}\bigg)\bigg\rbrace \\
+&\leq 4K \gamma \exp(\frac{1}{2}- \rho_{a} -\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{a}}}\bigg) + 4K \gamma \exp(\frac{1}{2}- \rho_{s} -\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{s}}}\bigg) 
+\end{align*}
+
 \end{proof}
 
+\section{Proof of Corollary 3}
+\label{Result:Corollary:3}
 
+\begin{corollary}
+For $\psi=K^{2}T$, $\rho_a=\frac{1}{4}$ and $\rho_s=\frac{1}{2}$, the simple regret of EClusucb is given by,
+\begin{align*}
+SR_{EClusUCB} \leq  4K \gamma \exp(-\frac{1}{4}-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{2\log (KT )}{(\sqrt{K} T^{\frac{7}{4}})}\bigg) +   4K \gamma \exp(-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{2\log (KT)}{(K T^3)}\bigg)
+\end{align*}
+\end{corollary}
+
+\begin{proof}
+Putting $\psi=K^{2}T$, $\rho_a=\frac{1}{4}$ and $\rho_s=\frac{1}{2}$ in the simple regret obtained in Theorem \ref{Result:Theorem:3}, we get
+\begin{align*}
+SR_{EClusUCB} &\leq 4K \gamma \exp(-\frac{1}{4}-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{\log (K^{2}T^{2} )}{T^{\frac{3}{2}}(K^2 T^3)^{\frac{1}{4}}}\bigg) + 4K \gamma \exp(-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{\log (K^{2}T^{2} )}{T^{\frac{3}{2}}(K^2 T^3)^{\frac{1}{2}}}\bigg)\\
+& \leq  4K \gamma \exp(-\frac{1}{4}-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{2\log (KT )}{(\sqrt{K} T^{\frac{7}{4}})}\bigg) +   4K \gamma \exp(-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{2\log (KT)}{(K T^3)}\bigg)
+\end{align*} 
+
+\end{proof}
 
 \section{Adaptive Clustered UCB}
 
@@ -1323,9 +1393,10 @@ We follow the same steps as in Theorem 2, \cite{liu2016modification}.
 \end{algorithmic}
 \end{algorithm}
 
-In the previous section we saw that EClusUCB deals with too much early exploration through optimistic greedy sampling. This reduces the cumulative regret, but still one of the principal disadvantage that EClusUCB suffers from is the lack of knowledge of the number of clusters $p$. One way to handle this is to estimate the number of clusters on the fly. In Algorithm \ref{alg:aclusucb}, named Adaptive Clustered UCB , hence referred to as AClusUCB, we explore this idea. AClusuCB uses \emph{hierarchical clustering} (see \cite{friedman2001elements}) to find the number of clusters present. ACLusUCB is similar to EClusUCB with $2$ major differences. The first difference is the call to procedure CreateClusters at every timestep. CreateCluster sub-routine first creates a singleton cluster for each of the surviving arms in $B_{m}$ and then clusters those singleton clusters $s_{k}, s_{d}\in S_{m}$ (say) if any arm $i\in s_{k}$ and $j\in s_{d}$ is such that $|\hat{r}_{i}-\hat{r}_{j}|\leq \epsilon_{m}$. We cluster based on $\epsilon_{m}$ because we have no prior knowledge of the gaps and we are estimating the gap by $\epsilon_{m}$. Also, we are destroying the clusters after every timestep and re-estimating the clusters based on the condition specified. Since, the environment is stochastic, the initial clusters will have very poor purity (arms with $\epsilon_{m}$-close expected means lying in a single cluster) whereas in the later rounds the purity becomes better which leads to the optimal arm $*$ lying in a single cluster of its own which will eliminate all the other clusters based on the cluster elimination condition. The second difference is that, we limit the cluster size from start by $\ell_{m}=2$ and then double it after every round. Since the environment is stochastic, if we do not limit the cluster size, then in the initial rounds it will result in huge chains of clusters because the initial estimates of $\hat{r}_{i}\forall i\in A$ will be poor. This condition just helps in stopping such large chains of clusters.    
+In the previous section we saw that EClusUCB deals with too much early exploration through optimistic greedy sampling. This reduces the cumulative regret, but still one of the principal disadvantage that EClusUCB suffers from is the lack of knowledge of the number of clusters $p$. One way to handle this is to estimate the number of clusters on the fly. In Algorithm \ref{alg:aclusucb}, named Adaptive Clustered UCB , hence referred to as AClusUCB, we explore this idea. AClusuCB uses \emph{hierarchical clustering} (see \cite{friedman2001elements}) to find the number of clusters present. AClusUCB is similar to EClusUCB with $2$ major differences. The first difference is the call to procedure CreateClusters at every timestep. CreateClusters sub-routine first creates a singleton cluster for each of the surviving arms in $B_{m}$ and then clusters those singleton clusters $s_{k}, s_{d}\in S_{m}$ (say) if any arm $i\in s_{k}$ and $j\in s_{d}$ is such that $|\hat{r}_{i}-\hat{r}_{j}|\leq \epsilon_{m}$. We cluster based on $\epsilon_{m}$ because we have no prior knowledge of the gaps and we are estimating the gap by $\epsilon_{m}$. Also, we are destroying the clusters after every timestep and re-constructing the clusters based on the condition specified. Since, the environment is stochastic, the initial clusters will have very poor purity (arms with $\epsilon_{m}$-close expected means lying in a single cluster) whereas in the later rounds the purity becomes better which leads to the optimal arm $*$ lying in a single cluster of its own which will eliminate all the other clusters based on the cluster elimination condition. The second difference is that, we limit the cluster size from start by $\ell_{m}=2$ and then double it after every round. Since the environment is stochastic, if we do not limit the cluster size, then in the initial rounds it will result in huge chains of clusters because the initial estimates of $\hat{r}_{i}\forall i\in A$ will be poor. This condition just helps in stopping such large chains of clusters.    
 
 \section{More Experiments}
+\label{App:MoreExp}
 
 In the first experiment, we check the performance of EClusUCB against $4$ algorithms, UCB1, OCUCB\cite{lattimore2015optimally}, MOSS and TS. The testbed is similar to Experiment $1$, with $20$ arms involving Bernoulli reward distribution with expected rewards of the arms $r_{i_{{i}\neq {*}}}=0.07$ and $r^{*}=0.1$ and horizon $T$ is set to $60000$. The number pf clusters $p$ is set to $5$ and the result is shown in Figure \ref{Fig:EClusUCBexpt1}. Here, we choose the $\psi=\lbrace \frac{T}{\log (KT)}, \log T\rbrace$. From the result we see that EClusUCB is sensitive to the exploratory regulatory factor $\psi$. The first choice of $\psi$ is conservative and does too much exploration while the second choice is optimistic and explores less. Both $\rho_{a}$ and $\rho_{s}$ is set to $\frac{1}{2}$ in all the cases. We see that OCUCB will eventually perform better than MOSS which does not stabilize in $60000$ timesteps but both of them is beaten by EClusUCB. The careful choosing of $\rho_{a}$, $\rho_{s}$ and $\psi$ enables this.
 	
