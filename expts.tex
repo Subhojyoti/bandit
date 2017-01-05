@@ -165,16 +165,13 @@ Improved is poor in comparison to other algorithms, which is probably because of
        clip mode=individual,grid,grid style={gray!30},
   legend style={at={(0.5,-0.2)},anchor=north, legend columns=4} ]
       % UCB
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCBNC_comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB1_comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB3_comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB5_comp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB7_comp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB8_comp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB9_comp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB11_comp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB13_comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB10_comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB15_comp_subsampled.txt};
-      \legend{ClusUCB(1),ClusUCB(3),ClusUCB(5),ClusUCB(7),ClusUCB(9),ClusUCB(11),  ClusUCB(13),ClusUCB(15)} 
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt4_1/clUCB25_comp_subsampled.txt};
+      \legend{ClusUCB(1),ClusUCB(3),ClusUCB(5),ClusUCB(10),ClusUCB(15),ClusUCB(25)} 
       %\legend{ClusUCB (NC, p=1),ClusUCB (C, p=4),ClusUCB(C, p=10) ,MOSS, ClusUCB(C, p=5, NAE), ClusUCB(C, p=10, NAE)}
       %\legend{ClusUCB(1,A),ClusUCB(4,B),ClusUCB(10,B), MOSS,ClusUCB(5,S), ClusUCB(10,A)}
       \end{axis}
@@ -185,9 +182,12 @@ Improved is poor in comparison to other algorithms, which is probably because of
   \end{tabular}
 \end{figure}
 
-	The fourth experiment is performed over a testbed having $20$ Bernoulli-distributed arms with $r_{i_{:{{i}\neq {*}}}}=0.06,\forall i\in A$ and $r^{*}=0.1$. In Figure \ref{Fig:variousClus}, we report the results with $T=60000$ averaged over $100$ independent runs for ClusUCB with  $p=\lbrace 1,4,10\rbrace$. Also, in this experiment we take $\psi = 1$ to make sure that the exploration is low. Under these conditions, exploration is low and the elimination parameters are decreased very fast. This leads to a greater number of errors committed by ClusUCB-AE that is ClusUCB($p=1$). Two other benchmark algorithms are considered here, MOSS which is one of our main competitors and TS which has performed near equivalently in experiment $1$(see Fig \ref{fig:1}). In this case we see that, since $\rho_{a}$ is decreased very fast, the optimal arm $a^{*}$ gets eliminated most of the time for no clustering $p=1$. While a balance of $p,\rho_{a}$ and $\rho_{s}$ gives a much better result. ClusUCB with $p=4$ and $10$ 
-perform better than MOSS, while $p=1$ with just arm elimination does not converge and $p=5,10$ with just Cluster elimination and no arm elimination also does not converge, implying both cluster and arm elimination are necessary. This also concurs with the theoretical observations (see Proposition \ref{proofTheorem:Prop:2} and the discussion in Section \ref{sec:results} on the analysis of elimination error).
-Note also that ClusUCB($p=4$) outperforms TS in this setup.	
+	The fourth experiment is performed over a testbed having $50$ Gaussian-distributed arms with $r_{i_{:{{i}\neq {*}}}}=0.8,\forall i\in A$, $r^{*}=0.9$ and $\sigma^{2}=1.0$. In Figure \ref{Fig:variousClus}, we report the results with $T=400000$ averaged over $100$ independent runs for ClusUCB with  $p=\lbrace 1,3,5,10,15,25\rbrace$. Also, in this experiment we take $\psi = K^{2}T$, $\rho_a=0.25$ and $\rho_{s}=0.5$. The variance leads to a greater number of errors committed by ClusUCB-AE that is ClusUCB($p=1$). 
+	
+	
+%	Two other benchmark algorithms are considered here, MOSS which is one of our main competitors and TS which has performed near equivalently in experiment $1$(see Fig \ref{fig:1}). In this case we see that, since $\rho_{a}$ is decreased very fast, the optimal arm $a^{*}$ gets eliminated most of the time for no clustering $p=1$. While a balance of $p,\rho_{a}$ and $\rho_{s}$ gives a much better result. ClusUCB with $p=4$ and $10$ 
+%perform better than MOSS, while $p=1$ with just arm elimination does not converge and $p=5,10$ with just Cluster elimination and no arm elimination also does not converge, implying both cluster and arm elimination are necessary. This also concurs with the theoretical observations (see Proposition \ref{proofTheorem:Prop:2} and the discussion in Section \ref{sec:results} on the analysis of elimination error).
+%Note also that ClusUCB($p=4$) outperforms TS in this setup.	
 	
 %We also see that in this testbed UCB-Improved performs the worst and it confirms our assumption that it spends too much pulls in the initial exploration.
 
