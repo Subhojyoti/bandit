@@ -1005,7 +1005,7 @@ We can see from the result of this theorem that the regret upper bound for EClus
 %$\Delta_{i}^{'}=r_{a_{\max_{s_{k}}}} - r_{i}$ such that $a_{i}\in s_{k}$,
 % m_{i}^{'}=\min{\lbrace m|\sqrt{\rho_{a}\epsilon_{m}} < \frac{\Delta_{i}^{'}}{2} \rbrace}
 Let $A^{'}=\lbrace i \in A,\Delta_{i}> b\rbrace$,  $A^{''}=\lbrace i \in A, \Delta_{i} > 0\rbrace$, $A^{'}_{s_{k}}=\lbrace i \in A_{s_{k}},\Delta_{i}> b\rbrace$ and $A^{''}_{s_{k}}=\lbrace i \in A_{s_{k}}, \Delta_{i} > 0 \rbrace$. $C_{g}$ is the cluster set containing max payoff arm from each cluster in $g$-th round. The arm having the highest payoff in a cluster $s_{k}$ is denote by $a_{\max_{s_{k}}}$. Let for each sub-optimal arm ${i}\in A$, $m_{i}=\min{\lbrace m|\sqrt{\rho_{a}\epsilon_{m}} < \frac{\Delta_{i}}{2} \rbrace}$ and let for each cluster $s_{k}\in S$, $g_{s_{k}}=\min{\lbrace g|\sqrt{\rho_{s}\epsilon_{g}} < \frac{\Delta_{a_{\max_{s_{k}}}}}{2} \rbrace}$. 
-Let $\check{A}=\lbrace {i}\in A^{'} | {i}\in s_{k} , \forall s_{k}\in S \rbrace$. Also $n_{i}$ denotes total number of times an arm $i$ has been pulled from time $t=1$ to $T$. $n_{m_{i}}$ denotes the number of pulls allocated to the surviving arms in $B_{m}$.
+Let $\check{A}=\lbrace {i}\in A^{'} | {i}\in s_{k} , \forall s_{k}\in S \rbrace$. Also $n_{i}$ denotes total number of times an arm $i$ has been pulled from time $t=1$ to $T$. In the $m$-th round, $n_{m}$ denotes the number of pulls allocated to the surviving arms in $B_{m}$.
 %and $n_{m_{i}}$ denotes the number of times the arm $i$ has been pulled in the $m$-th round. 
 %and $A^{'''}_{s_{k}}=\lbrace i \in A_{s_{k}}, b < \Delta_{a_{\max_{s_{k}}}} < \Delta_{i}^{'}  \rbrace$
 %\todos[inline]{define $g_{s_k}$ for each cluster $s_k \in S$}
@@ -1269,7 +1269,7 @@ The main claim follows by summing the contributions to the expected regret from 
 
 For every $0<\eta <1$ and $\gamma > 1$, there exists $\tau$ such that for all $T>\tau$ the simple regret of EClusUCB is upper bounded by,
 \begin{align*}
-SR_{EClusUCB} \leq 4K \gamma \exp(\frac{1}{2}- \rho_{a} -\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{a}}}\bigg) + 4K \gamma \exp(\frac{1}{2}- \rho_{s} -\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{s}}}\bigg) 
+SR_{EClusUCB} \leq 4K \gamma  \sum_{i=1}^{K} \Delta_{i} \bigg \lbrace \exp(\frac{1}{2}- \rho_{a} -\dfrac{c_{0}\sqrt{e}}{4}) \bigg(\dfrac{\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{a}}}\bigg) + \exp(\frac{1}{2}- \rho_{s} -\dfrac{c_{0}\sqrt{e}}{4}) \bigg(\dfrac{\log (\psi T )}{T^{\frac{3}{2}}(\psi T^2)^{\rho_{s}}}\bigg) \bigg\rbrace
 \end{align*}
 
 with probability at least $1-\eta$, where $c_{0}>0$ is a constant.
@@ -1327,20 +1327,36 @@ SR_{EClusUCB} &= \sum_{i=1}^{K} \Delta_{i}. P_{i} \leq \sum_{i=1}^{K} \Delta_{i}
 \label{Result:Corollary:3}
 
 \begin{corollary}
-For $\psi=K^{2}T$, $\rho_a=\frac{1}{4}$ and $\rho_s=\frac{1}{2}$, the simple regret of EClusucb is given by,
+For $\psi=\dfrac{T}{\log (KT)}$, $\rho_a=\frac{1}{2}$ and $\rho_s=\frac{1}{2}$, the simple regret of EClusUCB is given by,
 \begin{align*}
-SR_{EClusUCB} \leq  4K \gamma \exp(-\frac{1}{4}-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{2\log (KT )}{(\sqrt{K} T^{\frac{7}{4}})}\bigg) +   4K \gamma \exp(-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{2\log (KT)}{(K T^3)}\bigg)
+SR_{EClusUCB} \leq  8K \gamma \exp(-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i}  \bigg(\dfrac{2 \sqrt{\log (KT)} \log (\dfrac{T}{\sqrt{\log (KT)}} )}{T^{3}}\bigg)
 \end{align*}
 \end{corollary}
 
 \begin{proof}
-Putting $\psi=K^{2}T$, $\rho_a=\frac{1}{4}$ and $\rho_s=\frac{1}{2}$ in the simple regret obtained in Theorem \ref{Result:Theorem:3}, we get
+Putting $\psi=\dfrac{T}{\log (KT)}$, $\rho_a=\frac{1}{2}$ and $\rho_s=\frac{1}{2}$ in the simple regret obtained in Theorem \ref{Result:Theorem:3}, we get
 \begin{align*}
-SR_{EClusUCB} &\leq 4K \gamma \exp(-\frac{1}{4}-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{\log (K^{2}T^{2} )}{T^{\frac{3}{2}}(K^2 T^3)^{\frac{1}{4}}}\bigg) + 4K \gamma \exp(-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{\log (K^{2}T^{2} )}{T^{\frac{3}{2}}(K^2 T^3)^{\frac{1}{2}}}\bigg)\\
-& \leq  4K \gamma \exp(-\frac{1}{4}-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{2\log (KT )}{(\sqrt{K} T^{\frac{7}{4}})}\bigg) +   4K \gamma \exp(-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i} \bigg(\dfrac{2\log (KT)}{(K T^3)}\bigg)
+SR_{EClusUCB} &\leq 8K \gamma \exp(-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i}  \bigg(\dfrac{\log (\dfrac{T^{2}}{\log (KT)} )}{T^{\frac{3}{2}}(\frac{T^3}{\log (KT)})^{\frac{1}{2}}}\bigg)\\
+& \leq 8K \gamma \exp(-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i}  \bigg(\dfrac{2 \sqrt{\log (KT)} \log (\dfrac{T}{\sqrt{\log (KT)}} )}{T^{3}}\bigg)
 \end{align*} 
 
 \end{proof}
+
+\begin{table}
+\caption{Simple regret upper bounds for different bandit algorithms}
+\label{tab:regret-bds1}
+\begin{center}
+\begin{tabular}{|c|c|}
+\toprule
+Algorithm  & Upper bound \\
+\midrule
+%$CCB_{\delta}$         &$O\left(K\gamma \max_{i}\Delta_{i}\log T\delta \exp(-\dfrac{c_{0}\sqrt{T}}{•})  \right)$ \\\midrule
+CCB &$O\left(K\gamma\sum_{i=1}^{K}\Delta_{i} exp(2-\dfrac{c_{0}\sqrt{e}}{4})\log_{2}\big(\dfrac{T}{e}\big)\dfrac{log T}{T^4}\right)$ \\\midrule
+EClusUCB      &$O\left(K \gamma \exp(-\dfrac{c_{0}\sqrt{e}}{4}) \sum_{i=1}^{K} \Delta_{i}  \bigg(\dfrac{ \sqrt{\log (KT)} \log (\dfrac{T}{\sqrt{\log (KT)}} )}{T^{3}}\bigg)\right)$\\\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
 
 \section{Adaptive Clustered UCB}
 
@@ -1400,7 +1416,7 @@ In the previous section we saw that EClusUCB deals with too much early explorati
 
 In the first experiment, we check the performance of EClusUCB against $4$ algorithms, UCB1, OCUCB\cite{lattimore2015optimally}, MOSS and TS. The testbed is similar to Experiment $1$, with $20$ arms involving Bernoulli reward distribution with expected rewards of the arms $r_{i_{{i}\neq {*}}}=0.07$ and $r^{*}=0.1$ and horizon $T$ is set to $60000$. The number pf clusters $p$ is set to $5$ and the result is shown in Figure \ref{Fig:EClusUCBexpt1}. Here, we choose the $\psi=\lbrace \frac{T}{\log (KT)}, \log T\rbrace$. From the result we see that EClusUCB is sensitive to the exploratory regulatory factor $\psi$. The first choice of $\psi$ is conservative and does too much exploration while the second choice is optimistic and explores less. Both $\rho_{a}$ and $\rho_{s}$ is set to $\frac{1}{2}$ in all the cases. We see that OCUCB will eventually perform better than MOSS which does not stabilize in $60000$ timesteps but both of them is beaten by EClusUCB. The careful choosing of $\rho_{a}$, $\rho_{s}$ and $\psi$ enables this.
 	
-	In the second Experiment the testbed is same as above and we check the performance of EClusUCB with various parameters against MOSS and TS and the result is shown in Figure \ref{Fig:EClusUCBexpt2}. In all the cases the number of clusters is set at $5$. Here we see that a lesser exploration regulatory factor $\psi=\log T$ and $\rho_{a}=\rho_{s}=0.25$ outperforms most of the other variants. Infact EClusUCB1, EClusUCB3 and EClusUCB4 are better than MOSS.
+	In the second Experiment the testbed is same as above and we check the performance of EClusUCB with various parameters against MOSS and TS and the result is shown in Figure \ref{Fig:EClusUCBexpt2}. In all the cases the number of clusters is set at $5$. Here we see that a lesser exploration regulatory factor $\psi=\log T$ and $\rho_{a}=\rho_{s}=0.25$ outperforms most of the other variants. Infact EClusUCB1, EClusUCB3 and EClusUCB4 are better than MOSS. In both the figures we see that EClusUCB($\log T$) performance is almost similar to AClusUCB.
 
 \begin{figure}
 \centering
@@ -1421,7 +1437,7 @@ In the first experiment, we check the performance of EClusUCB against $4$ algori
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/UCB1comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/MOSScomp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt5/TScomp_subsampled.txt};
-      \legend{EClusUCB($\psi=\log T$),EClusUCB($\psi=\frac{T}{\log(KT)}$),OCUCB,AClusUCB,,UCB1,MOSS,TS}
+      \legend{EClusUCB($\log T$),EClusUCB($\frac{T}{\log(KT)}$),OCUCB,AClusUCB,UCB1,MOSS,TS}
       %\legend{ClusUCB (NC, p=1),ClusUCB (C, p=4),ClusUCB(C, p=10) ,MOSS, ClusUCB(C, p=5, NAE), ClusUCB(C, p=10, NAE)}
       %\legend{ClusUCB(1,A),ClusUCB(4,B),ClusUCB(10,B), MOSS,ClusUCB(5,S), ClusUCB(10,A)}
       \end{axis}
