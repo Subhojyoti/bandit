@@ -37,10 +37,11 @@
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/UCB1comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/clucb_p_10_comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/Med_Elimcomp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/UCB_Improvedcomp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/AclUCB01_comp_subsampled.txt};
 \addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/MOSScomp_subsampled.txt};
-\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/EclUCB01_comp_subsampled.txt};
-      \legend{UCB1,ClusUCB(p=10),Med-Elim,UCB-Improved,MOSS,EClusUCB(p=10)}
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/EclUCB02_comp_subsampled.txt};
+\addplot table[x index=0,y index=1,col sep=tab,each nth point={10}] {results/Expt2/UCB_Improvedcomp_subsampled.txt};
+      \legend{UCB1,ClusUCB(p=10),Med-Elim,AClusUCB,MOSS,EClusUCB(p=10),UCB-Improved}
       \end{axis}
       \end{tikzpicture}}\\}
 			\caption{Experiment $2$: $100$ Gaussian-distributed arms with $r_{i_{{i}\neq {*}:1-33}}=0.01$, $r_{i_{{i}\neq {*}:34-99}}=0.06$ and $r^{*}_{i=100}=0.1$.}
@@ -57,12 +58,13 @@
   legend style={at={(0.5,-0.2)},anchor=north,legend columns=-1} ]
       % UCB
 %\addplot table[x index=0,y index=1,col sep=tab] {results/Expt3/clUCB20_500.txt};
-\addplot table[x index=0,y index=1,col sep=tab] {results/Expt3/clUCB20_500_1.txt};
-\addplot table[x index=0,y index=1,col sep=tab] {results/Expt3/MOSS20_500.txt};
-      \legend{ClusUCB(p=K/10),MOSS}
+\addplot table[x index=0,y index=1,col sep=tab] {results/Expt3_1/EclUCB20_90.txt};
+\addplot table[x index=0,y index=1,col sep=tab] {results/Expt3_1/MOSS20_90.txt};
+\addplot table[x index=0,y index=1,col sep=tab] {results/Expt3_1/OCUCB20_90.txt};
+      \legend{EClusUCB(p=K/10),MOSS,OCUCB}
       \end{axis}
       \end{tikzpicture}}\\}
-			\caption{Experiment $3$: $20$ to $500$ Bernoulli-distributed arms with $r_{i_{{i}\neq {*}}}=0.05$ and $r^{*}=0.1$.}
+			\caption{Experiment $3$: $20$ to $90$ Bernoulli-distributed arms with $r_{i_{{i}\neq {*}}}=0.05$ and $r^{*}=0.1$.}
   \label{fig:3}
   \end{subfigure}
   \end{tabular}
@@ -118,7 +120,7 @@ The first experiment is conducted over a testbed of $20$ arms for the test-cases
 
 	The second experiment is conducted over a testbed of $100$ arms involving Gaussian reward distribution with expected rewards of the arms $r_{i_{{i}\neq {*}:1-33}}=0.01$, $r_{i_{{i}\neq {*}:34-99}}=0.06$ and $r^{*}_{i=100}=0.1$ with variance set at $\sigma^{2} = 0.3,\forall i\in A$. The horizon $T$ is set for a large duration of $2\times 10^{6}$ and the number of clusters $p=20$. The regret is averaged over $100$ independent runs and is shown in Figure \ref{fig:2}. In this case, in addition to EClusUCB, we also show the performance of ClusUCB algorithm (with $p=10$). From the results in Figure \ref{fig:2}, we observe that EClusUCB with $p=10$ outperforms ClusUCB with $p=10$ as well as MOSS, UCB1, UCB-Improved and Median-Elimination($\epsilon=0.03,\delta=0.1$). But as shown in Theorem \ref{Result:Theorem:1}, ClusUCB is better than UCB-Improved even though both are round based methods. Also the performance of UCB-Improved is poor in comparison to other algorithms, which is probably because of pulls wasted in initial exploration whereas ClusUCB with the choice of $\psi, \rho_{a}$ and $\rho_{s}$ performs much better.
 
-	The third experiment is conducted over a testbed of $20-500$ (interval of $10$) arms with Bernoulli reward distribution, where the expected rewards of the arms are $r_{i_{{i}\neq {*}}}=0.05$ and $r^{*}=0.1$. The horizon $T$ is set to $10^{5} + K^{2}\times 10^{4}$ and the number of arms are increased from $K=20$ to $500$. The proposed algorithm ClusUCB is run with $p=K/10$. The regret is averaged over $500$ independent runs and is shown in Figure \ref{fig:3}. We report the performance of MOSS and ClusUCB only over this setup. From the results in Figure \ref{fig:3}, it is evident that the growth of regret for ClusUCB is lower than that of MOSS. 
+	The third experiment is conducted over a testbed of $20-90$ (interval of $10$) arms with Bernoulli reward distribution, where the expected rewards of the arms are $r_{i_{{i}\neq {*}}}=0.05$ and $r^{*}=0.1$. The horizon $T$ is set to $10^{5} + K^{3}$ and the number of arms are increased from $K=20$ to $90$. The proposed algorithm EClusUCB is run with $p=K/10$. The regret is averaged over $100$ independent runs and is shown in Figure \ref{fig:3}. We report the performance of MOSS,OCUCB and EClusUCB only over this setup. From the results in Figure \ref{fig:3}, it is evident that the growth of regret for EClusUCB is lower than that of MOSS and OCUCB. 
 %\begin{figure}
 %\centering
 %  \begin{tabular}{c}
