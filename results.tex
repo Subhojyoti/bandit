@@ -110,10 +110,10 @@ Considering the same gap of $\Delta_{i} = \Delta =\sqrt{\frac{K\log K}{T}}$ for 
 %\frac{6\sqrt{KT}}{p} \!+\! \frac{32\sqrt{KT\log K}}{p} \!+\! \frac{16\sqrt{KT}\log{(\log K)}}{p\sqrt{\log K}}\\
 %&+ 9.6\sqrt{\frac{T}{K\log K}} + 96\sqrt{KT\log K}
 % \\&  + \frac{48\sqrt{KT}\log{(\log K)}}{\sqrt{\log K}} + 5.6\sqrt{\frac{T}{e}}. 
- \E[R_{T}]\le & 70.8\dfrac{\sqrt{T}\log K}{\sqrt{K}} \!+\! \dfrac{32\sqrt{T\log K}\log{(\log K)}}{\sqrt{K}}\\
-  &\!+\! 4\sqrt{KT} \!+\! 128\sqrt{KT\log K}\\
-	& + \dfrac{64\sqrt{KT}\log{(\log K)}}{\sqrt{\log K}} + 2.8\sqrt{\dfrac{T\log K}{e}}\\
-	& + 5.6\sqrt{\dfrac{T}{e}}(\log K)^{\frac{3}{2}} + 5.6 \dfrac{K}{K+\log K}\sqrt{KT}
+\E [R_{T}] \le & 74\dfrac{\sqrt{T}\log K}{\sqrt{K}} \!+\! \dfrac{32\sqrt{T\log K}\log{(\log K)}}{\sqrt{K}}\\
+ &\!+\! 4\sqrt{KT} + 128\sqrt{KT\log K}\\
+ &\!+\! \dfrac{64\sqrt{KT}\log{(\log K)}}{\sqrt{\log K}} + \dfrac{5.3 \sqrt{T}\log K^{\frac{3}{2}} }{\sqrt{K}}\\
+ & \!+\!  \dfrac{10.6K}{K+\log K}\sqrt{KT\log K} + \dfrac{10.6 K}{K+\log K}\sqrt{KT}\\ 
 \end{align*}
 \end{corollary}
 \begin{proof}
@@ -184,6 +184,6 @@ $\tilde R_T = \frac{5.3 \sqrt{T}\log K^{\frac{3}{2}} }{\sqrt{K}} + \frac{5.3 \sq
 %for $b\geq \sqrt{\dfrac{e}{T}}.$ 
 Hence, in comparison to ClusUCB-AE and ClusUCB-CE which has an elimination regret bound of $O(\sqrt{KT\log K})$, the elimination error contribution to regret is lower in ClusUCB which has a bound of $O(\frac{K}{K+\log K}\sqrt{KT\log K})$. %when $\sqrt{\log K}\leq p\leq \frac{K}{2}$. 
  
-Thus, we observe that clustering in conjunction with improved exploration via $\rho_{a},\rho_{s}$,$p$ and $\psi$ helps in reducing the factor associated with $\sqrt{KT}$ for the gap-independent error regret bound for ClusUCB. A table containing the regret error bound is shown in Appendix \ref{App:E}. 
+Thus, we observe that clustering in conjunction with improved exploration via $\rho_{a},\rho_{s}$,$p$ and $\psi$ helps in reducing the factor associated with $\sqrt{KT\log K}$ for the gap-independent error regret bound for ClusUCB. A table containing the regret error bound is shown in Appendix \ref{App:E}. 
 %Moreover, the most significant terms complementary  to $\tilde R_T$ in Theorem \ref{Result:Theorem:1} is  $\frac{\log\bigg(\psi\frac{T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)}{\Delta_{i}}$ and a careful choice of $\psi,\rho_{a}$ and $\rho_{s}$ in Corollary \ref{Result:Corollary:1}   
 %term and  helps in stabilizing the term $\log\bigg(\frac{\psi  T\Delta_{i}^{4}}{\rho_{s}^{2}}\bigg)$.
