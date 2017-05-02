@@ -73,7 +73,7 @@
 \maketitle
 
 \begin{abstract}
-In this paper, we present a novel algorithm for the stochastic multi-armed bandit (MAB) problem. Our proposed Clustered UCB method, referred to as ClusUCB partitions the arms into clusters and then follows the UCB-Improved strategy with aggressive exploration factors to eliminate sub-optimal arms, as well as entire clusters. Through a theoretical analysis, we establish that ClusUCB achieves a better gap-dependent regret upper bound than UCB-Improved~\cite{auer2010ucb} and MOSS~\cite{audibert2009minimax} algorithms. ClusUCB also achieves a gap-independent regret bound of $O\left(\sqrt{KT}\right)$ which is comparable to MOSS and OCUCB~\cite{lattimore2016optimally} and is order optimal. Further, numerical experiments on test-cases with small gaps between optimal and sub-optimal mean rewards show that ClusUCB results in lower cumulative regret than several popular UCB variants as well as MOSS, OCUCB~\cite{lattimore2015optimally}, Thompson sampling and Bayes-UCB\cite{kaufmann2012bayesian}. 
+In this paper, we present a novel algorithm for the stochastic multi-armed bandit (MAB) problem. Our proposed Clustered UCB method, referred to as ClusUCB partitions the arms into clusters and then follows the UCB-Improved strategy with aggressive exploration factors to eliminate sub-optimal arms, as well as entire clusters. Through a theoretical analysis, we establish that ClusUCB achieves a better gap-dependent regret upper bound than UCB1 and UCB-Improved~\cite{auer2010ucb} and in the worst case matches the gap-dependent bound of MOSS~\cite{audibert2009minimax} and OCUCB~\cite{lattimore2016optimally}  algorithms. ClusUCB also achieves a gap-independent regret bound of $O\left(\sqrt{KT}\right)$ which is better than UCB1 and UCB-Improved, also comparable to MOSS and OCUCB and is order optimal. Further, numerical experiments on test-cases with small gaps between optimal and sub-optimal mean rewards show that ClusUCB results in lower cumulative regret than several popular UCB variants as well as MOSS, OCUCB~\cite{lattimore2015optimally}, Thompson sampling and Bayes-UCB\cite{kaufmann2012bayesian}. 
 %We also present another algorithm called Adaptive Clustered UCB or AClusUCB which is intended to look at the effect of using more traditional approaches, like hierarchical clustering, for the grouping of arms.
 
 %\keywords{Multi-armed Bandits, Cumulative Regret, Clustering, UCB-Improved}
@@ -88,6 +88,10 @@ In this paper, we present a novel algorithm for the stochastic multi-armed bandi
 \label{sec:clusucb}
 \input{algo}
 
+\section{Algorithm: Efficient Clustered UCB}
+\label{sec:eclusucb}
+\input{ealgo}
+
 \section{Main results}
 \label{sec:results}
 \input{results}
@@ -100,7 +104,7 @@ In this paper, we present a novel algorithm for the stochastic multi-armed bandi
 
 \section{Conclusions and future work}
 \label{sec:conclusions}
-From a theoretical viewpoint, we conclude that the gap-dependent regret bound of ClusUCB is lower than MOSS and UCB-Improved and its gap-independent regret bound is of the same order as MOSS ans OCUCB. From the numerical experiments on settings with small gaps between optimal and sub-optimal mean rewards, we observed that EClusUCB outperforms several popular bandit algorithms,  including OCUCB. Also ClusUCB is remarkably stable for a large horizon and large number of arms and performs well across different types of distributions. While we exhibited better regret bounds for ClusUCB, it would be interesting future research to improve the theoretical analysis of ClusUCB to achieve the gap-dependent regret bound of  OCUCB. This is also one of the first papers to apply clustering in stochastic MAB and another future direction is to use this in contextual or in distributed bandits. 
+From a theoretical viewpoint, we conclude that the gap-dependent regret bound of ClusUCB is lower than UCB1 and UCB-Improved and its gap-independent regret bound is of the same order as MOSS and OCUCB and is also order optimal. From the numerical experiments in specific environments, we observed that EClusUCB outperforms several popular bandit algorithms,  including OCUCB, TS and BU which fail to leverage the structure of the rewards. Also ClusUCB is remarkably stable for a large horizon and large number of arms and performs well across different types of distributions. While we exhibited better regret bounds for ClusUCB, it would be interesting future research to improve the theoretical analysis of ClusUCB to achieve the gap-dependent regret bound of OCUCB. This is also one of the first papers to apply clustering in stochastic MAB and another future direction is to use this in contextual or in distributed bandits. 
 
 %Distributed bandits are a specific setup of MAB where a network of bandits collaborate with each other to identify the optimal arm(s) (see \cite{awerbuch2008competitive,liu2010distributed,szorenyi2013gossip,hillel2013distributed}). In our setting we can assign each of the $p$ clusters to individual bandits and at the end of each round they can share information synchronously to identify the optimal arm. This naturally results in a speedup of operation and helps in identifying the best arm faster. 
 

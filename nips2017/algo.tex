@@ -1,10 +1,6 @@
 \paragraph{Notation.}
 \label{sec:prelims}
 \input{prelims}
-
-\subsubsection*{The algorithm}
-
-
 %%%%%%%%%%%%%%%% alg-custom-block %%%%%%%%%%%%
 \algblock{ArmElim}{EndArmElim}
 \algnewcommand\algorithmicArmElim{\textbf{\em Arm Elimination}}
@@ -62,16 +58,16 @@
 
 %\todos[inline]{Shouldn't there be a $\psi$ inside the log term on RHS of both elim conditions of Algorithm \ref{alg:clusucb}? (Subho) Addressed: $\psi$ has to be there}
 
-As mentioned in a recent work \cite{liu2016modification}, UCB-Improved has two shortcomings: 	\\
+\textbf{The algorithm (ClusUCB):} As mentioned in a recent work \cite{liu2016modification}, UCB-Improved has two shortcomings: 	\\
 \begin{inparaenum}[\bfseries(i)]
-\item A significant number of pulls are spent in early exploration, since each round $m$ of UCB-Improved involves pulling every arm an identical $n_{m}=\bigg\lceil \dfrac{ 2\log(T\epsilon^{2}_{m})}{\epsilon^{2}_{m}} \bigg\rceil$ number of times. The quantity $\epsilon_{m}$ is initialized to $1$ and halved after every round.\\
-\item In UCB-Improved, arms are eliminated conservatively, i.e, only after $\epsilon_{m}<\dfrac{\Delta_{i}}{2}$, the sub-optimal arm $i$ is discarded with high probability. This is disadvantageous when $K$ is large and the gaps are identical ($r_{1}=r_{2}=..=r_{K-1}<r^{*}$) and small.\\
+\item A significant number of pulls are spent in early exploration, since each round $m$ of UCB-Improved involves pulling every arm an identical $n_{m}=\bigg\lceil \frac{ 2\log(T\epsilon^{2}_{m})}{\epsilon^{2}_{m}} \bigg\rceil$ number of times. The quantity $\epsilon_{m}$ is initialized to $1$ and halved after every round.\\
+\item In UCB-Improved, arms are eliminated conservatively, i.e, only after $\epsilon_{m}<\frac{\Delta_{i}}{2}$, the sub-optimal arm $i$ is discarded with high probability. This is disadvantageous when $K$ is large and the gaps are identical ($r_{1}=r_{2}=..=r_{K-1}<r^{*}$) and small.\\
 \end{inparaenum}
-To reduce early exploration, the number $n_m$ of times each arm is pulled per round in ClusUCB is lower than that of UCB-Improved and also that of Median-Elimination, which used $n_m=\dfrac{4}{\epsilon^{2}}\log\big(\dfrac{3}{\delta}\big)$, where $\epsilon,\delta$ are confidence parameters.
+To reduce early exploration, the number $n_m$ of times each arm is pulled per round in ClusUCB is lower than that of UCB-Improved and also that of Median-Elimination, which used $n_m=\frac{4}{\epsilon^{2}}\log\big(\frac{3}{\delta}\big)$, where $\epsilon,\delta$ are confidence parameters.
 To handle the second problem mentioned above, ClusUCB partitions the larger problem into several small sub-problems using clustering and then performs local exploration aggressively to eliminate sub-optimal arms within each clusters with high probability.
 
 
-As described in the pseudocode in Algorithm~\ref{alg:clusucb}, ClusUCB begins with a initial clustering of arms that is performed by random uniform allocation. The set of clusters $S$ thus obtained satisfies $|S|=p$, with individual clusters having a size that is bounded above by $\ell=\bigg\lceil \dfrac{K}{p} \bigg\rceil$.
+As described in the pseudocode in Algorithm~\ref{alg:clusucb}, ClusUCB begins with a initial clustering of arms that is performed by random uniform allocation. The set of clusters $S$ thus obtained satisfies $|S|=p$, with individual clusters having a size that is bounded above by $\ell=\left\lceil \frac{K}{p} \right\rceil$.
 Each round of ClusUCB involves both individual arm as well as cluster elimination conditions. These elimination conditions are inspired by UCB-Improved. Notice that, unlike UCB-Improved, there is no longer a single point of reference based on which we are eliminating arms. Instead now we have as many reference points to eliminate arms as number of clusters formed. 
 %Further, the exploration factors $\rho_{a}\in (0,1]$ and $\rho_{s}\in (0,1]$ governing the arm and cluster elimination conditions, respectively, are relatively more aggressive than that in UCB-Improved. 
 
@@ -81,7 +77,7 @@ The exploration regulatory factor $\psi$ governing the arm and cluster eliminati
 
 In \cite{liu2016modification}, the authors recommend incorporating a factor of $d_i$ inside the log-term of the UCB values, i.e., $\max \lbrace\hat{r}_{i}+\sqrt{\frac{d_{i}\log T{\epsilon}_{m}^{2}}{2n_{m}}}\rbrace$. 
 The authors there examine the following choices for $d_i$: $\frac{T}{t_{i}}$, $\frac{\sqrt{T}}{t_{i}}$ and $\frac{\log T}{t_{i}}$, where $t_{i}$ is the number of times an arm ${i}$ has been sampled.
-Unlike \cite{liu2016modification}, we employ cluster as well as arm elimination and establish from a theoretical analysis that the choice $\psi=\frac{T}{\log (KT)}$ helps in achieving a better gap-dependent regret upper bound for ClusUCB as compared to UCB-Improved and MOSS (see Corollary \ref{Result:Corollary:1} in the next section). 
+Unlike \cite{liu2016modification}, we employ cluster as well as arm elimination and establish from a theoretical analysis that the choice $\psi=\frac{T}{K^2)}$ helps in achieving a better gap-dependent regret upper bound for ClusUCB as compared to UCB-Improved and MOSS (see Corollary \ref{Result:Corollary:1} in the next section). 
 
 
 

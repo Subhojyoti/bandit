@@ -20,7 +20,7 @@ where $b\geq \sqrt{\frac{e}{T}}$, and $A_{s^{*}}$ is the subset of arms in clust
 \begin{proof} The proof of this theorem is given in Appendix \ref{sec:proofTheorem}.
 \end{proof}
 
-\textit{Remark:} The most significant term in the bound above is $\sum_{i\in A:\Delta_{i}\geq b}\frac{64\log{\big(T\frac{\Delta_{i}^{2}}{K}\big)}}{\Delta_{i}}$ and hence, the regret upper bound for ClusUCB is of the order $O\bigg(\frac{K\log \big(\frac{T\Delta^{2}}{K}\big)}{\Delta}\bigg)$. Since Corollary \ref{Result:Corollary:1} holds for all $\Delta \geq \sqrt{\frac{e}{T}} $, it can be clearly seen that for all $\sqrt{\frac{e}{T}} \leq \Delta\leq 1$ and $K\geq 2$, the gap-dependent bound is better than that of UCB1, UCB-Improved and MOSS (see Table~\ref{tab:regret-bds}). 
+\textit{Remark:} The most significant term in the bound above is $\sum_{i\in A:\Delta_{i}\geq b}\frac{64\log{\big(T\frac{\Delta_{i}^{2}}{K}\big)}}{\Delta_{i}}$ and hence, the regret upper bound for ClusUCB is of the order $O\bigg(\frac{K\log \big(\frac{T\Delta^{2}}{K}\big)}{\Delta}\bigg)$. Since Corollary \ref{Result:Corollary:1} holds for all $\Delta \geq \sqrt{\frac{e}{T}} $, it can be clearly seen that for all $\sqrt{\frac{e}{T}} \leq \Delta\leq 1$ and $K\geq 2$, the gap-dependent bound is better than that of UCB1, UCB-Improved. In the worst case scenario when all the gaps are uniform CLusUCB bound matches that of MOSS and OCUCB (see Table~\ref{tab:comp-bds}). 
 
 
 We now show the the gap-independent regret bound of ClusUCB in Corollary \ref{Result:Corollary:1}.
@@ -41,16 +41,16 @@ Considering the same gap of $\Delta_{i} = \Delta =\sqrt{\frac{K\log K}{T}}$ for 
 The proof of this corollary is given in Appendix~\ref{App:Proof:Corollary:1}
 \end{proof}
 
-\textit{Remarks:} From the above result, we observe that the order of the regret upper bound of ClusUCB is $O(\sqrt{KT})$, and this matches the order of MOSS, OUCUCB and UCB-Improved and is order optimal. This  bound is also better than UCB1 and UCB-Improved. 
+\textit{Remarks:} From the above result, we observe that the order of the regret upper bound of ClusUCB is $O(\sqrt{KT})$, and this matches the order of MOSS and OUCUCB and is order optimal. This  bound is also better than UCB1 and UCB-Improved. 
 
-Next, we state the special case of ClusUCB when $p=1$, i.e there is a single cluster and there are no cluster elimination condition but only arm elimination condition. We name this algorithm ClusUCB-AE.
+Next, we state the regret upper bound for the special case of ClusUCB when $p=1$, i.e there is a single cluster and there are no cluster elimination condition but only arm elimination condition. We name this algorithm ClusUCB-AE.
 
 
 \begin{proposition}
 \label{proofTheorem:Prop:1}
 The regret $R_T$ for ClusUCB-AE satisfies
 \begin{align*}
-&\E [R_{T}]\leq \E[R_{T}] \leq &\sum\limits_{i\in A:\Delta_{i} > b} \left\lbrace 12K + \bigg(\Delta_{i}+\dfrac{32\log{(\frac{T\Delta_i^2}{K})}}{\Delta_{i}}\bigg) + 16K\right\rbrace +\sum\limits_{i\in A:0 < \Delta_{i}\leq b} 16K + \max_{i\in A:\Delta_{i}\leq b}\Delta_{i}T,
+&\E [R_{T}]\leq &\sum\limits_{i\in A:\Delta_{i} > b} \left\lbrace 12K + \bigg(\Delta_{i}+\dfrac{32\log{(\frac{T\Delta_i^2}{K})}}{\Delta_{i}}\bigg) + 16K\right\rbrace +\sum\limits_{i\in A:0 < \Delta_{i}\leq b} 16K + \max_{i\in A:\Delta_{i}\leq b}\Delta_{i}T,
 \end{align*}
 for all $b\geq\sqrt{\frac{e}{T}}$.
 \end{proposition}
@@ -109,7 +109,7 @@ Let $\widetilde R_T$ denote the contribution  to the expected regret in the case
 As stated before We shall denote variant of ClusUCB that includes arm elimination condition only as ClusUCB-AE while ClusUCB corresponds to Algorithm \ref{alg:clusucb}, which uses both arm and cluster elimination conditions. The regret upper bound for ClusUCB-AE is given in Proposition \ref{proofTheorem:Prop:1}.
 
 For ClusUCB-AE, the quantity $\widetilde R_T$ can be extracted from the proofs (in particular, case b2 in Appendix \ref{App:A}) and simplified to obtain $\widetilde R_T = 32K^2 $. Finally, for ClusUCB, the relevant terms from Theorem \ref{Result:Theorem:1} that corresponds to $\widetilde R_T$ can be simplified with $\rho_{a}=\frac{1}{2}$, $\rho_{s}=\frac{1}{2},p=\big\lceil \frac{K}{\log K} \big\rceil$ and $\psi=\frac{T}{K^2}$ (as in Corollary \ref{Result:Corollary:1} to obtain  
-$\tilde R_T = 32K\log K + \dfrac{64 K^3}{K+\log K}$. Hence, in comparison to ClusUCB-AE which has an elimination regret bound of $O(K^2)$, the elimination error regret bound of ClusUCB is lower and of the order $O(\dfrac{64 K^3}{K+\log K})$. Thus, we observe that clustering in conjunction with improved exploration via $\rho_{a},\rho_{s}$,$p$ and $\psi$ helps in reducing the factor associated with $K^2$ for the gap-independent error regret bound for ClusUCB. Also in section \ref{sec:expts}, in experiment $4$ we show that ClusUCB outperforms ClusUCB-AE. 
+$\tilde R_T = 32K\log K + \dfrac{64 K^3}{K+\log K}$. Hence, in comparison to ClusUCB-AE which has an elimination regret bound of $O(K^2)$, the elimination error regret bound of ClusUCB is lower and of the order $O(\dfrac{ K^3}{K+\log K})$. Thus, we observe that clustering in conjunction with improved exploration via $\rho_{a},\rho_{s}$,$p$ and $\psi$ helps in reducing the factor associated with $K^2$ for the gap-independent error regret bound for ClusUCB. Also in section \ref{sec:expts}, in experiment $4$ we show that ClusUCB outperforms ClusUCB-AE. 
 
 %A table containing the regret error bound is shown in Appendix \ref{App:E}.
 
