@@ -110,7 +110,29 @@ As stated before We shall denote variant of ClusUCB that includes arm eliminatio
 
 For ClusUCB-AE, the quantity $\widetilde R_T$ can be extracted from the proofs (in particular, case b2 in Appendix \ref{App:A}) and simplified to obtain $\widetilde R_T = 32K^2 $. Finally, for ClusUCB, the relevant terms from Theorem \ref{Result:Theorem:1} that corresponds to $\widetilde R_T$ can be simplified with $\rho_{a}=\frac{1}{2}$, $\rho_{s}=\frac{1}{2},p=\big\lceil \frac{K}{\log K} \big\rceil$ and $\psi=\frac{T}{K^2}$ (as in Corollary \ref{Result:Corollary:1} to obtain  
 $\tilde R_T = 32K\log K + \frac{64 K^3}{K+\log K}$. Hence, in comparison to ClusUCB-AE which has an elimination regret bound of $O(K^2)$, the elimination error regret bound of ClusUCB is lower and of the order $O\left(\frac{ K^3}{K+\log K}\right)$. Thus, we observe that clustering in conjunction with improved exploration via $\rho_{a},\rho_{s}$,$p$ and $\psi$ helps in reducing the factor associated with $K^2$ for the gap-independent error regret bound for ClusUCB. Also in section \ref{sec:expts}, in experiment $4$ we show that ClusUCB outperforms ClusUCB-AE. 
-
 %A table containing the regret error bound is shown in Appendix \ref{App:E}.
 
+Next, we present the main regret upper bound for EClusUCB.
 
+\begin{theorem}[\textbf{\textit{Gap dependent regret bound}}]
+\label{Result:Theorem:1}
+For $T\geq K^{2.4} $, $\rho_a =\frac{1}{2}$, $\rho_s =\frac{1}{2}$ and $\psi=\frac{T}{K^2}$ the regret $R_T$ of EClusUCB satisfies
+\begin{align*}
+&\E [R_{T}]\leq 
+\sum\limits_{\substack{i\in A_{s^{*}},\\\Delta_{i} > b}}\bigg\lbrace \Delta_{i} + 4108K^{2.8}
++ \frac{32\log{(\frac{T\Delta_i^2}{K})}}{\Delta_{i}} \bigg\rbrace
+ + \! \! \sum\limits_{\substack{i\in A,\\\Delta_{i} > b}} \bigg\lbrace 2\Delta_{i} +
+4108K^{2.8} + \frac{64\log{(\frac{T\Delta_i^2}{K})}}{\Delta_{i}} \bigg\rbrace \\
+%%%%%%%%%%%%%%%%%
+&+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}} 
+62K+\sum\limits_{\substack{i\in A_{s^{*}},\\0 < \Delta_{i}\leq b}} 62K + \sum_{\substack{i\in A\setminus A_{s^*}:\\\Delta_{i}> b}}124K +\sum_{\substack{i\in A \setminus A_{s^*}:\\ 0 < \Delta_{i} \leq b}}124K 
+ \!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T, 
+\end{align*}
+where $b\geq \sqrt{\frac{e}{T}}$, and $A_{s^{*}}$ is the subset of arms in cluster $s^{*}$ containing optimal arm $a^{*}$.
+\end{theorem}
+
+\begin{proof}
+The proof of this theorem is given in Appendix \ref{sec:proofTheorem2}.
+\end{proof}
+
+\textit{Remark:} Thus we see that the regret upper bound of EClusUCB is higher than that of ClusUCB but still it has the same order as $O\bigg(\frac{K\log \big(\frac{T\Delta^{2}}{K}\big)}{\Delta}\bigg)$. Proceeding similarly like Corollary \ref{Result:Corollary:1} we can show that the gap-independent bound of EClusUCB satisfies an order of $O\left( \sqrt{KT}\right)$ as that of ClusUCB and is order optimal.
