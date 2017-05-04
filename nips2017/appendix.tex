@@ -253,7 +253,7 @@ In the above case, $(a)$ is obtained by substituting the values of $\psi$ and $\
 %& = \sum_{i\in A^{'}}\bigg(\dfrac{ C_{2}(\rho_{a}) T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} \bigg)+\sum_{i\in A^{''}\setminus A^{'}}\bigg(\dfrac{C_{2(\rho_{a})}T^{1-\rho_{a}}}{b^{4\rho_{a}-1}} \bigg) \text{, where } C_2(x) = \frac{2^{2x+\frac{3}{2}}}{\psi^{x}}
 \end{align*}
 
-Again $(a)$ is obtained by substituting the values of $\psi$ and $\rho_a$. Summing up \textbf{Case a} and \textbf{Case b}, the total regret till round $m$ is given by,
+Again $(a)$ is obtained by substituting the values of $\psi$ and $\rho_a$. Summing up \textbf{Case a} and \textbf{Case b}, the total regret is given by,
 \begin{align*}
  \E[R_{T}] \leq &\sum\limits_{i\in A:\Delta_{i} > b} \left\lbrace 12K + \bigg(\Delta_{i}+\dfrac{32\log{(\frac{T\Delta_i^2}{K})}}{\Delta_{i}}\bigg) + 16K\right\rbrace +\sum\limits_{i\in A:0 < \Delta_{i}\leq b} 16K + \max_{i\in A:\Delta_{i}\leq b}\Delta_{i}T
 \end{align*}
@@ -286,5 +286,70 @@ Again $(a)$ is obtained by substituting the values of $\psi$ and $\rho_a$. Summi
 %
 %While looking at the error terms in Table~\ref{App:E:table:3}, we see that using just arm elimination (ClusUCB-AE) the elimination error bound is more than using both arm and cluster  elimination simultaneously (ClusUCB). 
 
+\section{Proof of Lemma 3}
+\label{App:Lemma3}
+\begin{lemma}
+\label{proofTheorem:Lemma:3}
+If $m_i = min\lbrace m|\sqrt{2\epsilon_{m} } < \dfrac{\Delta_i}{4} \rbrace $, $c_{i}^{'} =\sqrt{\frac{\log (\psi T\epsilon_{m_{i}})}{z_{i}}}$ and $n_{m_i}=\dfrac{\log{(\psi T\epsilon_{m_{i}}^{2})}}{2\epsilon_{m_{i}}}$ then, 
+\begin{align*}
+\Pb\lbrace c^{*'} > c_i^{'} \rbrace \leq \dfrac{2}{T(\psi \epsilon_{m_i})^2}.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+From the definition of $c_i^{'}$ we know that $c_i^{'}\propto \frac{1}{z_i}$ as $\psi$ and $T$ are constants. Therefore in the $m_i$-th round,
+\begin{align*}
+\Pb\lbrace c^{*'} > c_i^{'} \rbrace \leq  \Pb\lbrace  z^* < z_i  \rbrace \leq \sum_{m=0}^{m_i}\sum_{z_i =1}^{n_{m_i}}\sum_{z^* =1}^{n_{m_i}}\bigg(\Pb\lbrace \hat{r}^* < r^* + c^{*'}\rbrace + \Pb\lbrace \hat{r}_i > r_i + c_i^{'}\rbrace\bigg)
+\end{align*}
+
+Now, applying Chernoff-Hoeffding bound we can show that,
+\begin{align*}
+&\Pb\lbrace \hat{r}^* < r^* + c^{*'}\rbrace \leq \exp(- 2(c^{*'})^2 n^*)\leq \frac{1}{(\psi T\epsilon_{m_i})^2} \\ 
+&\Pb\lbrace \hat{r}_i > r_i + c_i^{'}\rbrace \leq \exp(- 2(c_i^{'})^2 n_i)\leq \frac{1}{(\psi T\epsilon_{m_i})^2}
+\end{align*}
+
+Hence, summing everything up, 
+\begin{align*}
+\Pb\lbrace c^{*'} > c_i^{'} \rbrace \leq \sum_{m=0}^{m_i}\sum_{z_i =1}^{n_{m_i}}\sum_{z^* =1}^{n_{m_i}} \dfrac{2}{(\psi T\epsilon_{m_i})^2} \leq \dfrac{2T}{(\psi T\epsilon_{m_i})^2} \leq \dfrac{2}{T(\psi\epsilon_{m_i})^2}.
+\end{align*}
+
+\end{proof}
 
 
+\section{Proof of Lemma 4}
+\label{App:Lemma4}
+\begin{lemma}
+\label{proofTheorem:Lemma:4}
+If $m_i = min\lbrace m|\sqrt{2\epsilon_{m} } < \dfrac{\Delta_i}{4} \rbrace $, $c_{i}^{'} =\sqrt{\frac{\log (\psi T\epsilon_{m_{i}})}{ z_{i}}}$ and $n_{m_i}=\dfrac{\log{(\psi T\epsilon_{m_{i}}^{2})}}{2\epsilon_{m_{i}}}$ then, 
+\begin{align*}
+\Pb\lbrace z_i > n_{m_i} \rbrace \leq \dfrac{2}{T(\psi \epsilon_{m_i})^2}.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+Following a similar argument as in Lemma \ref{proofTheorem:Lemma:3}, we can show that in the $m_i$-th round,
+\begin{align*}
+\Pb\lbrace z_i > n_{m_i} \rbrace &\leq \sum_{m=0}^{m_i}\sum_{z_i =1}^{n_{m_i}}\sum_{z^* =1}^{n_{m_i}}\bigg(\Pb\lbrace \hat{r}^* < r^* + c^{*'}\rbrace + \Pb\lbrace \hat{r}_i > r_i + c_i^{'}\rbrace\bigg) \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+&\leq \sum_{m=0}^{m_i}\sum_{z_i =1}^{n_{m_i}}\sum_{z^* =1}^{n_{m_i}} \dfrac{2}{(T\psi \epsilon_{m_i})^2} \leq \dfrac{2 T}{(T\psi \epsilon_{m_i})^2}\leq  \dfrac{2}{T(\psi \epsilon_{m_i})^2}.
+\end{align*}
+\end{proof}
+
+\section{Proof of Lemma 5}
+\label{App:Lemma5}
+\begin{lemma}
+\label{proofTheorem:Lemma:5}
+If $T\geq K^{2.4}$ and $	\Delta_{i}=\sqrt{\frac{K\log K}{T}} > \sqrt{\frac{e}{T}}$ then, $\dfrac{K^4}{T^2 \Delta_i^3} \leq K^{\frac{3}{2}}$.
+\end{lemma}
+
+\begin{proof}
+Substituting the value of $\Delta_{i}=\sqrt{\frac{K\log K}{T}}$ in the above expression we get,
+\begin{align*}
+\dfrac{K^4 T^{\frac{3}{2}}}{T^2 (K\log K)^{\frac{3}{2}}} \leq \frac{K^{\frac{5}{2}}}{\sqrt{T}(\log K)^{\frac{3}{2}}} \overset{(a)}{\leq} \dfrac{K^{1.3}}{(\log K)^{\frac{3}{2}}} \leq K^{\frac{3}{2}}
+\end{align*}  
+\end{proof}
+
+
+\section{Proof of Theorem 2}
+\label{sec:proofTheorem2}
+\input{proofTheorem_eclusUCB}
