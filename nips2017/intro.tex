@@ -4,14 +4,14 @@ Given the goal of maximizing the cumulative reward, the learning algorithm faces
 
 Let $r_i$, $i=1,\ldots,K$ denote the mean reward of the $i$th arm out of the $K$ arms and $r^* = \max_i r_i$ the optimal mean reward. The objective in the stochastic bandit problem is to minimize the cumulative regret, which is defined as follows:
 \begin{align*}
-R_{T}=r^{*}T - \sum_{i\in A} r_{i}N_{i}(T),
+R_{T}=r^{*}T - \sum_{i\in A} r_{i}z_{i}(T),
 \end{align*}
-where $T$ is the number of timesteps, $N_{i}(T)=\sum_{m=1}^T I(I_m=i)$ is the number of times the algorithm has chosen arm $i$ up to timestep $T$.
+where $T$ is the number of timesteps, $z_{i}(T)=\sum_{m=1}^T I(I_m=i)$ is the number of times the algorithm has chosen arm $i$ up to timestep $T$.
 The expected regret of an algorithm after $T$ timesteps can be written as
 %\newline
 %\newline
 \begin{align*}
-\E[R_{T}]= \sum_{i=1}^K \E[N_i(T)] \Delta_i,
+\E[R_{T}]= \sum_{i=1}^K \E[z_i(T)] \Delta_i,
 \end{align*}
 where $\Delta_{i}=r^{*}-r_{i}$ denotes the gap between the means of the optimal arm and the $i$-th arm. 
 
