@@ -23,7 +23,7 @@ In the above, we have used the fact that since $z_i\geq n_{m_i}$, so $ c_{i} = \
   \end{align*}
 Similarly, we have $\mathbb{P}\left(\hat{r}^{*}\leq r^{*} - c^{*}\right)\leq \dfrac{1}{(\psi  T\epsilon_{m_{i}})^{\rho_{a}}}$. Again, applying Lemma \ref{proofTheorem:Lemma:3} we can show that in the $m_i$-th round $\Pb\lbrace c^{*'} > c_i^{'} \rbrace \leq \dfrac{2}{T(\psi \epsilon_{m_i})^2}$. Similarly, applying Lemma \ref{proofTheorem:Lemma:4} we can show that $\Pb\lbrace z_i > n_{m_i} \rbrace \leq \dfrac{2}{T(\psi \epsilon_{m_i})^2}$. Thus, the probability that a sub-optimal arm $i$ is not eliminated in any round on or before $m_{i}$ is bounded above by $\left(\dfrac{2}{(\psi T\epsilon_{m_{i}})^{\rho_{a}}} + \dfrac{4}{T(\psi \epsilon_{m_i})^2}\right)$. Summing up over all arms in $A_{s^{*}}^{'}$ in conjunction with a simple bound of $T\Delta_{i}$ for each arm we obtain,
    \begin{align*}
-\sum_{i\in A_{s^{*}}^{'}}\left(\dfrac{2T\Delta_{i}}{(\psi T\epsilon_{m_{i}})^{\rho_{a}}} + \dfrac{4}{T(\psi \epsilon_{m_i})^2}\right)&
+&\sum_{i\in A_{s^{*}}^{'}}\left(\dfrac{2T\Delta_{i}}{(\psi T\epsilon_{m_{i}})^{\rho_{a}}} + \dfrac{4}{T(\psi \epsilon_{m_i})^2}\right)
 \leq\sum_{i\in A_{s^{*}}^{'}}\left(\frac{2T\Delta_{i}}{(\psi T\dfrac{\Delta_{i}^{2}}{32})^{\rho_{a}}} +  \dfrac{4T\Delta_{i}}{T(\psi \epsilon_{m_i})^2}\right)\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 &\overset{(a)}{\leq} \sum_{i\in A_{s^{*}}^{'}}\left(\frac{2T\Delta_{i}}{(\dfrac{T^2}{K^2}\dfrac{\Delta_{i}^{2}}{32})^{\frac{1}{2}}} + \dfrac{4}{(\dfrac{T}{K^2} \dfrac{\Delta_{i}^{3}}{32})^2}\right)  \leq \sum_{i\in A_{s^{*}}^{'}}\left(8\sqrt{2} K + \dfrac{4096 K^4}{T^2 \Delta_i^3}\right)\\
@@ -79,8 +79,8 @@ Hence, proceeding similarly to case $b1$ in Therorem \ref{Result:Theorem:1}, we 
  &\sum_{i\in A^{'}}\Delta_{i}\bigg\lceil\dfrac{\log{(\psi T\epsilon_{m_{i}}^{2})}}{2\epsilon_{m_{i}}}\bigg\rceil 
 \!+\! \sum_{k=1}^{p}\sum_{i\in A_{s_{k}}^{'}}\Delta_{i}\bigg\lceil\dfrac{\log{(\psi T\epsilon_{g_{s_{k}}}^{2})}}{2\epsilon_{g_{s_{k}}}}\bigg\rceil \\
 %%%%%%%%%%%%%%%%%%%%
-&\overset{a}{\leq}\sum_{i\in A^{'}}\Delta_{i}\bigg(1+\dfrac{16\log{\left(\psi T\left(\frac{\Delta_{i}}{2}\right)^{4}\right)}}{\Delta_{i}^{2}}\bigg) 
-\quad+ \sum_{i\in A^{'}}\Delta_{i}\bigg(1+\dfrac{16\log{\left(\psi T\left(\frac{\Delta_{i}}{2}\right)^{4}\right)}}{\Delta_{i}^{2}}\bigg)
+&\overset{a}{\leq}\sum_{i\in A^{'}}\Delta_{i}\bigg(1+\dfrac{16\log{\left(\psi T\left(\frac{\Delta_{i}}{4\sqrt{2}}\right)^{4}\right)}}{\Delta_{i}^{2}}\bigg) 
+\quad+ \sum_{i\in A^{'}}\Delta_{i}\bigg(1+\dfrac{16\log{\left(\psi T\left(\frac{\Delta_{i}}{4\sqrt{2}}\right)^{4}\right)}}{\Delta_{i}^{2}}\bigg)
 \\
 %%%%%%%%%%%%%%%%%%%%
  &\overset{b}{\leq} \sum_{i\in A^{'}}\!\bigg[ 2\Delta_{i}+\dfrac{16(\log{(\frac{T^2}{K^2}\frac{\Delta_{i}^{4}}{1024})} + \log{(\frac{T^2}{K^2}\frac{\Delta_{i}^{4}}{1024})})}{\Delta_{i}} \bigg] \leq \sum_{i\in A^{'}}\!\bigg[ 2\Delta_{i}+\dfrac{32\left(\log{(\frac{T\Delta_{i}^2}{K})} + \log{(\frac{T\Delta_{i}^2}{K})}\right)}{\Delta_{i}} \bigg]
