@@ -120,9 +120,9 @@ From analysis in Case $a1$, notice that, if \eqref{eq:armelim-casea2} holds in c
 %%%%%%%%%%%%%%
 &\!\leq\!\!\sum_{i\in A^{'}_{s^{*}}}\frac{T^{1-\rho_{a}}2^{\rho_{a}+\frac{7}{2}}}{\psi^{\rho_{a}}\Delta_{i}^{2\rho_{a}-1}} \!+\!\!\!\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\!\!\frac{T^{1-\rho_{a}}2^{\rho_{a}+\frac{7}{2}}}{\psi^{\rho_{a}}b^{2\rho_{a}-1}} +  \sum_{i\in A^{'}_{s^{*}}}\dfrac{46}{\psi^2 \Delta_i^{\frac{3}{2}}} + \sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\dfrac{46}{\psi^2 b^{\frac{3}{2}}}\\
 %%%%%%%%%%%%%%
-& \overset{(a)}{\leq} \sum_{i\in A^{'}_{s^{*}}} 16K \!+\!\!\!\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\!\! 16K + \sum_{i\in A^{'}_{s^{*}}}\dfrac{46 K^2 T^{\frac{3}{2}}}{T^2 e^{\frac{3}{2}}} + \sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\dfrac{46 K^2 T^{\frac{3}{2}}}{T^2 e^{\frac{3}{2}}}\\
+& \overset{(a)}{\leq} \sum_{i\in A^{'}_{s^{*}}} 16K \!+\!\!\!\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\!\! 16K + \sum_{i\in A^{'}_{s^{*}}}\dfrac{46 K^4 T^{\frac{3}{2}}}{T^2 e^{\frac{3}{2}}} + \sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\dfrac{46 K^4 T^{\frac{3}{2}}}{T^2 e^{\frac{3}{2}}}\\
 %%%%%%%%%%%%%%
-& \overset{(b)}{\leq} \sum_{i\in A^{'}_{s^{*}}} 16K \!+\!\!\!\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\!\! 16K + \sum_{i\in A^{'}_{s^{*}}} 46K \!+\!\!\!\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\!\! 46K \leq \sum_{i\in A^{'}_{s^{*}}} 62K \!+\!\!\!\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\!\! 62K 
+& \overset{(b)}{\leq} \sum_{i\in A^{'}_{s^{*}}} 16K \!+\!\!\!\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\!\! 16K + \sum_{i\in A^{'}_{s^{*}}} 46K^{2.8} \!+\!\!\!\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\!\! 46K^{2.8} \leq \sum_{i\in A^{'}_{s^{*}}} 62K^{2.8} \!+\!\!\!\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\!\! 62K^{2.8} 
 %& = \sum_{i\in A^{'}_{s^{*}}}\dfrac{ C_{2}(\rho_{a}) T^{1-\rho_{a}}}{\Delta_{i}^{4\rho_{a}-1}} +\sum_{i\in A^{''}_{s^{*}}\setminus A^{'}_{s^{*}}}\dfrac{C_{2(\rho_{a})}T^{1-\rho_{a}}}{b^{4\rho_{a}-1}}.
 \end{align*}
 
@@ -146,7 +146,7 @@ Using $A'\supset C_{g}^{'}$ and $A''\supset C_{g}^{''}$, we can bound the regret
 \begin{align*}
 % &\!\!\sum_{i\in A^{'}\setminus A_{s^*}^{'}}\frac{T^{1-\rho_{s}}2^{\rho_{s}+\frac{5}{2}}}{\psi^{\rho_{s}}\Delta_{i}^{2\rho_{s}-1}} 
 % \!+\!\!\!\sum_{i\in A^{''}\setminus A^{'}\cup A_{s^*}^{'}}\!\!\!\!\frac{T^{1-\rho_{s}}2^{\rho_{s}+\frac{5}{2}}}{\psi^{\rho_{s}}b^{2\rho_{s}-1}} \\
- & \sum_{i\in A^{'}\setminus A_{s^*}^{'}} 62K +\sum_{i\in A^{''}\setminus A^{'}\cup A_{s^*}^{'}} 62K
+ & \sum_{i\in A^{'}\setminus A_{s^*}^{'}} 62K^{2.8} +\sum_{i\in A^{''}\setminus A^{'}\cup A_{s^*}^{'}} 62K^{2.8}
 % & = \sum_{i\in A^{'}\setminus A_{s^*}^{'}}\frac{C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} +\sum_{i\in A^{''}\setminus A^{'}\cup A_{s^*}^{'}}\frac{C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s}-1}} 
 \end{align*}
 
@@ -161,7 +161,7 @@ In this case the optimal arm ${*}\in s^{*}$ is not eliminated, also $s^{*}$ is n
 For arms $a_i \notin s^*$, the contribution to the regret cannot be greater than that in Case $b3$. So the regret is bounded by,
 
 \begin{align*}
-\sum_{i\in A^{'}\setminus A_{s^*}^{'}} 62K +\sum_{i\in A^{''}\setminus A^{'} \cup A_{s^*}^{'}} 62K
+\sum_{i\in A^{'}\setminus A_{s^*}^{'}} 62K^{2.8} +\sum_{i\in A^{''}\setminus A^{'} \cup A_{s^*}^{'}} 62K^{2.8}
 %\sum_{i\in A^{'}\setminus A_{s^*}^{'}}\dfrac{C_{2}(\rho_{s})T^{1-\rho_{s}}}{\Delta_{i}^{4\rho_{s}-1}} +\sum_{i\in A^{''}\setminus A^{'} \cup A_{s^*}^{'}}\dfrac{C_{2}(\rho_{s})T^{1-\rho_{s}}}{b^{4\rho_{s}-1}}
 \end{align*}
 The main claim follows by summing the contributions to the expected regret from each of the cases above.

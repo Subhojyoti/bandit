@@ -115,7 +115,7 @@ $\tilde R_T = 32K\log K + \frac{64 K^3}{K+\log K}$. Hence, in comparison to Clus
 Next, we present the main regret upper bound for EClusUCB.
 
 \begin{theorem}[\textbf{\textit{Gap dependent regret bound}}]
-\label{Result:Theorem:1}
+\label{Result:Theorem:2}
 For $T\geq K^{2.4} $, $\rho_a =\frac{1}{2}$, $\rho_s =\frac{1}{2}$ and $\psi=\frac{T}{K^2}$ the regret $R_T$ of EClusUCB satisfies
 \begin{align*}
 &\E [R_{T}]\leq 
@@ -125,7 +125,7 @@ For $T\geq K^{2.4} $, $\rho_a =\frac{1}{2}$, $\rho_s =\frac{1}{2}$ and $\psi=\fr
 4108K^{2.8} + \frac{64\log{(\frac{T\Delta_i^2}{K})}}{\Delta_{i}} \bigg\rbrace \\
 %%%%%%%%%%%%%%%%%
 &+ \sum\limits_{\substack{i\in A_{s^{*}},\\ \Delta_{i} > b}} 
-62K+\sum\limits_{\substack{i\in A_{s^{*}},\\0 < \Delta_{i}\leq b}} 62K + \sum_{\substack{i\in A\setminus A_{s^*}:\\\Delta_{i}> b}}124K +\sum_{\substack{i\in A \setminus A_{s^*}:\\ 0 < \Delta_{i} \leq b}}124K 
+62K^{2.8}+\sum\limits_{\substack{i\in A_{s^{*}},\\0 < \Delta_{i}\leq b}} 62K^{2.8} + \sum_{\substack{i\in A\setminus A_{s^*}:\\\Delta_{i}> b}}124K^{2.8} +\sum_{\substack{i\in A \setminus A_{s^*}:\\ 0 < \Delta_{i} \leq b}}124K^{2.8} 
  \!+\! \max\limits_{i:\Delta_{i}\leq b}\Delta_{i}T, 
 \end{align*}
 where $b\geq \sqrt{\frac{e}{T}}$, and $A_{s^{*}}$ is the subset of arms in cluster $s^{*}$ containing optimal arm $a^{*}$.
