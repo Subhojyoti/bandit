@@ -299,7 +299,7 @@ If $m_i = min\lbrace m|\sqrt{2\epsilon_{m} } < \dfrac{\Delta_i}{4} \rbrace $, $c
 \begin{proof}
 From the definition of $c_i^{'}$ we know that $c_i^{'}\propto \frac{1}{z_i}$ as $\psi$ and $T$ are constants. Therefore in the $m_i$-th round,
 \begin{align*}
-\Pb\lbrace c^{*'} > c_i^{'} \rbrace \leq  \Pb\lbrace  z^* < z_i  \rbrace \leq \sum_{m=0}^{m_i}\sum_{z_i =1}^{n_{m_i}}\sum_{z^* =1}^{n_{m_i}}\bigg(\Pb\lbrace \hat{r}^* < r^* + c^{*'}\rbrace + \Pb\lbrace \hat{r}_i > r_i + c_i^{'}\rbrace\bigg)
+\Pb\lbrace c^{*'} > c_i^{'} \rbrace \leq  \Pb\lbrace  z^* < z_i  \rbrace \leq \sum_{m=0}^{m_i}\sum_{z_i =1}^{n_{m_i}}\sum_{z^* =1}^{n_{m_i}}\bigg(\Pb\lbrace \hat{r}^* < r^* - c^{*'}\rbrace + \Pb\lbrace \hat{r}_i > r_i + c_i^{'}\rbrace\bigg)
 \end{align*}
 
 Now, applying Chernoff-Hoeffding bound we can show that,
@@ -329,7 +329,7 @@ If $m_i = min\lbrace m|\sqrt{2\epsilon_{m} } < \dfrac{\Delta_i}{4} \rbrace $, $c
 \begin{proof}
 Following a similar argument as in Lemma \ref{proofTheorem:Lemma:3}, we can show that in the $m_i$-th round,
 \begin{align*}
-\Pb\lbrace z_i > n_{m_i} \rbrace &\leq \sum_{m=0}^{m_i}\sum_{z_i =1}^{n_{m_i}}\sum_{z^* =1}^{n_{m_i}}\bigg(\Pb\lbrace \hat{r}^* < r^* + c^{*'}\rbrace + \Pb\lbrace \hat{r}_i > r_i + c_i^{'}\rbrace\bigg) \\
+\Pb\lbrace z_i > n_{m_i} \rbrace &\leq \sum_{m=0}^{m_i}\sum_{z_i =1}^{n_{m_i}}\sum_{z^* =1}^{n_{m_i}}\bigg(\Pb\lbrace \hat{r}^* < r^* - c^{*'}\rbrace + \Pb\lbrace \hat{r}_i > r_i + c_i^{'}\rbrace\bigg) \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 &\leq \sum_{m=0}^{m_i}\sum_{z_i =1}^{n_{m_i}}\sum_{z^* =1}^{n_{m_i}} \dfrac{2}{(T\psi \epsilon_{m_i})^2} \leq \dfrac{2 T}{(T\psi \epsilon_{m_i})^2}\leq  \dfrac{2}{T(\psi \epsilon_{m_i})^2}.
 \end{align*}

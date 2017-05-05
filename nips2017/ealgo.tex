@@ -28,7 +28,7 @@
 \State Create a partition $S_0$ of the arms at random into $p$ clusters of size up to $\ell=\bigg\lceil \frac{K}{p} \bigg\rceil$ each.
 \State Pull each arm once
 \For{$t=K+1,..,T$}	
-\State Pull arm $i\in \argmax_{j\in B_{m}}\bigg\lbrace \hat{r}_{j} + \sqrt{\frac{\log{(\psi T\epsilon_{m}^{2})}}{ z_{j}}} \bigg\rbrace$, where $z_j$ is the number of times arm $j$ has been pulled
+\State Pull arm $i\in \argmax_{j\in B_{m}}\bigg\lbrace \hat{r}_{j} + \sqrt{\frac{\log{(\psi T\epsilon_{m})}}{ z_{j}}} \bigg\rbrace$, where $z_j$ is the number of times arm $j$ has been pulled
 %\State $t:=t+1$
 \ArmElim
 \State For each cluster $s_k \in S_{m}$, delete arm ${i}\in s_{k}$ from $B_{m}$ if
